@@ -14,7 +14,10 @@ namespace XNodeEditor.Examples {
 		public override string GetNodeMenuName(System.Type type) {
 			if (type.Namespace == "XNode.Examples.MathNodes") {
 				return base.GetNodeMenuName(type).Replace("X Node/Examples/Math Nodes/", "");
-			} else return null;
+			} else if(type.Namespace == "NT.Nodes"){
+				return base.GetNodeMenuName(type).Replace("NT.Nodes", "");
+			}
+			else return null;
 		}
 	}
 }
