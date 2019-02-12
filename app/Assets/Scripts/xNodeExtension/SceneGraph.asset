@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Name: Flow Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -56, y: -56}
+  position: {x: 56, y: -56}
   ports:
     keys:
     - flowIn
