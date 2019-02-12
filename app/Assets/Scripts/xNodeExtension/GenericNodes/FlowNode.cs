@@ -7,7 +7,8 @@ namespace NT.Nodes{
     [System.Serializable]
     public class FlowNode : NTNode
     {
-        [Input] public Node flowIn;
+        [Input(onlyMatchingTypes = true)] public NTNode flowIn;
+        [Input(onlyMatchingTypes = true)] public float dataValue;
 
     }
 }
