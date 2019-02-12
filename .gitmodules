@@ -1,0 +1,3 @@
+[submodule "app/Assets/Submodules/xNode"]
+	path = app/Assets/Submodules/xNode
+	url = https://github.com/sigr3s/xNode.git
