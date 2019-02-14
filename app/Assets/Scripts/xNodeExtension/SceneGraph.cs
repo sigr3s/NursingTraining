@@ -13,5 +13,13 @@ namespace NT.Graph{
 
         public List<CallabackNode> callbackNodes;
 
+        public override Node AddNode(System.Type type){
+            Node node = base.AddNode(type);
+            if(node is CallabackNode){
+                callbackNodes.Add( (CallabackNode) node );
+            }
+            return node;
+        }
+
     }
 }
