@@ -20,7 +20,9 @@ namespace NT.Nodes{
             float val1 = GetInputValue<float>(nameof(val1), this.val1);
             float val2 = GetInputValue<float>(nameof(val2), this.val2);
 
-            return val1 + val2;
+            result = val1 + val2;
+
+            return result;
         }
 
         

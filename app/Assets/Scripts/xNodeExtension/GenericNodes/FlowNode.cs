@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using NT.Atributes;
-using UnityEngine;
 using XNode;
 
 namespace NT.Nodes{
@@ -9,6 +6,8 @@ namespace NT.Nodes{
     public class FlowNode : NTNode
     {
         [NTInput] public DummyConnection flowIn;
+        
+        [NTOutput] public DummyConnection flowOut;
 
     }
 }

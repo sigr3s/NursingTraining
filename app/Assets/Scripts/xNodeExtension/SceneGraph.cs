@@ -21,5 +21,19 @@ namespace NT.Graph{
             return node;
         }
 
+
+        [ContextMenu("NextNode")]
+        public void NextNode(){
+            if(current != null){
+                current = current.NextNode();
+            }
+            else if(callbackNodes.Count > 0){
+                current = callbackNodes[0];
+            }
+            else if(nodes.Count > 0){
+                current = (NTNode) nodes[0];
+            }
+        }
+
     }
 }
