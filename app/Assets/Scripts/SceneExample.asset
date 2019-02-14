@@ -10,67 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07a9a16dd8fab3d408a387054157ffcc, type: 3}
-  m_Name: SceneGraph
+  m_Name: SceneExample
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114535147699610450}
-  - {fileID: 114470500191557372}
+  - {fileID: 114723450255873322}
+  - {fileID: 114898171192220968}
   current: {fileID: 0}
   callbackNodes: []
---- !u!114 &114470500191557372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b20d09535e8d5b43b8ad51a4df885d9, type: 3}
-  m_Name: Flow Node
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 56, y: -56}
-  ports:
-    keys:
-    - flowIn
-    - dataValue
-    - flowOut
-    values:
-    - _fieldName: flowIn
-      _node: {fileID: 114470500191557372}
-      _typeQualifiedName: NT.Nodes.NTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: flowOut
-        node: {fileID: 114535147699610450}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _dynamic: 0
-      _onlyMatchingTypes: 1
-    - _fieldName: dataValue
-      _node: {fileID: 114470500191557372}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _dynamic: 0
-      _onlyMatchingTypes: 1
-    - _fieldName: flowOut
-      _node: {fileID: 114470500191557372}
-      _typeQualifiedName: NT.Nodes.NTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _dynamic: 0
-      _onlyMatchingTypes: 0
-  flowOut: {fileID: 0}
-  flowIn: {fileID: 0}
-  dataValue: 0
---- !u!114 &114535147699610450
+--- !u!114 &114723450255873322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,21 +30,74 @@ MonoBehaviour:
   m_Name: Callaback Node
   m_EditorClassIdentifier: Assembly-CSharp:NT.Nodes:CallabackNode
   graph: {fileID: 11400000}
-  position: {x: -392, y: -120}
+  position: {x: -408, y: -168}
   ports:
     keys:
     - flowOut
     values:
     - _fieldName: flowOut
-      _node: {fileID: 114535147699610450}
+      _node: {fileID: 114723450255873322}
       _typeQualifiedName: NT.Nodes.NTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: flowIn
-        node: {fileID: 114470500191557372}
+        node: {fileID: 114898171192220968}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _dynamic: 0
-      _onlyMatchingTypes: 0
+      _isStronglyTyped: 0
   flowOut: {fileID: 0}
+--- !u!114 &114898171192220968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b20d09535e8d5b43b8ad51a4df885d9, type: 3}
+  m_Name: Flow Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -72, y: -88}
+  ports:
+    keys:
+    - flowIn
+    - dataValue
+    - flowOut
+    values:
+    - _fieldName: flowIn
+      _node: {fileID: 114898171192220968}
+      _typeQualifiedName: NT.Nodes.NTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114723450255873322}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 1
+    - _fieldName: dataValue
+      _node: {fileID: 114898171192220968}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 1
+    - _fieldName: flowOut
+      _node: {fileID: 114898171192220968}
+      _typeQualifiedName: NT.Nodes.NTNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+      _isStronglyTyped: 0
+  flowOut: {fileID: 0}
+  flowIn: {fileID: 0}
+  dataValue: 0

@@ -1,0 +1,255 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6399826e2c44b447b32a3ed06646162, type: 3}
+  m_Name: MathDemo
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 114942835934256046}
+  - {fileID: 114969485251225028}
+  - {fileID: 114184064871922020}
+  - {fileID: 114110740547170400}
+  - {fileID: 114785192159612188}
+--- !u!114 &114110740547170400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f6f901f0da53142b79277ea3f42518, type: 3}
+  m_Name: Display Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: 88}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 114110740547170400}
+      _typeQualifiedName: XNode.Examples.MathNodes.DisplayValue+Anything, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 114785192159612188}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+--- !u!114 &114184064871922020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05559f4106850df4ab41776666216480, type: 3}
+  m_Name: Vector
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -8, y: -104}
+  ports:
+    keys:
+    - z
+    - y
+    - x
+    - vector
+    values:
+    - _fieldName: z
+      _node: {fileID: 114184064871922020}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: y
+      _node: {fileID: 114184064871922020}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: x
+      _node: {fileID: 114184064871922020}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: result
+        node: {fileID: 114785192159612188}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: vector
+      _node: {fileID: 114184064871922020}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+      _isStronglyTyped: 0
+  x: 0
+  y: 0
+  z: 0
+  vector: {x: 0, y: 0, z: 0}
+--- !u!114 &114785192159612188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e541bba2a188f4a84c6f3718ee6d55, type: 3}
+  m_Name: Math Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: 8}
+  ports:
+    keys:
+    - b
+    - a
+    - result
+    values:
+    - _fieldName: b
+      _node: {fileID: 114785192159612188}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: a
+      _node: {fileID: 114785192159612188}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: result
+      _node: {fileID: 114785192159612188}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 114110740547170400}
+        reroutePoints: []
+      - fieldName: x
+        node: {fileID: 114184064871922020}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+      _isStronglyTyped: 0
+  a: 0
+  b: 0
+  result: 0
+  mathType: 0
+--- !u!114 &114942835934256046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e541bba2a188f4a84c6f3718ee6d55, type: 3}
+  m_Name: Math Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: -200}
+  ports:
+    keys:
+    - b
+    - a
+    - result
+    values:
+    - _fieldName: b
+      _node: {fileID: 114942835934256046}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: a
+      _node: {fileID: 114942835934256046}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
+    - _fieldName: result
+      _node: {fileID: 114942835934256046}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 114969485251225028}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+      _isStronglyTyped: 0
+  a: 0
+  b: 0
+  result: 0
+  mathType: 0
+--- !u!114 &114969485251225028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f6f901f0da53142b79277ea3f42518, type: 3}
+  m_Name: Display Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 136, y: -184}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 114969485251225028}
+      _typeQualifiedName: XNode.Examples.MathNodes.DisplayValue+Anything, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 114942835934256046}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _dynamic: 0
+      _isStronglyTyped: 0
