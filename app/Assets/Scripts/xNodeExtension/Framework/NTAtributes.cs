@@ -8,12 +8,13 @@ namespace NT.Atributes{
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class NTInputAttribute : Node.InputAttribute {
         public NTInputAttribute(    Node.ShowBackingValue backingValue = Node.ShowBackingValue.Unconnected, 
-                                    Node.ConnectionType connectionType = Node.ConnectionType.Override, 
-                                    bool instancePortList = false, bool stronglyTyped = true) {
+                                    Node.ConnectionType connectionType = Node.ConnectionType.Override,
+                                    Node.TypeConstraint typeConstraint = Node.TypeConstraint.Strict, 
+                                    bool instancePortList = false) {
             this.backingValue = backingValue;
             this.connectionType = connectionType;
             this.instancePortList = instancePortList;
-            this.isStronglyTyped = stronglyTyped;
+            this.typeConstraint = typeConstraint;
         }
     }
 
