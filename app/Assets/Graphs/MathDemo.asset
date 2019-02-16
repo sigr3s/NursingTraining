@@ -46,8 +46,8 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
 --- !u!114 &114184064871922020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,30 +75,27 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: y
       _node: {fileID: 114184064871922020}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: x
       _node: {fileID: 114184064871922020}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: result
-        node: {fileID: 114785192159612188}
-        reroutePoints: []
+      connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: vector
       _node: {fileID: 114184064871922020}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -106,8 +103,8 @@ MonoBehaviour:
       connections: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
   x: 0
   y: 0
   z: 0
@@ -138,18 +135,18 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: a
       _node: {fileID: 114785192159612188}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: result
       _node: {fileID: 114785192159612188}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -163,8 +160,8 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
   a: 0
   b: 0
   result: 0
@@ -195,18 +192,18 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: a
       _node: {fileID: 114942835934256046}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
-      _connectionType: 1
+      _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: result
       _node: {fileID: 114942835934256046}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -217,8 +214,8 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
   a: 0
   b: 0
   result: 0
@@ -251,5 +248,5 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0

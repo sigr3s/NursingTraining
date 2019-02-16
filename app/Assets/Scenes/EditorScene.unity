@@ -979,6 +979,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114611502738141122, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: graph
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ecd3a2e6ceb0b646abfc22dcf7f51ba,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b, type: 3}
 --- !u!1 &440814799
@@ -1066,7 +1072,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 10.55
+  m_fontSize: 7.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1112,7 +1118,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0

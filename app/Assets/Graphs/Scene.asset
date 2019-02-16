@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Scene
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114376808096932030}
   - {fileID: 114288664529681144}
   - {fileID: 114415876962546824}
   - {fileID: 114752838948721850}
-  - {fileID: 114004917038636372}
+  - {fileID: 114844661765626650}
+  - {fileID: 114920138718605006}
+  - {fileID: 114787278269307832}
   - {fileID: 0}
   current: {fileID: 114288664529681144}
   callbackNodes:
   - {fileID: 114004917038636372}
+  - {fileID: 114844661765626650}
+  executionNodes: []
 --- !u!114 &114004917038636372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +38,7 @@ MonoBehaviour:
   m_Name: Callaback Node
   m_EditorClassIdentifier: Assembly-CSharp:NT.Nodes:CallabackNode
   graph: {fileID: 11400000}
-  position: {x: -488, y: -552}
+  position: {x: -536, y: -568}
   ports:
     keys:
     - flowOut
@@ -50,8 +53,10 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
+  flowOut: {}
+  callbackKey: start
 --- !u!114 &114288664529681144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,42 +70,15 @@ MonoBehaviour:
   m_Name: Flase Sum
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -152, y: -296}
+  position: {x: -56, y: -472}
   ports:
     keys:
-    - val1
+    - flowIn
     - val2
     - result
-    - flowIn
+    - val1
     - flowOut
     values:
-    - _fieldName: val1
-      _node: {fileID: 114288664529681144}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _dynamic: 0
-      _isStronglyTyped: 1
-    - _fieldName: val2
-      _node: {fileID: 114288664529681144}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _dynamic: 0
-      _isStronglyTyped: 1
-    - _fieldName: result
-      _node: {fileID: 114288664529681144}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: flowIn
       _node: {fileID: 114288664529681144}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -111,53 +89,54 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 2
       _dynamic: 0
-      _isStronglyTyped: 1
+    - _fieldName: val2
+      _node: {fileID: 114288664529681144}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 114288664529681144}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 114920138718605006}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val1
+      _node: {fileID: 114288664529681144}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
     - _fieldName: flowOut
       _node: {fileID: 114288664529681144}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: input
-        node: {fileID: 114376808096932030}
+      - fieldName: flowIn
+        node: {fileID: 114787278269307832}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
+  isExecuting: 0
   val1: 2
-  val2: 0
-  result: 2
---- !u!114 &114376808096932030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f6f901f0da53142b79277ea3f42518, type: 3}
-  m_Name: Display Value
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 120, y: -360}
-  ports:
-    keys:
-    - input
-    values:
-    - _fieldName: input
-      _node: {fileID: 114376808096932030}
-      _typeQualifiedName: XNode.Examples.MathNodes.DisplayValue+Anything, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: flowOut
-        node: {fileID: 114288664529681144}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _dynamic: 0
-      _isStronglyTyped: 0
+  val2: 2
+  result: 4
 --- !u!114 &114415876962546824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,42 +150,15 @@ MonoBehaviour:
   m_Name: True Sum
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -152, y: -552}
+  position: {x: -40, y: -680}
   ports:
     keys:
-    - val1
+    - flowIn
     - val2
     - result
-    - flowIn
+    - val1
     - flowOut
     values:
-    - _fieldName: val1
-      _node: {fileID: 114415876962546824}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _dynamic: 0
-      _isStronglyTyped: 1
-    - _fieldName: val2
-      _node: {fileID: 114415876962546824}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _dynamic: 0
-      _isStronglyTyped: 1
-    - _fieldName: result
-      _node: {fileID: 114415876962546824}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: flowIn
       _node: {fileID: 114415876962546824}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -217,8 +169,35 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 2
       _dynamic: 0
-      _isStronglyTyped: 1
+    - _fieldName: val2
+      _node: {fileID: 114415876962546824}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 114415876962546824}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: val1
+      _node: {fileID: 114415876962546824}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
     - _fieldName: flowOut
       _node: {fileID: 114415876962546824}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -226,8 +205,9 @@ MonoBehaviour:
       connections: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
+  isExecuting: 0
   val1: 0
   val2: 1
   result: 1
@@ -323,26 +303,23 @@ MonoBehaviour:
   m_Name: Branch Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -376, y: -408}
+  position: {x: -296, y: -632}
   ports:
     keys:
-    - flowIn
+    - condition
     - trueBranch
     - falseBranch
-    - condition
+    - flowIn
     values:
-    - _fieldName: flowIn
+    - _fieldName: condition
       _node: {fileID: 114752838948721850}
-      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: flowOut
-        node: {fileID: 114004917038636372}
-        reroutePoints: []
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 2
       _dynamic: 0
-      _isStronglyTyped: 1
     - _fieldName: trueBranch
       _node: {fileID: 114752838948721850}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -353,8 +330,8 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
     - _fieldName: falseBranch
       _node: {fileID: 114752838948721850}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -365,18 +342,159 @@ MonoBehaviour:
         reroutePoints: []
       _direction: 1
       _connectionType: 0
+      _typeConstraint: 0
       _dynamic: 0
-      _isStronglyTyped: 0
-    - _fieldName: condition
+    - _fieldName: flowIn
       _node: {fileID: 114752838948721850}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114844661765626650}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  isExecuting: 0
+  condition: 1
+--- !u!114 &114787278269307832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37354430cb7d57747b0db84973aeb580, type: 3}
+  m_Name: Sum Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 232, y: -536}
+  ports:
+    keys:
+    - val1
+    - val2
+    - result
+    - flowIn
+    - flowOut
+    values:
+    - _fieldName: val1
+      _node: {fileID: 114787278269307832}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 1
+      _typeConstraint: 2
       _dynamic: 0
-      _isStronglyTyped: 1
-  condition: 0
+    - _fieldName: val2
+      _node: {fileID: 114787278269307832}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 114787278269307832}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: flowIn
+      _node: {fileID: 114787278269307832}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114288664529681144}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowOut
+      _node: {fileID: 114787278269307832}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  val1: 0
+  val2: 0
+  result: 0
+--- !u!114 &114844661765626650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e53968ea0c93534d8d39d9ddb0f4542, type: 3}
+  m_Name: Callback Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -568, y: -664}
+  ports:
+    keys:
+    - flowOut
+    values:
+    - _fieldName: flowOut
+      _node: {fileID: 114844661765626650}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114752838948721850}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  callbackKey: start
+--- !u!114 &114920138718605006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae8ea27f1b7186419f4ef9cc41ba2b7, type: 3}
+  m_Name: Display Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 184, y: -344}
+  ports:
+    keys:
+    - input
+    values:
+    - _fieldName: input
+      _node: {fileID: 114920138718605006}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: result
+        node: {fileID: 114288664529681144}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
 --- !u!114 &114927555253161006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +547,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: input
-        node: {fileID: 114376808096932030}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: val1
         node: {fileID: 114500453134444332}

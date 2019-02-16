@@ -12,12 +12,13 @@ namespace NT.Nodes{
 
         [NTInput] public bool condition;
 
-        public override NTNode NextNode(){
+        public override NodeExecutionContext NextNode(NodeExecutionContext context){
+            
             bool condition =  GetInputValue<bool>(nameof(condition), this.condition);
 
-            NTNode nextNode = GetNode(condition ? nameof(trueBranch) : nameof(falseBranch));
-            
-            return nextNode;
+            string nemeOfPort = condition ? nameof(trueBranch) : nameof(falseBranch);
+
+            return new NodeExecutionContext( GetNode(nemeOfPort), GetPort(nemeOfPort) );
         }
     }
 }

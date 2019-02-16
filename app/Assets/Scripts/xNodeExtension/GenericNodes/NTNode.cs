@@ -7,7 +7,8 @@ namespace NT.Nodes{
     [System.Serializable]
     public class NTNode : Node
     {
-        public virtual NTNode NextNode(){
+
+        public virtual NodeExecutionContext NextNode(NodeExecutionContext context){
             return null;
         }
 
@@ -15,10 +16,19 @@ namespace NT.Nodes{
 
         }
 
-        public virtual bool Completed(){
-            return true;
+        public virtual bool KeepWaiting(){
+            return false;
         }
 
+        public virtual void Enter(){
+            isExecuting = true;
+        }
+
+        public virtual void Exit(){
+            isExecuting = false;
+        }
+
+        [HideInInspector] public bool isExecuting = false;
         public NTNode GetNode(string portName){
             NodePort nodePort = GetOutputPort(portName);
 

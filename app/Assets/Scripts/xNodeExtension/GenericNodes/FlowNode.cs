@@ -9,5 +9,10 @@ namespace NT.Nodes{
         
         [NTOutput] public DummyConnection flowOut;
 
+        public override NodeExecutionContext NextNode(NodeExecutionContext context){
+
+            return new NodeExecutionContext( GetNode(nameof(flowOut)), GetPort(nameof(flowOut)) );
+        }
+
     }
 }
