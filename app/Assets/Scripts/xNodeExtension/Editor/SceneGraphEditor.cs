@@ -9,9 +9,18 @@ namespace NT.Graph {
 	public class SceneGraphEditor : NodeGraphEditor {
 
 		public override string GetNodeMenuName(System.Type type) {
-			if (type.Namespace == "NT.Nodes"  || true) {
+			if (type.Namespace.Contains("NT.Nodes") ) {
+				if(type.IsGenericType) return null;
+								
 				return base.GetNodeMenuName(type).Replace("NT/Nodes/", "NT/");
 			} else return null;
+		}
+
+		public override void OnGUI(){
+			if(GUILayout.Button("Build Object"))
+			{
+				
+			}
 		}
 	}
 }

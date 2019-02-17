@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using NT.Nodes;
+using NT.Variables;
+using NT.Nodes.Messages;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using XNode;
@@ -19,6 +23,7 @@ namespace NT.Graph{
         public Dictionary<string, List<CallbackNode>> callbackNodesDict;
         public List<NTNode> executionNodes;
 
+        public SceneVariables sceneVariables;
 
         private CoroutineRunner coroutineRunner;
 
@@ -102,5 +107,6 @@ namespace NT.Graph{
 
             yield return null;
         }
+    
     }
 }
