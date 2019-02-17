@@ -42,7 +42,7 @@ namespace NT.Nodes.Variables{
             NTGraph graph =  node.graph as NTGraph;
             
             int _choiceIndex = 0;
-            string[] _choices = graph.sceneVariables.GetStringOptions(node.variableKey, out _choiceIndex).ToArray();
+            string[] _choices = graph.sceneVariables.GetFloatOptions(node.variableKey, out _choiceIndex).ToArray();
             
             int _newChoiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
 
@@ -65,7 +65,7 @@ namespace NT.Nodes.Variables{
             NTGraph graph =  node.graph as NTGraph;
             
             int _choiceIndex = 0;
-            string[] _choices = graph.sceneVariables.GetStringOptions(node.variableKey, out _choiceIndex).ToArray();
+            string[] _choices = graph.sceneVariables.GetIntegerOptions(node.variableKey, out _choiceIndex).ToArray();
             
             int _newChoiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
 
@@ -88,7 +88,7 @@ namespace NT.Nodes.Variables{
             NTGraph graph =  node.graph as NTGraph;
             
             int _choiceIndex = 0;
-            string[] _choices = graph.sceneVariables.GetStringOptions(node.variableKey, out _choiceIndex).ToArray();
+            string[] _choices = graph.sceneVariables.GetBoolOptions(node.variableKey, out _choiceIndex).ToArray();
             
             int _newChoiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
 
