@@ -1,32 +1,51 @@
 using System;
+using UnityEngine;
 
-public class GenericVariable<T> {
-    public string variableName;
+namespace NT.Variables
+{
+    public class GenericVariable<T> {
+        public string variableName;
+        public static Color color;
 
-    public T value;
-    public T defaultValue;
+        public T value;
+        public T defaultValue;
 
-    public void SetValue(T value){
-        this.value = value;
-    }
+        public GenericVariable(){
 
-    public T GetValue(){
-        return value;
-    }
+        }
+        
+        public GenericVariable(string key, T value){
+            SetKey(key);
+            SetValue(value);
+            SetDefaultValue(value);
+        }
 
-    public void Reset(){
-        this.value = this.defaultValue;
-    }
+        public void SetValue(T value){
+            this.value = value;
+        }
 
-    public string GetKey(){
-        return this.variableName;
-    }
+        public void SetDefaultValue(T value){
+            this.defaultValue = value;
+        }
 
-    public void SetKey(string key){
-        this.variableName = key;
-    }
+        public T GetValue(){
+            return value;
+        }
 
-    public Type GetVariableType(){
-        return typeof(T);
+        public void Reset(){
+            this.value = this.defaultValue;
+        }
+
+        public string GetKey(){
+            return this.variableName;
+        }
+
+        public void SetKey(string key){
+            this.variableName = key;
+        }
+
+        public Type GetVariableType(){
+            return typeof(T);
+        }
     }
 }

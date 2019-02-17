@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: Variables
   m_EditorClassIdentifier: 
   strings:
-  - variableName: 
-    value: 
-    defaultValue: 
-  floats: []
-  bools: []
-  integers: []
+    values:
+    - variableName: hola
+      value: ok
+      defaultValue: hola
+    keys:
+    - hola
+  floats:
+    values: []
+    keys: []
+  bools:
+    values: []
+    keys: []
+  integers:
+    values: []
+    keys: []

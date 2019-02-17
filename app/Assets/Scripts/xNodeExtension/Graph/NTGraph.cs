@@ -1,31 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-
-using NT.Nodes;
-using NT.Variables;
 using NT.Nodes.Messages;
-
+using NT.Variables;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using XNode;
 
-namespace NT.Graph{
-
-
-    [CreateAssetMenu(fileName = "New Scene Graph", menuName = "NT/Scene Graph")]
-    public class SceneGraph : NodeGraph
-    {
-        public NTNode current;
-
+namespace  NT.Graph
+{
+    public class NTGraph : NodeGraph {
+        [Header("Execution Flow Nodes")]
+        public List<NTNode> executionNodes;
         public List<CallbackNode> callbackNodes;
 
-        public Dictionary<string, List<CallbackNode>> callbackNodesDict;
-        public List<NTNode> executionNodes;
 
+        [Header("References")]
         public SceneVariables sceneVariables;
 
-        private CoroutineRunner coroutineRunner;
+        [HideInInspector] public Dictionary<string, List<CallbackNode>> callbackNodesDict;
+        [HideInInspector] public CoroutineRunner coroutineRunner;
 
         public override Node AddNode(System.Type type){
             Node node = base.AddNode(type);
@@ -35,22 +27,7 @@ namespace NT.Graph{
             return node;
         }
 
-        [ContextMenu("Start Execution")]
-        public void StartExecution(){
-            MessageSystem.onMessageSent -= MessageRecieved;
-            MessageSystem.onMessageSent += MessageRecieved;
-
-            if(coroutineRunner == null){
-                GameObject go = new GameObject("Coroutine Executor");
-                coroutineRunner =  go.AddComponent<CoroutineRunner>();
-            }
-
-            GenerateCallbackDict();
-            MessageSystem.SendMessage("start");
-
-        }
-
-        private void GenerateCallbackDict()
+        public virtual void GenerateCallbackDict()
         {
             callbackNodesDict = new Dictionary<string, List<CallbackNode> >();
             foreach(CallbackNode cn in callbackNodes){
@@ -71,7 +48,7 @@ namespace NT.Graph{
             }
         }
 
-        private void MessageRecieved(string message)
+        public virtual void MessageRecieved(string message)
         {
             Debug.Log("Message recieved!   " + message);
             if(!string.IsNullOrEmpty(message) && callbackNodesDict.ContainsKey(message)){
@@ -82,7 +59,7 @@ namespace NT.Graph{
             }
         }
 
-        private IEnumerator StartExecutionFlow(CallbackNode callbackNode)
+        public IEnumerator StartExecutionFlow(CallbackNode callbackNode)
         {
             NodeExecutionContext nodeExecutionContext = new NodeExecutionContext(callbackNode, null);
 
@@ -107,6 +84,5 @@ namespace NT.Graph{
 
             yield return null;
         }
-    
     }
 }

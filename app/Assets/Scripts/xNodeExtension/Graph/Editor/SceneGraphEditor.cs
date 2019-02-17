@@ -17,10 +17,7 @@ namespace NT.Graph {
 		}
 
 		public override void OnGUI(){
-			if(GUILayout.Button("Build Object"))
-			{
-				
-			}
+
 		}
 	}
 }

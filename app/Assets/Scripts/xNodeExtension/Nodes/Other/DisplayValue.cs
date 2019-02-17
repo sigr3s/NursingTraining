@@ -1,7 +1,7 @@
 
 namespace NT.Nodes.Other {
     
-    public class DisplayValue : NTNode {
+    public class DisplayValue : FlowNode {
 
         [Input(ShowBackingValue.Never, ConnectionType.Override)] public DummyConnection input;
         
