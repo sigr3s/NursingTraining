@@ -15,18 +15,22 @@ MonoBehaviour:
   strings:
     values:
     - variableName: hola
-      value: ko
+      value: hola
       defaultValue: hola
     keys:
     - hola
   floats:
-    values: []
-    keys: []
+    values:
+    - variableName: some
+      value: 0.75
+      defaultValue: 0.75
+    keys:
+    - some
   bools:
     values:
     - variableName: branch
-      value: 0
-      defaultValue: 0
+      value: 1
+      defaultValue: 1
     keys:
     - branch
   integers:

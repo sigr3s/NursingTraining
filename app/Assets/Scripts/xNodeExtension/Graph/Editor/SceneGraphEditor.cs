@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NT.Variables;
 using UnityEngine;
 using XNode.Examples.StateGraph;
 using XNodeEditor;
@@ -16,8 +18,17 @@ namespace NT.Graph {
 			} else return null;
 		}
 
-		public override void OnGUI(){
+		public override Color GetTypeColor(Type type) {
+			if(type == typeof(string)) return VariablesColors.StringColor;
+			if(type == typeof(float)) return VariablesColors.FloatColor;
+			if(type == typeof(int)) return VariablesColors.IntegerColor;
+			if(type == typeof(bool)) return VariablesColors.BooleanColor;
+			if(type == typeof(DummyConnection) ) return Color.white;
 
+            return NodeEditorPreferences.GetTypeColor(type);
+        }
+		public override void OnGUI(){
+			
 		}
 	}
 }
