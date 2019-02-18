@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fd652b6da73c84c8932c578e85bf83, type: 3}
+  m_Name: SceneVariables
+  m_EditorClassIdentifier: 
+  variableRepository:
+    dictionary:
+      keys:
+      - NT.Variables.NTVariable
+      - NT.Variables.NTString
+      - NT.Variables.NTBool
+      values:
+      - keys:
+        - sad
+        - a
+        values:
+        - variableName: sad
+          serializedValue: sda
+          serializedDefaultValue: sda
+        - variableName: a
+          serializedValue: asd
+          serializedDefaultValue: asd
+      - keys:
+        - a
+        - some
+        values:
+        - variableName: a
+          serializedValue: asd
+          serializedDefaultValue: asd
+        - variableName: some
+          serializedValue: 2525
+          serializedDefaultValue: 123134
+      - keys:
+        - bool1
+        values:
+        - variableName: bool1
+          serializedValue: False
+          serializedDefaultValue: False
+  typeColorDict:
+    keys:
+    - NT.Variables.NTString
+    - NT.Variables.NTFloat
+    - NT.Variables.NTBool
+    - NT.Variables.NTInt
+    values:
+    - {r: 0, g: 1, b: 1, a: 1}
+    - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 1, g: 0, b: 1, a: 1}
+  DefaultColor: {r: 0, g: 0, b: 0, a: 0}

@@ -28,7 +28,7 @@ namespace NT.Graph{
             }
 
             GenerateCallbackDict();
-            sceneVariables.ResetToDefault();
+            sceneVariables.variableRepository.ResetToDefault();
             
             MessageSystem.SendMessage("start");
 

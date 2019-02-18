@@ -5,5 +5,5 @@ using XNode;
 
 namespace NT.Nodes.Variables
 {
-    public class StringNode : GetNTVariableNode<string, NTString> {   }
+    public class BoolNode : GetNTVariableNode<bool, NTBool> {}
 }

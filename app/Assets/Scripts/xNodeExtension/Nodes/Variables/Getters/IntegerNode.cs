@@ -1,13 +1,9 @@
 
 using NT.Graph;
+using NT.Variables;
 using XNode;
 
 namespace NT.Nodes.Variables
 {
-    public class IntegerNode : GenericVariableNode<int> {
-        public override object GetValue(NodePort port) {
-            NTGraph g = graph as NTGraph;
-            return g.sceneVariables.GetInteger(variableKey);
-        }
-    }
+    public class IntegerNode : GetNTVariableNode<int, NTString> {    }
 }

@@ -21,8 +21,8 @@ namespace NT.Graph {
 		public override Color GetTypeColor(Type type) {
 			if(type == typeof(string)) return VariablesColors.StringColor;
 			if(type == typeof(float)) return VariablesColors.FloatColor;
-			if(type == typeof(int)) return VariablesColors.IntegerColor;
-			if(type == typeof(bool)) return VariablesColors.BooleanColor;
+			if(type == typeof(int)) return VariablesColors.IntColor;
+			if(type == typeof(bool)) return VariablesColors.BoolColor;
 			if(type == typeof(DummyConnection) ) return Color.white;
 
             return NodeEditorPreferences.GetTypeColor(type);
