@@ -8,7 +8,7 @@ using NT.Graph;
 
 namespace NT.Nodes.Variables
 {
-    public class NTVariableNodeEditor<T> : NodeEditor where T: NTVariable{
+    public class NTVariableNodeEditor<T> : NodeEditor where T: INTVaribale{
          public override void OnBodyGUI() {
             NTNode node = target as NTNode;
             IVariableNode ivn = target as IVariableNode;

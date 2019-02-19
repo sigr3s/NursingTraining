@@ -7,7 +7,7 @@ using UnityEngine;
 namespace NT.Nodes.Variables
 {
     [System.Serializable]
-    public class GetNTVariableNode<T,K> : NTNode, IVariableNode where K: NTVariable
+    public class GetNTVariableNode<T,K> : NTNode, IVariableNode where K: INTVaribale
     {
         [NTOutput] public T variable;
         [HideInInspector] public string variableKey;
@@ -15,10 +15,10 @@ namespace NT.Nodes.Variables
 
          public override object GetValue(NodePort port) {
             NTGraph g = graph as NTGraph;
-            K ntVariable = g.sceneVariables.variableRepository.GetValue<K>(variableKey);
+            T ntVariable = (T) g.sceneVariables.variableRepository.GetValue<K>(variableKey);
 
             if(ntVariable != null){
-                return ntVariable.GetValue();
+                return ntVariable;
             }
 
             return default(T);

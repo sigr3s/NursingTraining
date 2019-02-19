@@ -3,45 +3,94 @@ using UnityEngine;
 
 namespace NT.Variables
 {
+    [System.Serializable]
+    public struct NTVariableData{
+        [SerializeField] public string Name;
+        [SerializeField] public string Value;
+        [SerializeField] public string DefaultValue;
+    }
+
     [Serializable]
-    public class NTVariable : ISerializationCallbackReceiver
+    public abstract class NTVariable<T> : ISerializationCallbackReceiver, INTVaribale
     {
-        [SerializeField] public System.Type objectType;
-        [SerializeField] public string variableName;
-
-        [SerializeField] public string serializedValue;
-        [SerializeField] public string serializedDefaultValue;
-
+        public T value;
+        public T defaultValue;
+        public NTVariableData serializedData;
         public NTVariable(){}
 
+        public NTVariable(NTVariableData data){
+            this.serializedData = data;
+            OnAfterDeserialize();
+        }
+
         public void OnAfterDeserialize(){ 
-            Deserialize();
+            DeserializeValue(serializedData.Value);
+            DeserializeDefaultValue(serializedData.Value);
         }
 
         public void OnBeforeSerialize(){ 
-            Serialize();
+           serializedData.Value =  SerializeValue();
+           serializedData.DefaultValue = SerializeDefaultValue();
         }
 
-        public virtual void Deserialize(){}
+        public abstract void DeserializeValue(string data);
+        public abstract void DeserializeDefaultValue(string data);
 
-        public virtual void Serialize(){}
+        public abstract string SerializeValue();
+        public abstract string SerializeDefaultValue();
 
-        public NTVariable(string key, object defaultValue){}
+
+        public virtual void SetValue(object value){
+            this.value = (T) value;
+        }
+        public virtual void SetDefaultValue(object value){
+            this.defaultValue = (T) value;
+        }
+
+        public virtual object GetValue(){
+            return this.value;
+        }        
+        public virtual object GetDefaultValue(){
+            return this.defaultValue;
+        }
 
 
-        public virtual void SetValue(object value){ }
+        public virtual void Reset(){ 
+            value = defaultValue;
+        }
 
-        public virtual void SetDefaultValue(object value){ }
+        public string GetKey(){ return this.serializedData.Name; }
 
-        public virtual object GetValue(){ return null; }
+        public void SetKey(string key){ this.serializedData.Name = key; }
 
-        public virtual void Reset(){ }
 
-        public string GetKey(){ return this.variableName; }
+        public void FromNTVariableData(NTVariableData data){
+            this.serializedData = data;
+            OnAfterDeserialize();
+        }
 
-        public void SetKey(string key){ this.variableName = key; }
+
+        public NTVariableData ToNTVariableData(){
+            OnBeforeSerialize();
+            return this.serializedData;
+        }
 
     }
 
-    
+    public interface INTVaribale
+    {
+        void SetValue(object value);
+        void SetDefaultValue(object value);
+        object GetValue();
+        object GetDefaultValue();
+
+        void Reset();
+
+        void FromNTVariableData(NTVariableData data);
+        NTVariableData ToNTVariableData();
+
+        string GetKey();
+        void SetKey(string key);
+        
+    }
 }

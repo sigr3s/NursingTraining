@@ -5,45 +5,16 @@ namespace NT.Variables
 {
 
     [Serializable]
-    public class NTInt : NTVariable{
-        public int value;
-        public int defaultValue;
+    public class NTInt : NTVariable<int>{
+        public NTInt(){}
+        public NTInt(NTVariableData data) : base(data){}
 
-        public NTInt(){
+        public override void DeserializeDefaultValue(string data){ this.value = int.Parse(data); }
 
-        }
+        public override void DeserializeValue(string data){ this.defaultValue = int.Parse(data); }
 
-        public NTInt(string key, object defaultValue) : base(key, defaultValue)
-        {
-            this.variableName = key;
-            this.value = (int) defaultValue;
-            this.defaultValue = (int) defaultValue;
-        }
+        public override string SerializeDefaultValue(){ return defaultValue.ToString(); }
 
-        public override void Deserialize(){
-            value = int.Parse(serializedValue);
-            defaultValue = int.Parse(serializedDefaultValue);
-        }
-
-        public override void Serialize(){
-            serializedValue = value.ToString();
-            serializedDefaultValue = defaultValue.ToString();
-        }
-
-        public override void SetValue(object value){
-            this.value = (int) value;
-        }
-
-        public override void SetDefaultValue(object value){
-            this.defaultValue = (int) value;
-        }
-
-        public override object GetValue(){ 
-            return value; 
-        }
-
-        public override void Reset(){
-            value = defaultValue;
-        }
+        public override string SerializeValue(){ return value.ToString(); }
     }
 }

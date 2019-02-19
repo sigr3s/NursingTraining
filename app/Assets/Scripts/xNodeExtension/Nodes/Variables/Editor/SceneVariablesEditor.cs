@@ -10,20 +10,24 @@ public class SceneVariablesEditor : Editor{
     string[] options = {typeof(NTString).ToString(), typeof(NTFloat).ToString(), typeof(NTInt).ToString(), typeof(NTBool).ToString()};
     Type[] optionTypes = {typeof(NTString), typeof(NTFloat), typeof(NTInt), typeof(NTBool)};
 
-    int selectedOption = -1;
+    int selectedOption = 0;
 
-    NTVariable current;
+    INTVaribale current;
 
+    NTVariableData currentData;
+
+    
     
 
     public override void OnInspectorGUI()
     {
         int newOption = EditorGUILayout.Popup(selectedOption, options);
 
-        if(newOption != selectedOption){
+        if(newOption != selectedOption || current == null){
             selectedOption = newOption;
             Type t = optionTypes[selectedOption];
-            current = (NTVariable) Activator.CreateInstance(t);
+            current = (INTVaribale) Activator.CreateInstance(t);
+            currentData = new NTVariableData();
         }
 
         if(selectedOption == -1){
@@ -37,28 +41,26 @@ public class SceneVariablesEditor : Editor{
 
             Type t = optionTypes[selectedOption];
             
-            if(sv.variableRepository.dictionary.ContainsKey(t)){
-                NTVariableDictionary ntd = sv.variableRepository.dictionary[t];
+            if(sv.variableRepository.dictionary.ContainsKey(t.ToString())){
+                NTVariableDictionary ntd = sv.variableRepository.dictionary[t.ToString()];
                 
                 for(int i = 0; i < ntd.keys.Count; i++){
                     GUILayout.Label(ntd.keys[i]);
                 }
             }
+            
+            currentData.Name  = EditorGUILayout.TextField("Key", currentData.Name);
+            currentData.Value = EditorGUILayout.TextField("Value (Will be deserialized by type)", currentData.Value );
 
-            current.SetKey(EditorGUILayout.TextField("key", (string) current.GetKey()) );
-
-            current.serializedValue = EditorGUILayout.TextField("Value", (string) current.serializedValue);
-
-            //EditorGUILayout.(current.GetValue(), current.GetValue().GetType());
+            currentData.DefaultValue = currentData.Value;
 
             if(GUILayout.Button("Create variable"))
             {
-                current.serializedDefaultValue = current.serializedValue;
-                current.Deserialize();
-
+                current.FromNTVariableData(currentData);
                 sv.variableRepository.AddVariable(current, t);
                 EditorUtility.SetDirty(sv);
 
+                current = null;
             }
         }
 

@@ -6,7 +6,7 @@ using XNode;
 
 namespace NT.Nodes.Variables{
     [System.Serializable]
-    public class SetNTVariableNode<T,K> : FlowNode, IVariableNode where K: NTVariable
+    public class SetNTVariableNode<T,K> : FlowNode, IVariableNode where K: INTVaribale
     {
         [NTInput] public T value;
 

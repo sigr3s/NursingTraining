@@ -5,45 +5,16 @@ namespace NT.Variables
 {
 
     [Serializable]
-    public class NTBool : NTVariable{
-        public bool value;
-        public bool defaultValue;
+    public class NTBool : NTVariable<bool>{
+        public NTBool(){}
+        public NTBool(NTVariableData data) : base(data){}
 
-        public NTBool(){
+        public override void DeserializeDefaultValue(string data){ this.value = bool.Parse(data); }
 
-        }
+        public override void DeserializeValue(string data){ this.defaultValue = bool.Parse(data); }
 
-        public NTBool(string key, object defaultValue) : base(key, defaultValue)
-        {
-            this.variableName = key;
-            this.value = (bool) defaultValue;
-            this.defaultValue = (bool) defaultValue;
-        }
+        public override string SerializeDefaultValue(){ return defaultValue.ToString(); }
 
-        public override void Deserialize(){
-            value = bool.Parse(serializedValue);
-            defaultValue = bool.Parse(serializedDefaultValue);
-        }
-
-        public override void Serialize(){
-            serializedValue = value.ToString();
-            serializedDefaultValue = defaultValue.ToString();
-        }
-
-        public override void SetValue(object value){
-            this.value = (bool) value;
-        }
-
-        public override void SetDefaultValue(object value){
-            this.defaultValue = (bool) value;
-        }
-
-        public override object GetValue(){ 
-            return value; 
-        }
-
-        public override void Reset(){
-            value = defaultValue;
-        }
+        public override string SerializeValue(){ return value.ToString(); }
     }
 }

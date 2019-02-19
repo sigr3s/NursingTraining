@@ -14,143 +14,132 @@ namespace NT.Variables
             dictionary = new NTTypedDictionary();
         }
 
-        public bool AddVariable<T>(T value) where T: NTVariable{
+        public bool AddVariable<T>(T value) where T: INTVaribale{
             if(string.IsNullOrEmpty(value.GetKey())) return false;
 
             Type newVariableType = typeof(T);
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
+            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(newVariableType);
 
-            if( dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(value.GetKey())){    return false;   }
                 else{
                     variableTypeDictionary.Add(value.GetKey(),value);
-                    dictionary[newVariableType] = variableTypeDictionary;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
                     return true;
                 }
             }
             else{
                 variableTypeDictionary.Add(value.GetKey(),value);
-                dictionary.Add(newVariableType, variableTypeDictionary);
+                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
                 return true;
             }
         }
 
-        public bool AddVariable(NTVariable value, Type t){
+        public bool AddVariable(INTVaribale value, Type t){
             
             if(string.IsNullOrEmpty(value.GetKey())) return false;
 
             Type newVariableType = t;
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
 
-            if( dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(t);
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(value.GetKey())){ return false; }
                 else{
                     variableTypeDictionary.Add(value.GetKey(),value);
-                    dictionary[newVariableType] = variableTypeDictionary;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
                     return true;
                 }
             }
             else{
                 variableTypeDictionary.Add(value.GetKey(),value);
-                dictionary.Add(newVariableType, variableTypeDictionary);
+                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
                 return true;
             }
         }
 
-        public void RemoveVariable<T>(string key) where T: NTVariable{
+        public void RemoveVariable<T>(string key) where T: INTVaribale{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
-            if( dictionary.ContainsKey(newVariableType) ){
-                NTVariableDictionary variableTypeDictionary = dictionary[newVariableType];
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                NTVariableDictionary variableTypeDictionary = dictionary[newVariableType.ToString()];
                 variableTypeDictionary.Remove(key);
-                dictionary[newVariableType] = variableTypeDictionary;
+                dictionary[newVariableType.ToString()] = variableTypeDictionary;
             }
         }
 
-        public T GetValue<T>(string key) where T: NTVariable{
+        public object GetValue<T>(string key) where T: INTVaribale{
             if(string.IsNullOrEmpty(key)) return default(T);
             
             Type newVariableType = typeof(T);
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
+            NTVariableDictionary variableTypeDictionary;
 
-            if( dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
 
-                    ///DOWNCAST!
-                    var serializedParent = JsonUtility.ToJson( variableTypeDictionary[key]); 
-                    T returnVar  = JsonUtility.FromJson<T>(serializedParent);
-
-                    return returnVar;   
+                    INTVaribale ntvar = variableTypeDictionary[key];
+                    return ntvar.GetValue();   
                 }
             }
 
             return default(T);
         }
 
-        public void SetValue<T>(string key, object value) where T: NTVariable{
+        public void SetValue<T>(string key, object value) where T: INTVaribale{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
+            NTVariableDictionary variableTypeDictionary;
 
-            if( dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
-                    
-                    ///DOWNCAST!
-                    var serializedParent = JsonUtility.ToJson( variableTypeDictionary[key]); 
-                    T returnVar  = JsonUtility.FromJson<T>(serializedParent);
+                    INTVaribale ntvar = variableTypeDictionary[key];
+                    ntvar.SetValue(value);
 
-                    returnVar.SetValue(value);
-                    returnVar.Serialize();
-
-                    variableTypeDictionary[key] = returnVar;    
-                    dictionary[newVariableType] = variableTypeDictionary;   
+                    variableTypeDictionary[key] = ntvar;    
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;   
                 }
             }
 
             return;
         }
 
-        public void SetDefaultValue<T>(string key, object value) where T: NTVariable{
+        public void SetDefaultValue<T>(string key, object value) where T: INTVaribale{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
+            NTVariableDictionary variableTypeDictionary;
 
-            if( dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
-                    
-                    var serializedParent = JsonUtility.ToJson( variableTypeDictionary[key]); 
-                    T returnVar  = JsonUtility.FromJson<T>(serializedParent);
+                    INTVaribale ntvar = variableTypeDictionary[key];
+                    ntvar.SetDefaultValue(value);
 
-                    returnVar.SetDefaultValue(value);
-                    returnVar.Serialize();
-
-                    variableTypeDictionary[key] = returnVar;    
-                    dictionary[newVariableType] = variableTypeDictionary;   
+                    variableTypeDictionary[key] = ntvar;    
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;   
                 }
             }
 
             return;
         }
 
-        public List<string> GetOptions<T>(string key, out int index) where T: NTVariable
+        public List<string> GetOptions<T>(string key, out int index) where T: INTVaribale
         {
             List<string> options = new List<string>();
             index = -1;
 
             Type newVariableType = typeof(T);
 
-            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary();
+            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(newVariableType);
 
-            if(dictionary.ContainsKey(newVariableType) ){
-                variableTypeDictionary = dictionary[newVariableType];
+            if(dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
                 options = variableTypeDictionary.keys;
                 index = options.IndexOf(key);
             }
@@ -160,8 +149,9 @@ namespace NT.Variables
 
         public void ResetToDefault(){
             foreach(NTVariableDictionary val in dictionary.values){
-                foreach(NTVariable ntvar in val.values){
-                    ntvar.Reset();
+                foreach(KeyValuePair<string, INTVaribale> entry in val)
+                {
+                    entry.Value.Reset();
                 }
             }
         }
@@ -169,45 +159,15 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public class NTTypedDictionary : Dictionary<Type, NTVariableDictionary>, ISerializationCallbackReceiver{
+    public class NTTypedDictionary : Dictionary<string, NTVariableDictionary>, ISerializationCallbackReceiver{
         [SerializeField] public List<string> keys = new List<string>();
         [SerializeField] public List<NTVariableDictionary> values = new List<NTVariableDictionary>();
 
-        // save the dictionary to lists
         public void OnBeforeSerialize() {
             keys.Clear();
             values.Clear();
             foreach (var pair in this) {
                 keys.Add(pair.Key.ToString());
-                values.Add(pair.Value);
-            }
-        }
-
-        // load dictionary from lists
-        public void OnAfterDeserialize() {
-            this.Clear();
-
-            Assembly asm = typeof(NTNode).Assembly;
-
-
-            if (keys.Count != values.Count)
-                throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
-
-            for (int i = 0; i < keys.Count; i++)
-                this.Add( asm.GetType(keys[i]), values[i]);
-        }
-    }
-
-    [Serializable]
-    public class NTVariableDictionary : Dictionary<string, NTVariable>, ISerializationCallbackReceiver{
-        [SerializeField] public List<string> keys = new List<string>();
-        [SerializeField] public List<NTVariable> values = new List<NTVariable>();
-
-        public void OnBeforeSerialize() {
-            keys.Clear();
-            values.Clear();
-            foreach (var pair in this) {
-                keys.Add(pair.Key);
                 values.Add(pair.Value);
             }
         }
@@ -220,6 +180,44 @@ namespace NT.Variables
 
             for (int i = 0; i < keys.Count; i++)
                 this.Add(keys[i], values[i]);
+        }
+    }
+
+    [Serializable]
+    public class NTVariableDictionary : Dictionary<string, INTVaribale>, ISerializationCallbackReceiver{
+        [SerializeField] public List<string> keys = new List<string>();
+        [SerializeField] public List<NTVariableData> values = new List<NTVariableData>();
+        [SerializeField] public string DictType;
+
+        private NTVariableDictionary(){
+            DictType = typeof(object).AssemblyQualifiedName;
+        }
+
+        public NTVariableDictionary(Type t){
+            DictType = t.AssemblyQualifiedName;
+        }
+
+        public void OnBeforeSerialize() {
+            keys.Clear();
+            values.Clear();
+            foreach (var pair in this) {
+                keys.Add(pair.Key);
+                values.Add(pair.Value.ToNTVariableData());
+            }
+        }
+
+        public void OnAfterDeserialize() {
+            this.Clear();
+            Type t = Type.GetType(DictType);
+            
+            if (keys.Count != values.Count)
+                throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
+
+            for (int i = 0; i < keys.Count; i++){
+                INTVaribale instance = (INTVaribale) Activator.CreateInstance(t);
+                instance.FromNTVariableData(values[i]);
+                this.Add(keys[i], instance);
+            }
         }
     }
 }

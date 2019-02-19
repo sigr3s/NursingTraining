@@ -15,36 +15,29 @@ MonoBehaviour:
   variableRepository:
     dictionary:
       keys:
-      - NT.Variables.NTVariable
       - NT.Variables.NTString
       - NT.Variables.NTBool
       values:
       - keys:
-        - sad
         - a
         values:
-        - variableName: sad
-          serializedValue: sda
-          serializedDefaultValue: sda
-        - variableName: a
-          serializedValue: asd
-          serializedDefaultValue: asd
+        - Name: a
+          Value: somee
+          DefaultValue: somee
+        DictType: NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
       - keys:
-        - a
-        - some
+        - Bool 01
+        - Bool 02
         values:
-        - variableName: a
-          serializedValue: asd
-          serializedDefaultValue: asd
-        - variableName: some
-          serializedValue: 2525
-          serializedDefaultValue: 123134
-      - keys:
-        - bool1
-        values:
-        - variableName: bool1
-          serializedValue: False
-          serializedDefaultValue: False
+        - Name: Bool 01
+          Value: True
+          DefaultValue: True
+        - Name: Bool 02
+          Value: False
+          DefaultValue: False
+        DictType: NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
   typeColorDict:
     keys:
     - NT.Variables.NTString

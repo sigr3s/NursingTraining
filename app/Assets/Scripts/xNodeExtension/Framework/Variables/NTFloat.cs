@@ -5,45 +5,16 @@ namespace NT.Variables
 {
 
     [Serializable]
-    public class NTFloat : NTVariable{
-        public float value;
-        public float defaultValue;
+    public class NTFloat : NTVariable<float>{
+        public NTFloat(){}
+        public NTFloat(NTVariableData data) : base(data){}
 
-        public NTFloat(){
+        public override void DeserializeDefaultValue(string data){ this.value = float.Parse(data); }
 
-        }
-        
-        public NTFloat(string key, object defaultValue) : base(key, defaultValue)
-        {
-            this.variableName = key;
-            this.value = (float) defaultValue;
-            this.defaultValue = (float) defaultValue;
-        }
+        public override void DeserializeValue(string data){ this.defaultValue = float.Parse(data); }
 
-        public override void Deserialize(){
-            value = float.Parse(serializedValue);
-            defaultValue = float.Parse(serializedDefaultValue);
-        }
+        public override string SerializeDefaultValue(){ return defaultValue.ToString(); }
 
-        public override void Serialize(){
-            serializedValue = value.ToString();
-            serializedDefaultValue = defaultValue.ToString();
-        }
-
-        public override void SetValue(object value){
-            this.value = (float) value;
-        }
-
-        public override void SetDefaultValue(object value){
-            this.defaultValue = (float) value;
-        }
-
-        public override object GetValue(){ 
-            return value; 
-        }
-
-        public override void Reset(){
-            value = defaultValue;
-        }
+        public override string SerializeValue(){ return value.ToString(); }
     }
 }
