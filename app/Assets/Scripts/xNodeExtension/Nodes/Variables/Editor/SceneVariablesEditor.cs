@@ -3,6 +3,7 @@ using UnityEditor;
 using NT.Variables;
 using System;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 [CustomEditor(typeof(SceneVariables))]
 public class SceneVariablesEditor : Editor{
@@ -26,7 +27,7 @@ public class SceneVariablesEditor : Editor{
         if(newOption != selectedOption || current == null){
             selectedOption = newOption;
             Type t = optionTypes[selectedOption];
-            current = (INTVaribale) Activator.CreateInstance(t);
+            current = (INTVaribale)FormatterServices.GetUninitializedObject(t); //does not call ctor
             currentData = new NTVariableData();
         }
 

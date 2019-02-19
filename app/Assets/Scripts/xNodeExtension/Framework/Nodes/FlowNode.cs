@@ -1,4 +1,5 @@
 using NT.Atributes;
+using UnityEngine;
 using XNode;
 
 namespace NT{
@@ -10,8 +11,10 @@ namespace NT{
         [NTOutput] public DummyConnection flowOut;
 
         public override NodeExecutionContext NextNode(NodeExecutionContext context){
+            NTNode node = GetNode(nameof(flowOut));
+            NodePort port = GetPort(nameof(flowOut));
 
-            return new NodeExecutionContext( GetNode(nameof(flowOut)), GetPort(nameof(flowOut)) );
+            return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
 
     }

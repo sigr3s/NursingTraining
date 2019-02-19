@@ -7,8 +7,6 @@ namespace NT.Variables
     [Serializable]
     public class NTBool : NTVariable<bool>{
         public NTBool(){}
-        public NTBool(NTVariableData data) : base(data){}
-
         public override void DeserializeDefaultValue(string data){ this.value = bool.Parse(data); }
 
         public override void DeserializeValue(string data){ this.defaultValue = bool.Parse(data); }

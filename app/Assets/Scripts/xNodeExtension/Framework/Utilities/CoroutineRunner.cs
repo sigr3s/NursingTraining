@@ -1,7 +1,8 @@
+using NT;
 using UnityEngine;
 
 
 [ExecuteInEditMode]
-public class CoroutineRunner : MonoBehaviour {
+public class CoroutineRunner : Singleton<CoroutineRunner> {
     
 }

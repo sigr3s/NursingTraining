@@ -18,7 +18,12 @@ namespace NT.Nodes.Control{
 
             string nemeOfPort = condition ? nameof(trueBranch) : nameof(falseBranch);
 
-            return new NodeExecutionContext( GetNode(nemeOfPort), GetPort(nemeOfPort) );
+            NTNode node = GetNode(nemeOfPort);
+            NodePort port = GetPort(nemeOfPort);
+
+            return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
+
+        
     }
 }

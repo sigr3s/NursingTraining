@@ -17,7 +17,6 @@ namespace  NT.Graph
         public SceneVariables sceneVariables;
 
         [HideInInspector] public Dictionary<string, List<CallbackNode>> callbackNodesDict;
-        [HideInInspector] public CoroutineRunner coroutineRunner;
 
         public override Node AddNode(System.Type type){
             Node node = base.AddNode(type);
@@ -54,21 +53,21 @@ namespace  NT.Graph
             if(!string.IsNullOrEmpty(message) && callbackNodesDict.ContainsKey(message)){
                 List<CallbackNode> nodesToExecute = callbackNodesDict[message];
                 foreach(CallbackNode cn in nodesToExecute){
-                    coroutineRunner.StartCoroutine(StartExecutionFlow(cn));
+                    CoroutineRunner.Instance.StartCoroutine(StartExecutionFlow(cn));
                 }
             }
         }
 
         public IEnumerator StartExecutionFlow(CallbackNode callbackNode)
         {
-            NodeExecutionContext nodeExecutionContext = new NodeExecutionContext(callbackNode, null);
+            NodeExecutionContext nodeExecutionContext = new NodeExecutionContext{node = callbackNode};
 
             while(nodeExecutionContext.node != null){
 
                 Debug.Log("Execute node:  " + nodeExecutionContext.node.name);
                 nodeExecutionContext.node.Enter();
 
-                yield return new YieldNode(nodeExecutionContext.node);
+                yield return new YieldNode(nodeExecutionContext );
                 
                 Debug.Log("Finished node:  " + nodeExecutionContext.node.name);
 

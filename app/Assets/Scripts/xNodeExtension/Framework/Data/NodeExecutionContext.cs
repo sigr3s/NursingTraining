@@ -5,15 +5,11 @@ using XNode;
 
 namespace NT
 {
-    public class NodeExecutionContext
+    public struct NodeExecutionContext
     {
         public NTNode node;
         public NodePort inputPort; 
-
-        public NodeExecutionContext(NTNode node, NodePort inputPort){
-            this.node = node;
-            this.inputPort = inputPort;
-        }
+        public NodePort outputPort;
     }
     
 }

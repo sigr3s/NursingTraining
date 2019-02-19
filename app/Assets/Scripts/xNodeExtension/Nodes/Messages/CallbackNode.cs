@@ -13,7 +13,10 @@ namespace NT.Nodes.Messages{
         }
 
         public override NodeExecutionContext NextNode(NodeExecutionContext context){
-            return new NodeExecutionContext( GetNode(nameof(flowOut)), GetPort(nameof(flowOut)) );
+            NTNode node = GetNode(nameof(flowOut));
+            NodePort port = GetPort(nameof(flowOut));
+
+            return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
     }
 }

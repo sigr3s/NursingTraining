@@ -7,8 +7,6 @@ namespace NT.Variables
     [Serializable]
     public class NTFloat : NTVariable<float>{
         public NTFloat(){}
-        public NTFloat(NTVariableData data) : base(data){}
-
         public override void DeserializeDefaultValue(string data){ this.value = float.Parse(data); }
 
         public override void DeserializeValue(string data){ this.defaultValue = float.Parse(data); }

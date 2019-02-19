@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NT.Atributes;
 using UnityEngine;
 using XNode;
@@ -9,15 +10,11 @@ namespace NT{
     {
 
         public virtual NodeExecutionContext NextNode(NodeExecutionContext context){
-            return null;
+            return new NodeExecutionContext{node = null, inputPort = null, outputPort = null};
         }
 
-        public virtual void ExecuteNode(){
-
-        }
-
-        public virtual bool KeepWaiting(){
-            return false;
+        public virtual IEnumerator ExecuteNode(NodeExecutionContext context){
+            yield return null;
         }
 
         public virtual void Enter(){

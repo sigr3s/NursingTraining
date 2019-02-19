@@ -20,11 +20,20 @@ MonoBehaviour:
   - {fileID: 114508961257858920}
   - {fileID: 114873743398622048}
   - {fileID: 114442843374683960}
+  - {fileID: 114075990413396380}
+  - {fileID: 114708993732364130}
+  - {fileID: 114645397584530084}
+  - {fileID: 114645557606165124}
+  - {fileID: 114746078215134664}
+  - {fileID: 114981796569687244}
+  - {fileID: 114349145831249814}
   executionNodes: []
   callbackNodes:
   - {fileID: 114773572433120172}
+  - {fileID: 114708993732364130}
+  - {fileID: 114645397584530084}
   sceneVariables: {fileID: 11400000, guid: 7a1488af262b2964baf0e545de585372, type: 2}
-  coroutineRunner: {fileID: 0}
+  message: stop
 --- !u!114 &114055347654748236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +69,75 @@ MonoBehaviour:
       _dynamic: 0
   isExecuting: 0
   variable: 
-  variableKey: a
+  variableKey: example
+--- !u!114 &114075990413396380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e972c768f0b31e408385725b8f101f7, type: 3}
+  m_Name: Wait For Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 744, y: -792}
+  ports:
+    keys:
+    - seconds
+    - flowIn
+    - flowOut
+    - breakFlow
+    values:
+    - _fieldName: seconds
+      _node: {fileID: 114075990413396380}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowIn
+      _node: {fileID: 114075990413396380}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114773572433120172}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowOut
+      _node: {fileID: 114075990413396380}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114313354305467796}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: breakFlow
+      _node: {fileID: 114075990413396380}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114708993732364130}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  isExecuting: 0
+  seconds: 50
 --- !u!114 &114313354305467796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +176,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: flowOut
-        node: {fileID: 114773572433120172}
+        node: {fileID: 114075990413396380}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -118,6 +195,68 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   isExecuting: 0
+--- !u!114 &114349145831249814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e972c768f0b31e408385725b8f101f7, type: 3}
+  m_Name: Wait For Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1592, y: -168}
+  ports:
+    keys:
+    - seconds
+    - breakFlow
+    - flowIn
+    - flowOut
+    values:
+    - _fieldName: seconds
+      _node: {fileID: 114349145831249814}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: breakFlow
+      _node: {fileID: 114349145831249814}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowIn
+      _node: {fileID: 114349145831249814}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: falseBranch
+        node: {fileID: 114746078215134664}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowOut
+      _node: {fileID: 114349145831249814}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  seconds: 10
 --- !u!114 &114380980409745426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +312,7 @@ MonoBehaviour:
       _dynamic: 0
   isExecuting: 0
   value: somee
-  variableKey: a
+  variableKey: example
 --- !u!114 &114442843374683960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +326,7 @@ MonoBehaviour:
   m_Name: Display Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1274.5, y: -911.5}
+  position: {x: 648, y: -248}
   ports:
     keys:
     - input
@@ -210,7 +349,10 @@ MonoBehaviour:
       _node: {fileID: 114442843374683960}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114645397584530084}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -219,7 +361,10 @@ MonoBehaviour:
       _node: {fileID: 114442843374683960}
       _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114645557606165124}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -238,7 +383,7 @@ MonoBehaviour:
   m_Name: Display Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1512, y: -680}
+  position: {x: 1496, y: -664}
   ports:
     keys:
     - input
@@ -279,6 +424,197 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   isExecuting: 0
+--- !u!114 &114645397584530084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f84238cc8ac79f48b3a86ebf1788fd9, type: 3}
+  m_Name: Callback Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 296, y: -248}
+  ports:
+    keys:
+    - flowOut
+    values:
+    - _fieldName: flowOut
+      _node: {fileID: 114645397584530084}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114442843374683960}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  callbackKey: stop
+--- !u!114 &114645557606165124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526bf931d7e192c459c5bfb61b138bd0, type: 3}
+  m_Name: Set Bool Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 984, y: -232}
+  ports:
+    keys:
+    - value
+    - flowIn
+    - flowOut
+    values:
+    - _fieldName: value
+      _node: {fileID: 114645557606165124}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowIn
+      _node: {fileID: 114645557606165124}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114442843374683960}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowOut
+      _node: {fileID: 114645557606165124}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114746078215134664}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  value: 1
+  variableKey: Bool 02
+--- !u!114 &114708993732364130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f84238cc8ac79f48b3a86ebf1788fd9, type: 3}
+  m_Name: Callback Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 456, y: -664}
+  ports:
+    keys:
+    - flowOut
+    values:
+    - _fieldName: flowOut
+      _node: {fileID: 114708993732364130}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: breakFlow
+        node: {fileID: 114075990413396380}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  callbackKey: stop
+--- !u!114 &114746078215134664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2ed9f5ac672d649ad0c958636fcaf1, type: 3}
+  m_Name: Branch Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1288, y: -216}
+  ports:
+    keys:
+    - flowIn
+    - trueBranch
+    - falseBranch
+    - condition
+    values:
+    - _fieldName: flowIn
+      _node: {fileID: 114746078215134664}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowOut
+        node: {fileID: 114645557606165124}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: trueBranch
+      _node: {fileID: 114746078215134664}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114981796569687244}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: falseBranch
+      _node: {fileID: 114746078215134664}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: flowIn
+        node: {fileID: 114349145831249814}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: condition
+      _node: {fileID: 114746078215134664}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: variable
+        node: {fileID: 114873743398622048}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  isExecuting: 0
+  condition: 0
 --- !u!114 &114773572433120172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +628,7 @@ MonoBehaviour:
   m_Name: Callback Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: -744}
+  position: {x: 472, y: -840}
   ports:
     keys:
     - flowOut
@@ -303,7 +639,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: flowIn
-        node: {fileID: 114313354305467796}
+        node: {fileID: 114075990413396380}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -324,7 +660,7 @@ MonoBehaviour:
   m_Name: Bool Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1000, y: -872}
+  position: {x: 392, y: -120}
   ports:
     keys:
     - variable
@@ -337,6 +673,9 @@ MonoBehaviour:
       - fieldName: input
         node: {fileID: 114442843374683960}
         reroutePoints: []
+      - fieldName: condition
+        node: {fileID: 114746078215134664}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -344,3 +683,65 @@ MonoBehaviour:
   isExecuting: 0
   variable: 0
   variableKey: Bool 02
+--- !u!114 &114981796569687244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e972c768f0b31e408385725b8f101f7, type: 3}
+  m_Name: Wait For Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1560, y: -360}
+  ports:
+    keys:
+    - seconds
+    - breakFlow
+    - flowIn
+    - flowOut
+    values:
+    - _fieldName: seconds
+      _node: {fileID: 114981796569687244}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: breakFlow
+      _node: {fileID: 114981796569687244}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowIn
+      _node: {fileID: 114981796569687244}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: trueBranch
+        node: {fileID: 114746078215134664}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: flowOut
+      _node: {fileID: 114981796569687244}
+      _typeQualifiedName: NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isExecuting: 0
+  seconds: 5

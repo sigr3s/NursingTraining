@@ -1,4 +1,5 @@
-﻿using NT.Atributes;
+﻿using System.Collections;
+using NT.Atributes;
 using NT.Graph;
 using NT.Variables;
 using UnityEngine;
@@ -12,10 +13,11 @@ namespace NT.Nodes.Variables{
 
         [HideInInspector] public string variableKey;
 
-        public override void ExecuteNode(){
+        public override IEnumerator ExecuteNode(NodeExecutionContext context){
             NTGraph g = graph as NTGraph;
             T value = GetInputValue<T>(nameof(this.value), this.value);
             g.sceneVariables.variableRepository.SetValue<K>(variableKey, value);
+            yield return null;
         }
 
         public string GetVariableKey()

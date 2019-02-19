@@ -1,28 +1,27 @@
 using System;
+using System.Collections;
 using NT.Atributes;
 using UnityEngine;
+using XNode;
 
 namespace NT.Nodes.Messages{
     [System.Serializable]
     public class SendMessageNode : FlowNode
     {
         [SerializeField] public string message;
-
-        private bool sentMessage = false;
         
         public override NodeExecutionContext NextNode(NodeExecutionContext context){
-            return new NodeExecutionContext( GetNode(nameof(flowOut)), GetPort(nameof(flowOut)) );
+            NTNode node = GetNode(nameof(flowOut));
+            NodePort port = GetPort(nameof(flowOut));
+
+            return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
 
-        public override void ExecuteNode(){
-            sentMessage = false;
+        public override IEnumerator ExecuteNode(NodeExecutionContext context){
             string message = GetInputValue<string>(nameof(this.message), this.message);
             MessageSystem.SendMessage(message);
-            sentMessage = true;
-        }
-
-        public override bool KeepWaiting(){
-            return !sentMessage;
+            
+            yield return null;
         }
     }
 }

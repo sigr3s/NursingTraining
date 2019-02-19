@@ -18,11 +18,6 @@ namespace NT.Variables
         public NTVariableData serializedData;
         public NTVariable(){}
 
-        public NTVariable(NTVariableData data){
-            this.serializedData = data;
-            OnAfterDeserialize();
-        }
-
         public void OnAfterDeserialize(){ 
             DeserializeValue(serializedData.Value);
             DeserializeDefaultValue(serializedData.Value);
@@ -33,11 +28,11 @@ namespace NT.Variables
            serializedData.DefaultValue = SerializeDefaultValue();
         }
 
-        public abstract void DeserializeValue(string data);
-        public abstract void DeserializeDefaultValue(string data);
+        public virtual void DeserializeValue(string data){ value = JsonUtility.FromJson<T>(data); }
+        public virtual void DeserializeDefaultValue(string data){ defaultValue = JsonUtility.FromJson<T>(data);}
 
-        public abstract string SerializeValue();
-        public abstract string SerializeDefaultValue();
+        public virtual string SerializeValue(){ return JsonUtility.ToJson(value);}
+        public virtual string SerializeDefaultValue(){ return JsonUtility.ToJson(defaultValue);}
 
 
         public virtual void SetValue(object value){
