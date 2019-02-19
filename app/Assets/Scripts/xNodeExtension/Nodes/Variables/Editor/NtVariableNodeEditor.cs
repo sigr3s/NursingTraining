@@ -5,6 +5,7 @@ using UnityEngine;
 using NT.Variables;
 using UnityEditor;
 using NT.Graph;
+using System.Linq;
 
 namespace NT.Nodes.Variables
 {
@@ -22,6 +23,21 @@ namespace NT.Nodes.Variables
             if(_newChoiceIndex != _choiceIndex){
                 ivn.SetVariableKey(_choices[_newChoiceIndex]);
             }
+
+            serializedObject.Update();
+            
+            string[] excludes = { "m_Script", "graph", "position", "ports" };
+            SerializedProperty iterator = serializedObject.GetIterator();
+
+            bool enterChildren = true;
+            EditorGUIUtility.labelWidth = 84;
+            while (iterator.NextVisible(enterChildren)) {
+                enterChildren = false;
+                if (excludes.Contains(iterator.name)) continue;
+                //EditorGUILayout.PropertyField(iterator, GUILayout.MinWidth(30));
+            }
+            serializedObject.ApplyModifiedProperties();
+
 
             base.OnBodyGUI();
         }

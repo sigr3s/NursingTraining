@@ -10,8 +10,5 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public class NTSurgeon : NTVariable<SurgeonData>{
-
-        public NTSurgeon(){}
-    }
+    public class NTSurgeon : NTVariable<SurgeonData>{    }
 }

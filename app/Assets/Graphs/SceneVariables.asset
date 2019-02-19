@@ -17,6 +17,7 @@ MonoBehaviour:
       keys:
       - NT.Variables.NTString
       - NT.Variables.NTBool
+      - NT.Variables.NTInt
       values:
       - keys:
         - a
@@ -26,8 +27,8 @@ MonoBehaviour:
           Value: somee
           DefaultValue: somee
         - Name: example
-          Value: example
-          DefaultValue: example
+          Value: somee
+          DefaultValue: somee
         DictType: NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
       - keys:
@@ -38,9 +39,17 @@ MonoBehaviour:
           Value: True
           DefaultValue: True
         - Name: Bool 02
-          Value: False
-          DefaultValue: False
+          Value: True
+          DefaultValue: True
         DictType: NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+      - keys:
+        - seconds
+        values:
+        - Name: seconds
+          Value: 5
+          DefaultValue: 5
+        DictType: NT.Variables.NTInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
   typeColorDict:
     keys:
@@ -53,4 +62,4 @@ MonoBehaviour:
     - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     - {r: 0, g: 1, b: 0, a: 1}
     - {r: 1, g: 0, b: 1, a: 1}
-  DefaultColor: {r: 0, g: 0, b: 0, a: 0}
+  DefaultColor: {r: 0.9150943, g: 0.10791205, b: 0.10791205, a: 0.9529412}

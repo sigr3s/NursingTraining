@@ -17,9 +17,6 @@ namespace NT.Nodes.Flow{
         }
 
         public override IEnumerator ExecuteNode(NodeExecutionContext context){
-
-            Debug.LogWarning(context.inputPort.fieldName);
-
             if(context.inputPort.fieldName == nameof(breakFlow)){
                 Debug.LogWarning("Canceled wait node!");
                 shouldBreakFlow = true;

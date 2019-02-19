@@ -72,7 +72,7 @@ namespace NT.Variables
         }
 
         public object GetValue<T>(string key) where T: INTVaribale{
-            if(string.IsNullOrEmpty(key)) return default(T);
+            if(string.IsNullOrEmpty(key)) return default(object);
             
             Type newVariableType = typeof(T);
             NTVariableDictionary variableTypeDictionary;
@@ -84,9 +84,12 @@ namespace NT.Variables
                     INTVaribale ntvar = variableTypeDictionary[key];
                     return ntvar.GetValue();   
                 }
+                
+                Debug.Log("No value???"  + key + "   " + variableTypeDictionary.DictType);
             }
 
-            return default(T);
+
+            return default(object);
         }
 
         public void SetValue<T>(string key, object value) where T: INTVaribale{

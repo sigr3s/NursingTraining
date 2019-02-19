@@ -15,10 +15,13 @@ namespace NT.Nodes.Variables
 
          public override object GetValue(NodePort port) {
             NTGraph g = graph as NTGraph;
-            T ntVariable = (T) g.sceneVariables.variableRepository.GetValue<K>(variableKey);
+            NTVariableRepository repo = g.sceneVariables.variableRepository;
+
+            var ntVariable = repo.GetValue<K>(variableKey);
 
             if(ntVariable != null){
-                return ntVariable;
+                variable = (T) ntVariable;
+                return (T) ntVariable;
             }
 
             return default(T);

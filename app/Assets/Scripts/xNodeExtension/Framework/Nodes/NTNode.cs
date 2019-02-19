@@ -38,5 +38,9 @@ namespace NT{
             
             return node;
         }
+
+        public override object GetValue(NodePort port) {
+            return null;
+        }
     }
 }

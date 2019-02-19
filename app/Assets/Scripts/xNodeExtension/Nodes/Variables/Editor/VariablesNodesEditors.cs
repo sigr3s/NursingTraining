@@ -19,4 +19,7 @@ namespace NT.Nodes.Variables{
 
     [CustomNodeEditor(typeof(BoolNode))]
     public class BooleanNodeEditor  : NTVariableNodeEditor<NTBool> { }
+
+    [CustomNodeEditor(typeof(SurgeonNode))]
+    public class SurgeonNodeEditor : NTVariableNodeEditor<NTSurgeon> {}
 }
