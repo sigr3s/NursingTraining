@@ -193,23 +193,37 @@ namespace NT.Graph
 	#endregion
 
 	#region Variables Menu
-		[SerializeField] TreeViewState variableTreeViewState;
+		TreeViewState variableTreeViewState;
 		VariableTreeView variableTreeView;
 		List<TreeViewItem> variableItems = new List<TreeViewItem>();
 		int variablesID = 0;
 
 		Node currentVariableNode = null;
 
+		Dictionary<Type, Type> setNodes = new Dictionary<Type, Type>();
+		Dictionary<Type, Type> getNodes = new Dictionary<Type, Type>();
 
 		private void InitializeVariablesTree(){
 			if (variableTreeViewState == null)
 				variableTreeViewState = new TreeViewState ();
 
 			for (int i = 0; i < NodeEditorWindow.nodeTypes.Length; i++) {
-                Type type = NodeEditorWindow.nodeTypes[i];
+                Type nodeType = NodeEditorWindow.nodeTypes[i];
 
-				if(type.IsCastableTo( typeof(IVariableNode) ) ){
-					Debug.Log(" Aaa : " + type);
+				if(nodeType.IsGenericType) continue;
+
+				if(IsSubclassOfRawGeneric(typeof(SetNTVariableNode<,>), nodeType) ){
+					if(nodeType.BaseType.IsGenericType) {
+						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
+						setNodes.Add(setNodeVariableType, nodeType);
+					}
+				}
+
+				if(IsSubclassOfRawGeneric(typeof(GetNTVariableNode<,>), nodeType)){
+					if(nodeType.BaseType.IsGenericType) {
+						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
+						getNodes.Add(setNodeVariableType, nodeType);
+					}
 				}
             }
 			
@@ -236,11 +250,13 @@ namespace NT.Graph
 						variablesID++;
 
 						variableItems.Add( new VariableTreeViewItem{id = variablesID,  depth = 2, displayName =  "GET " +varDict.keys[j], 
-											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET });
+											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
+											variableType = varDict._dictType });
 						variablesID++;
 						
 						variableItems.Add( new VariableTreeViewItem{id = variablesID,  depth = 2, displayName =  "SET " +varDict.keys[j],
-											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET});
+											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET,
+											variableType = varDict._dictType });
 						variablesID++;
 					}
 				}
@@ -257,12 +273,28 @@ namespace NT.Graph
 				NodeEditorWindow.currentActivity = NodeEditorWindow.NodeActivity.Idle;
 
 				if(currentVariableNode == null){
+					Type t = null;
 
-					Type t = typeof(SetNTVariableNode<bool, NTBool>);
-					currentVariableNode = ScriptableObject.CreateInstance(t) as SetNTVariableNode<bool, NTBool>;
+					if(variableItem.variableNodeType == VariableTreeViewItem.VariableNodeType.GET){
+						if(getNodes.ContainsKey(variableItem.variableType)){
+							t = getNodes[variableItem.variableType];
+						}
+					}
+					else
+					{
+						if(setNodes.ContainsKey(variableItem.variableType)){
+							t = setNodes[variableItem.variableType];
+						}
+					}
+
+					if(t == null) return;
+
+					currentVariableNode = ScriptableObject.CreateInstance(t) as NTNode;
 					currentVariableNode.name = variableItem.vairbaleKey;
 					currentVariableNode.graph = target as XNode.NodeGraph;
-					((SetNTVariableNode<bool, NTBool>)currentVariableNode).variableKey = variableItem.vairbaleKey;
+					IVariableNode ivn = (IVariableNode) currentVariableNode;
+					ivn.SetVariableKey(variableItem.vairbaleKey);
+
 
 					if(e.type != EventType.Repaint) return;
 				}
@@ -272,13 +304,28 @@ namespace NT.Graph
 			else
 			{
 				if(currentVariableNode != null){
-					CreateNode(currentVariableNode.GetType(), NodeEditorWindow.current.WindowToGridPosition(e.mousePosition) );
+					currentVariableNode.position = NodeEditorWindow.current.WindowToGridPosition(e.mousePosition);
+					CopyNode(currentVariableNode);
+					//CreateNode(currentVariableNode.GetType(), ) );
 				}
 
 				currentVariableNode = null;
 			}
 		}
 	
+	#endregion
+
+	#region Utility
+		static bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
+			while (toCheck != null && toCheck != typeof(object)) {
+				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+				if (generic == cur) {
+					return true;
+				}
+				toCheck = toCheck.BaseType;
+			}
+			return false;
+		}
 	#endregion
 
     }
