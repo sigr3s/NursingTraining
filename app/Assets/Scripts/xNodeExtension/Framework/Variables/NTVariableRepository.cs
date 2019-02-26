@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 namespace NT.Variables
@@ -124,8 +125,8 @@ namespace NT.Variables
                     INTVaribale ntvar = variableTypeDictionary[key];
                     ntvar.SetDefaultValue(value);
 
-                    variableTypeDictionary[key] = ntvar;    
-                    dictionary[newVariableType.ToString()] = variableTypeDictionary;   
+                    variableTypeDictionary[key] = ntvar;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
                 }
             }
 
@@ -212,12 +213,12 @@ namespace NT.Variables
         public void OnAfterDeserialize() {
             this.Clear();
             Type t = Type.GetType(DictType);
-            
+
             if (keys.Count != values.Count)
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
             for (int i = 0; i < keys.Count; i++){
-                INTVaribale instance = (INTVaribale) Activator.CreateInstance(t);
+                INTVaribale instance = (INTVaribale)FormatterServices.GetUninitializedObject(t); //does not call ctor
                 instance.FromNTVariableData(values[i]);
                 this.Add(keys[i], instance);
             }
