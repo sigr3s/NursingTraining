@@ -1,0 +1,149 @@
+{
+  "graph": {
+    "type": "NT.Graph.SceneGraph, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "name": "ExportTest",
+    "id": 2672,
+    "nodes": [
+      2678,
+      2676,
+      2674
+    ]
+  },
+  "conncetions": [
+    {
+      "port1ID": 349294592,
+      "port2ID": -1085277184
+    },
+    {
+      "port1ID": -1977510528,
+      "port2ID": 1950065792
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Display Value",
+      "type": "NT.Nodes.Other.DisplayValue, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": [
+        1128,
+        -232
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "id": 349294592,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "dynamic": false,
+          "typeConstraint": 0,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowIn",
+          "id": -1977510528,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "dynamic": false,
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": -9348352,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "dynamic": false,
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        }
+      ],
+      "input": {
+        "hi": "hello",
+        "values": [
+          "a",
+          "b"
+        ],
+        "valuesArray": [
+          "c",
+          "d"
+        ]
+      },
+      "flowIn": {
+        "hi": "hello",
+        "values": [
+          "a",
+          "b"
+        ],
+        "valuesArray": [
+          "c",
+          "d"
+        ]
+      },
+      "flowOut": {
+        "hi": "hello",
+        "values": [
+          "a",
+          "b"
+        ],
+        "valuesArray": [
+          "c",
+          "d"
+        ]
+      },
+      "isExecuting": false
+    },
+    {
+      "name": "Callback Node",
+      "type": "NT.Nodes.Messages.CallbackNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": [
+        888,
+        -312
+      ],
+      "ports": [
+        {
+          "name": "flowOut",
+          "id": 1950065792,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "dynamic": false,
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        }
+      ],
+      "flowOut": {
+        "hi": "hello",
+        "values": [
+          "a",
+          "b"
+        ],
+        "valuesArray": [
+          "c",
+          "d"
+        ]
+      },
+      "callbackKey": "start",
+      "isExecuting": false
+    },
+    {
+      "name": "Bool Node",
+      "type": "NT.Nodes.Variables.BoolNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": [
+        888,
+        -184
+      ],
+      "ports": [
+        {
+          "name": "variable",
+          "id": -1085277184,
+          "valueType": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "dynamic": false,
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        }
+      ],
+      "variable": true,
+      "variableKey": "Bool 01",
+      "isExecuting": false
+    }
+  ]
+}

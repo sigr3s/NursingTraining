@@ -1,8 +1,11 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using NT.Nodes.Messages;
 using NT.Variables;
+using UnityEditor;
 using UnityEngine;
 using XNode;
 
@@ -11,13 +14,14 @@ namespace  NT.Graph
     public class NTGraph : NodeGraph {
         [Header("Execution Flow Nodes")]
         public List<NTNode> executionNodes;
+
         public List<CallbackNode> callbackNodes;
 
 
         [Header("References")]
         public SceneVariables sceneVariables;
 
-        [HideInInspector] public Dictionary<string, List<CallbackNode>> callbackNodesDict;
+        public Dictionary<string, List<CallbackNode>> callbackNodesDict;
 
         public override Node AddNode(System.Type type){
             Node node = base.AddNode(type);
@@ -83,6 +87,22 @@ namespace  NT.Graph
             }
 
             yield return null;
+        }
+
+        [ContextMenu("Export")]
+        public void Export(){
+            JSONImportExport jep = new JSONImportExport();
+            jep.Export(this, "");
+        }
+
+        [ContextMenu("Import")]
+        public void Import(){
+            string path = "/Users/sigr3s/Documents/Projects/NursingTraining/app/Assets/save.nt";
+            JSONImportExport jimp = new JSONImportExport();
+            NTGraph g = (NTGraph) jimp.Import(path);
+
+            var so = ScriptableObject.Instantiate(g);
+            AssetDatabase.CreateAsset(so, @"Assets\Resources\s.asset");
         }
     }
 }

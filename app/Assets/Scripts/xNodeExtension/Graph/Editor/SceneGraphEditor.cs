@@ -22,8 +22,11 @@ namespace NT.Graph
 	#region Graph Override
 		public override string GetNodeMenuName(System.Type type) {
 			if (type.Namespace.Contains(selectedNamespace) ) {
-				if(type.IsGenericType) return null;				
-				string menu =  base.GetNodeMenuName(type).Replace(selectedNamespace.Replace(".", "/"), replaceNamespace + "/");
+				if(type.IsGenericType) return null;
+
+				string menu =  base.GetNodeMenuName(type).Replace(selectedNamespace.Replace(".", "/"), replaceNamespace);
+				Debug.Log("YES?  " + menu);
+
 				return menu;
 			} else return null;
 		}
@@ -37,31 +40,43 @@ namespace NT.Graph
 
             return NodeEditorPreferences.GetTypeColor(type);
         }
-		
+
 		public override void OnGUI(){
 			if(nodeTreeViewState == null){ InitializeNodesTree(); }
 			if(variableTreeViewState == null){ InitializeVariablesTree(); }
 
-			EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(Screen.width/4) );
-				GUILayout.Label(Event.current.mousePosition.ToString());
+			Rect r = EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(Screen.width/8) );
+
+				bool isFocued = r.Contains(Event.current.mousePosition);
+				GUILayout.Label(Event.current.mousePosition.ToString() + " ___ " + isFocued);
 
 				GUILayout.Label("Nodes", GUI.skin.button);
-					
+
 				Rect rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
 				nodeTreeView.OnGUI(rect);
 
+				GUILayout.Label("Scene Items", GUI.skin.button);
 
-				GUILayout.Label("Variable", GUI.skin.button);
-				
 				rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
 				variableTreeView.OnGUI(rect);
 
-				GUILayout.Button("Add variable");
-			
+				GUILayout.Label("Variable", GUI.skin.button);
+
+				rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
+				variableTreeView.OnGUI(rect);
+
+				if(GUILayout.Button("Add variable")){
+
+				}
+
 			EditorGUILayout.EndVertical();
-			
+
+			if(Event.current.isMouse){
+				NodeEditorWindow.current.hasFocus = !isFocued;
+			}
+
 			HandleNodeMenu();
-			HandleVariableMenu();		
+			HandleVariableMenu();
 		}
 	#endregion
 
@@ -76,11 +91,12 @@ namespace NT.Graph
 
 		public NodeTreeViewItem GetNodeTreeViewItem(System.Type type){
 			if (type.Namespace.Contains(selectedNamespace) ) {
-				if(type.IsGenericType) return null;				
+				if(type.IsGenericType) return null;
+				if(type.IsCastableTo(typeof(IVariableNode)) ) return null;
 				string menu =  base.GetNodeMenuName(type).Replace(selectedNamespace.Replace(".", "/"), replaceNamespace + "/");
 				var parts = menu.Split('/');
 				int depth = 0;
-	
+
 				for(int i = 0; i < parts.Length; i++){
 					if(i == 0 || string.IsNullOrEmpty(parts[i])){ continue; }
 
@@ -94,7 +110,7 @@ namespace NT.Graph
 							nodesID++;
 							LastParts.Add(parts[i]);
 							nodeItems.Add(new TreeViewItem{id = nodesID,  depth = depth, displayName = parts[i]});
-						}	
+						}
 						else
 						{
 							if(LastParts[depth] != parts[i]){
@@ -104,12 +120,12 @@ namespace NT.Graph
 							}
 						}
 
-						depth++;					
+						depth++;
 					}
 				}
 			}
 
-			return null;		
+			return null;
 		}
 
 		private void HandleNodeMenu(){
@@ -129,7 +145,7 @@ namespace NT.Graph
 
 					if(e.type != EventType.Repaint) return;
 				}
-				
+
 				DrawNodePreview(e.mousePosition, currentnode);
 			}
 			else
@@ -143,7 +159,7 @@ namespace NT.Graph
         }
 
 		private void InitializeNodesTree()
-        {			
+        {
 			for (int i = 0; i < NodeEditorWindow.nodeTypes.Length; i++) {
                 Type type = NodeEditorWindow.nodeTypes[i];
                 TreeViewItem tvwi = GetNodeTreeViewItem(type);
@@ -151,7 +167,7 @@ namespace NT.Graph
 
 				nodeItems.Add(tvwi);
             }
-			
+
 
 			if (nodeTreeViewState == null)
 				nodeTreeViewState = new TreeViewState ();
@@ -163,11 +179,11 @@ namespace NT.Graph
 			Color guiColor = GUI.color;
 
 			NodeEditor nodeEditor = NodeEditor.GetEditor(node);
-			
+
 			NodeEditor.portPositions = new Dictionary<XNode.NodePort, Vector2>();
 
 			GUILayout.BeginArea(new Rect(position, new Vector2(nodeEditor.GetWidth(), 4000)));
-			
+
 				GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle());
 				GUIStyle highlightStyle = new GUIStyle(NodeEditorResources.styles.nodeHighlight);
 				highlightStyle.padding = style.padding;
@@ -177,7 +193,7 @@ namespace NT.Graph
 				GUILayout.BeginVertical(style);
 					GUI.color = NodeEditorPreferences.GetSettings().highlightColor;
 					GUILayout.BeginVertical(new GUIStyle(highlightStyle));
-					
+
 						GUI.color =  guiColor;
 
 						nodeEditor.OnHeaderGUI();
@@ -226,7 +242,7 @@ namespace NT.Graph
 					}
 				}
             }
-			
+
 			ReloadVariableTree();
 
 			variableTreeView = new VariableTreeView(variableTreeViewState, variableItems);
@@ -241,19 +257,20 @@ namespace NT.Graph
 				NTVariableRepository repo = t.sceneVariables.variableRepository;
 				for(int i = 0; i < repo.dictionary.keys.Count; i++){
 					string variable = repo.dictionary.keys[i];
-					variableItems.Add( new TreeViewItem{id = variablesID,  depth = 0, displayName = variable});
+					variableItems.Add( new TreeViewItem{id = variablesID,  depth = 0, displayName = variable.Replace("NT.Variables.NT", "")});
 					variablesID++;
 
 					NTVariableDictionary varDict = repo.dictionary.values[i];
 					for(int j = 0; j < varDict.keys.Count; j++){
-						variableItems.Add( new TreeViewItem{id = variablesID,  depth = 1, displayName =  varDict.keys[j]});
+
+						variableItems.Add( new TreeViewItem{id = variablesID,  depth = 1, displayName = varDict.keys[j]});
 						variablesID++;
 
 						variableItems.Add( new VariableTreeViewItem{id = variablesID,  depth = 2, displayName =  "GET " +varDict.keys[j], 
 											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
 											variableType = varDict._dictType });
 						variablesID++;
-						
+
 						variableItems.Add( new VariableTreeViewItem{id = variablesID,  depth = 2, displayName =  "SET " +varDict.keys[j],
 											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET,
 											variableType = varDict._dictType });
@@ -298,21 +315,21 @@ namespace NT.Graph
 
 					if(e.type != EventType.Repaint) return;
 				}
-				
+
 				DrawNodePreview(e.mousePosition, currentVariableNode);
 			}
 			else
 			{
 				if(currentVariableNode != null){
+					currentVariableNode.name = "variable";
 					currentVariableNode.position = NodeEditorWindow.current.WindowToGridPosition(e.mousePosition);
 					CopyNode(currentVariableNode);
-					//CreateNode(currentVariableNode.GetType(), ) );
 				}
 
 				currentVariableNode = null;
 			}
 		}
-	
+
 	#endregion
 
 	#region Utility

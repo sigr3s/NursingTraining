@@ -18,7 +18,7 @@ namespace NT.Graph{
     {
 
         public string message;
-       
+
         [ContextMenu("Start Execution")]
         public void StartExecution(){
             MessageSystem.onMessageSent -= MessageRecieved;
@@ -26,16 +26,14 @@ namespace NT.Graph{
 
             GenerateCallbackDict();
             sceneVariables.variableRepository.ResetToDefault();
-            
             MessageSystem.SendMessage("start");
 
         }
 
          [ContextMenu("Send message")]
-        public void SendMessage(){            
+        public void SendMessage(){
             MessageSystem.SendMessage(message);
         }
 
-       
     }
 }
