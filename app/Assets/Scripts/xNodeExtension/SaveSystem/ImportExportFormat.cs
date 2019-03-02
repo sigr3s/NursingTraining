@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -14,12 +15,12 @@ namespace XNode {
 
 		public void Export (NodeGraph graph, string path){
 			NodeGraphData data = ConvertToNodeGraphData (graph);
-			ExportData (data, path);
+			ExportData (data, path, new List<Type>());
 		}
 
         public abstract NodeGraphData ImportData (string path);
 
-		public abstract void ExportData (NodeGraphData data, string path);
+		public abstract void ExportData (NodeGraphData data, string path, List<Type> referenceTypes);
 
 
         public NodeGraph ConvertToNodeCanvas(NodeGraphData data){

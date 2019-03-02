@@ -5,5 +5,5 @@ using XNode;
 
 namespace NT.Nodes.Variables
 {
-    public class SurgeonNode : GetNTVariableNode<SurgeonData, NTSurgeon> {}
+    //public class SurgeonNode : GetNTVariableNode<SurgeonData, NTSurgeon> {}
 }

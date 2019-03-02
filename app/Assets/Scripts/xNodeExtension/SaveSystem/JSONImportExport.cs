@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 using System.IO;
+using System;
 
 namespace XNode
 {
     public class JSONImportExport : ImportExportFormat
     {
-        public override void ExportData(NodeGraphData data, string path)
+        public override void ExportData(NodeGraphData data, string path, List<Type> referenceTypes)
         {
             JSONObject exportJSON = new JSONObject();
 
@@ -15,15 +16,15 @@ namespace XNode
 
             JSONArray graphNodesReferences = new JSONArray();
 
-            for(int i = 0; i < data.graph.nodes.Count; i++){
-                graphNodesReferences.Add("nodeID", new JSONNumber(data.graph.nodes[i].GetHashCode()));
-            }
+            referenceTypes.Add(typeof(Node));
+            referenceTypes.Add(typeof(NodeGraph));
+            referenceTypes.Add(typeof(NodePort));
 
             graph.Add(  "type"  , new JSONString(data.graph.GetType().AssemblyQualifiedName) );
             graph.Add(  "name"  , new JSONString(data.graph.name)               );
             graph.Add(  "id"    , new JSONNumber(data.graph.GetHashCode())      );
-            graph.Add(  "nodes" , graphNodesReferences);
-
+            NodeGraph g = data.graph;
+            graph = (JSONObject) SimpleJSONExtension.ToJSON(g, graph, new List<string>(), referenceTypes);
 
             JSONArray connections = new JSONArray();
 
@@ -42,6 +43,7 @@ namespace XNode
                 nodeJSON.Add("name" ,  node.name );
                 nodeJSON.Add("type" , node.GetType().AssemblyQualifiedName);
                 nodeJSON.Add("position", node.position);
+                nodeJSON.Add("id", node.GetHashCode());
 
                 JSONArray nodePorts = new JSONArray();
 
@@ -62,8 +64,7 @@ namespace XNode
 
                 nodeJSON.Add("ports", nodePorts);
 
-                List<string> ignoeredFields = new List<string>{"graph", "position"};
-                nodeJSON = (JSONObject) SimpleJSONExtension.ToJSON(node, nodeJSON, ignoeredFields);
+                nodeJSON = (JSONObject) SimpleJSONExtension.ToJSON(node, nodeJSON, new List<string>(), referenceTypes);
 
                 nodes.Add(nodeJSON);
             }
@@ -79,17 +80,83 @@ namespace XNode
 
         public override NodeGraphData ImportData(string path)
         {
+            NodeGraphData returnData = null;
+
             if(File.Exists(path)){
                 string jsonString =  File.ReadAllText(path);
                 JSONNode root = JSON.Parse(jsonString);
 
+                Dictionary<int, object> references = new Dictionary<int, object>();
+                Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
+
                 if(root.HasKey("graph")){
-                    Debug.Log("Graph??");
+                    JSONObject graphJObject = root["graph"].AsObject;
+                    int id = graphJObject["id"];
+                    string graphTypeS = graphJObject["type"];
+                    Type graphType = Type.GetType(graphTypeS);
+
+                    NodeGraph  graph = (NodeGraph) ScriptableObject.CreateInstance(graphType);
+                    graph.name = graphJObject["name"];
+
+                    references.Add(id, graph);
+                    returnData = new NodeGraphData(graph);
+                }
+                else
+                {
+                    return returnData;
                 }
 
                 if(root.HasKey("nodes")){
-                    Debug.Log("Nodes??");
+                    JSONArray nodesJArray = root["nodes"].AsArray;
+
+                    foreach (JSONObject nodeJObject in nodesJArray.Values)
+                    {
+                        int id = nodeJObject["id"];
+                        string nodeTypeS = nodeJObject["type"];
+                        Type nodeType = Type.GetType(nodeTypeS);
+
+                        Node  node = (Node) ScriptableObject.CreateInstance(nodeType);
+                        node.name = nodeJObject["name"];
+                        node.graph = returnData.graph;
+                        references.Add(id, node);
+                        NodeData nodeData = new NodeData(node);
+
+                        JSONArray nodePortsArray = nodeJObject["ports"].AsArray;
+                        foreach (var nodePort in nodePortsArray.Values)
+                        {
+                            bool dynamic = nodePort["dynamic"].AsBool;
+                            NodePort port = null;
+                            int portId = 0;
+
+                            if(dynamic){
+                                Debug.LogWarning("Dynamic node ports not supported yet!");
+                            }
+                            else
+                            {
+                                port = node.GetPort(nodePort["name"]);
+                                portId = nodePort["id"];
+                            }
+
+                            NodePortData portData = new NodePortData(nodeData, port);
+
+                            nodeData.ports.Add(portData);
+                            portDatas.Add(port, portData);
+                            references.Add(portId, port);
+                        }
+
+                        returnData.nodes.Add(nodeData);
+                    }
+
                 }
+                else
+                {
+                    return returnData;
+                }
+
+                Debug.Log("OK!");
+
+
+                //Now connections are ok?
             }
             return null;
         }

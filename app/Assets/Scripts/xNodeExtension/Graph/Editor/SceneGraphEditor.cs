@@ -25,7 +25,6 @@ namespace NT.Graph
 				if(type.IsGenericType) return null;
 
 				string menu =  base.GetNodeMenuName(type).Replace(selectedNamespace.Replace(".", "/"), replaceNamespace);
-				Debug.Log("YES?  " + menu);
 
 				return menu;
 			} else return null;
@@ -223,25 +222,25 @@ namespace NT.Graph
 			if (variableTreeViewState == null)
 				variableTreeViewState = new TreeViewState ();
 
-			for (int i = 0; i < NodeEditorWindow.nodeTypes.Length; i++) {
+			/*for (int i = 0; i < NodeEditorWindow.nodeTypes.Length; i++) {
                 Type nodeType = NodeEditorWindow.nodeTypes[i];
 
 				if(nodeType.IsGenericType) continue;
 
-				if(IsSubclassOfRawGeneric(typeof(SetNTVariableNode<,>), nodeType) ){
+				if(IsSubclassOfRawGeneric(typeof(SetNTVariableNode), nodeType) ){
 					if(nodeType.BaseType.IsGenericType) {
 						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
 						setNodes.Add(setNodeVariableType, nodeType);
 					}
 				}
 
-				if(IsSubclassOfRawGeneric(typeof(GetNTVariableNode<,>), nodeType)){
+				if(IsSubclassOfRawGeneric(typeof(GetNTVariableNode), nodeType)){
 					if(nodeType.BaseType.IsGenericType) {
 						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
 						getNodes.Add(setNodeVariableType, nodeType);
 					}
 				}
-            }
+            } */
 
 			ReloadVariableTree();
 
@@ -293,15 +292,11 @@ namespace NT.Graph
 					Type t = null;
 
 					if(variableItem.variableNodeType == VariableTreeViewItem.VariableNodeType.GET){
-						if(getNodes.ContainsKey(variableItem.variableType)){
-							t = getNodes[variableItem.variableType];
-						}
+						t = typeof(GetNTVariableNode);
 					}
 					else
 					{
-						if(setNodes.ContainsKey(variableItem.variableType)){
-							t = setNodes[variableItem.variableType];
-						}
+						t = typeof(SetNTVariableNode);
 					}
 
 					if(t == null) return;
@@ -310,6 +305,7 @@ namespace NT.Graph
 					currentVariableNode.name = variableItem.vairbaleKey;
 					currentVariableNode.graph = target as XNode.NodeGraph;
 					IVariableNode ivn = (IVariableNode) currentVariableNode;
+					ivn.SetNTVariableType(variableItem.variableType);
 					ivn.SetVariableKey(variableItem.vairbaleKey);
 
 

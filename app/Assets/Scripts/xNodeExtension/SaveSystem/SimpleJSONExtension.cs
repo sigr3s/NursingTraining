@@ -14,15 +14,29 @@ public static class SimpleJSONExtension {
     }
 
     public static JSONNode ToJSON(object o, JSONNode parent, List<string> ignoreFields){
-        return ToJSONInternal(o, o.GetType(), parent,ignoreFields, new List<Type>());
+        return ToJSON(o, parent,ignoreFields, new List<Type>());
     }
 
-    private static JSONNode ToJSONInternal(object o, Type objectType, JSONNode parent, List<string> ignoreFields, List<Type> visitedTypes){
+    public static JSONNode ToJSON(object o, JSONNode parent, List<Type> referencedTypes){
+        return ToJSON(o, parent,new List<string>(), referencedTypes);
+    }
+
+    public static JSONNode ToJSON(object o, JSONNode parent, List<string> ignoreFields, List<Type> referencedTypes){
+        return ToJSONInternal(o, o.GetType(), parent,ignoreFields, new List<Type>(), referencedTypes);
+    }
+
+    private static JSONNode ToJSONInternal( object o, Type objectType, JSONNode parent,
+                                            List<string> ignoreFields, List<Type> visitedTypes,
+                                            List<Type> referencedTypes){
         if(visitedTypes.Contains(objectType)){
             return parent;
         }
 
-        if(TryToAdd("",o, objectType, ref parent, visitedTypes)){
+        visitedTypes.Add(objectType);
+
+        bool asignedReference = false;
+
+        if(TryToAdd("",o, objectType, ref parent, ignoreFields, visitedTypes, referencedTypes)){
             return parent;
         }
 
@@ -34,14 +48,30 @@ public static class SimpleJSONExtension {
 
             if(ignoreFields.Contains(fieldName)) continue;
 
+            if(o == null) continue;
+
             object fieldObject = field.GetValue(o);
 
             List<Type> visited = new List<Type>(visitedTypes);
+            asignedReference = false;
 
-            if(!TryToAdd(fieldName, fieldObject,fieldType, ref parent, visited)){
+            foreach (Type refType in referencedTypes)
+            {
+
+                if(refType.IsAssignableFrom(fieldType)){
+                    parent.Add(fieldName, fieldObject.GetHashCode());
+                    asignedReference = true;
+                    break;
+                }
+            }
+
+            if(asignedReference) continue;
+
+            if(!TryToAdd(fieldName, fieldObject,fieldType, ref parent, ignoreFields, visited, referencedTypes)){
+
                 JSONObject jSONObject = new JSONObject();
 
-                jSONObject = (JSONObject) ToJSONInternal(fieldObject, fieldType, jSONObject, ignoreFields, visited);
+                jSONObject = (JSONObject) ToJSONInternal(fieldObject, fieldType, jSONObject, ignoreFields, visited, referencedTypes);
 
                 parent.Add(fieldName,jSONObject);
             }
@@ -49,7 +79,9 @@ public static class SimpleJSONExtension {
         return parent;
     }
 
-    private static bool TryToAdd(string objectName, object o, Type objectType, ref JSONNode parent, List<Type> visitedTypes){
+    private static bool TryToAdd  ( string objectName, object o, Type objectType, ref JSONNode parent,
+                                    List<string> ignoreFields, List<Type> visitedTypes,
+                                    List<Type> referencedTypes){
         if(objectType == typeof(string))
         {
             if(!string.IsNullOrEmpty(objectName)) parent.Add(objectName, (string) o);
@@ -62,18 +94,32 @@ public static class SimpleJSONExtension {
 
             JSONNode fieldListJSON = new JSONArray();
 
+            bool asignedReference = false;
+            if(fieldList.Count > 0){
+                var item = fieldList[0];
+                foreach (Type refType in referencedTypes){
+                    if(refType.IsAssignableFrom(item.GetType())){
+                        asignedReference = true;
+                        break;
+                    }
+                }
+            }
+
             foreach (var objectItem in fieldList)
             {
                 if(objectItem == null) continue;
 
                 List<Type> visited = new List<Type>(visitedTypes);
 
-                if(TryToAdd("", objectItem, objectItem.GetType(),ref fieldListJSON, visited)){
+                if(asignedReference){
+                    fieldListJSON.Add(objectItem.GetHashCode() );
+                }
+                else if(TryToAdd("", objectItem, objectItem.GetType(),ref fieldListJSON, ignoreFields,visited, referencedTypes)){
 
                 }
                 else{
                     JSONObject listItemJSON = new JSONObject();
-                    listItemJSON = (JSONObject) ToJSONInternal(objectItem, objectItem.GetType() ,listItemJSON, new List<string>(), visited);
+                    listItemJSON = (JSONObject) ToJSONInternal(objectItem, objectItem.GetType() ,listItemJSON, ignoreFields, visited, referencedTypes);
                     fieldListJSON.Add(listItemJSON);
                 }
 
@@ -116,7 +162,15 @@ public static class SimpleJSONExtension {
 
         return (T) deserializationObject;
     }
-    
+
+    public static T FromJSON<T>(JSONNode node){
+        object deserializationObject = new object();
+
+        FromJSON(ref deserializationObject, typeof(T), node, new List<string>());
+
+        return (T) deserializationObject;
+    }
+
     public static void FromJSON(ref object o, Type objectType, JSONNode node, List<string> ignoreFields){
         if(TryToAssign(ref o, objectType, node)){
             return;

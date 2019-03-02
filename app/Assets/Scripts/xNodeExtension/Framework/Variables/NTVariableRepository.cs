@@ -37,6 +37,31 @@ namespace NT.Variables
             }
         }
 
+         public bool AddVariable(Type varType, object value){
+            INTVaribale ntVar = (INTVaribale) value;
+            if(ntVar == null) return false;
+            if(string.IsNullOrEmpty(ntVar.GetKey())) return false;
+
+            Type newVariableType = varType;
+            NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(newVariableType);
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(ntVar.GetKey())){    return false;   }
+                else{
+                    variableTypeDictionary.Add(ntVar.GetKey(),ntVar);
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                    return true;
+                }
+            }
+            else{
+                variableTypeDictionary.Add(ntVar.GetKey(),ntVar);
+                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
+                return true;
+            }
+        }
+
+
         public bool AddVariable(INTVaribale value, Type t){
             
             if(string.IsNullOrEmpty(value.GetKey())) return false;
@@ -74,7 +99,7 @@ namespace NT.Variables
 
         public object GetValue<T>(string key) where T: INTVaribale{
             if(string.IsNullOrEmpty(key)) return default(object);
-            
+
             Type newVariableType = typeof(T);
             NTVariableDictionary variableTypeDictionary;
 
@@ -83,9 +108,30 @@ namespace NT.Variables
                 if(variableTypeDictionary.ContainsKey(key)){
 
                     INTVaribale ntvar = variableTypeDictionary[key];
-                    return ntvar.GetValue();   
+                    return ntvar.GetValue();
                 }
-                
+
+                Debug.Log("No value???"  + key + "   " + variableTypeDictionary.DictType);
+            }
+
+
+            return default(object);
+        }
+
+        public object GetValue(string key, Type t){
+            if(string.IsNullOrEmpty(key)) return default(object);
+
+            Type newVariableType = t;
+            NTVariableDictionary variableTypeDictionary;
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(key)){
+
+                    INTVaribale ntvar = variableTypeDictionary[key];
+                    return ntvar.GetValue();
+                }
+
                 Debug.Log("No value???"  + key + "   " + variableTypeDictionary.DictType);
             }
 
@@ -105,8 +151,28 @@ namespace NT.Variables
                     INTVaribale ntvar = variableTypeDictionary[key];
                     ntvar.SetValue(value);
 
-                    variableTypeDictionary[key] = ntvar;    
-                    dictionary[newVariableType.ToString()] = variableTypeDictionary;   
+                    variableTypeDictionary[key] = ntvar;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                }
+            }
+
+            return;
+        }
+
+        public void SetValue(Type ntVariableType, string key, object value){
+            if(string.IsNullOrEmpty(key)) return;
+
+            Type newVariableType = ntVariableType;
+            NTVariableDictionary variableTypeDictionary;
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(key)){
+                    INTVaribale ntvar = variableTypeDictionary[key];
+                    ntvar.SetValue(value);
+
+                    variableTypeDictionary[key] = ntvar;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
                 }
             }
 
@@ -133,13 +199,15 @@ namespace NT.Variables
             return;
         }
 
-        public List<string> GetOptions<T>(string key, out int index) where T: INTVaribale
+        public List<string> GetOptions(Type variableType, string key, out int index)
         {
             List<string> options = new List<string>();
             index = -1;
 
-            Type newVariableType = typeof(T);
+            Type newVariableType = variableType;
 
+            if(newVariableType == null) return options;
+            
             NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(newVariableType);
 
             if(dictionary.ContainsKey(newVariableType.ToString()) ){

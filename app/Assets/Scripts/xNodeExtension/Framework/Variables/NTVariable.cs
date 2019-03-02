@@ -11,14 +11,15 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public abstract class NTVariable<T> : ISerializationCallbackReceiver, INTVaribale
+    public class NTVariable<T> : ISerializationCallbackReceiver, INTVaribale
     {
         public T value;
         public T defaultValue;
         public NTVariableData serializedData;
-        public NTVariable(){}
+        public NTVariable(){
+        }
 
-        public void OnAfterDeserialize(){ 
+        public void OnAfterDeserialize(){
             DeserializeValue(serializedData.Value);
             DeserializeDefaultValue(serializedData.Value);
         }
@@ -62,12 +63,17 @@ namespace NT.Variables
         public void FromNTVariableData(NTVariableData data){
             this.serializedData = data;
             OnAfterDeserialize();
+            SetKey(data.Name);
         }
 
 
         public NTVariableData ToNTVariableData(){
             OnBeforeSerialize();
             return this.serializedData;
+        }
+
+        public Type GetDataType(){
+            return typeof(T);
         }
 
     }
@@ -86,6 +92,7 @@ namespace NT.Variables
 
         string GetKey();
         void SetKey(string key);
-        
+
+        Type GetDataType();
     }
 }

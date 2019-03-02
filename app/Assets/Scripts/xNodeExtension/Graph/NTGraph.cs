@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -73,7 +74,7 @@ namespace  NT.Graph
                 nodeExecutionContext.node.Enter();
 
                 yield return new YieldNode(nodeExecutionContext );
-                
+
                 Debug.Log("Finished node:  " + nodeExecutionContext.node.name);
 
                 yield return new WaitForSeconds(1.25f);
@@ -81,12 +82,34 @@ namespace  NT.Graph
                 Debug.Log("Finished waiting?:  " + nodeExecutionContext.node.name);
 
                 nodeExecutionContext.node.Exit();
-                
 
                 nodeExecutionContext = nodeExecutionContext.node.NextNode(nodeExecutionContext);
             }
 
             yield return null;
+        }
+
+        Dictionary<Type, Type> dataToNtVatiable = new Dictionary<Type, Type>();
+
+        public Type GetVariableFor(Type t){
+            if(dataToNtVatiable.ContainsKey(t)) return dataToNtVatiable[t];
+
+
+            foreach(Type nodeType in ReflectionUtilities.variableNodeTypes){
+                if(nodeType.IsGenericTypeDefinition){
+                    continue;
+                }
+
+                Type dataType = ((INTVaribale) Activator.CreateInstance(nodeType)).GetDataType();
+
+                if(dataType == t){
+                    dataToNtVatiable.Add(t, nodeType);
+                    return nodeType;
+                }
+            }
+
+            Debug.Log("Not found??");
+            return null;
         }
 
         [ContextMenu("Export")]
@@ -97,12 +120,9 @@ namespace  NT.Graph
 
         [ContextMenu("Import")]
         public void Import(){
-            string path = "/Users/sigr3s/Documents/Projects/NursingTraining/app/Assets/save.nt";
+            string path = "/Users/sigr3s/Documents/Projects/NursingTraining/app/Assets/save.json";
             JSONImportExport jimp = new JSONImportExport();
             NTGraph g = (NTGraph) jimp.Import(path);
-
-            var so = ScriptableObject.Instantiate(g);
-            AssetDatabase.CreateAsset(so, @"Assets\Resources\s.asset");
         }
     }
 }

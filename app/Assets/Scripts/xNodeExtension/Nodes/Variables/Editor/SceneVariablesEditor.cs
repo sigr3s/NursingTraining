@@ -41,15 +41,15 @@ public class SceneVariablesEditor : Editor{
             GUILayout.Space(20);
 
             Type t = optionTypes[selectedOption];
-            
+
             if(sv.variableRepository.dictionary.ContainsKey(t.ToString())){
                 NTVariableDictionary ntd = sv.variableRepository.dictionary[t.ToString()];
-                
+
                 for(int i = 0; i < ntd.keys.Count; i++){
                     GUILayout.Label(ntd.keys[i]);
                 }
             }
-            
+
             currentData.Name  = EditorGUILayout.TextField("Key", currentData.Name);
             currentData.Value = EditorGUILayout.TextField("Value (Will be deserialized by type)", currentData.Value );
 

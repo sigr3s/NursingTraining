@@ -10,9 +10,8 @@ namespace NT.Atributes{
         public NTInputAttribute(    Node.ShowBackingValue backingValue = Node.ShowBackingValue.Always, 
                                     Node.ConnectionType connectionType = Node.ConnectionType.Override,
                                     Node.TypeConstraint typeConstraint = Node.TypeConstraint.Strict, 
-                                    bool instancePortList = false): 
+                                    bool instancePortList = false):
             base(backingValue, connectionType,typeConstraint, instancePortList){
-    
         }
     }
 

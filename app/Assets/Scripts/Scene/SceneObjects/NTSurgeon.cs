@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace NT.Variables
+namespace NT.SceneObjects
 {
     [Serializable]
     public struct SurgeonData{
@@ -10,5 +10,7 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public class NTSurgeon : NTVariable<SurgeonData>{    }
+    public class NTSurgeon : NTSceneObject<SurgeonData>{
+
+    }
 }
