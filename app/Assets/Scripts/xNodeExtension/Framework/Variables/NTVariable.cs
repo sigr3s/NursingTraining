@@ -104,6 +104,17 @@ namespace NT.Variables
         public virtual void SetValue(object value){}
 
         public virtual NTVariableData ToNTVariableData(){return new NTVariableData();}
+
+        public virtual bool Eveluate(Operator op, string value, bool isLeft){
+            return true;
+        }
+
+        //Always is left!
+        public virtual bool Eveluate(Operator op, NTVariable value){
+            return true;
+        }
+
+
     }
 
     public interface INTVaribale
@@ -125,5 +136,15 @@ namespace NT.Variables
 
         bool IsCollapsed();
         void SetCaollapsed(bool collapsed);
+    }
+
+    public enum Operator
+    {
+        Equals,
+        LessThan,
+        GreaterThan,
+        NotEquals,
+        LessOrEqualThan,
+        GreaterOrEqualThan
     }
 }

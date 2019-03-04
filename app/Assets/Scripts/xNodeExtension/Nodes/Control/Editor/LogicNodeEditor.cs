@@ -71,22 +71,15 @@ namespace NT.Nodes.Control
                     }
                     else
                     {
-                        if(lc.leftSide.VariableType == null && lc.leftSide.variableType != null){
-                            lc.leftSide.VariableType = Type.GetType(lc.leftSide.variableType);
-                        }
 
                         int option = optionsTL.IndexOf(lc.leftSide.VariableType);
                         int newOption = EditorGUILayout.Popup(option, options);
 
                         if(option != newOption){
                             lc.leftSide.variableType = optionTypes[newOption].AssemblyQualifiedName;
-                            lc.leftSide.VariableType = optionTypes[newOption];
                         }
 
                         if(!string.IsNullOrEmpty(lc.leftSide.variableType) ){
-                            if(lc.leftSide.VariableType == null){
-                                lc.leftSide.VariableType = Type.GetType(lc.leftSide.variableType);
-                            }
                             int vInd = 0;
                             List<string> variableOP = g.sceneVariables.variableRepository.GetOptions(lc.leftSide.VariableType, lc.leftSide.variableName, out vInd);
 
@@ -99,7 +92,7 @@ namespace NT.Nodes.Control
                     }
 
 
-                    lc.op = (LogicCondition.Operator) EditorGUILayout.EnumPopup(lc.op);
+                    lc.op = (Operator) EditorGUILayout.EnumPopup(lc.op);
 
                     EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField("Variable Left");
@@ -113,22 +106,14 @@ namespace NT.Nodes.Control
                     }
                     else
                     {
-                        if(lc.rightSide.VariableType == null && lc.rightSide.variableType != null){
-                            lc.rightSide.VariableType = Type.GetType(lc.rightSide.variableType);
-                        }
-
                         int option = optionsTL.IndexOf(lc.rightSide.VariableType);
                         int newOption = EditorGUILayout.Popup(option, options);
 
                         if(option != newOption){
                             lc.rightSide.variableType = optionTypes[newOption].AssemblyQualifiedName;
-                            lc.rightSide.VariableType = optionTypes[newOption];
                         }
 
                         if(!string.IsNullOrEmpty(lc.rightSide.variableType) ){
-                            if(lc.rightSide.VariableType == null){
-                                lc.rightSide.VariableType = Type.GetType(lc.rightSide.variableType);
-                            }
                             int vInd = 0;
                             List<string> variableOP = g.sceneVariables.variableRepository.GetOptions(lc.rightSide.VariableType, lc.rightSide.variableName, out vInd);
 

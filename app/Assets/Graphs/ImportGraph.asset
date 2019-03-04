@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: Logic Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -504, y: -696}
+  position: {x: -520, y: -696}
   ports:
     keys:
     - result
@@ -346,16 +346,15 @@ MonoBehaviour:
   operation: 0
   conditions:
   - leftSide:
-      value: 1
-      variableName: Hello
-      variableType: NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      value: 3
+      variableName: 
+      variableType: 
       isVariable: 0
     op: 0
     rightSide:
-      value: 
-      variableName: hn
-      variableType: NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      value: 2
+      variableName: 
+      variableType: NT.Variables.NTFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       isVariable: 0
 --- !u!114 &114565087179289032

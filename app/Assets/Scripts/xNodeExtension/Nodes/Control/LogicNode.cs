@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NT.Atributes;
+using NT.Graph;
 using NT.Variables;
 using UnityEngine;
 using XNode;
@@ -23,10 +24,11 @@ namespace NT.Nodes.Control{
 
 
         public override object GetValue(NodePort port){
-            bool retValue = true;
+            bool retValue = operation == LogicOperation.AND ? true : false;
+
 
             foreach(var condition in conditions){
-                bool condValue = condition.Evaluate();
+                bool condValue = condition.Evaluate((NTGraph) graph);
 
                 switch(operation){
                     case LogicOperation.AND:
@@ -53,21 +55,11 @@ namespace NT.Nodes.Control{
         public VariableOrInmediate rightSide;
 
 
-
-        public enum Operator
-        {
-            Equals,
-            LessThan,
-            GreaterThan,
-            NotEquals,
-            LessOrEqualThan,
-            GreaterOrEqualThan
-        }
-
-        public bool Evaluate(){
+        public bool Evaluate(NTGraph graph){
             if(!leftSide.isVariable && !rightSide.isVariable){
-                string lli = leftSide.value.ToLowerInvariant();
-                string rri = rightSide.value.ToLowerInvariant();
+
+                string lli = leftSide.value;
+                string rri = rightSide.value;
 
                 bool llib = false;
                 bool rrib = false;
@@ -144,16 +136,41 @@ namespace NT.Nodes.Control{
             }
             //Left is variable
             else if(leftSide.isVariable && !rightSide.isVariable){
-                
+                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
+
+                if(vleftVar != null){
+                    return vleftVar.Eveluate(op, rightSide.value, true);
+                }
+                else
+                {
+                    return false;
+                }
             }
             //Right is varaiables
             else if(!leftSide.isVariable && rightSide.isVariable){
+                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(rightSide.variableName, rightSide.VariableType);
 
+                if(vrightVar != null){
+                    return vrightVar.Eveluate(op, rightSide.value, false);
+                }
+                else
+                {
+                    return false;
+                }
             }
             //Both are varaiables
             else
             {
+                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(leftSide.variableName, leftSide.VariableType);
+                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(leftSide.variableName, leftSide.VariableType);
 
+                if(vleftVar != null){
+                    return vleftVar.Eveluate(op, vrightVar);
+                }
+                else if(vrightVar != null)
+                {
+                    return vrightVar.Eveluate(op, vleftVar);
+                }
             }
             return false;
         }
@@ -164,7 +181,17 @@ namespace NT.Nodes.Control{
         public string value;
         public string variableName;
         public string variableType;
-        public Type VariableType;
+
+        public Type _variableType;
+        public Type VariableType{
+            get{
+                if(_variableType == null || _variableType.AssemblyQualifiedName != variableType){
+                    _variableType = Type.GetType(variableType);
+                }
+
+                return _variableType;
+            }
+        }
 
         public bool isVariable;
     }

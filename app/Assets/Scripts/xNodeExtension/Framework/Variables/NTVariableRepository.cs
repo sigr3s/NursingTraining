@@ -131,10 +131,25 @@ namespace NT.Variables
                     NTVariable ntvar = variableTypeDictionary[key];
                     return ntvar.GetValue();
                 }
-
-                Debug.Log("No value???"  + key + "   " + variableTypeDictionary.DictType);
             }
 
+            return default(object);
+        }
+
+        public object GetNTValue(string key, Type t){
+            if(string.IsNullOrEmpty(key)) return default(object);
+
+            Type newVariableType = t;
+            NTVariableDictionary variableTypeDictionary;
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(key)){
+
+                    NTVariable ntvar = variableTypeDictionary[key];
+                    return ntvar;
+                }
+            }
 
             return default(object);
         }
@@ -207,7 +222,7 @@ namespace NT.Variables
             Type newVariableType = variableType;
 
             if(newVariableType == null) return options;
-            
+
             NTVariableDictionary variableTypeDictionary = new NTVariableDictionary(newVariableType);
 
             if(dictionary.ContainsKey(newVariableType.ToString()) ){
