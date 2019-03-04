@@ -100,7 +100,7 @@ namespace  NT.Graph
                     continue;
                 }
 
-                Type dataType = ((INTVaribale) Activator.CreateInstance(nodeType)).GetDataType();
+                Type dataType = ((NTVariable) Activator.CreateInstance(nodeType)).GetDataType();
 
                 if(dataType == t){
                     dataToNtVatiable.Add(t, nodeType);

@@ -71,7 +71,7 @@ namespace NT.Graph
 			EditorGUILayout.EndVertical();
 
 			if(Event.current.isMouse){
-				NodeEditorWindow.current.hasFocus = !isFocued;
+				//Event.current.Use();
 			}
 
 			HandleNodeMenu();
@@ -221,27 +221,6 @@ namespace NT.Graph
 		private void InitializeVariablesTree(){
 			if (variableTreeViewState == null)
 				variableTreeViewState = new TreeViewState ();
-
-			/*for (int i = 0; i < NodeEditorWindow.nodeTypes.Length; i++) {
-                Type nodeType = NodeEditorWindow.nodeTypes[i];
-
-				if(nodeType.IsGenericType) continue;
-
-				if(IsSubclassOfRawGeneric(typeof(SetNTVariableNode), nodeType) ){
-					if(nodeType.BaseType.IsGenericType) {
-						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
-						setNodes.Add(setNodeVariableType, nodeType);
-					}
-				}
-
-				if(IsSubclassOfRawGeneric(typeof(GetNTVariableNode), nodeType)){
-					if(nodeType.BaseType.IsGenericType) {
-						Type setNodeVariableType = nodeType.BaseType.GetGenericArguments()[1];
-						getNodes.Add(setNodeVariableType, nodeType);
-					}
-				}
-            } */
-
 			ReloadVariableTree();
 
 			variableTreeView = new VariableTreeView(variableTreeViewState, variableItems);

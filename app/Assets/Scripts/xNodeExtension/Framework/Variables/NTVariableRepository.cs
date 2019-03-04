@@ -15,7 +15,7 @@ namespace NT.Variables
             dictionary = new NTTypedDictionary();
         }
 
-        public bool AddVariable<T>(T value) where T: INTVaribale{
+        public bool AddVariable<T>(T value) where T: NTVariable{
             if(string.IsNullOrEmpty(value.GetKey())) return false;
 
             Type newVariableType = typeof(T);
@@ -38,7 +38,7 @@ namespace NT.Variables
         }
 
          public bool AddVariable(Type varType, object value){
-            INTVaribale ntVar = (INTVaribale) value;
+            NTVariable ntVar = (NTVariable) value;
             if(ntVar == null) return false;
             if(string.IsNullOrEmpty(ntVar.GetKey())) return false;
 
@@ -62,7 +62,7 @@ namespace NT.Variables
         }
 
 
-        public bool AddVariable(INTVaribale value, Type t){
+        public bool AddVariable(NTVariable value, Type t){
             
             if(string.IsNullOrEmpty(value.GetKey())) return false;
 
@@ -86,7 +86,7 @@ namespace NT.Variables
             }
         }
 
-        public void RemoveVariable<T>(string key) where T: INTVaribale{
+        public void RemoveVariable<T>(string key) where T: NTVariable{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
@@ -97,7 +97,7 @@ namespace NT.Variables
             }
         }
 
-        public object GetValue<T>(string key) where T: INTVaribale{
+        public object GetValue<T>(string key) where T: NTVariable{
             if(string.IsNullOrEmpty(key)) return default(object);
 
             Type newVariableType = typeof(T);
@@ -107,7 +107,7 @@ namespace NT.Variables
                 variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
 
-                    INTVaribale ntvar = variableTypeDictionary[key];
+                    NTVariable ntvar = variableTypeDictionary[key];
                     return ntvar.GetValue();
                 }
 
@@ -128,7 +128,7 @@ namespace NT.Variables
                 variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
 
-                    INTVaribale ntvar = variableTypeDictionary[key];
+                    NTVariable ntvar = variableTypeDictionary[key];
                     return ntvar.GetValue();
                 }
 
@@ -139,7 +139,7 @@ namespace NT.Variables
             return default(object);
         }
 
-        public void SetValue<T>(string key, object value) where T: INTVaribale{
+        public void SetValue<T>(string key, object value) where T: NTVariable{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
@@ -148,7 +148,7 @@ namespace NT.Variables
             if( dictionary.ContainsKey(newVariableType.ToString()) ){
                 variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
-                    INTVaribale ntvar = variableTypeDictionary[key];
+                    NTVariable ntvar = variableTypeDictionary[key];
                     ntvar.SetValue(value);
 
                     variableTypeDictionary[key] = ntvar;
@@ -168,7 +168,7 @@ namespace NT.Variables
             if( dictionary.ContainsKey(newVariableType.ToString()) ){
                 variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
-                    INTVaribale ntvar = variableTypeDictionary[key];
+                    NTVariable ntvar = variableTypeDictionary[key];
                     ntvar.SetValue(value);
 
                     variableTypeDictionary[key] = ntvar;
@@ -179,7 +179,7 @@ namespace NT.Variables
             return;
         }
 
-        public void SetDefaultValue<T>(string key, object value) where T: INTVaribale{
+        public void SetDefaultValue<T>(string key, object value) where T: NTVariable{
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
@@ -188,7 +188,7 @@ namespace NT.Variables
             if( dictionary.ContainsKey(newVariableType.ToString()) ){
                 variableTypeDictionary = dictionary[newVariableType.ToString()];
                 if(variableTypeDictionary.ContainsKey(key)){
-                    INTVaribale ntvar = variableTypeDictionary[key];
+                    NTVariable ntvar = variableTypeDictionary[key];
                     ntvar.SetDefaultValue(value);
 
                     variableTypeDictionary[key] = ntvar;
@@ -221,7 +221,7 @@ namespace NT.Variables
 
         public void ResetToDefault(){
             foreach(NTVariableDictionary val in dictionary.values){
-                foreach(KeyValuePair<string, INTVaribale> entry in val)
+                foreach(KeyValuePair<string, NTVariable> entry in val)
                 {
                     entry.Value.Reset();
                 }
@@ -256,7 +256,7 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public class NTVariableDictionary : Dictionary<string, INTVaribale>, ISerializationCallbackReceiver{
+    public class NTVariableDictionary : Dictionary<string, NTVariable>, ISerializationCallbackReceiver{
         [SerializeField] public List<string> keys = new List<string>();
         [SerializeField] public List<NTVariableData> values = new List<NTVariableData>();
         [SerializeField] public string DictType;
@@ -290,7 +290,7 @@ namespace NT.Variables
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
             for (int i = 0; i < keys.Count; i++){
-                INTVaribale instance = (INTVaribale)FormatterServices.GetUninitializedObject(t); //does not call ctor
+                NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
                 instance.FromNTVariableData(values[i]);
                 this.Add(keys[i], instance);
             }

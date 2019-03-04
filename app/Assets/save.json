@@ -1,12 +1,12 @@
 {
   "graph": {
     "type": "NT.Graph.SceneGraph, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    "name": "ExportTest",
-    "id": 2680,
+    "name": "ImportGraph",
+    "id": 2678,
     "message": "",
     "executionNodes": [],
     "callbackNodes": [
-      2684
+      -2896
     ],
     "sceneVariables": {
       "variableRepository": {
@@ -14,13 +14,16 @@
           "keys": [
             "NT.Variables.NTString",
             "NT.Variables.NTBool",
-            "NT.Variables.NTInt"
+            "NT.Variables.NTInt",
+            "NT.Variables.NTVariable`1[System.String]",
+            "NT.SceneObjects.NTSurgeon"
           ],
           "values": [
             {
               "keys": [
                 "a",
-                "example"
+                "example",
+                "String 111"
               ],
               "values": [
                 {
@@ -30,8 +33,13 @@
                 },
                 {
                   "Name": "example",
-                  "Value": "somee",
-                  "DefaultValue": "somee"
+                  "Value": "somIOP",
+                  "DefaultValue": "somIOP"
+                },
+                {
+                  "Name": "String 111",
+                  "Value": "some_lol",
+                  "DefaultValue": "some_lol"
                 }
               ],
               "DictType": "NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -46,7 +54,8 @@
             {
               "keys": [
                 "Bool 01",
-                "Bool 02"
+                "Bool 02",
+                "Boolean 4"
               ],
               "values": [
                 {
@@ -56,6 +65,11 @@
                 },
                 {
                   "Name": "Bool 02",
+                  "Value": "True",
+                  "DefaultValue": "True"
+                },
+                {
+                  "Name": "Boolean 4",
                   "Value": "True",
                   "DefaultValue": "True"
                 }
@@ -81,6 +95,46 @@
                 }
               ],
               "DictType": "NT.Variables.NTInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "<_dictType>k__BackingField": {
+                "_impl": {
+                  "value": {
+                    "m_value": {}
+                  }
+                }
+              }
+            },
+            {
+              "keys": [
+                "Test"
+              ],
+              "values": [
+                {
+                  "Name": "Test",
+                  "Value": "",
+                  "DefaultValue": ""
+                }
+              ],
+              "DictType": "NT.Variables.NTVariable`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "<_dictType>k__BackingField": {
+                "_impl": {
+                  "value": {
+                    "m_value": {}
+                  }
+                }
+              }
+            },
+            {
+              "keys": [
+                "Surgeo 01"
+              ],
+              "values": [
+                {
+                  "Name": "Surgeo 01",
+                  "Value": "{\"currentObject\":\"h1\",\"lastSaid\":\"Hello People99\",\"myList\":[]}",
+                  "DefaultValue": "{\"currentObject\":\"h1\",\"lastSaid\":\"Hello People99\",\"myList\":[]}"
+                }
+              ],
+              "DictType": "NT.SceneObjects.NTSurgeon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
               "<_dictType>k__BackingField": {
                 "_impl": {
                   "value": {
@@ -137,150 +191,452 @@
     "nodes": [
       2686,
       2684,
-      2682
+      2682,
+      -1450,
+      -1602,
+      -1758,
+      -2544,
+      -2896
     ]
   },
-  "conncetions": [
+  "connections": [
     {
-      "port1ID": -2110647808,
-      "port2ID": -1180466304
+      "port1ID": -815080704,
+      "port2ID": -456437760
     },
     {
-      "port1ID": -142485632,
-      "port2ID": 1641981056
+      "port1ID": 1153081472,
+      "port2ID": 355390336
+    },
+    {
+      "port1ID": 907944960,
+      "port2ID": -1612771840
     }
   ],
   "nodes": [
     {
-      "name": "Display Value",
-      "type": "NT.Nodes.Other.DisplayValue, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "name": "variable",
+      "type": "NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "position": {
-        "x": 1128,
-        "y": -232
+        "x": 72,
+        "y": -8
       },
       "id": 2686,
       "ports": [
         {
-          "name": "input",
-          "id": -2110647808,
-          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "dynamic": false,
-          "typeConstraint": 0,
-          "connectionType": 1,
-          "direction": 0
-        },
-        {
           "name": "flowIn",
-          "id": -142485632,
-          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "id": 840428928,
           "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "typeConstraint": 2,
           "connectionType": 1,
           "direction": 0
         },
         {
           "name": "flowOut",
-          "id": 1825676544,
-          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "id": -1486376192,
           "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        },
+        {
+          "name": "variable",
+          "id": 481785984,
+          "dynamic": true,
+          "valueType": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        }
+      ],
+      "typeString": "NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "Bool 02",
+      "data": {
+        "Name": "Bool 02",
+        "Value": "False",
+        "DefaultValue": "False"
+      },
+      "_myData": {},
+      "variableField": "variable",
+      "variableType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "dataType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "getValueMethod": {},
+      "flowIn": {},
+      "flowOut": {},
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "variable",
+      "type": "NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": 296,
+        "y": -136
+      },
+      "id": 2684,
+      "ports": [
+        {
+          "name": "flowIn",
+          "id": 402010752,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": -1924794368,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        },
+        {
+          "name": "variable",
+          "id": 43367808,
+          "dynamic": true,
+          "valueType": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        }
+      ],
+      "typeString": "NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "Bool 01",
+      "data": {
+        "Name": "Bool 01",
+        "Value": "True",
+        "DefaultValue": "False"
+      },
+      "_myData": {},
+      "variableField": "variable",
+      "variableType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "dataType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "getValueMethod": {},
+      "flowIn": {},
+      "flowOut": {},
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "variable",
+      "type": "NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": 616,
+        "y": -56
+      },
+      "id": 2682,
+      "ports": [
+        {
+          "name": "flowIn",
+          "id": -200690944,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": 1767471232,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        },
+        {
+          "name": "variable",
+          "id": -559333888,
+          "dynamic": true,
+          "valueType": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        }
+      ],
+      "typeString": "NT.Variables.NTInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "seconds",
+      "data": {
+        "Name": "seconds",
+        "Value": "0",
+        "DefaultValue": "0"
+      },
+      "_myData": {},
+      "variableField": "variable",
+      "variableType": {},
+      "dataType": {},
+      "getValueMethod": {},
+      "flowIn": {},
+      "flowOut": {},
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "variable",
+      "type": "NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": 88,
+        "y": -456
+      },
+      "id": -1450,
+      "ports": [
+        {
+          "name": "flowIn",
+          "id": -815080704,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": 1153081472,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        },
+        {
+          "name": "variable",
+          "id": -1173723648,
+          "dynamic": true,
+          "valueType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        }
+      ],
+      "typeString": "NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "example",
+      "data": {
+        "Name": "example",
+        "Value": "somIOP",
+        "DefaultValue": "somIO"
+      },
+      "_myData": {},
+      "variableField": "variable",
+      "variableType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "dataType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "getValueMethod": {},
+      "flowIn": {},
+      "flowOut": {},
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "variable",
+      "type": "NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": 296,
+        "y": 56
+      },
+      "id": -1602,
+      "ports": [
+        {
+          "name": "flowIn",
+          "id": 1233880832,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": -1092924288,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 0,
+          "direction": 1
+        },
+        {
+          "name": "variable",
+          "id": 875237888,
+          "dynamic": true,
+          "valueType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        }
+      ],
+      "typeString": "NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "example",
+      "data": {
+        "Name": "example",
+        "Value": "",
+        "DefaultValue": ""
+      },
+      "_myData": {},
+      "variableField": "variable",
+      "variableType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "dataType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "getValueMethod": {},
+      "flowIn": {},
+      "flowOut": {},
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "variable",
+      "type": "NT.Nodes.Variables.GetNTVariableNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": -8,
+        "y": -216
+      },
+      "id": -1758,
+      "ports": [
+        {
+          "name": "variable",
+          "id": 907944960,
+          "dynamic": true,
+          "valueType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 1
+        }
+      ],
+      "typeString": "NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "variableKey": "String 111",
+      "variableField": "variable",
+      "variableType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "dataType": {
+        "_impl": {
+          "value": {
+            "m_value": {}
+          }
+        }
+      },
+      "isExecuting": false,
+      "graph": 2678
+    },
+    {
+      "name": "Display Value",
+      "type": "NT.Nodes.Other.DisplayValue, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "position": {
+        "x": 328,
+        "y": -376
+      },
+      "id": -2544,
+      "ports": [
+        {
+          "name": "input",
+          "id": -1612771840,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 0,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowIn",
+          "id": 355390336,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "typeConstraint": 2,
+          "connectionType": 1,
+          "direction": 0
+        },
+        {
+          "name": "flowOut",
+          "id": -1971414784,
+          "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "typeConstraint": 0,
           "connectionType": 0,
           "direction": 1
         }
       ],
-      "input": {
-        "hi": "hello",
-        "values": [
-          "a",
-          "b"
-        ],
-        "valuesArray": [
-          "c",
-          "d"
-        ]
-      },
-      "flowIn": {
-        "hi": "hello",
-        "values": [
-          "a",
-          "b"
-        ],
-        "valuesArray": [
-          "c",
-          "d"
-        ]
-      },
-      "flowOut": {
-        "hi": "hello",
-        "values": [
-          "a",
-          "b"
-        ],
-        "valuesArray": [
-          "c",
-          "d"
-        ]
-      },
+      "input": {},
+      "flowIn": {},
+      "flowOut": {},
       "isExecuting": false,
-      "graph": 2680
+      "graph": 2678
     },
     {
       "name": "Callback Node",
       "type": "NT.Nodes.Messages.CallbackNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "position": {
-        "x": 888,
-        "y": -312
+        "x": -152,
+        "y": -392
       },
-      "id": 2684,
+      "id": -2896,
       "ports": [
         {
           "name": "flowOut",
-          "id": 1641981056,
-          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "id": -456437760,
           "dynamic": false,
+          "valueType": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
           "typeConstraint": 0,
           "connectionType": 0,
           "direction": 1
         }
       ],
-      "flowOut": {
-        "hi": "hello",
-        "values": [
-          "a",
-          "b"
-        ],
-        "valuesArray": [
-          "c",
-          "d"
-        ]
-      },
+      "flowOut": {},
       "callbackKey": "start",
       "isExecuting": false,
-      "graph": 2680
-    },
-    {
-      "name": "Bool Node",
-      "type": "NT.Nodes.Variables.BoolNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "position": {
-        "x": 888,
-        "y": -184
-      },
-      "id": 2682,
-      "ports": [
-        {
-          "name": "variable",
-          "id": -1180466304,
-          "valueType": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-          "dynamic": false,
-          "typeConstraint": 0,
-          "connectionType": 0,
-          "direction": 1
-        }
-      ],
-      "variable": true,
-      "variableKey": "Bool 01",
-      "isExecuting": false,
-      "graph": 2680
+      "graph": 2678
     }
   ]
 }

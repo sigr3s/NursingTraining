@@ -18,7 +18,7 @@ namespace NT
         }
 
         public static Type[] GetVariableNodeTypes() {
-            return GetDerivedTypes(typeof(INTVaribale));
+            return GetDerivedTypes(typeof(NTVariable));
         }
 
         public static Type[] GetDerivedTypes(Type baseType) {

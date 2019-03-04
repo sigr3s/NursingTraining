@@ -43,11 +43,11 @@ namespace NT.Nodes.Variables
         {
             variableKey = v;
         }
-        
+
         private void InitializeNodeTypes(){
             NTGraph g = (NTGraph) graph;
-            INTVaribale _myData = ((INTVaribale) Activator.CreateInstance(variableType));
-            
+            NTVariable _myData = ((NTVariable) Activator.CreateInstance(variableType));
+
             dataType = _myData.GetDataType();
 
             if(!HasPort(variableField)){
@@ -67,7 +67,7 @@ namespace NT.Nodes.Variables
 
         public void SetNTVariableType(Type t)
         {
-            if(!typeof(INTVaribale).IsAssignableFrom(t) || t.IsGenericTypeDefinition) return;
+            if(!typeof(NTVariable).IsAssignableFrom(t) || t.IsGenericTypeDefinition) return;
 
             if(typeString != null) Debug.LogWarning("TRying to reporpouse a node...");
 

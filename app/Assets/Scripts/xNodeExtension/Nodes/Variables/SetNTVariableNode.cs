@@ -9,12 +9,12 @@ using XNode;
 
 namespace NT.Nodes.Variables{
     [System.Serializable]
-    public class SetNTVariableNode : FlowNode, IVariableNode // where K: INTVaribale
+    public class SetNTVariableNode : FlowNode, IVariableNode
     {
         [HideInInspector] [SerializeField] private string typeString;
         [HideInInspector] [SerializeField] public string variableKey;
         public NTVariableData data;
-        public INTVaribale _myData;
+        [HideInInspector] public NTVariable _myData;
 
         public readonly string variableField = "variable";
 
@@ -49,9 +49,9 @@ namespace NT.Nodes.Variables{
 
         private void InitializeNodeTypes(){
             NTGraph g = (NTGraph) graph;
-            _myData = ((INTVaribale) Activator.CreateInstance(variableType));
+            _myData = ((NTVariable) Activator.CreateInstance(variableType));
             data.Name = variableKey;
-            
+
             dataType = _myData.GetDataType();
 
             if(!HasPort(variableField)){
@@ -84,7 +84,7 @@ namespace NT.Nodes.Variables{
 
         public void SetNTVariableType(Type t)
         {
-            if(!typeof(INTVaribale).IsAssignableFrom(t) || t.IsGenericTypeDefinition) return;
+            if(!typeof(NTVariable).IsAssignableFrom(t) || t.IsGenericTypeDefinition) return;
 
             if(typeString != null) Debug.LogWarning("TRying to reporpouse a node...");
 
@@ -93,13 +93,5 @@ namespace NT.Nodes.Variables{
 
             InitializeNodeTypes();
         }
-    }
-
-    public class VariableHelper<T,K> where K : INTVaribale{
-
-    }
-
-    public interface IGetHelper{
-
     }
 }

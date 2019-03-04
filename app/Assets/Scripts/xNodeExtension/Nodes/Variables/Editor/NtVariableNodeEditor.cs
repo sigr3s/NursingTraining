@@ -51,37 +51,6 @@ namespace NT.Nodes.Variables
 
         }
 
-        protected void DrawObject(string name, ref object myData)
-        {
-            Type objectType = myData.GetType();
-            if(TryToDraw(name,ref myData, objectType)){
-                return;
-            }
-
-            FieldInfo[] fields = objectType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-
-            foreach(FieldInfo field in fields){
-            }
-
-            return;
-
-        }
-
-        private bool TryToDraw(string name, ref object myData, Type objectType)
-        {
-            if(objectType == typeof(string)){
-                myData = EditorGUILayout.TextField(name, (string) myData);
-            }
-            if(objectType == typeof(bool)){
-                myData = EditorGUILayout.Toggle(name, (bool) myData);
-            }
-            else{
-                return false;
-            }
-
-            return true;
-        }
-
         public override Color GetTint(){
             NTNode node = target as NTNode;
             IVariableNode ivn = target as IVariableNode;
@@ -116,7 +85,7 @@ namespace NT.Nodes.Variables
 
                     if(value == null) return;
 
-                    DrawObject("value", ref value);
+                    VariableEditorHelper.DrawObject("value", ref value);
 
                     if(EditorGUI.EndChangeCheck()){
                         sntv._myData.SetKey(sntv.variableKey);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NT.SceneObjects
@@ -7,6 +8,9 @@ namespace NT.SceneObjects
     public struct SurgeonData{
         public string currentObject;
         public string lastSaid;
+
+        public List<string> myList; // = new List<string>();
+        
     }
 
     [Serializable]

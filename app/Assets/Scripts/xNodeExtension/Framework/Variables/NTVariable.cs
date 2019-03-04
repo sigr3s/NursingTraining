@@ -11,11 +11,11 @@ namespace NT.Variables
     }
 
     [Serializable]
-    public class NTVariable<T> : ISerializationCallbackReceiver, INTVaribale
+    public class NTVariable<T> : NTVariable, ISerializationCallbackReceiver
     {
         public T value;
         public T defaultValue;
-        public NTVariableData serializedData;
+
         public NTVariable(){
         }
 
@@ -36,46 +36,74 @@ namespace NT.Variables
         public virtual string SerializeDefaultValue(){ return JsonUtility.ToJson(defaultValue);}
 
 
-        public virtual void SetValue(object value){
+        public override void SetValue(object value){
+            Debug.Log("set value?");
             this.value = (T) value;
         }
-        public virtual void SetDefaultValue(object value){
+        public override void SetDefaultValue(object value){
             this.defaultValue = (T) value;
         }
 
-        public virtual object GetValue(){
+        public override object GetValue(){
             return this.value;
-        }        
-        public virtual object GetDefaultValue(){
+        }
+
+        public override object GetDefaultValue(){
             return this.defaultValue;
         }
 
 
-        public virtual void Reset(){ 
+        public override void Reset(){ 
             value = defaultValue;
         }
 
-        public string GetKey(){ return this.serializedData.Name; }
 
-        public void SetKey(string key){ this.serializedData.Name = key; }
-
-
-        public void FromNTVariableData(NTVariableData data){
+        public override void FromNTVariableData(NTVariableData data){
             this.serializedData = data;
             OnAfterDeserialize();
             SetKey(data.Name);
         }
 
 
-        public NTVariableData ToNTVariableData(){
+        public override NTVariableData ToNTVariableData(){
             OnBeforeSerialize();
             return this.serializedData;
         }
 
-        public Type GetDataType(){
+        public override Type GetDataType(){
             return typeof(T);
         }
+    }
 
+    [Serializable]
+    public class NTVariable : INTVaribale
+    {
+        public NTVariableData serializedData;
+        public bool collapsed = true;
+
+        public virtual void FromNTVariableData(NTVariableData data){}
+
+        public virtual Type GetDataType(){ return null;}
+
+        public virtual object GetDefaultValue(){ return null;}
+
+        public string GetKey(){return serializedData.Name; }
+
+        public virtual object GetValue(){return null;}
+
+        public virtual bool IsCollapsed(){return collapsed;}
+
+        public virtual void Reset(){}
+
+        public virtual void SetCaollapsed(bool collapsed){this.collapsed = collapsed;}
+
+        public virtual void SetDefaultValue(object value){}
+
+        public void SetKey(string key) {this.serializedData.Name = key;}
+
+        public virtual void SetValue(object value){}
+
+        public virtual NTVariableData ToNTVariableData(){return new NTVariableData();}
     }
 
     public interface INTVaribale
@@ -94,5 +122,8 @@ namespace NT.Variables
         void SetKey(string key);
 
         Type GetDataType();
+
+        bool IsCollapsed();
+        void SetCaollapsed(bool collapsed);
     }
 }

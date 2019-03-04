@@ -53,8 +53,8 @@ namespace XNode
                     JSONObject nodePortJSON = new JSONObject();
                     nodePortJSON.Add("name", port.fieldName);
                     nodePortJSON.Add("id", port.GetHashCode());
-                    nodePortJSON.Add("valueType", port.ValueType.AssemblyQualifiedName);
                     nodePortJSON.Add("dynamic", port.IsDynamic);
+                    nodePortJSON.Add("valueType", port.ValueType.AssemblyQualifiedName);
                     nodePortJSON.Add("typeConstraint", (int) port.typeConstraint);
                     nodePortJSON.Add("connectionType", (int) port.connectionType);
                     nodePortJSON.Add("direction", (int) port.direction);
@@ -70,7 +70,7 @@ namespace XNode
             }
 
             exportJSON.Add("graph", graph);
-            exportJSON.Add("conncetions", connections);
+            exportJSON.Add("connections", connections);
             exportJSON.Add("nodes", nodes);
 
             Debug.Log(exportJSON.ToString());
@@ -100,9 +100,12 @@ namespace XNode
 
                     references.Add(id, graph);
                     returnData = new NodeGraphData(graph);
+
+                    Debug.Log("Basic graph OK!");
                 }
                 else
                 {
+                    Debug.LogWarning("Basic graph KO!");
                     return returnData;
                 }
 
@@ -118,24 +121,40 @@ namespace XNode
                         Node  node = (Node) ScriptableObject.CreateInstance(nodeType);
                         node.name = nodeJObject["name"];
                         node.graph = returnData.graph;
-                        references.Add(id, node);
                         NodeData nodeData = new NodeData(node);
 
                         JSONArray nodePortsArray = nodeJObject["ports"].AsArray;
                         foreach (var nodePort in nodePortsArray.Values)
                         {
                             bool dynamic = nodePort["dynamic"].AsBool;
+                            string portName = nodePort["name"];
                             NodePort port = null;
                             int portId = 0;
 
                             if(dynamic){
-                                Debug.LogWarning("Dynamic node ports not supported yet!");
+                                if(!node.HasPort(portName)){
+                                    Type dynamicType = Type.GetType(nodePort["valueType"]);
+                                    Node.TypeConstraint constraint = (Node.TypeConstraint) nodePort["typeConstraint"].AsInt;
+                                    Node.ConnectionType connectionType = (Node.ConnectionType) nodePort["connectionType"].AsInt;
+                                    NodePort.IO direction = (NodePort.IO) nodePort["direction"].AsInt;
+
+                                    if(direction == NodePort.IO.Input){
+                                        port = node.AddInstanceInput(dynamicType, connectionType, constraint, portName);
+                                    }
+                                    else
+                                    {
+                                        port = node.AddInstanceOutput(dynamicType, connectionType, constraint, portName);
+                                    }
+
+                                }
+                                else
+                                {
+                                    Debug.LogWarning("Ignoring port bc is already created");
+                                }
                             }
-                            else
-                            {
-                                port = node.GetPort(nodePort["name"]);
-                                portId = nodePort["id"];
-                            }
+
+                            port = node.GetPort(nodePort["name"]);
+                            portId = nodePort["id"];
 
                             NodePortData portData = new NodePortData(nodeData, port);
 
@@ -144,19 +163,51 @@ namespace XNode
                             references.Add(portId, port);
                         }
 
+                        references.Add(id, node);
                         returnData.nodes.Add(nodeData);
                     }
+
+                    Debug.Log("Basic Nodes OK!");
 
                 }
                 else
                 {
+                    Debug.LogWarning("Basic Nodes KO!");
                     return returnData;
                 }
 
-                Debug.Log("OK!");
 
+                if(root.HasKey("connections")){
+                    JSONArray connectionsJArray = root["connections"].AsArray;
 
-                //Now connections are ok?
+                    foreach (JSONObject connectionJObject in connectionsJArray.Values)
+                    {
+                        int port1ID = connectionJObject["port1ID"].AsInt;
+                        int port2ID = connectionJObject["port2ID"].AsInt;
+
+                        if(references.ContainsKey(port1ID) && references.ContainsKey(port2ID)){
+                            NodePort p1 =  (NodePort) references[port1ID];
+                            NodePort p2 =  (NodePort) references[port2ID];
+
+                            
+
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Error recovering one connection");
+                        }
+
+                    }
+                    Debug.Log("Connections OK!");
+                }
+                else
+                {
+                    Debug.LogWarning("Connections KO!");
+                    return returnData;
+                }
+
+                Debug.Log("recovering user extra data....");
+
             }
             return null;
         }

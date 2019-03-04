@@ -14,5 +14,10 @@ namespace NT.Variables
         public override string SerializeDefaultValue(){ return defaultValue; }
 
         public override string SerializeValue(){ return value; }
+
+        public override object GetValue(){
+            if(this.value == null) return "";
+            return base.GetValue();
+        }
     }
 }
