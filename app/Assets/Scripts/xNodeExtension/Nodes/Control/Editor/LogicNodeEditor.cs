@@ -42,6 +42,10 @@ namespace NT.Nodes.Control
             LogicNode node = (LogicNode) target;
             NTGraph g = (NTGraph) node.graph;
 
+            if(node.conditions == null){
+                node.conditions = new List<LogicCondition>();
+            }
+
             for(int i = 0; i < node.conditions.Count; i++){
                 LogicCondition lc = node.conditions[i];
 
@@ -71,7 +75,6 @@ namespace NT.Nodes.Control
                     }
                     else
                     {
-
                         int option = optionsTL.IndexOf(lc.leftSide.VariableType);
                         int newOption = EditorGUILayout.Popup(option, options);
 
@@ -95,7 +98,7 @@ namespace NT.Nodes.Control
                     lc.op = (Operator) EditorGUILayout.EnumPopup(lc.op);
 
                     EditorGUILayout.BeginHorizontal();
-                        EditorGUILayout.LabelField("Variable Left");
+                        EditorGUILayout.LabelField("Variable Right");
 
                         lc.rightSide.isVariable = EditorGUILayout.Toggle(lc.rightSide.isVariable);
 

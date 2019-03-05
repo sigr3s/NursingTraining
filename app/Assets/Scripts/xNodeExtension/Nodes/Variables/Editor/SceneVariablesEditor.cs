@@ -11,14 +11,15 @@ using System.Linq;
 [CustomEditor(typeof(SceneVariables))]
 public class SceneVariablesEditor : Editor{
 
-    string[] options; // {typeof(NTString).ToString(), typeof(NTFloat).ToString(), typeof(NTInt).ToString(), typeof(NTBool).ToString()};
-    Type[] optionTypes; //= {typeof(NTString), typeof(NTFloat), typeof(NTInt), typeof(NTBool)};
+    string[] options;
+    Type[] optionTypes;
 
     int selectedOption = 0;
 
     NTVariable current;
 
     List<Type> optionsT = new List<Type>();
+    Type selectedType;
 
     public override void OnInspectorGUI()
     {
@@ -39,15 +40,14 @@ public class SceneVariablesEditor : Editor{
             optionTypes = optionsTL.ToArray();
 
         }
+       
+       
         int newOption = EditorGUILayout.Popup(selectedOption, options);
 
         if(newOption != selectedOption || current == null){
             selectedOption = newOption;
-            Type t = optionTypes[selectedOption];
-            Debug.Log("¿??");
-            current = (NTVariable)Activator.CreateInstance(t);
-            var go = new GameObject();
-            go.AddComponent(t);
+            selectedType = optionTypes[selectedOption];
+            current = (NTVariable)Activator.CreateInstance(selectedType);
         }
 
         if(selectedOption == -1){
@@ -56,6 +56,27 @@ public class SceneVariablesEditor : Editor{
         else
         {
             SceneVariables sv = target as SceneVariables;
+
+            Color variableColor = Color.red;
+
+            if(selectedType == null){
+                selectedType = optionTypes[selectedOption];
+            }
+
+            if(!sv.typeColorDict.TryGetValue(selectedType, out variableColor)){
+                sv.typeColorDict.Add(selectedType,variableColor);
+            }
+
+            EditorGUI.BeginChangeCheck();
+
+            variableColor = EditorGUILayout.ColorField("Variable Color", variableColor);
+
+            if(EditorGUI.EndChangeCheck()){
+                sv.typeColorDict[selectedType] = variableColor;
+            }
+
+            GUILayout.Space(20);
+
 
             GUILayout.Space(20);
 
@@ -69,11 +90,18 @@ public class SceneVariablesEditor : Editor{
                     string key = ntd.keys[i];
 
                     if(ntd.TryGetValue(key, out var)){
+
+                        EditorGUILayout.BeginHorizontal();
                         var.SetCaollapsed(!EditorGUILayout.Foldout(!var.IsCollapsed(), key));
 
-                        if(!var.IsCollapsed()){
-                            Debug.Log(var);
+                        if(GUILayout.Button("Remove")){
+                            ntd.Remove(key);
+                            continue;
+                        }
 
+                        EditorGUILayout.EndHorizontal();
+
+                        if(!var.IsCollapsed()){
                             EditorGUI.BeginChangeCheck();
                                 object intval = var.GetValue();
                                 VariableEditorHelper.DrawObject("VALUE: ", ref intval);
@@ -82,10 +110,6 @@ public class SceneVariablesEditor : Editor{
                                 var.SetDefaultValue(intval);
 
                                 ntd[key] = var;
-                            }
-
-                            if(GUILayout.Button("Remove")){
-
                             }
                         }
                     }
@@ -105,9 +129,6 @@ public class SceneVariablesEditor : Editor{
             VariableEditorHelper.DrawObject("VALUE: ", ref value);
 
             if(EditorGUI.EndChangeCheck()){
-
-                Debug.Log(current);
-
                 current.SetValue(value);
                 current.SetDefaultValue(value);
             }

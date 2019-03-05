@@ -43,8 +43,9 @@ namespace NT.Graph
 		public override void OnGUI(){
 			if(nodeTreeViewState == null){ InitializeNodesTree(); }
 			if(variableTreeViewState == null){ InitializeVariablesTree(); }
+			if(sceneTreeViewState == null){ InitializeSceneTree(); }
 
-			Rect r = EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(Screen.width/8) );
+			Rect r = EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(200) );
 
 				bool isFocued = r.Contains(Event.current.mousePosition);
 				GUILayout.Label(Event.current.mousePosition.ToString() + " ___ " + isFocued);
@@ -57,25 +58,28 @@ namespace NT.Graph
 				GUILayout.Label("Scene Items", GUI.skin.button);
 
 				rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
-				variableTreeView.OnGUI(rect);
+				sceneTreeView.OnGUI(rect);
 
 				GUILayout.Label("Variable", GUI.skin.button);
 
 				rect = GUILayoutUtility.GetRect(0, 100000, 0, 100000);
 				variableTreeView.OnGUI(rect);
 
-				if(GUILayout.Button("Add variable")){
-
+				if(GUILayout.Button("Reload")){
+					ReloadSceneTree();
+					ReloadVariableTree();
 				}
 
 			EditorGUILayout.EndVertical();
 
-			if(Event.current.isMouse){
+			//FIXME:
+			//if(Event.current.isMouse){
 				//Event.current.Use();
-			}
+			//}
 
 			HandleNodeMenu();
 			HandleVariableMenu();
+			HandleSceneMenu();
 		}
 	#endregion
 
@@ -215,15 +219,10 @@ namespace NT.Graph
 
 		Node currentVariableNode = null;
 
-		Dictionary<Type, Type> setNodes = new Dictionary<Type, Type>();
-		Dictionary<Type, Type> getNodes = new Dictionary<Type, Type>();
-
 		private void InitializeVariablesTree(){
 			if (variableTreeViewState == null)
 				variableTreeViewState = new TreeViewState ();
 			ReloadVariableTree();
-
-			variableTreeView = new VariableTreeView(variableTreeViewState, variableItems);
 		}
 
 		private void ReloadVariableTree(){
@@ -235,10 +234,16 @@ namespace NT.Graph
 				NTVariableRepository repo = t.sceneVariables.variableRepository;
 				for(int i = 0; i < repo.dictionary.keys.Count; i++){
 					string variable = repo.dictionary.keys[i];
-					variableItems.Add( new TreeViewItem{id = variablesID,  depth = 0, displayName = variable.Replace("NT.Variables.NT", "")});
+					string displayName = variable.Replace("NT.Variables.NT", "");
+					NTVariableDictionary varDict = repo.dictionary.values[i];
+
+					if(typeof(ISceneObject).IsAssignableFrom(varDict._dictType)){
+						continue;
+					}
+
+					variableItems.Add( new TreeViewItem{id = variablesID,  depth = 0, displayName = displayName});
 					variablesID++;
 
-					NTVariableDictionary varDict = repo.dictionary.values[i];
 					for(int j = 0; j < varDict.keys.Count; j++){
 
 						variableItems.Add( new TreeViewItem{id = variablesID,  depth = 1, displayName = varDict.keys[j]});
@@ -256,6 +261,8 @@ namespace NT.Graph
 					}
 				}
 			}
+
+			variableTreeView = new VariableTreeView(variableTreeViewState, variableItems);
 		}
 
 		private void HandleVariableMenu(){
@@ -307,8 +314,137 @@ namespace NT.Graph
 
 	#endregion
 
+	
+	#region Scene Objects
+		TreeViewState sceneTreeViewState;
+		VariableTreeView sceneTreeView;
+		List<TreeViewItem> sceneItems = new List<TreeViewItem>();
+		int sceneItemsID = 0;
+		Node currentSceneNode = null;
+
+
+		private void InitializeSceneTree(){
+			if (sceneTreeViewState == null)
+				sceneTreeViewState = new TreeViewState ();
+
+			ReloadSceneTree();
+		}
+
+        private void ReloadSceneTree()
+        {
+			sceneItemsID = 0;
+			sceneItems = new List<TreeViewItem>();
+
+			SceneGraph t = target as SceneGraph;
+
+			if(t.sceneVariables != null){
+				NTVariableRepository repo = t.sceneVariables.variableRepository;
+				for(int i = 0; i < repo.dictionary.keys.Count; i++){
+					string variable = repo.dictionary.keys[i];
+					NTVariableDictionary varDict = repo.dictionary.values[i];
+
+					if(!typeof(ISceneObject).IsAssignableFrom(varDict._dictType)){
+						continue;
+					}					
+
+					string displayName = variable.Replace("NT.SceneObjects.NT", "");
+
+					sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 0, displayName = displayName});
+					sceneItemsID++;
+
+					for(int j = 0; j < varDict.keys.Count; j++){
+
+						NTVariable ntv = varDict[varDict.keys[j]];
+
+						var d = ReflectionUtilities.DeglosseInBasicTypes(ntv.GetDataType() );
+
+						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 1, displayName = varDict.keys[j]});
+						sceneItemsID++;
+
+						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 2, displayName = "D"});
+						sceneItemsID++;
+
+						foreach (var item in d)
+						{
+							foreach(string var in item.Value){
+
+								sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "GET " + var, 
+												vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
+												variableType = varDict._dictType });
+								sceneItemsID++;
+							}
+						}
+
+						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 2, displayName = "G"});
+						sceneItemsID++;
+
+						sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "GET " +varDict.keys[j], 
+											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
+											variableType = varDict._dictType });
+						sceneItemsID++;
+
+						sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "SET " +varDict.keys[j],
+											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET,
+											variableType = varDict._dictType });
+						sceneItemsID++;
+					}
+				}
+			}
+
+			sceneTreeView = new VariableTreeView(sceneTreeViewState, sceneItems);
+		}
+
+		private void HandleSceneMenu(){
+			Event e = Event.current;
+
+			EventType eventType = e.rawType;
+			VariableTreeViewItem variableItem = sceneTreeView.selectedItem as VariableTreeViewItem;
+
+
+			if(variableItem != null){
+				NodeEditorWindow.currentActivity = NodeEditorWindow.NodeActivity.Idle;
+
+				if(currentSceneNode == null){
+					Type t = null;
+
+					if(variableItem.variableNodeType == VariableTreeViewItem.VariableNodeType.GET){
+						t = typeof(GetNTVariableNode);
+					}
+					else
+					{
+						t = typeof(SetNTVariableNode);
+					}
+
+					if(t == null) return;
+
+					currentSceneNode = ScriptableObject.CreateInstance(t) as NTNode;
+					currentSceneNode.name = variableItem.vairbaleKey;
+					currentSceneNode.graph = target as XNode.NodeGraph;
+					IVariableNode ivn = (IVariableNode) currentSceneNode;
+					ivn.SetNTVariableType(variableItem.variableType);
+					ivn.SetVariableKey(variableItem.vairbaleKey);
+
+
+					if(e.type != EventType.Repaint) return;
+				}
+
+				DrawNodePreview(e.mousePosition, currentSceneNode);
+			}
+			else
+			{
+				if(currentSceneNode != null){
+					currentSceneNode.name = "variable";
+					currentSceneNode.position = NodeEditorWindow.current.WindowToGridPosition(e.mousePosition);
+					CopyNode(currentSceneNode);
+				}
+
+				currentSceneNode = null;
+			}
+		}
+	#endregion
 	#region Utility
-		static bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
+
+        static bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
 			while (toCheck != null && toCheck != typeof(object)) {
 				var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
 				if (generic == cur) {

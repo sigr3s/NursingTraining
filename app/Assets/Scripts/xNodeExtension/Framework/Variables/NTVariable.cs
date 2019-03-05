@@ -29,15 +29,25 @@ namespace NT.Variables
            serializedData.DefaultValue = SerializeDefaultValue();
         }
 
-        public virtual void DeserializeValue(string data){ value = JsonUtility.FromJson<T>(data); }
-        public virtual void DeserializeDefaultValue(string data){ defaultValue = JsonUtility.FromJson<T>(data);}
+        public virtual void DeserializeValue(string data){ 
+            if(string.IsNullOrEmpty(data)){ 
+                return;
+            } 
+            value = JsonUtility.FromJson<T>(data); 
+        }
+
+        public virtual void DeserializeDefaultValue(string data){ 
+            if(string.IsNullOrEmpty(data)){ 
+                return;
+            }
+            defaultValue = JsonUtility.FromJson<T>(data);
+        }
 
         public virtual string SerializeValue(){ return JsonUtility.ToJson(value);}
         public virtual string SerializeDefaultValue(){ return JsonUtility.ToJson(defaultValue);}
 
 
         public override void SetValue(object value){
-            Debug.Log("set value?");
             this.value = (T) value;
         }
         public override void SetDefaultValue(object value){
@@ -105,12 +115,11 @@ namespace NT.Variables
 
         public virtual NTVariableData ToNTVariableData(){return new NTVariableData();}
 
-        public virtual bool Eveluate(Operator op, string value, bool isLeft){
+        public virtual bool Evaluate(Operator op, string value, bool isLeft){
             return true;
         }
 
-        //Always is left!
-        public virtual bool Eveluate(Operator op, NTVariable value){
+        public virtual bool Evaluate(Operator op, NTVariable value){
             return true;
         }
 

@@ -139,7 +139,7 @@ namespace NT.Nodes.Control{
                 NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
 
                 if(vleftVar != null){
-                    return vleftVar.Eveluate(op, rightSide.value, true);
+                    return vleftVar.Evaluate(op, rightSide.value, true);
                 }
                 else
                 {
@@ -148,10 +148,10 @@ namespace NT.Nodes.Control{
             }
             //Right is varaiables
             else if(!leftSide.isVariable && rightSide.isVariable){
-                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(rightSide.variableName, rightSide.VariableType);
+                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(rightSide.variableName, rightSide.VariableType);
 
                 if(vrightVar != null){
-                    return vrightVar.Eveluate(op, rightSide.value, false);
+                    return vrightVar.Evaluate(op, rightSide.value, false);
                 }
                 else
                 {
@@ -160,16 +160,16 @@ namespace NT.Nodes.Control{
             }
             //Both are varaiables
             else
-            {
-                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(leftSide.variableName, leftSide.VariableType);
-                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetValue(leftSide.variableName, leftSide.VariableType);
+            {               
+                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
+                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
 
                 if(vleftVar != null){
-                    return vleftVar.Eveluate(op, vrightVar);
+                    return vleftVar.Evaluate(op, vrightVar);
                 }
                 else if(vrightVar != null)
                 {
-                    return vrightVar.Eveluate(op, vleftVar);
+                    return vrightVar.Evaluate(op, vleftVar);
                 }
             }
             return false;
@@ -185,6 +185,8 @@ namespace NT.Nodes.Control{
         public Type _variableType;
         public Type VariableType{
             get{
+                if(string.IsNullOrEmpty(variableType)) return null;
+
                 if(_variableType == null || _variableType.AssemblyQualifiedName != variableType){
                     _variableType = Type.GetType(variableType);
                 }

@@ -11,9 +11,9 @@ namespace NT.Nodes.Variables{
     [System.Serializable]
     public class SetNTVariableNode : FlowNode, IVariableNode
     {
-        [HideInInspector] [SerializeField] private string typeString;
-        [HideInInspector] [SerializeField] public string variableKey;
-        public NTVariableData data;
+        [HideInInspector] public string typeString;
+        [HideInInspector] public string variableKey;
+        [HideInInspector] public NTVariableData data;
         [HideInInspector] public NTVariable _myData;
 
         public readonly string variableField = "variable";

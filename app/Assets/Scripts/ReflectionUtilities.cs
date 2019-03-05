@@ -29,5 +29,74 @@ namespace NT
             }
             return types.ToArray();
         }
+
+        /// Dict<Type, List<string>>
+        /// 
+        public static Dictionary<Type, List<string>> DeglosseInBasicTypes(Type t){
+            FieldInfo[] fi = t.GetFields();
+
+            Dictionary<Type, List<string>> desglossed = new Dictionary<Type, List<string>>();
+
+            foreach(FieldInfo f in fi){
+                if(IsBasicType(f.FieldType)){
+                    List<string> variables;
+
+                    if(desglossed.ContainsKey(f.FieldType)){
+                        variables = desglossed[f.FieldType];
+                        variables.Add(f.Name);
+                        desglossed[f.FieldType] = variables;
+                    }
+                    else
+                    {
+                        variables = new List<string>();
+                        variables.Add(f.Name);
+                        desglossed.Add(f.FieldType, variables);
+                    }
+                }
+                else
+                {
+                    Deglosse(f.FieldType, ref desglossed, f.Name+ "/" );
+                }
+            }
+
+            return desglossed;
+        }
+
+        private static void Deglosse(Type t, ref Dictionary<Type, List<string>> deg, string root){
+            FieldInfo[] fi = t.GetFields();
+
+            foreach(FieldInfo f in fi){
+                if(IsBasicType(f.FieldType)){
+                    List<string> variables;
+
+                    if(deg.ContainsKey(f.FieldType)){
+                        variables = deg[f.FieldType];
+                        variables.Add(root + f.Name);
+                        deg[f.FieldType] = variables;
+                    }
+                    else
+                    {
+                        variables = new List<string>();
+                        variables.Add(root + f.Name);
+                        deg.Add(f.FieldType, variables);                        
+                    }
+                }
+                else
+                {
+                    Deglosse(f.FieldType, ref deg, root + f.Name+ "/" );
+                }
+            }
+
+        }
+
+        public static bool IsBasicType(Type t){
+            bool isBasic = (t == typeof(string) || 
+                            t == typeof(int)    ||
+                            t == typeof(float)  ||
+                            t == typeof(double) ||
+                            t == typeof(bool) );
+
+            return isBasic;
+        }
     }
 }

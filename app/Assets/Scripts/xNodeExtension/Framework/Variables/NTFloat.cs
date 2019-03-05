@@ -6,12 +6,65 @@ namespace NT.Variables
 
     [Serializable]
     public class NTFloat : NTVariable<float>{
-        public override void DeserializeDefaultValue(string data){ this.value = float.Parse(data); }
+        public override void DeserializeDefaultValue(string data){ 
+            float.TryParse(data, out this.value); 
+        }
 
-        public override void DeserializeValue(string data){ this.defaultValue = float.Parse(data); }
+        public override void DeserializeValue(string data){ 
+            float.TryParse(data, out this.defaultValue); 
+        }
 
         public override string SerializeDefaultValue(){ return defaultValue.ToString(); }
 
         public override string SerializeValue(){ return value.ToString(); }
+
+        public override bool Evaluate(Operator op, string value, bool isLeft){
+
+            float floatValue = 0f;
+
+            if(!float.TryParse(value, out floatValue)){
+                floatValue = 0;
+            }
+
+            return InternalEvaluate(op, floatValue, isLeft);
+            
+        }
+
+        public override bool Evaluate(Operator op, NTVariable value){
+            Type rightVariableType = value.GetDataType();
+
+            if(rightVariableType == typeof(float) || rightVariableType == typeof(int) || rightVariableType == typeof(double)){
+                float rightValue = (float) value.GetValue(); 
+                return InternalEvaluate(op, rightValue, true);
+            }
+            else{
+                return this.value > 0;
+            }
+            
+        }
+
+        private bool InternalEvaluate(Operator op, float value, bool isLeft){
+            switch(op){
+                case Operator.Equals:
+                    return (this.value == value);
+                case Operator.NotEquals:
+                    return (this.value != value);
+                case Operator.GreaterThan:
+                    if(isLeft) return  this.value > value;
+                    else return  value > this.value;                    
+                case Operator.LessThan:
+                    if(isLeft) return  this.value < value;
+                    else return  value < this.value; 
+                case Operator.GreaterOrEqualThan:
+                    if(isLeft) return  this.value >= value;
+                    else return  value >= this.value; 
+                case Operator.LessOrEqualThan:
+                    if(isLeft) return  this.value <= value;
+                    else return  value <= this.value; 
+                default:
+                    return false;
+            }
+        }
+    
     }
 }

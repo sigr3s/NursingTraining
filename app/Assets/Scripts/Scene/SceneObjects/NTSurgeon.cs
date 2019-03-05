@@ -8,9 +8,13 @@ namespace NT.SceneObjects
     public struct SurgeonData{
         public string currentObject;
         public string lastSaid;
+        public SurgeonDAT dat;
+    }
 
-        public List<string> myList; // = new List<string>();
-        
+
+    [Serializable]
+    public struct SurgeonDAT{
+        public string lastSaid2;
     }
 
     [Serializable]

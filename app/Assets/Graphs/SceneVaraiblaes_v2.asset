@@ -15,28 +15,41 @@ MonoBehaviour:
   variableRepository:
     dictionary:
       keys:
+      - NT.SceneObjects.NTSurgeon
       - NT.Variables.NTBool
-      - NT.Variables.NTString
+      - NT.Variables.NTFloat
       values:
       - keys:
-        - Hello
-        - By
+        - Surgeon 01
         values:
-        - Name: Hello
+        - Name: Surgeon 01
+          Value: '{"currentObject":"H1","lastSaid":"Hello","myList":[]}'
+          DefaultValue: '{"currentObject":"H1","lastSaid":"Hello","myList":[]}'
+        DictType: NT.SceneObjects.NTSurgeon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+      - keys:
+        - LLanos
+        - Some
+        values:
+        - Name: LLanos
           Value: True
           DefaultValue: True
-        - Name: By
-          Value: True
-          DefaultValue: True
+        - Name: 
+          Value: False
+          DefaultValue: False
         DictType: NT.Variables.NTBool, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
       - keys:
-        - hn
+        - 2
+        - 1
         values:
-        - Name: hn
-          Value: bhbh
-          DefaultValue: bhbh
-        DictType: NT.Variables.NTString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        - Name: 2
+          Value: 2
+          DefaultValue: 2
+        - Name: 1
+          Value: 1
+          DefaultValue: 1
+        DictType: NT.Variables.NTFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
   typeColorDict:
     keys:
@@ -44,9 +57,13 @@ MonoBehaviour:
     - NT.Variables.NTFloat
     - NT.Variables.NTBool
     - NT.Variables.NTInt
+    - NT.SceneObjects.NTSurgeon
+    - NT.Variables.NTVariable
     values:
     - {r: 0, g: 1, b: 1, a: 1}
     - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     - {r: 0, g: 1, b: 0, a: 1}
     - {r: 1, g: 0, b: 1, a: 1}
+    - {r: 0.5264742, g: 0.47912958, b: 0.9150943, a: 0.84705883}
+    - {r: 0, g: 0, b: 0, a: 0}
   DefaultColor: {r: 0, g: 0, b: 0, a: 0}
