@@ -1,14 +1,18 @@
-
-
 using System;
 using System.Collections.Generic;
-using NT.Variables;
 using UnityEngine;
 
-namespace NT.SceneObjects
-{
-    public class NTSceneObject<T> : NTVariable<T>, ISceneObject
-    {
+namespace NT.SceneObjects{
+
+    [CreateAssetMenu(fileName = "SceneObject", menuName = "NT/Object")]
+    public class DummySceneObject : ScriptableObject, ISceneObject
+    {   
+        public Vector2 size;
+
+        public GameObject model;
+
+
+
         public List<string> GetCallbacks()
         {
             throw new NotImplementedException();
@@ -21,12 +25,7 @@ namespace NT.SceneObjects
 
         public GameObject GetModel()
         {
-            throw new NotImplementedException();
-        }
-
-        public Vector2 GetSize()
-        {
-            throw new NotImplementedException();
+            return model;
         }
     }
 }

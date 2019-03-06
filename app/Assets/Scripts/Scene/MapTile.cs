@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MapTile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int _id;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public bool blocked = false;
+
+
+    public int id{
+        get{
+            return _id;
+        }
+
+        set{
+            _id = value;
+            name = "Tile: "+ id;
+        }
     }
 }

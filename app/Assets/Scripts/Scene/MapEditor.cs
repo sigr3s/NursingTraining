@@ -1,55 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NT;
+using NT.SceneObjects;
 using UnityEngine;
+
 
 public class MapEditor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public int xSize = 20;
-    public int ySize = 20;
-    Camera c;
+    public Camera c;
 
-    public MapTile mp;
-    public GameObject placeMentObject;
+    public float gridSize = 0.1f;
+    public int selectedObject  = 0;
+    public List<DummySceneObject> objectSet;
+    public LayerMask floorOnly;
 
+    
+    private GameObject items;
     void Start()
     {
-        c = Camera.main;
-
-        for(int i = -xSize/2; i < xSize/2; i++){
-            for(int j = -ySize/2; j < ySize/2; j++){
-                var cp = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cp.transform.parent = this.transform;
-                cp.transform.position = new Vector3(i,0,j);
-                cp.AddComponent<MapTile>();
-            }
-        }
+        items = new GameObject();
+        items.transform.parent = this.transform;
+        items.transform.localPosition = Vector3.zero; 
     }
+    
+    public GameObject previewGO = null;
+    public SceneObjectCollider previewGOSC = null;
 
     private void Update() {
+        if(Input.GetKeyDown(KeyCode.N)){
+            if(previewGO != null){
+                Destroy(previewGO);
+            }
+
+            selectedObject++;
+
+            if(selectedObject > objectSet.Count-1) selectedObject = 0;
+
+        }
+
+        if(previewGO == null){
+            previewGO = Instantiate(objectSet[selectedObject].model);
+            
+            previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
+
+            if(previewGOSC == null){
+                previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q)){
+            previewGO.transform.Rotate(new Vector3(0,1,0), 90);
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            previewGO.transform.Rotate(new Vector3(0,1,0), -90);
+        }
+
         RaycastHit hit;
         Ray ray = c.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit,50,floorOnly)) {
             Transform objectHit = hit.transform;
             if(objectHit != null){
-                MapTile mt = objectHit.GetComponent<MapTile>();
-                if(mt != null){
-                    if(mp != null){
-                        mp.GetComponent<Renderer>().material.color = Color.white;
-                    }
+                Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
+                float x = hitPointOnPlane.x - hitPointOnPlane.x%gridSize;  
+                float z = hitPointOnPlane.y - hitPointOnPlane.y%gridSize; 
 
-                    mt.GetComponent<Renderer>().material.color = Color.blue;
-                    placeMentObject.transform.position = mt.transform.position;
-                    placeMentObject.transform.position += new Vector3(0,1,0);
-                    mp = mt;
+                previewGO.transform.position = new Vector3(x, hit.point.y, z);
 
-                    if(Input.GetMouseButtonDown(0)){
-                        GameObject g = Instantiate(placeMentObject);
-                    }
-                }
+                if(Input.GetMouseButtonDown(0) && !previewGOSC.colliding){
+                    GameObject item = Instantiate(previewGO,items.transform);
+                } 
             }
-            // Do something with the object that was hit by the raycast.
         }
     }
 
