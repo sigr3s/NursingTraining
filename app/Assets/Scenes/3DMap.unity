@@ -396,7 +396,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1635647121}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.3749992
+  m_Size: 0.36916667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1211,7 +1211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 187.50002}
+  m_AnchoredPosition: {x: 0, y: 189.25}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1159424828
@@ -1543,7 +1543,10 @@ MonoBehaviour:
   objectSet:
   - {fileID: 11400000, guid: 59db9e55f1559874f9c2da5ab97e8bd9, type: 2}
   - {fileID: 11400000, guid: 8311d79dfd8c969408dc14a40ddd6c3b, type: 2}
-  floorOnly:
-    serializedVersion: 2
-    m_Bits: 512
+  - {fileID: 11400000, guid: 53e945e0742a44848a5f13f704d438fd, type: 2}
+  placementLayer: 11
   previewGO: {fileID: 0}
+  previewGOSC: {fileID: 0}
+  savedLayer:
+    serializedVersion: 2
+    m_Bits: 0

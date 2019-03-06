@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83220f23ec5e36a4db82e3d16d5b7a9b, type: 3}
-  m_Name: Closet
+  m_Name: Sphere
   m_EditorClassIdentifier: 
   size: {x: 0, y: 0}
-  model: {fileID: 3764564900579765852, guid: 672c7cd7f7d34ef4b917e6f57865df3e, type: 3}
+  model: {fileID: 3888131551056956665, guid: f448e8bf1a549cc4ebc1de0f2debc46a, type: 3}
   canBePlacedOver:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024

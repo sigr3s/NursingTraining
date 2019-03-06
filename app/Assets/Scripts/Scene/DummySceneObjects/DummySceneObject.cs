@@ -11,6 +11,8 @@ namespace NT.SceneObjects{
 
         public GameObject model;
 
+        public LayerMask canBePlacedOver;
+
 
 
         public List<string> GetCallbacks()

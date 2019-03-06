@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 4, y: 2}
   model: {fileID: 8105793770081520070, guid: b8c4a7b4bb5064a42a0ef5cf80b49157, type: 3}
+  canBePlacedOver:
+    serializedVersion: 2
+    m_Bits: 512

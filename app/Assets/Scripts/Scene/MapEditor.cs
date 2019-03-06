@@ -12,7 +12,8 @@ public class MapEditor : MonoBehaviour
     public float gridSize = 0.1f;
     public int selectedObject  = 0;
     public List<DummySceneObject> objectSet;
-    public LayerMask floorOnly;
+    public int placementLayer = 11;
+
 
     
     private GameObject items;
@@ -22,9 +23,14 @@ public class MapEditor : MonoBehaviour
         items.transform.parent = this.transform;
         items.transform.localPosition = Vector3.zero; 
     }
+
+
+    [Space]
+    [Header("Debug")]
     
     public GameObject previewGO = null;
     public SceneObjectCollider previewGOSC = null;
+    public LayerMask savedLayer;
 
     private void Update() {
         if(Input.GetKeyDown(KeyCode.N)){
@@ -46,6 +52,9 @@ public class MapEditor : MonoBehaviour
             if(previewGOSC == null){
                 previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
             }
+
+            savedLayer = previewGO.layer;
+            previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = placementLayer;} );
         }
 
         if(Input.GetKeyDown(KeyCode.Q)){
@@ -59,7 +68,7 @@ public class MapEditor : MonoBehaviour
         RaycastHit hit;
         Ray ray = c.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit,50,floorOnly)) {
+        if (Physics.Raycast(ray, out hit,50, objectSet[selectedObject].canBePlacedOver)) {
             Transform objectHit = hit.transform;
             if(objectHit != null){
                 Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
@@ -70,6 +79,7 @@ public class MapEditor : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(0) && !previewGOSC.colliding){
                     GameObject item = Instantiate(previewGO,items.transform);
+                    item.RunOnChildrenRecursive( (GameObject g) => {g.layer = savedLayer;} );
                 } 
             }
         }
