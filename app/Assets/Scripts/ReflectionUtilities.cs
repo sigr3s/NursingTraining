@@ -32,37 +32,64 @@ namespace NT
 
         /// Dict<Type, List<string>>
         /// 
-        public static Dictionary<Type, List<string>> DeglosseInBasicTypes(Type t){
+        public static Dictionary<Type, List<string>> DesgloseInBasicTypes(Type t){
             FieldInfo[] fi = t.GetFields();
 
-            Dictionary<Type, List<string>> desglossed = new Dictionary<Type, List<string>>();
+            Dictionary<Type, List<string>> desglosed = new Dictionary<Type, List<string>>();
 
             foreach(FieldInfo f in fi){
                 if(IsBasicType(f.FieldType)){
                     List<string> variables;
 
-                    if(desglossed.ContainsKey(f.FieldType)){
-                        variables = desglossed[f.FieldType];
+                    if(desglosed.ContainsKey(f.FieldType)){
+                        variables = desglosed[f.FieldType];
                         variables.Add(f.Name);
-                        desglossed[f.FieldType] = variables;
+                        desglosed[f.FieldType] = variables;
                     }
                     else
                     {
                         variables = new List<string>();
                         variables.Add(f.Name);
-                        desglossed.Add(f.FieldType, variables);
+                        desglosed.Add(f.FieldType, variables);
                     }
                 }
                 else
                 {
-                    Deglosse(f.FieldType, ref desglossed, f.Name+ "/" );
+                    Desglose(f.FieldType, ref desglosed, f.Name+ "/" );
                 }
             }
 
-            return desglossed;
+            return desglosed;
         }
 
-        private static void Deglosse(Type t, ref Dictionary<Type, List<string>> deg, string root){
+        public static void SetValueOf(ref object o, object value, List<string> path)
+        {
+            if(path.Count == 0){
+                o = value;
+            }
+            else
+            {
+                if(o == null) return;
+                Type objectType = o.GetType();
+
+                FieldInfo[] fi = objectType.GetFields();
+
+                foreach(FieldInfo f in fi){
+                    if(path[0] == f.Name){
+                        object fieldVal = f.GetValue(o);
+                        path.RemoveAt(0);
+
+                        SetValueOf(ref fieldVal, value, path);
+
+                        f.SetValue(o, fieldVal);
+                    }
+                }
+            }
+
+
+        }
+
+        private static void Desglose(Type t, ref Dictionary<Type, List<string>> deg, string root){
             FieldInfo[] fi = t.GetFields();
 
             foreach(FieldInfo f in fi){
@@ -83,7 +110,7 @@ namespace NT
                 }
                 else
                 {
-                    Deglosse(f.FieldType, ref deg, root + f.Name+ "/" );
+                    Desglose(f.FieldType, ref deg, root + f.Name+ "/" );
                 }
             }
 
@@ -97,6 +124,33 @@ namespace NT
                             t == typeof(bool) );
 
             return isBasic;
+        }
+    
+
+        public static object GetValueOf(List<string> path, object o){
+            if(path.Count > 0){
+                string current = path[0];
+
+                Type t = o.GetType();
+
+                FieldInfo fi = t.GetField(current);
+
+                if(fi != null){
+                    object fio = fi.GetValue(o);
+
+                    path.RemoveAt(0);
+
+                    return GetValueOf(path, fio);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return o;
+            }
         }
     }
 }

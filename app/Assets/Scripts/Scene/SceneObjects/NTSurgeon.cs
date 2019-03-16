@@ -8,6 +8,7 @@ namespace NT.SceneObjects
     public struct SurgeonData{
         public string currentObject;
         public string lastSaid;
+        public float elements;
         public SurgeonDAT dat;
     }
 

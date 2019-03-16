@@ -1,200 +1,260 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using NT.Atributes;
-using NT.Graph;
 using NT.Variables;
 using UnityEngine;
 using XNode;
 
-namespace NT.Nodes.Control{
+namespace NT.Nodes.Control
+{
     [System.Serializable]
-    public class LogicNode : NTNode
-    {
-        [NTOutput(ShowBackingValue.Never)] public bool result;
-        public LogicOperation operation;
+    public class LogicNode : NTNode{
 
-        [SerializeField] [HideInInspector] public List<LogicCondition> conditions;
-
-
-        public enum LogicOperation
-        {
-            AND,
-            OR
-        }
-
-
-        public override object GetValue(NodePort port){
-            bool retValue = operation == LogicOperation.AND ? true : false;
-
-
-            foreach(var condition in conditions){
-                bool condValue = condition.Evaluate((NTGraph) graph);
-
-                switch(operation){
-                    case LogicOperation.AND:
-                        retValue = retValue && condValue;
-                        if(!retValue) return retValue;
-                    break;
-                    default:
-                        retValue = retValue || condValue;
-                    break;
-                }
-            }
-
-            return retValue;
-        }
-    }
-
-
-    [System.Serializable]
-    public class LogicCondition{
-        public VariableOrInmediate leftSide;
+        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input0;
 
         public Operator op;
 
-        public VariableOrInmediate rightSide;
+        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input1;
 
 
-        public bool Evaluate(NTGraph graph){
-            if(!leftSide.isVariable && !rightSide.isVariable){
 
-                string lli = leftSide.value;
-                string rri = rightSide.value;
 
-                bool llib = false;
-                bool rrib = false;
+        [NTOutput(ShowBackingValue.Never)] public bool result;
 
-                if(bool.TryParse(lli, out llib)){
 
-                    if(bool.TryParse(rri,out rrib)){
-                        //Check for operation
-                        switch(op){
-                            case Operator.Equals:
-                                return (rrib == llib);
-                            case Operator.NotEquals:
-                                return (rrib != llib);
-                            default:
-                                return (rrib || llib);
-                        }
+        public override object GetValue(NodePort port){
+            object val0 =  GetInputValue<object>(nameof(input0), null);
+            object val1 =  GetInputValue<object>(nameof(input1), null);
+
+            NodePort portVal0 = GetPort(nameof(input0));
+            NodePort portVal1 = GetPort(nameof(input1));
+
+            hasError = false;
+            error = "";
+
+            //Both Ports connected
+            if(portVal0.IsConnected && portVal1.IsConnected){
+                if(val0 == null || val1 == null){
+                    error = "Values cannot be null";
+                    hasError = true;
+                    return false;
+                }
+
+                Type val0Type = val0.GetType();
+                Type val1Type = val1.GetType();
+
+                if(val0Type.IsNumber()){
+                    if(val1Type.IsNumber()){
+                        return CompareNumbers(val0, val1, op);
                     }
                     else
                     {
-                        //only llib => then always return bool
-                        return llib;
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
                     }
-
                 }
-                else if(bool.TryParse(rri, out rrib))
+                else if(val0Type.IsString())
                 {
-                    //only rrib bool => then always return bool
-                    return rrib;
-                }
-
-                float llif = 0;
-                float rrif = 0;
-
-                //Try parse values to float
-                if(float.TryParse(lli, out llif)){
-                    if(float.TryParse(rri, out rrif)){
-                        switch(op){
-                            case Operator.Equals:
-                                return (llif == rrif);
-                            case Operator.NotEquals:
-                                return (llif != rrif);
-                            case Operator.GreaterThan:
-                                return  llif > rrif;
-                            case Operator.LessThan:
-                                return  llif < rrif;
-                            case Operator.GreaterOrEqualThan:
-                                return llif >= rrif;
-                            case Operator.LessOrEqualThan:
-                                return llif <= rrif;
-                            default:
-                                return false;
-                        }
+                    if(val1Type.IsString()){
+                        return CompareString(val0, val1, op);
                     }
                     else
                     {
-                        return llif > 0;
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
                     }
                 }
-                else if(float.TryParse(rri, out rrif))
-                {
-                    //only rrif is float
-                    return rrif > 0;
-                }
-
-                //Both are strings
-                switch(op){
-                    case Operator.Equals:
-                        return (lli == rri);
-                    case Operator.NotEquals:
-                        return (lli != rri);
-                    default:
-                        return !string.IsNullOrEmpty(lli);
-                }
-            }
-            //Left is variable
-            else if(leftSide.isVariable && !rightSide.isVariable){
-                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
-
-                if(vleftVar != null){
-                    return vleftVar.Evaluate(op, rightSide.value, true);
+                else if(val0Type.IsBool()){
+                    if(val1Type.IsBool()){
+                        return CompareBools(val0, val1, op);
+                    }
+                    else
+                    {
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
+                    }
                 }
                 else
                 {
+                    error = "Input types are not supported";
+                    hasError = true;
                     return false;
                 }
             }
-            //Right is varaiables
-            else if(!leftSide.isVariable && rightSide.isVariable){
-                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(rightSide.variableName, rightSide.VariableType);
+            //Port 0 connected port 1 as string input
+            else if(portVal0.IsConnected && !portVal1.IsConnected){
+                Type val0Type = val0.GetType();
 
-                if(vrightVar != null){
-                    return vrightVar.Evaluate(op, rightSide.value, false);
+                if(val0 == null){
+                    error = "Values cannot be null";
+                    hasError = true;
+                    return false;
+                }
+
+                if(val0Type.IsNumber()){
+                    float v1f = 0;
+                    if(!float.TryParse(input1.value, out v1f)){
+                        error = "Cannot parse string to number";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareNumbers(val0, v1f, op);
+                }
+                else if(val0Type.IsString())
+                {
+                    return CompareString(val0, input1.value, op);
+                }
+                else if(val0Type.IsBool())
+                {
+                    bool v1b = false;
+                    if(!bool.TryParse(input1.value, out v1b)){
+                        error = "Cannot parse string to bool";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareBools(val0, v1b, op);                    
                 }
                 else
                 {
+                    error = "Input types are not supported";
+                    hasError = true;
+                    return false;
+                }
+
+            }
+            //Port 1 connected port 0 as string input
+            else if(!portVal0.IsConnected && portVal1.IsConnected){
+                Type val1Type = val1.GetType();
+
+                if(val1 == null){
+                    error = "Values cannot be null";
+                    hasError = true;
+                    return false;
+                }
+
+                if(val1Type.IsNumber()){
+                    float v0f = 0;
+                    if(!float.TryParse(input0.value, out v0f)){
+                        error = "Cannot parse string to number";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareNumbers(v0f, val1, op);
+                }
+                else if(val1Type.IsString())
+                {
+                    return CompareString(input0.value, val1, op);
+                }
+                else if(val1Type.IsBool())
+                {
+                    bool v0b = false;
+                    if(!bool.TryParse(input0.value, out v0b)){
+                        error = "Cannot parse string to bool";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareBools(v0b, val1, op);                    
+                }
+                else
+                {
+                    error = "Input types are not supported";
+                    hasError = true;
                     return false;
                 }
             }
-            //Both are varaiables
-            else
-            {               
-                NTVariable vleftVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
-                NTVariable vrightVar = (NTVariable) graph.sceneVariables.variableRepository.GetNTValue(leftSide.variableName, leftSide.VariableType);
+            //Both ports as string
+            else{
+                bool b0 = false;
+                bool b1 = false;
 
-                if(vleftVar != null){
-                    return vleftVar.Evaluate(op, vrightVar);
+                float f0 = 0;
+                float f1 = 0;
+                
+                if(float.TryParse(input0.value, out f0)){
+                    if(!float.TryParse(input1.value, out f1)){
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareNumbers(f0, f1, op);                    
                 }
-                else if(vrightVar != null)
-                {
-                    return vrightVar.Evaluate(op, vleftVar);
+                else if(bool.TryParse(input0.value, out b0)){
+                    if(!bool.TryParse(input1.value, out b1)){
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareBools(b0, b1, op);
+                }
+                else{
+                    if(bool.TryParse(input1.value, out b1) || float.TryParse(input1.value, out f1)){
+                        error = "Input types are not compatible";
+                        hasError = true;
+                        return false;
+                    }
+
+                    return CompareString(input0.value, input1.value, op);
                 }
             }
-            return false;
+        }
+
+        public bool CompareNumbers(object val0, object val1, Operator oper){
+            float v0 = Convert.ToSingle(val0);
+            float v1 = Convert.ToSingle(val1);
+
+            switch(oper){
+                case Operator.Equals:
+                    return v0 == v1;
+                case Operator.NotEquals:
+                    return v0 != v1;
+                default:
+                    hasError = true;
+                    return false;
+            }
+        }
+
+        public bool CompareString(object val0, object val1, Operator oper){
+            string v0 = Convert.ToString(val0);
+            string v1 = Convert.ToString(val1);
+
+            switch(oper){
+                case Operator.Equals:
+                    return v0 == v1;
+                case Operator.NotEquals:
+                    return v0 != v1;
+                default:
+                    hasError = true;
+                    return false;
+            }
+        }
+
+        public bool CompareBools(object val0, object val1, Operator oper){
+            bool v0 = Convert.ToBoolean(val0);
+            bool v1 = Convert.ToBoolean(val1);
+
+            switch(oper){
+                case Operator.Equals:
+                    return v0 == v1;
+                case Operator.NotEquals:
+                    return v0 != v1;
+                default:
+                    hasError = true;
+                    return false;
+            }
         }
     }
 
-    [System.Serializable]
-    public struct VariableOrInmediate{
-        public string value;
-        public string variableName;
-        public string variableType;
-
-        public Type _variableType;
-        public Type VariableType{
-            get{
-                if(string.IsNullOrEmpty(variableType)) return null;
-
-                if(_variableType == null || _variableType.AssemblyQualifiedName != variableType){
-                    _variableType = Type.GetType(variableType);
-                }
-
-                return _variableType;
-            }
-        }
-
-        public bool isVariable;
-    }
+    public enum LogicNodeTypes{
+        lnumber,
+        lstring
+    }   
 }

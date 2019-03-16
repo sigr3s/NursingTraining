@@ -72,15 +72,49 @@ namespace NT.Graph
 
 			EditorGUILayout.EndVertical();
 
-			//FIXME:
-			//if(Event.current.isMouse){
-				//Event.current.Use();
-			//}
-
 			HandleNodeMenu();
 			HandleVariableMenu();
 			HandleSceneMenu();
+
+			HandleScriptableDrag();
 		}
+
+
+		List<UnityEngine.Object> selectionCache;
+
+		public void HandleScriptableDrag(){
+			Event e = Event.current;
+			if (e.type == EventType.Layout) {
+				selectionCache = new List<UnityEngine.Object>(Selection.objects);
+			}
+			else if (e.type == EventType.DragUpdated || e.type == EventType.DragPerform)
+			{ 
+				DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+				if (e.type == EventType.DragPerform) 
+				{
+					DragAndDrop.AcceptDrag( );
+
+					int nodeDragCount = DragAndDrop.objectReferences.Length;
+					for ( int i = 0; i < nodeDragCount; ++i )
+					{
+						UnityEngine.Object draggedObject = DragAndDrop.objectReferences[i];
+						XNode.Node draggedNode = draggedObject as XNode.Node;
+						if ( draggedNode == null )
+							continue;
+						
+						XNode.Node node = target.AddNode(draggedNode.GetType());
+						node.position =  NodeEditorWindow.current.WindowToGridPosition( e.mousePosition );
+						if (string.IsNullOrEmpty(node.name)) node.name = draggedNode.GetType( ).Name;
+						AssetDatabase.AddObjectToAsset(node, target);
+						if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
+					}
+
+					return;
+				}
+			}
+		}
+
 	#endregion
 
 	#region Nodes Menu
@@ -291,8 +325,7 @@ namespace NT.Graph
 					currentVariableNode.name = variableItem.vairbaleKey;
 					currentVariableNode.graph = target as XNode.NodeGraph;
 					IVariableNode ivn = (IVariableNode) currentVariableNode;
-					ivn.SetNTVariableType(variableItem.variableType);
-					ivn.SetVariableKey(variableItem.vairbaleKey);
+					ivn.SetVariableKey(variableItem.vairbaleKey, variableItem.variableType);
 
 
 					if(e.type != EventType.Repaint) return;
@@ -303,7 +336,6 @@ namespace NT.Graph
 			else
 			{
 				if(currentVariableNode != null){
-					currentVariableNode.name = "variable";
 					currentVariableNode.position = NodeEditorWindow.current.WindowToGridPosition(e.mousePosition);
 					CopyNode(currentVariableNode);
 				}
@@ -356,37 +388,31 @@ namespace NT.Graph
 
 						NTVariable ntv = varDict[varDict.keys[j]];
 
-						var d = ReflectionUtilities.DeglosseInBasicTypes(ntv.GetDataType() );
+						var d = ReflectionUtilities.DesgloseInBasicTypes(ntv.GetDataType() );
 
 						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 1, displayName = varDict.keys[j]});
 						sceneItemsID++;
 
-						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 2, displayName = "D"});
-						sceneItemsID++;
+						//
 
 						foreach (var item in d)
 						{
 							foreach(string var in item.Value){
 
-								sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "GET " + var, 
+								sceneItems.Add( new VariableTreeViewItem{variablePath = var, dataType = item.Key, id = sceneItemsID,  depth = 2, displayName =  "GET " + var, 
 												vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
 												variableType = varDict._dictType });
 								sceneItemsID++;
+
+								sceneItems.Add( new VariableTreeViewItem{variablePath = var, dataType = item.Key , id = sceneItemsID,  depth = 2, displayName =  "SET " + var, 
+												vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET,
+												variableType = varDict._dictType });
+								sceneItemsID++;
+
+								sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 2, displayName = "-------"});
+								sceneItemsID++;
 							}
 						}
-
-						sceneItems.Add( new TreeViewItem{id = sceneItemsID,  depth = 2, displayName = "G"});
-						sceneItemsID++;
-
-						sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "GET " +varDict.keys[j], 
-											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.GET,
-											variableType = varDict._dictType });
-						sceneItemsID++;
-
-						sceneItems.Add( new VariableTreeViewItem{id = sceneItemsID,  depth = 3, displayName =  "SET " +varDict.keys[j],
-											vairbaleKey = varDict.keys[j], variableNodeType = VariableTreeViewItem.VariableNodeType.SET,
-											variableType = varDict._dictType });
-						sceneItemsID++;
 					}
 				}
 			}
@@ -418,12 +444,10 @@ namespace NT.Graph
 					if(t == null) return;
 
 					currentSceneNode = ScriptableObject.CreateInstance(t) as NTNode;
-					currentSceneNode.name = variableItem.vairbaleKey;
+					currentSceneNode.name = variableItem.vairbaleKey + " - " + variableItem.variablePath;
 					currentSceneNode.graph = target as XNode.NodeGraph;
 					IVariableNode ivn = (IVariableNode) currentSceneNode;
-					ivn.SetNTVariableType(variableItem.variableType);
-					ivn.SetVariableKey(variableItem.vairbaleKey);
-
+					ivn.SetVariableKey(variableItem.vairbaleKey,variableItem.variableType, variableItem.variablePath, variableItem.dataType);
 
 					if(e.type != EventType.Repaint) return;
 				}
@@ -433,7 +457,6 @@ namespace NT.Graph
 			else
 			{
 				if(currentSceneNode != null){
-					currentSceneNode.name = "variable";
 					currentSceneNode.position = NodeEditorWindow.current.WindowToGridPosition(e.mousePosition);
 					CopyNode(currentSceneNode);
 				}

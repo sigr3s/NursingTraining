@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 
@@ -7,7 +8,7 @@ namespace NT.Variables
 {
     public static class VariableEditorHelper
     {
-        public static void DrawObject(string name, ref object myData)
+        public static void DrawObject(string name, ref object myData, List<string> variablePath = null)
         {
             if(myData == null) return;
 
@@ -15,12 +16,15 @@ namespace NT.Variables
             if(TryToDraw(name,ref myData, objectType)){
                 return;
             }
-
+            
             int indentLevel = EditorGUI.indentLevel;
 
-            EditorGUILayout.LabelField(name);
+            if(!string.IsNullOrEmpty(name) ){
 
-            EditorGUI.indentLevel++;
+                EditorGUILayout.LabelField(name);
+
+                EditorGUI.indentLevel++;
+            }
 
             FieldInfo[] fields = objectType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
@@ -29,16 +33,19 @@ namespace NT.Variables
                 object data = field.GetValue(myData);
                 Type fieldType = field.FieldType;
 
+                if(variablePath != null && !variablePath.Contains(fieldName) ) continue;
+
                 if(TryToDraw(fieldName,ref data, fieldType)){
                     field.SetValue(myData, data);
                 }
                 else
                 {
-                    EditorGUILayout.LabelField("Not supported nested levels yet");
+                    DrawObject(fieldName,ref data);
+                    field.SetValue(myData, data);
                 }
             }
 
-            EditorGUI.indentLevel--;
+            EditorGUI.indentLevel = indentLevel;
 
             return;
 

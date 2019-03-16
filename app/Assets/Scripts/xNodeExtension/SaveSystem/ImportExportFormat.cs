@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace XNode {
+namespace XNode.InportExport {
     public abstract class ImportExportFormat
 	{
         public NodeGraph Import (string path){
@@ -24,7 +24,17 @@ namespace XNode {
 
 
         public NodeGraph ConvertToNodeCanvas(NodeGraphData data){
-            return null;
+            NodeGraph g = data.graph;
+
+			foreach(NodeData n in data.nodes){
+				g.nodes.Add(n.node);
+			}
+
+			foreach(ConnectionData ncd in data.connections){
+				
+			}
+
+			return g;
         }
 
         public NodeGraphData ConvertToNodeGraphData(NodeGraph graph){
@@ -34,6 +44,7 @@ namespace XNode {
 
             foreach (Node node in graph.nodes)
 			{
+				if(!node) continue;
                 // Create node data
 				NodeData nodeData = new NodeData (node);
 				nodeGraphData.nodes.Add (nodeData);

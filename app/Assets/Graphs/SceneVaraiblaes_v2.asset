@@ -18,13 +18,14 @@ MonoBehaviour:
       - NT.SceneObjects.NTSurgeon
       - NT.Variables.NTBool
       - NT.Variables.NTFloat
+      - NT.Variables.NTInt
       values:
       - keys:
         - Surgeon 01
         values:
         - Name: Surgeon 01
-          Value: '{"currentObject":"H1","lastSaid":"Hello","myList":[]}'
-          DefaultValue: '{"currentObject":"H1","lastSaid":"Hello","myList":[]}'
+          Value: '{"currentObject":"H1","lastSaid":"Hello","elements":0.0,"dat":{"lastSaid2":""}}'
+          DefaultValue: '{"currentObject":"H1","lastSaid":"Hello","elements":0.0,"dat":{"lastSaid2":""}}'
         DictType: NT.SceneObjects.NTSurgeon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
       - keys:
@@ -51,6 +52,14 @@ MonoBehaviour:
           DefaultValue: 1
         DictType: NT.Variables.NTFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
+      - keys:
+        - int
+        values:
+        - Name: int
+          Value: 2
+          DefaultValue: 2
+        DictType: NT.Variables.NTInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
   typeColorDict:
     keys:
     - NT.Variables.NTString
@@ -66,4 +75,4 @@ MonoBehaviour:
     - {r: 1, g: 0, b: 1, a: 1}
     - {r: 0.5264742, g: 0.47912958, b: 0.9150943, a: 0.84705883}
     - {r: 0, g: 0, b: 0, a: 0}
-  DefaultColor: {r: 0, g: 0, b: 0, a: 0}
+  DefaultColor: {r: 1, g: 1, b: 1, a: 0.8666667}

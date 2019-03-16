@@ -8,6 +8,8 @@ namespace NT{
     [System.Serializable]
     public class NTNode : Node
     {
+        [HideInInspector] public bool hasError = false;
+        [HideInInspector] public string error = "";
 
         public virtual NodeExecutionContext NextNode(NodeExecutionContext context){
             return new NodeExecutionContext{node = null, inputPort = null, outputPort = null};
@@ -41,6 +43,11 @@ namespace NT{
 
         public override object GetValue(NodePort port) {
             return null;
+        }
+
+
+        public virtual Color GetColor(){
+            return Color.white;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 		public XNode.Examples.RuntimeMathNodes.UGUIMathNode runtimeMathNodePrefab;
 		public XNode.Examples.RuntimeMathNodes.UGUIVector runtimeVectorPrefab;
 		public XNode.Examples.RuntimeMathNodes.UGUIDisplayValue runtimeDisplayValuePrefab;
-		public XNode.Examples.RuntimeMathNodes.Connection runtimeConnectionPrefab;
+		public Connection runtimeConnectionPrefab;
 		[Header("References")]
 		public UGUIContextMenu graphContextMenu;
 		public UGUIContextMenu nodeContextMenu;

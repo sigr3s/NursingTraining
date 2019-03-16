@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
@@ -21,6 +22,24 @@ namespace NT.Graph
 			return root;
         }
 
+		protected override bool CanStartDrag(CanStartDragArgs args){
+			return true;
+		}
+
+
+        protected override void SetupDragAndDrop(SetupDragAndDropArgs args){
+			DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+			DragAndDrop.PrepareStartDrag();
+
+            // Set up what we want to drag
+			DragAndDrop.objectReferences = new Object[0];
+
+            // Start the actual drag
+            DragAndDrop.StartDrag("Dragging title");
+
+            // Make sure no one uses the event after us
+            Event.current.Use();
+		}
         public TreeViewItem selectedItem = null;
 		private TreeViewItem clickedItem = null;
 
@@ -30,6 +49,7 @@ namespace NT.Graph
 			toggleRect.x += GetContentIndent(args.item);
 
 			base.RowGUI(args);
+
 
 			Event e = Event.current;
 			EventType eventType = e.rawType;

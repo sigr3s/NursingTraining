@@ -4,18 +4,24 @@ using NT.Variables;
 using NT.Graph;
 using UnityEngine;
 using System;
+using System.Reflection;
+using System.Linq;
 
 namespace NT.Nodes.Variables
 {
     [System.Serializable]
     public class GetNTVariableNode : NTNode, IVariableNode //<T,K> : NTNode, IVariableNode where K: INTVaribale
     {
-        [HideInInspector] [SerializeField] private string typeString;
+        [HideInInspector] [SerializeField] public string typeString;
         [HideInInspector] [SerializeField] public string variableKey;
+        [HideInInspector] [SerializeField] public string dataTypeString;
+        [HideInInspector] [SerializeField] public string variablePath = "";
 
         public readonly string variableField = "variable";
         private Type variableType;
         private Type dataType;
+
+
 
 
         public override object GetValue(NodePort port) {
@@ -28,6 +34,9 @@ namespace NT.Nodes.Variables
             var ntVariable = repo.GetValue(variableKey, variableType);
 
             if(ntVariable != null){
+                if(!string.IsNullOrEmpty(variablePath)){
+                    return ReflectionUtilities.GetValueOf(variablePath.Split('/').ToList(), ntVariable);
+                }
                 return ntVariable;
             }
 
@@ -39,16 +48,37 @@ namespace NT.Nodes.Variables
             return variableKey;
         }
 
-        public void SetVariableKey(string v)
+        public void SetVariableKey(string v,  Type ntvaribaleType, string path, Type dataType = null)
         {
             variableKey = v;
+            variablePath = path;
+
+            if(dataType != null){
+                dataTypeString = dataType.AssemblyQualifiedName;
+            }
+
+            if(!typeof(NTVariable).IsAssignableFrom(ntvaribaleType) || ntvaribaleType.IsGenericTypeDefinition) return;
+
+            if(typeString != null) Debug.LogWarning("Trying to reporpouse a node...");
+
+            typeString = ntvaribaleType.AssemblyQualifiedName;
+            variableType = ntvaribaleType;
+
+            InitializeNodeTypes();
         }
 
         private void InitializeNodeTypes(){
             NTGraph g = (NTGraph) graph;
             NTVariable _myData = ((NTVariable) Activator.CreateInstance(variableType));
 
-            dataType = _myData.GetDataType();
+            if(!string.IsNullOrEmpty(dataTypeString)){
+                dataType = Type.GetType(dataTypeString);
+            }
+            else
+            {            
+                dataType = _myData.GetDataType();
+                dataTypeString = dataType.AssemblyQualifiedName;                
+            }
 
             if(!HasPort(variableField)){
                 AddInstanceOutput(dataType, ConnectionType.Override, TypeConstraint.Strict, variableField);
@@ -65,17 +95,6 @@ namespace NT.Nodes.Variables
             return variableType;
         }
 
-        public void SetNTVariableType(Type t)
-        {
-            if(!typeof(NTVariable).IsAssignableFrom(t) || t.IsGenericTypeDefinition) return;
-
-            if(typeString != null) Debug.LogWarning("TRying to reporpouse a node...");
-
-            typeString = t.AssemblyQualifiedName;
-            variableType = t;
-
-            InitializeNodeTypes();
-        }
 
         public Type GetDataType()
         {

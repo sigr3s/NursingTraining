@@ -9,6 +9,7 @@ using NT.Variables;
 using UnityEditor;
 using UnityEngine;
 using XNode;
+using XNode.InportExport;
 
 namespace  NT.Graph
 {
@@ -115,14 +116,26 @@ namespace  NT.Graph
         [ContextMenu("Export")]
         public void Export(){
             JSONImportExport jep = new JSONImportExport();
-            jep.Export(this, "");
+            jep.Export(this, Application.dataPath + "/" + name + ".json");
         }
 
         [ContextMenu("Import")]
         public void Import(){
-            string path = "/Users/sigr3s/Documents/Projects/NursingTraining/app/Assets/save.json";
+            string path = Application.dataPath + "/ImportGraph.json";
             JSONImportExport jimp = new JSONImportExport();
             NTGraph g = (NTGraph) jimp.Import(path);
+
+            if(g == null) return;
+
+            Clear();
+
+            nodes = g.nodes;
+
+            foreach(Node n in nodes){
+                n.graph = this;
+            }
+
+            
         }
     }
 }

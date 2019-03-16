@@ -19,28 +19,6 @@ namespace NT.Nodes.Variables
             IVariableNode ivn = target as IVariableNode;
             NTGraph graph =  node.graph as NTGraph;
 
-            int _choiceIndex = 0;
-            string[] _choices = graph.sceneVariables.variableRepository.GetOptions(ivn.GetVariableType() , ivn.GetVariableKey(), out _choiceIndex).ToArray();
-            int _newChoiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices);
-
-            if(_newChoiceIndex != _choiceIndex){
-                ivn.SetVariableKey(_choices[_newChoiceIndex]);
-            }
-
-            serializedObject.Update();
-
-            string[] excludes = { "m_Script", "graph", "position", "ports" };
-            SerializedProperty iterator = serializedObject.GetIterator();
-
-            bool enterChildren = true;
-            EditorGUIUtility.labelWidth = 84;
-            while (iterator.NextVisible(enterChildren)) {
-                enterChildren = false;
-                if (excludes.Contains(iterator.name)) continue;
-                //EditorGUILayout.PropertyField(iterator, GUILayout.MinWidth(30));
-            }
-            serializedObject.ApplyModifiedProperties();
-
             base.OnBodyGUI();
 
             ExtraBody();
@@ -85,7 +63,8 @@ namespace NT.Nodes.Variables
 
                     if(value == null) return;
 
-                    VariableEditorHelper.DrawObject("value", ref value);
+                    VariableEditorHelper.DrawObject("", ref value, sntv.variablePath.Split('/').ToList());
+
 
                     if(EditorGUI.EndChangeCheck()){
                         sntv._myData.SetKey(sntv.variableKey);

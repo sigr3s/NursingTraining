@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace XNode {
+namespace XNode.InportExport {
     [System.Serializable]
     public class NodeGraphData{
         public NodeGraph graph;

@@ -7,7 +7,7 @@ namespace NT.Atributes{
 
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class NTInputAttribute : Node.InputAttribute {
-        public NTInputAttribute(    Node.ShowBackingValue backingValue = Node.ShowBackingValue.Always, 
+        public NTInputAttribute(    Node.ShowBackingValue backingValue = Node.ShowBackingValue.Unconnected, 
                                     Node.ConnectionType connectionType = Node.ConnectionType.Override,
                                     Node.TypeConstraint typeConstraint = Node.TypeConstraint.Strict, 
                                     bool instancePortList = false):
