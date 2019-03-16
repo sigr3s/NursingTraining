@@ -91,8 +91,11 @@ namespace XNode.InportExport {
                 Dictionary<int, object> references = new Dictionary<int, object>();
                 Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
 
+                List<string> ignoredFields =  new List<string> {"name", "graph", "ports", "nodes"};
+                JSONObject graphJObject;
+
                 if(root.HasKey("graph")){
-                    JSONObject graphJObject = root["graph"].AsObject;
+                    graphJObject = root["graph"].AsObject;
                     int id = graphJObject["id"];
                     string graphTypeS = graphJObject["type"];
                     Type graphType = Type.GetType(graphTypeS);
@@ -124,7 +127,7 @@ namespace XNode.InportExport {
                         node.name = nodeJObject["name"];
                         object nodeOBJ = (object) node;
 
-                        SimpleJSONExtension.FromJSON(ref  nodeOBJ, nodeType, nodeJObject, new List<string> {"name", "graph"});
+                        SimpleJSONExtension.FromJSON(ref  nodeOBJ, nodeType, nodeJObject, ignoredFields, references);
                         node.graph = returnData.graph;
                         NodeData nodeData = new NodeData(node);
 
@@ -192,8 +195,9 @@ namespace XNode.InportExport {
 
                         if(references.ContainsKey(port1ID) && references.ContainsKey(port2ID)){
                             NodePort p1 =  (NodePort) references[port1ID];
-                            NodePort p2 =  (NodePort) references[port2ID];                            
+                            NodePort p2 =  (NodePort) references[port2ID];
 
+                            p1.Connect(p2);
                         }
                         else
                         {
@@ -209,12 +213,17 @@ namespace XNode.InportExport {
                     return returnData;
                 }
 
-                Debug.Log("recovering user extra data....");
-
+                
+                object graphObject = returnData.graph;
+                SimpleJSONExtension.FromJSON(ref  graphObject, returnData.graph.GetType(), graphJObject , ignoredFields, references);
             }
             else{
                 Debug.LogError("Path does not exist " + path);
             }
+
+
+
+
             return returnData;
         }
     }

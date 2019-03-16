@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NT.Variables;
+using UnityEngine;
 
 namespace NT
 {
@@ -30,14 +31,15 @@ namespace NT
             return types.ToArray();
         }
 
-        /// Dict<Type, List<string>>
-        /// 
+
         public static Dictionary<Type, List<string>> DesgloseInBasicTypes(Type t){
-            FieldInfo[] fi = t.GetFields();
+            FieldInfo[] fi = t.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
             Dictionary<Type, List<string>> desglosed = new Dictionary<Type, List<string>>();
 
             foreach(FieldInfo f in fi){
+                if(f.GetCustomAttribute(typeof(HideInInspector)) != null) continue;
+
                 if(IsBasicType(f.FieldType)){
                     List<string> variables;
 
@@ -55,7 +57,7 @@ namespace NT
                 }
                 else
                 {
-                    Desglose(f.FieldType, ref desglosed, f.Name+ "/" );
+                    Desglose(f.FieldType, ref desglosed, f.Name+ "/", new List<Type>() );
                 }
             }
 
@@ -89,10 +91,13 @@ namespace NT
 
         }
 
-        private static void Desglose(Type t, ref Dictionary<Type, List<string>> deg, string root){
+        private static void Desglose(Type t, ref Dictionary<Type, List<string>> deg, string root, List<Type> visisitedTypes){
             FieldInfo[] fi = t.GetFields();
 
             foreach(FieldInfo f in fi){
+
+                if(f.IsNotSerialized) continue;
+
                 if(IsBasicType(f.FieldType)){
                     List<string> variables;
 
@@ -110,7 +115,15 @@ namespace NT
                 }
                 else
                 {
-                    Desglose(f.FieldType, ref deg, root + f.Name+ "/" );
+                    if(!visisitedTypes.Contains(f.FieldType)){
+                        visisitedTypes.Add(f.FieldType);
+                    }
+                    else
+                    {
+                        return; 
+                    }
+
+                    Desglose(f.FieldType, ref deg, root + f.Name+ "/", visisitedTypes);
                 }
             }
 
@@ -121,7 +134,8 @@ namespace NT
                             t == typeof(int)    ||
                             t == typeof(float)  ||
                             t == typeof(double) ||
-                            t == typeof(bool) );
+                            t == typeof(bool)   ||
+                            t.IsEnum );
 
             return isBasic;
         }

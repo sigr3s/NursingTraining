@@ -65,7 +65,9 @@ public static class SimpleJSONExtension {
                 }
             }
 
-            if(asignedReference) continue;
+            if(asignedReference){
+                continue;
+            }
 
             if(!TryToAdd(fieldName, fieldObject,fieldType, ref parent, ignoreFields, visited, referencedTypes)){
 
@@ -95,8 +97,10 @@ public static class SimpleJSONExtension {
             JSONNode fieldListJSON = new JSONArray();
 
             bool asignedReference = false;
-
+            
             if(fieldList.Count > 0){
+                if(objectName == "callbackNodes") Debug.Log("Serializing??");
+
                 var item = fieldList[0];
                 if(referencedTypes != null && item != null){
                     foreach (Type refType in referencedTypes){
@@ -162,7 +166,7 @@ public static class SimpleJSONExtension {
     public static T FromJSON<T>(JSONNode node, List<string> ignoreFields){
         object deserializationObject = new object();
 
-        FromJSON(ref deserializationObject, typeof(T), node, ignoreFields);
+        FromJSON(ref deserializationObject, typeof(T), node, ignoreFields, new Dictionary<int,object>());
 
         return (T) deserializationObject;
     }
@@ -170,13 +174,13 @@ public static class SimpleJSONExtension {
     public static T FromJSON<T>(JSONNode node){
         object deserializationObject = new object();
 
-        FromJSON(ref deserializationObject, typeof(T), node, new List<string>());
+        FromJSON(ref deserializationObject, typeof(T), node, new List<string>(), new Dictionary<int, object>());
 
         return (T) deserializationObject;
     }
 
-    public static void FromJSON(ref object o, Type objectType, JSONNode node, List<string> ignoreFields){
-        if(TryToAssign(ref o, objectType, node)){
+    public static void FromJSON(ref object o, Type objectType, JSONNode node, List<string> ignoreFields, Dictionary<int, object> references){
+        if(TryToAssign(ref o, objectType, node, references)){
             return;
         }
 
@@ -199,19 +203,30 @@ public static class SimpleJSONExtension {
 
             JSONNode fieldNode = node[fieldName];
 
-            if(TryToAssign(ref fieldObject, fieldType, fieldNode)){
+            if(TryToAssign(ref fieldObject, fieldType, fieldNode, references)){
 
             }
             else
             {
-                FromJSON(ref fieldObject, fieldType, fieldNode, ignoreFields);
+                FromJSON(ref fieldObject, fieldType, fieldNode, ignoreFields, references);
             }
 
             field.SetValue(o, fieldObject);
         }
     }
 
-    private static bool TryToAssign(ref object o, Type objectType, JSONNode node){
+    private static bool TryToAssign(ref object o, Type objectType, JSONNode node, Dictionary<int, object> references){
+        if(node.IsNumber){
+            int id = node.AsInt;
+
+            if(references.ContainsKey(id)){
+                object ro = references[id];
+                o = ro;
+                return true;
+            }
+        }
+
+
         if(objectType == typeof(string)){
             o = (string) node;
         }
@@ -225,11 +240,11 @@ public static class SimpleJSONExtension {
             for(int i = 0; i < leng; i++){
                 object arrayObject = FormatterServices.GetUninitializedObject(arrayType);
 
-                if(TryToAssign(ref arrayObject, arrayType, jarray[i])){
+                if(TryToAssign(ref arrayObject, arrayType, jarray[i], references)){
                 }
                 else
                 {
-                    FromJSON(ref arrayObject, arrayType, jarray[i], new List<string>());
+                    FromJSON(ref arrayObject, arrayType, jarray[i], new List<string>(), references);
                 }
                 array.SetValue(arrayObject, i);
             }
@@ -245,14 +260,20 @@ public static class SimpleJSONExtension {
 
             foreach (var item in array.Values)
             {
-                object listObject = FormatterServices.GetUninitializedObject(listType);
+                object listObject = null;
+                try{
+                    listObject = FormatterServices.GetUninitializedObject(listType);
+                }
+                catch (Exception e){
+
+                }
 
 
-                if(TryToAssign(ref listObject, listType, item)){
+                if(TryToAssign(ref listObject, listType, item, references)){
                 }
                 else
                 {
-                    FromJSON(ref listObject, listType, item, new List<string>());
+                    FromJSON(ref listObject, listType, item, new List<string>(),references);
                 }
 
                 list.Add(listObject);

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using NT;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,11 +11,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
     public Node node;
     public RuntimeGraph graph;
 
-
-    public GameObject inputPort;
-    public GameObject outputPort;
     public GameObject body;
-
     public List<UGUIPort> ports = new List<UGUIPort>();
 
     
@@ -24,7 +22,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
             foreach (NodePort port in node.Ports)
             {
                 
-                GameObject portGO =  Instantiate(port.direction == NodePort.IO.Input ? inputPort : outputPort, body.transform);
+                GameObject portGO =  Instantiate(port.direction == NodePort.IO.Input ? graph.inputPort : graph.outputPort, body.transform);
 
                 portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName;
                 UGUIPort guiport = portGO.GetComponentInChildren<UGUIPort>();
@@ -37,6 +35,16 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
 
             transform.Find("Header/Title").GetComponent<Text>().text = node.name;
 
+
+            var d = ReflectionUtilities.DesgloseInBasicTypes(node.GetType());
+
+            foreach(KeyValuePair<Type, List<string>> kvp in d){
+                foreach(string variable in kvp.Value){
+                    GameObject variableGo =  Instantiate(graph.stringPtoperty, body.transform);
+                    variableGo.transform.Find("Label").GetComponent<Text>().text = variable;
+                    variableGo.transform.Find("Value").GetComponent<InputField>().text = ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node).ToString();
+                }
+            }
         }
         else
         {

@@ -19,6 +19,8 @@ namespace  NT.Graph
 
         public List<CallbackNode> callbackNodes;
 
+        public string loadFile = "ImportGraph.json";
+
 
         [Header("References")]
         public SceneVariables sceneVariables;
@@ -121,7 +123,7 @@ namespace  NT.Graph
 
         [ContextMenu("Import")]
         public void Import(){
-            string path = Application.dataPath + "/ImportGraph.json";
+            string path = Application.dataPath + "/" + loadFile;
             JSONImportExport jimp = new JSONImportExport();
             NTGraph g = (NTGraph) jimp.Import(path);
 
@@ -130,6 +132,7 @@ namespace  NT.Graph
             Clear();
 
             nodes = g.nodes;
+            callbackNodes = g.callbackNodes;
 
             foreach(Node n in nodes){
                 n.graph = this;

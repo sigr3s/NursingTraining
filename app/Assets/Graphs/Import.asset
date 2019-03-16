@@ -32,7 +32,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   executionNodes: []
-  callbackNodes: []
+  callbackNodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  loadFile: Import.json
   sceneVariables: {fileID: 11400000, guid: ea5e5954eae184f25b9a90b10b4612cb, type: 2}
   message: 

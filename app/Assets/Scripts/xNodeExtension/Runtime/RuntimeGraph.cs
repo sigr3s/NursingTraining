@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
+using XNode.InportExport;
 
 public class RuntimeGraph : MonoBehaviour {
     [Header("Graph")]
     public NodeGraph graph;
+    public string graphPath = "Import.json";
+
+
+    [Header("Node Parts")]
+    public GameObject inputPort;
+    public GameObject outputPort;
+    
+    [Header("Node Properties")]
+    public GameObject floatProperty;
+    public GameObject stringPtoperty;
+    public GameObject intProperty;
+    public GameObject boolProperty;
 
 
     [Header("References")]
@@ -34,7 +47,11 @@ public class RuntimeGraph : MonoBehaviour {
 
     private void Awake() {
         // Create a clone so we don't modify the original asset
-        graph = graph.Copy();
+        string path = Application.dataPath + "/" + graphPath;
+
+        JSONImportExport jimp = new JSONImportExport();
+        graph = jimp.Import(path);
+
         scrollRect = GetComponentInChildren<ScrollRect>();
 
         SpawnGraph();
@@ -79,7 +96,7 @@ public class RuntimeGraph : MonoBehaviour {
             runtimeNode.transform.SetParent(scrollRect.content);
             runtimeNode.node = node;
             runtimeNode.graph = this;
-            runtimeNode.transform.localPosition = node.position;
+            runtimeNode.transform.localPosition = new Vector2(node.position.x , -node.position.y);
             runtimeNode.name = node.name;
 
             runtimeNode.GetComponent<Image>().color = GetColorFor(node.GetType());
