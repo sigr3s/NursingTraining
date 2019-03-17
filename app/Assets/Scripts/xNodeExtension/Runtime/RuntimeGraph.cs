@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NT.Graph;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
@@ -51,6 +52,8 @@ public class RuntimeGraph : MonoBehaviour {
 
         JSONImportExport jimp = new JSONImportExport();
         graph = jimp.Import(path);
+
+        ((NTGraph) graph).sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
 
         scrollRect = GetComponentInChildren<ScrollRect>();
 

@@ -133,6 +133,10 @@ namespace  NT.Graph
 
             nodes = g.nodes;
             callbackNodes = g.callbackNodes;
+            sceneVariables = g.sceneVariables;
+            sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
+
+            Debug.Log(g.sceneVariables.variableRepository.dictionary.keys.Count);
 
             foreach(Node n in nodes){
                 n.graph = this;

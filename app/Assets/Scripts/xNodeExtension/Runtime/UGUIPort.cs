@@ -140,7 +140,12 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	public void OnPointerEnter(PointerEventData eventData) {
 		graph.tooltip.Show();
 		object obj = node.GetInputValue<object>(port.fieldName, null);
-		if (obj != null) graph.tooltip.label.text = obj.ToString();
+		if (obj == null){
+		  obj =	node.GetValue(port);
+		}
+		
+		
+		if(obj != null) graph.tooltip.label.text = obj.ToString();
 		else graph.tooltip.label.text = "n/a";
 	}
 

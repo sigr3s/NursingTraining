@@ -180,6 +180,8 @@ public static class SimpleJSONExtension {
     }
 
     public static void FromJSON(ref object o, Type objectType, JSONNode node, List<string> ignoreFields, Dictionary<int, object> references){
+        if( o == null) return;
+
         if(TryToAssign(ref o, objectType, node, references)){
             return;
         }
@@ -193,12 +195,20 @@ public static class SimpleJSONExtension {
             if(ignoreFields.Contains(fieldName)) continue;
             if(!node.HasKey(fieldName)) continue;
 
+
             object fieldObject = null;
-            try{
-                fieldObject = FormatterServices.GetUninitializedObject(fieldType);
+
+            if(typeof(ScriptableObject).IsAssignableFrom(fieldType)){
+                fieldObject = ScriptableObject.CreateInstance(fieldType);
             }
-            catch (Exception e){
-                continue;
+            else
+            {
+                try{
+                    fieldObject = fieldType == typeof(string) ? "" : Activator.CreateInstance(fieldType); 
+                }
+                catch{
+                    continue;
+                }
             }
 
             JSONNode fieldNode = node[fieldName];
@@ -238,7 +248,8 @@ public static class SimpleJSONExtension {
             Type arrayType = objectType.GetElementType();
 
             for(int i = 0; i < leng; i++){
-                object arrayObject = FormatterServices.GetUninitializedObject(arrayType);
+
+                object arrayObject = arrayType == typeof(string) ? "" : Activator.CreateInstance(arrayType); //FormatterServices.GetUninitializedObject(arrayType);
 
                 if(TryToAssign(ref arrayObject, arrayType, jarray[i], references)){
                 }
@@ -261,11 +272,19 @@ public static class SimpleJSONExtension {
             foreach (var item in array.Values)
             {
                 object listObject = null;
-                try{
+                if(typeof(ScriptableObject).IsAssignableFrom(listType)){
+                    listObject = ScriptableObject.CreateInstance(listType);
+                }
+                else if(typeof(IList).IsAssignableFrom(listType)){
                     listObject = FormatterServices.GetUninitializedObject(listType);
                 }
-                catch (Exception e){
-
+                else
+                {
+                    try{
+                        listObject = listType == typeof(string) ? "" : Activator.CreateInstance(listType); //FormatterServices.GetUninitializedObject(listType);
+                    }
+                    catch {
+                    }
                 }
 
 

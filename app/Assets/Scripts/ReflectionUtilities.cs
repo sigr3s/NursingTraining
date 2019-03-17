@@ -31,14 +31,20 @@ namespace NT
             return types.ToArray();
         }
 
-
+        
         public static Dictionary<Type, List<string>> DesgloseInBasicTypes(Type t){
+            return DesgloseInBasicTypes(t, new List<string>());
+        }
+
+        public static Dictionary<Type, List<string>> DesgloseInBasicTypes(Type t, List<string> ignored){
             FieldInfo[] fi = t.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
             Dictionary<Type, List<string>> desglosed = new Dictionary<Type, List<string>>();
 
             foreach(FieldInfo f in fi){
                 if(f.GetCustomAttribute(typeof(HideInInspector)) != null) continue;
+                if(ignored.Contains(f.Name)) continue;
+                
 
                 if(IsBasicType(f.FieldType)){
                     List<string> variables;

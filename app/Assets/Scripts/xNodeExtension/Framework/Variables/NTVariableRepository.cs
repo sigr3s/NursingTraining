@@ -265,8 +265,10 @@ namespace NT.Variables
             if (keys.Count != values.Count)
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
-            for (int i = 0; i < keys.Count; i++)
+            for (int i = 0; i < keys.Count; i++){
+                values[i].OnAfterDeserialize();
                 this.Add(keys[i], values[i]);
+            }
         }
     }
 
@@ -277,7 +279,7 @@ namespace NT.Variables
         [SerializeField] public string DictType;
 
         public Type _dictType { get; private set; }
-        private NTVariableDictionary(){
+        public NTVariableDictionary(){
             DictType = typeof(object).AssemblyQualifiedName;
             _dictType = typeof(object);
         }

@@ -19,6 +19,8 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
 
     private void Awake() {
         if(node != null){
+            List<string> ignored = new List<string>();
+
             foreach (NodePort port in node.Ports)
             {
                 
@@ -31,12 +33,14 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
                 guiport.name = port.fieldName;
 
                 ports.Add(guiport);
+
+                ignored.Add(port.fieldName);
             }
 
             transform.Find("Header/Title").GetComponent<Text>().text = node.name;
 
 
-            var d = ReflectionUtilities.DesgloseInBasicTypes(node.GetType());
+            var d = ReflectionUtilities.DesgloseInBasicTypes(node.GetType(), ignored);
 
             foreach(KeyValuePair<Type, List<string>> kvp in d){
                 foreach(string variable in kvp.Value){
