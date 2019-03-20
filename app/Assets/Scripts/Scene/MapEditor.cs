@@ -3,20 +3,39 @@ using System.Collections.Generic;
 using NT;
 using NT.SceneObjects;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class MapEditor : MonoBehaviour{   
+    public enum MapMode{
+        Placing,
+        Edit,
+        Inspect,
+        Remove
+    }
+
+    [Header("References")]
+    public Camera raycastCamera;
+    public RuntimeInspector runtimeInspector;
 
 
-public class MapEditor : MonoBehaviour
-{
-    public Camera c;
-
+    [Header("Map settings")]
     public float gridSize = 0.1f;
     public int selectedObject  = 0;
-    public List<DummySceneObject> objectSet;
     public int placementLayer = 11;
 
+    [Space]
+    [Header("Debug")]
+    public DummySceneObject current;
+    public GameObject previewGO = null;
+    public SceneObjectCollider previewGOSC = null;
+    public MapMode mode = MapMode.Inspect;
+    
 
     
     private GameObject items;
+    private LayerMask currentObjectLayer;
+    public LayerMask allExceptFloor = ~0;
+
     void Start()
     {
         items = new GameObject();
@@ -24,28 +43,54 @@ public class MapEditor : MonoBehaviour
         items.transform.localPosition = Vector3.zero; 
     }
 
-
-    [Space]
-    [Header("Debug")]
-    
-    public GameObject previewGO = null;
-    public SceneObjectCollider previewGOSC = null;
-    public LayerMask savedLayer;
-
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.N)){
-            if(previewGO != null){
-                Destroy(previewGO);
-            }
+        if(EventSystem.current.IsPointerOverGameObject()) return;
 
-            selectedObject++;
+        if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Placing; ResetCurrent(true, false); }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; ResetCurrent(true, false); }
 
-            if(selectedObject > objectSet.Count-1) selectedObject = 0;
-
+        switch(mode){
+            case MapMode.Placing:
+                PlaceObject();
+            break;
+            case MapMode.Inspect:
+                InspectObject();
+            break;
         }
+    }
+
+    private bool TryRaycastFromScreen(LayerMask mask, out RaycastHit hit){
+        Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit,50, mask)) {
+            Transform objectHit = hit.transform;
+            if(objectHit != null){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            hit = new RaycastHit();
+            return false;
+        }
+    }
+
+    private void ResetCurrent(bool destroyPreview = false, bool cleanCurrent = true){
+        if(destroyPreview) Destroy(previewGO);
+        if(cleanCurrent) current = null;
+
+        previewGO = null;
+    }
+    
+    private void PlaceObject(){
+        if(current == null) return;
 
         if(previewGO == null){
-            previewGO = Instantiate(objectSet[selectedObject].model);
+            previewGO = Instantiate(current.model);
             
             previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
 
@@ -53,7 +98,9 @@ public class MapEditor : MonoBehaviour
                 previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
             }
 
-            savedLayer = previewGO.layer;
+            previewGOSC.assignedSo = ScriptableObject.Instantiate(current);
+            previewGOSC.assignedSo.name = current.name + " _ " + previewGO.GetInstanceID();
+            currentObjectLayer = previewGO.layer;
             previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = placementLayer;} );
         }
 
@@ -65,24 +112,50 @@ public class MapEditor : MonoBehaviour
             previewGO.transform.Rotate(new Vector3(0,1,0), -90);
         }
 
-        RaycastHit hit;
-        Ray ray = c.ScreenPointToRay(Input.mousePosition);
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            ResetCurrent(true);
+            return;
+        }
 
-        if (Physics.Raycast(ray, out hit,50, objectSet[selectedObject].canBePlacedOver)) {
+
+        if(TryRaycastFromScreen(current.canBePlacedOver, out RaycastHit hit)){
             Transform objectHit = hit.transform;
-            if(objectHit != null){
-                Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
-                float x = hitPointOnPlane.x - hitPointOnPlane.x%gridSize;  
-                float z = hitPointOnPlane.y - hitPointOnPlane.y%gridSize; 
+            Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
+            float x = hitPointOnPlane.x - hitPointOnPlane.x%gridSize;  
+            float z = hitPointOnPlane.y - hitPointOnPlane.y%gridSize; 
 
-                previewGO.transform.position = new Vector3(x, hit.point.y, z);
+            previewGO.transform.position = new Vector3(x, hit.point.y, z);
 
-                if(Input.GetMouseButtonDown(0) && !previewGOSC.colliding){
-                    GameObject item = Instantiate(previewGO,items.transform);
-                    item.RunOnChildrenRecursive( (GameObject g) => {g.layer = savedLayer;} );
-                } 
+            if(Input.GetMouseButtonDown(0) && !previewGOSC.colliding){
+
+                previewGO.transform.parent = items.transform;
+                previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
+
+                previewGO = null;
+
             }
         }
     }
 
+    private void InspectObject(){
+        if(TryRaycastFromScreen(allExceptFloor, out RaycastHit hit)){
+            SceneObjectCollider soc = hit.transform.GetComponent<SceneObjectCollider>();
+
+            if(soc != null){
+                current = soc.assignedSo;
+
+                runtimeInspector.SetMouseOver(current);
+
+                if( Input.GetMouseButtonDown(0) ){
+                    runtimeInspector.SetCurrent(current);
+                }
+            }
+        }
+    }
+    
+    public void SetPlacementObject(DummySceneObject sceneObject){
+        ResetCurrent(true);
+
+        current = sceneObject;
+    }
 }

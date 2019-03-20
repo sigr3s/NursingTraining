@@ -136,8 +136,6 @@ namespace  NT.Graph
             sceneVariables = g.sceneVariables;
             sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
 
-            Debug.Log(g.sceneVariables.variableRepository.dictionary.keys.Count);
-
             foreach(Node n in nodes){
                 n.graph = this;
             }

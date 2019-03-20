@@ -1,3 +1,4 @@
+using NT.SceneObjects;
 using UnityEngine;
 
 public class SceneObjectCollider : MonoBehaviour
@@ -5,6 +6,7 @@ public class SceneObjectCollider : MonoBehaviour
 
     public bool colliding = false;
     public GameObject errorBox;
+    public DummySceneObject assignedSo;
 
 
     private void OnTriggerEnter(Collider other) {

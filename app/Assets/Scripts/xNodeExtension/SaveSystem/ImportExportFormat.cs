@@ -30,10 +30,6 @@ namespace XNode.InportExport {
 				g.nodes.Add(n.node);
 			}
 
-			foreach(ConnectionData ncd in data.connections){
-				
-			}
-
 			return g;
         }
 

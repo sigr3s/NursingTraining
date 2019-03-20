@@ -36,7 +36,15 @@ namespace NT
             return DesgloseInBasicTypes(t, new List<string>());
         }
 
+
+        private static Dictionary<Type, Dictionary<Type, List<string>> > cache = new Dictionary<Type, Dictionary<Type, List<string>>>();
+
         public static Dictionary<Type, List<string>> DesgloseInBasicTypes(Type t, List<string> ignored){
+        
+            if(cache.ContainsKey(t)){
+                return cache[t];
+            }
+
             FieldInfo[] fi = t.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
 
             Dictionary<Type, List<string>> desglosed = new Dictionary<Type, List<string>>();
@@ -67,6 +75,7 @@ namespace NT
                 }
             }
 
+            if(!cache.ContainsKey(t)) cache.Add(t, desglosed);
             return desglosed;
         }
 
