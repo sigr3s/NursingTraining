@@ -1,0 +1,257 @@
+fileFormatVersion: 2
+guid: c9daff021ede6ac4ebd01ae746170ea4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Carpet
+    100002: //RootNode
+    100004: Mattress
+    100006: Mattress 1
+    100008: Metal
+    100010: metal
+    100012: metal1
+    100014: metal2
+    100016: metal3
+    100018: metal4
+    100020: Metal_bed
+    100022: Metal_bed1
+    100024: Metal_bed2
+    100026: Metal_bed3
+    100028: Metal_bed4
+    100030: Metal_bed5
+    100032: Metal_bed6
+    100034: Metal_bed7
+    100036: Metal_bed8
+    100038: Metal_bed9
+    100040: Metal_wheel
+    100042: Metal_wheel1
+    100044: Metal_wheel2
+    100046: Metal_wheel3
+    100048: paper
+    100050: Pillow
+    100052: Pillow1
+    100054: Pillow2
+    100056: Sheet1
+    100058: Sheet2
+    100060: Sheets
+    100062: wheel1
+    100064: wheel2
+    100066: wheel3
+    100068: wheel4
+    100070: Wheels
+    100072: wood
+    400000: Carpet
+    400002: //RootNode
+    400004: Mattress
+    400006: Mattress 1
+    400008: Metal
+    400010: metal
+    400012: metal1
+    400014: metal2
+    400016: metal3
+    400018: metal4
+    400020: Metal_bed
+    400022: Metal_bed1
+    400024: Metal_bed2
+    400026: Metal_bed3
+    400028: Metal_bed4
+    400030: Metal_bed5
+    400032: Metal_bed6
+    400034: Metal_bed7
+    400036: Metal_bed8
+    400038: Metal_bed9
+    400040: Metal_wheel
+    400042: Metal_wheel1
+    400044: Metal_wheel2
+    400046: Metal_wheel3
+    400048: paper
+    400050: Pillow
+    400052: Pillow1
+    400054: Pillow2
+    400056: Sheet1
+    400058: Sheet2
+    400060: Sheets
+    400062: wheel1
+    400064: wheel2
+    400066: wheel3
+    400068: wheel4
+    400070: Wheels
+    400072: wood
+    2100000: lambert2
+    2300000: Mattress 1
+    2300002: metal
+    2300004: metal1
+    2300006: metal2
+    2300008: metal3
+    2300010: metal4
+    2300012: Metal_bed
+    2300014: Metal_bed1
+    2300016: Metal_bed2
+    2300018: Metal_bed3
+    2300020: Metal_bed4
+    2300022: Metal_bed5
+    2300024: Metal_bed6
+    2300026: Metal_bed7
+    2300028: Metal_bed8
+    2300030: Metal_bed9
+    2300032: Metal_wheel
+    2300034: Metal_wheel1
+    2300036: Metal_wheel2
+    2300038: Metal_wheel3
+    2300040: paper
+    2300042: Pillow1
+    2300044: Pillow2
+    2300046: Sheet1
+    2300048: Sheet2
+    2300050: wheel1
+    2300052: wheel2
+    2300054: wheel3
+    2300056: wheel4
+    2300058: wood
+    3300000: Mattress 1
+    3300002: metal
+    3300004: metal1
+    3300006: metal2
+    3300008: metal3
+    3300010: metal4
+    3300012: Metal_bed
+    3300014: Metal_bed1
+    3300016: Metal_bed2
+    3300018: Metal_bed3
+    3300020: Metal_bed4
+    3300022: Metal_bed5
+    3300024: Metal_bed6
+    3300026: Metal_bed7
+    3300028: Metal_bed8
+    3300030: Metal_bed9
+    3300032: Metal_wheel
+    3300034: Metal_wheel1
+    3300036: Metal_wheel2
+    3300038: Metal_wheel3
+    3300040: paper
+    3300042: Pillow1
+    3300044: Pillow2
+    3300046: Sheet1
+    3300048: Sheet2
+    3300050: wheel1
+    3300052: wheel2
+    3300054: wheel3
+    3300056: wheel4
+    3300058: wood
+    4300000: Sheet1
+    4300002: Sheet2
+    4300004: wheel1
+    4300006: wheel4
+    4300008: wheel2
+    4300010: wheel3
+    4300012: Metal_bed
+    4300014: Metal_bed1
+    4300016: Metal_bed2
+    4300018: Metal_bed3
+    4300020: Metal_bed4
+    4300022: Metal_bed5
+    4300024: Metal_bed6
+    4300026: Metal_bed7
+    4300028: Metal_bed8
+    4300030: Metal_bed9
+    4300032: Metal_wheel
+    4300034: Metal_wheel1
+    4300036: Metal_wheel2
+    4300038: Metal_wheel3
+    4300040: Pillow1
+    4300042: Pillow2
+    4300044: Mattress
+    4300046: wood
+    4300048: metal
+    4300050: metal1
+    4300052: paper
+    4300054: metal2
+    4300056: metal3
+    4300058: metal4
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

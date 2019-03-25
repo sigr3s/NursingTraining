@@ -22,10 +22,14 @@ MonoBehaviour:
       values:
       - keys:
         - Surgeon 01
+        - assad
         values:
         - Name: Surgeon 01
-          Value: '{"currentObject":"H1","lastSaid":"Hello","elements":0.0,"dat":{"lastSaid2":""}}'
-          DefaultValue: '{"currentObject":"H1","lastSaid":"Hello","elements":0.0,"dat":{"lastSaid2":""}}'
+          Value: '{"sceneObjectGUID":"","value":{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":""}}}'
+          DefaultValue: '{"sceneObjectGUID":"","value":{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":""}}}'
+        - Name: assad
+          Value: '{"sceneObjectGUID":"","value":{"currentObject":"dssa","lastSaid":"dasdas","elements":3.0,"dat":{"lastSaid2":"dsada"}}}'
+          DefaultValue: '{"sceneObjectGUID":"","value":{"currentObject":"dssa","lastSaid":"dasdas","elements":3.0,"dat":{"lastSaid2":"dsada"}}}'
         DictType: NT.SceneObjects.NTSurgeon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
       - keys:

@@ -17,6 +17,7 @@ TagManager:
   - Floor
   - Furniture
   - Items
+  - Walls
   - 
   - 
   - 
@@ -35,8 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Placing
   m_SortingLayers:
   - name: Default
     uniqueID: 0

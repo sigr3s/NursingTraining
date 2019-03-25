@@ -12,31 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44cd277719312e4b9bf7118f8de80aa, type: 3}
   m_Name: Import
   m_EditorClassIdentifier: 
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  nodes: []
   executionNodes: []
-  callbackNodes:
-  - {fileID: 0}
-  - {fileID: 0}
+  callbackNodes: []
   loadFile: Import.json
-  sceneVariables: {fileID: 11400000, guid: ea5e5954eae184f25b9a90b10b4612cb, type: 2}
+  sceneVariables: {fileID: 11400000, guid: bdd8d6e06005ec946a3246ec52c522e8, type: 2}
   message: 
