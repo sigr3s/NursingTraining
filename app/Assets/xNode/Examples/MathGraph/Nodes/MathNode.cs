@@ -1,4 +1,8 @@
-﻿namespace XNode.Examples.MathNodes {
+﻿
+using UnityEngine;
+using UnityEngine.Video;
+
+namespace XNode.Examples.MathNodes {
     [System.Serializable]
     public class MathNode : XNode.Node {
         // Adding [Input] or [Output] is all you need to do to register a field as a valid port on your node 
@@ -6,6 +10,7 @@
         [Input] public float b;
         // The value of an output node field is not used for anything, but could be used for caching output results
         [Output] public float result;
+        [SerializeField]public VideoClip videoClip;
 
         // Will be displayed as an editable field - just like the normal inspector
         public MathType mathType = MathType.Add;

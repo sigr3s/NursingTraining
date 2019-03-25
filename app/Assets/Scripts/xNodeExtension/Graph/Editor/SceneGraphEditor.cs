@@ -11,6 +11,7 @@ using XNode;
 using NT.Nodes.Control;
 using System.Runtime.Serialization;
 using NT.Nodes.Variables;
+using NT.SceneObjects;
 
 namespace NT.Graph
 {
@@ -18,6 +19,9 @@ namespace NT.Graph
 	public class SceneGraphEditor : NodeGraphEditor {
 		public readonly string selectedNamespace = "NT.Nodes";
 		public readonly string replaceNamespace = "NT";
+		
+
+		private SceneGraph sceneGraph;
 
 	#region Graph Override
 		public override string GetNodeMenuName(System.Type type) {
@@ -45,10 +49,16 @@ namespace NT.Graph
 			if(variableTreeViewState == null){ InitializeVariablesTree(); }
 			if(sceneTreeViewState == null){ InitializeSceneTree(); }
 
+			if(sceneGraph == null){
+				sceneGraph = (SceneGraph) target;
+				sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadSceneTree);
+				sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadVariableTree);
+			}
+
 			Rect r = EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(200) );
 
 				bool isFocued = r.Contains(Event.current.mousePosition);
-				GUILayout.Label(Event.current.mousePosition.ToString() + " ___ " + isFocued);
+				//GUILayout.Label(Event.current.mousePosition.ToString() + " ___ " + isFocued);
 
 				GUILayout.Label("Nodes", GUI.skin.button);
 
@@ -77,6 +87,10 @@ namespace NT.Graph
 			HandleSceneMenu();
 
 			HandleScriptableDrag();
+		}
+
+		private void OnEnable() {
+			Debug.Log("ASKDJsa");
 		}
 
 
@@ -250,7 +264,6 @@ namespace NT.Graph
 		VariableTreeView variableTreeView;
 		List<TreeViewItem> variableItems = new List<TreeViewItem>();
 		int variablesID = 0;
-
 		Node currentVariableNode = null;
 
 		private void InitializeVariablesTree(){
@@ -271,7 +284,7 @@ namespace NT.Graph
 					string displayName = variable.Replace("NT.Variables.NT", "");
 					NTVariableDictionary varDict = repo.dictionary.values[i];
 
-					if(typeof(ISceneObject).IsAssignableFrom(varDict._dictType)){
+					if(typeof(INTSceneObject).IsAssignableFrom(varDict._dictType)){
 						continue;
 					}
 
@@ -375,7 +388,7 @@ namespace NT.Graph
 					string variable = repo.dictionary.keys[i];
 					NTVariableDictionary varDict = repo.dictionary.values[i];
 
-					if(!typeof(ISceneObject).IsAssignableFrom(varDict._dictType)){
+					if(!typeof(INTSceneObject).IsAssignableFrom(varDict._dictType)){
 						continue;
 					}					
 

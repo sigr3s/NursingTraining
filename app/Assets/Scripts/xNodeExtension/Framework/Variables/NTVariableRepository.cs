@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace NT.Variables
 {
     [Serializable]
     public class NTVariableRepository {
         [SerializeField] public NTTypedDictionary dictionary;
+        [HideInInspector] public UnityEvent onModified;
 
         public NTVariableRepository(){
 
@@ -27,12 +29,14 @@ namespace NT.Variables
                 else{
                     variableTypeDictionary.Add(value.GetKey(),value);
                     dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                    onModified?.Invoke();
                     return true;
                 }
             }
             else{
                 variableTypeDictionary.Add(value.GetKey(),value);
                 dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
+                onModified?.Invoke();
                 return true;
             }
         }
@@ -51,12 +55,14 @@ namespace NT.Variables
                 else{
                     variableTypeDictionary.Add(ntVar.GetKey(),ntVar);
                     dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                    onModified?.Invoke();
                     return true;
                 }
             }
             else{
                 variableTypeDictionary.Add(ntVar.GetKey(),ntVar);
-                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
+                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);                
+                onModified?.Invoke();
                 return true;
             }
         }
@@ -76,12 +82,14 @@ namespace NT.Variables
                 else{
                     variableTypeDictionary.Add(value.GetKey(),value);
                     dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                    onModified?.Invoke();
                     return true;
                 }
             }
             else{
                 variableTypeDictionary.Add(value.GetKey(),value);
-                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);
+                dictionary.Add(newVariableType.ToString(), variableTypeDictionary);                
+                onModified?.Invoke();
                 return true;
             }
         }
@@ -94,6 +102,7 @@ namespace NT.Variables
                 NTVariableDictionary variableTypeDictionary = dictionary[newVariableType.ToString()];
                 variableTypeDictionary.Remove(key);
                 dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                onModified?.Invoke();
             }
         }
 

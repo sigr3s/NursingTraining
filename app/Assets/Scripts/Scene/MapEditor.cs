@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NT;
 using NT.SceneObjects;
+using NT.Variables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +18,7 @@ public class MapEditor : MonoBehaviour{
     [Header("References")]
     public Camera raycastCamera;
     public RuntimeInspector runtimeInspector;
+    public SceneVariables sceneVariables;
 
 
     [Header("Map settings")]
@@ -25,7 +28,7 @@ public class MapEditor : MonoBehaviour{
 
     [Space]
     [Header("Debug")]
-    public DummySceneObject current;
+    public ISceneObject current;
     public GameObject previewGO = null;
     public SceneObjectCollider previewGOSC = null;
     public MapMode mode = MapMode.Inspect;
@@ -40,7 +43,8 @@ public class MapEditor : MonoBehaviour{
     {
         items = new GameObject();
         items.transform.parent = this.transform;
-        items.transform.localPosition = Vector3.zero; 
+        items.transform.localPosition = Vector3.zero;
+        items.name = "Items Container"; 
     }
 
     private void Update() {
@@ -62,7 +66,7 @@ public class MapEditor : MonoBehaviour{
     private bool TryRaycastFromScreen(LayerMask mask, out RaycastHit hit){
         Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit,50, mask)) {
+        if (Physics.Raycast(ray, out hit, 5000, mask)) {
             Transform objectHit = hit.transform;
             if(objectHit != null){
                 return true;
@@ -90,7 +94,7 @@ public class MapEditor : MonoBehaviour{
         if(current == null) return;
 
         if(previewGO == null){
-            previewGO = Instantiate(current.model);
+            previewGO = Instantiate(current.GetModel());
             
             previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
 
@@ -98,8 +102,10 @@ public class MapEditor : MonoBehaviour{
                 previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
             }
 
-            previewGOSC.assignedSo = ScriptableObject.Instantiate(current);
-            previewGOSC.assignedSo.name = current.name + " _ " + previewGO.GetInstanceID();
+            previewGOSC.assignedSo = (ISceneObject) ScriptableObject.Instantiate(current.GetScriptableObject());
+            previewGOSC.assignedSo.SetName(current.GetName() + " _ " + previewGO.GetInstanceID());
+            previewGOSC.isPlacingMode = true;
+
             currentObjectLayer = previewGO.layer;
             previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = placementLayer;} );
         }
@@ -118,7 +124,7 @@ public class MapEditor : MonoBehaviour{
         }
 
 
-        if(TryRaycastFromScreen(current.canBePlacedOver, out RaycastHit hit)){
+        if(TryRaycastFromScreen(current.GetLayerMask(), out RaycastHit hit)){
             Transform objectHit = hit.transform;
             Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
             float x = hitPointOnPlane.x - hitPointOnPlane.x%gridSize;  
@@ -130,9 +136,16 @@ public class MapEditor : MonoBehaviour{
 
                 previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
+                previewGOSC.isPlacingMode = false;
+                Type t = current.GetDataType();
+
+                INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
+                savedSceneObject.SetName(previewGOSC.assignedSo.GetName());
+                savedSceneObject.SetScriptableObject(previewGOSC.assignedSo.GetGUID());
+
+                sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
 
                 previewGO = null;
-
             }
         }
     }
@@ -147,13 +160,14 @@ public class MapEditor : MonoBehaviour{
                 runtimeInspector.SetMouseOver(current);
 
                 if( Input.GetMouseButtonDown(0) ){
-                    runtimeInspector.SetCurrent(current);
+                    object value =  sceneVariables.variableRepository.GetValue(current.GetName(), current.GetDataType());
+                    runtimeInspector.SetCurrent(current, value);
                 }
             }
         }
     }
     
-    public void SetPlacementObject(DummySceneObject sceneObject){
+    public void SetPlacementObject(ISceneObject sceneObject){
         ResetCurrent(true);
 
         current = sceneObject;

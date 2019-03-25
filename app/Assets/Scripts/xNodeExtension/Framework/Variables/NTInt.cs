@@ -6,17 +6,14 @@ namespace NT.Variables
 
     [Serializable]
     public class NTInt : NTVariable<int>{
-        public override void DeserializeDefaultValue(string data){ 
-            int.TryParse(data,out this.value);
+
+        public override int DeserializeValue(string data){ 
+            int i = 0;
+            int.TryParse(data,out i);
+            return i;
         }
 
-        public override void DeserializeValue(string data){ 
-            int.TryParse(data,out this.defaultValue);
-        }
-
-        public override string SerializeDefaultValue(){ return defaultValue.ToString(); }
-
-        public override string SerializeValue(){ return value.ToString(); }
+        public override string SerializeValue(int i){ return i.ToString(); }
 
          public override bool Evaluate(Operator op, string value, bool isLeft){
 

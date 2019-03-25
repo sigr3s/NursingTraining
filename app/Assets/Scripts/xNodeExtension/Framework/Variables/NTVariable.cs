@@ -20,32 +20,24 @@ namespace NT.Variables
         }
 
         public void OnAfterDeserialize(){
-            DeserializeValue(serializedData.Value);
-            DeserializeDefaultValue(serializedData.Value);
+            value =  DeserializeValue(serializedData.Value);
+            defaultValue = DeserializeValue(serializedData.DefaultValue);
         }
 
         public void OnBeforeSerialize(){ 
-           serializedData.Value =  SerializeValue();
-           serializedData.DefaultValue = SerializeDefaultValue();
+           serializedData.Value =  SerializeValue(value);
+           serializedData.DefaultValue = SerializeValue(defaultValue);
         }
 
-        public virtual void DeserializeValue(string data){ 
+        public virtual T DeserializeValue(string data){ 
             if(string.IsNullOrEmpty(data)){ 
-                return;
+                return default(T);
             } 
-            value = JsonUtility.FromJson<T>(data); 
+            return JsonUtility.FromJson<T>(data); 
         }
 
-        public virtual void DeserializeDefaultValue(string data){ 
-            if(string.IsNullOrEmpty(data)){ 
-                return;
-            }
-            defaultValue = JsonUtility.FromJson<T>(data);
-        }
 
-        public virtual string SerializeValue(){ return JsonUtility.ToJson(value);}
-        public virtual string SerializeDefaultValue(){ return JsonUtility.ToJson(defaultValue);}
-
+        public virtual string SerializeValue(T val){ return JsonUtility.ToJson(val);}
 
         public override void SetValue(object value){
             this.value = (T) value;

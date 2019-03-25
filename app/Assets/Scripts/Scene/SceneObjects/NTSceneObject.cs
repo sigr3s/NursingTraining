@@ -1,32 +1,52 @@
 
-
-using System;
-using System.Collections.Generic;
 using NT.Variables;
 using UnityEngine;
 
 namespace NT.SceneObjects
 {
-    public class NTSceneObject<T> : NTVariable<T>, ISceneObject
+
+    public class NTSceneObject<T> : NTVariable<T>, INTSceneObject
     {
-        public List<string> GetCallbacks()
+
+        public string sceneObject;
+
+        public NTSceneObject()
         {
-            throw new NotImplementedException();
         }
 
-        public List<Type> GetCompatibleNodes()
-        {
-            throw new NotImplementedException();
+        public override T DeserializeValue(string data){ 
+            if(string.IsNullOrEmpty(data)){ 
+                return default(T);
+            }
+            SerializationHelper sh =  JsonUtility.FromJson<SerializationHelper>(data);
+            
+            sceneObject = sh.sceneObjectGUID;
+            
+            return sh.value;  
+         }
+
+        public override string SerializeValue(T val){
+            SerializationHelper sh = new SerializationHelper{value = val, sceneObjectGUID = sceneObject};
+
+            return JsonUtility.ToJson(sh); 
         }
 
-        public GameObject GetModel()
+        public void SetName(string name)
         {
-            throw new NotImplementedException();
+            SetKey(name);
         }
 
-        public Vector2 GetSize()
+        public void SetScriptableObject(string guid)
         {
-            throw new NotImplementedException();
+            sceneObject = guid;
         }
+
+        private struct SerializationHelper{
+            public string sceneObjectGUID;
+            public T value;
+        }
+
+        
     }
+
 }
