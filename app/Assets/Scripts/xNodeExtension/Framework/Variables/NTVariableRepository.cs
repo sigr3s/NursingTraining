@@ -15,6 +15,7 @@ namespace NT.Variables
         public NTVariableRepository(){
 
             dictionary = new NTTypedDictionary();
+            onModified = new UnityEvent();
         }
 
         public bool AddVariable<T>(T value) where T: NTVariable{

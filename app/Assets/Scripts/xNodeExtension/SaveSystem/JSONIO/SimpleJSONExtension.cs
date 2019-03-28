@@ -52,6 +52,8 @@ public static class SimpleJSONExtension {
 
             object fieldObject = field.GetValue(o);
 
+            if(fieldObject == null) continue;
+
             List<Type> visited = new List<Type>(visitedTypes);
             asignedReference = false;
 

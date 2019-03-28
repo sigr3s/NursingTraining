@@ -8,27 +8,21 @@ namespace NT.SceneObjects
     public class NTSceneObject<T> : NTVariable<T>, INTSceneObject
     {
 
-        public string sceneObject;
+        public SceneObjectExtraData sceneObjectExtraData;
 
         public NTSceneObject()
         {
         }
 
-        public override T DeserializeValue(string data){ 
-            if(string.IsNullOrEmpty(data)){ 
-                return default(T);
-            }
-            SerializationHelper sh =  JsonUtility.FromJson<SerializationHelper>(data);
-            
-            sceneObject = sh.sceneObjectGUID;
-            
-            return sh.value;  
-         }
+        public override string SerializeExtraData()
+        {
+            return JsonUtility.ToJson(sceneObjectExtraData);
+        }
 
-        public override string SerializeValue(T val){
-            SerializationHelper sh = new SerializationHelper{value = val, sceneObjectGUID = sceneObject};
-
-            return JsonUtility.ToJson(sh); 
+        public override void DeserializeExtraData(string ExtraData){
+            if(string.IsNullOrEmpty(ExtraData)) return;
+            
+            sceneObjectExtraData = JsonUtility.FromJson<SceneObjectExtraData>(ExtraData);
         }
 
         public void SetName(string name)
@@ -36,14 +30,25 @@ namespace NT.SceneObjects
             SetKey(name);
         }
 
-        public void SetScriptableObject(string guid)
+        public void SetPosition(Vector3 position)
         {
-            sceneObject = guid;
+            sceneObjectExtraData.position = position;
         }
 
-        private struct SerializationHelper{
+        public void SetRotation(Vector3 rotation)
+        {
+            sceneObjectExtraData.rotation = rotation;
+        }
+
+        public void SetScriptableObject(string guid)
+        {
+            sceneObjectExtraData.sceneObjectGUID = guid;
+        }
+
+        public struct SceneObjectExtraData{
             public string sceneObjectGUID;
-            public T value;
+            public Vector3 position;
+            public Vector3 rotation;
         }
 
         

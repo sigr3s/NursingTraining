@@ -16,6 +16,7 @@ namespace NT.SceneObjects
     [Serializable]
     public struct SurgeonDAT{
         public string lastSaid2;
+        public bool isOn;
     }
 
     [Serializable]

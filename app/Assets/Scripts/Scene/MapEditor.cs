@@ -6,19 +6,26 @@ using NT.SceneObjects;
 using NT.Variables;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MapEditor : MonoBehaviour{   
     public enum MapMode{
-        Placing,
+        Build,
         Edit,
         Inspect,
-        Remove
+        Delete
     }
 
     [Header("References")]
     public Camera raycastCamera;
     public RuntimeInspector runtimeInspector;
     public SceneVariables sceneVariables;
+
+
+    [Header("UI")]
+    public Toggle BuildToggle;
+    public Toggle InspectToggle;
+    public Toggle DeleteToggle;
 
 
     [Header("Map settings")]
@@ -31,10 +38,31 @@ public class MapEditor : MonoBehaviour{
     public ISceneObject current;
     public GameObject previewGO = null;
     public SceneObjectCollider previewGOSC = null;
-    public MapMode mode = MapMode.Inspect;
     
+    private MapMode _mode = MapMode.Inspect;
 
-    
+    public MapMode mode{
+        get{
+            return _mode;
+        }
+        set{
+            _mode = value;
+
+            switch(_mode){
+                case MapMode.Build:
+                    BuildToggle.isOn = true;
+                break;
+                case MapMode.Inspect:
+                    InspectToggle.isOn = true;
+                break;
+                case MapMode.Delete:
+                    DeleteToggle.isOn = true;
+                break;
+            }
+
+            ResetCurrent(true, false);
+        }
+    }   
     private GameObject items;
     private LayerMask currentObjectLayer;
     public LayerMask allExceptFloor = ~0;
@@ -45,16 +73,25 @@ public class MapEditor : MonoBehaviour{
         items.transform.parent = this.transform;
         items.transform.localPosition = Vector3.zero;
         items.name = "Items Container"; 
+
+        sceneVariables = SceneManager.Instance.sceneVariables;
+
+        BuildToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Build;});
+        InspectToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Inspect;});
+        DeleteToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Delete;});
+
+        mode = MapMode.Build;
     }
 
     private void Update() {
+    
+        if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Build; }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; }
+
         if(EventSystem.current.IsPointerOverGameObject()) return;
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Placing; ResetCurrent(true, false); }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; ResetCurrent(true, false); }
-
         switch(mode){
-            case MapMode.Placing:
+            case MapMode.Build:
                 PlaceObject();
             break;
             case MapMode.Inspect:
@@ -142,6 +179,9 @@ public class MapEditor : MonoBehaviour{
                 INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
                 savedSceneObject.SetName(previewGOSC.assignedSo.GetName());
                 savedSceneObject.SetScriptableObject(previewGOSC.assignedSo.GetGUID());
+                savedSceneObject.SetPosition(previewGOSC.transform.localPosition);
+                savedSceneObject.SetRotation(previewGOSC.transform.localRotation.eulerAngles);
+                
 
                 sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
 

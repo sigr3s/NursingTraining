@@ -8,6 +8,7 @@ namespace NT.Variables
         [SerializeField] public string Name;
         [SerializeField] public string Value;
         [SerializeField] public string DefaultValue;
+        [SerializeField] public string ExtraData;
     }
 
     [Serializable]
@@ -21,12 +22,23 @@ namespace NT.Variables
 
         public void OnAfterDeserialize(){
             value =  DeserializeValue(serializedData.Value);
-            defaultValue = DeserializeValue(serializedData.DefaultValue);
+            defaultValue = DeserializeValue(serializedData.DefaultValue);           
+            DeserializeExtraData(serializedData.ExtraData);
         }
 
         public void OnBeforeSerialize(){ 
            serializedData.Value =  SerializeValue(value);
            serializedData.DefaultValue = SerializeValue(defaultValue);
+           serializedData.ExtraData = SerializeExtraData();
+        }
+
+        public virtual string SerializeExtraData()
+        {
+            return "";
+        }
+
+        public virtual void DeserializeExtraData(string ExtraData){
+
         }
 
         public virtual T DeserializeValue(string data){ 

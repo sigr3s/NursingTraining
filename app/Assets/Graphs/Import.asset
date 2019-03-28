@@ -12,9 +12,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c44cd277719312e4b9bf7118f8de80aa, type: 3}
   m_Name: Import
   m_EditorClassIdentifier: 
-  nodes: []
+  nodes:
+  - {fileID: 114396156827227882}
+  - {fileID: 114698585984211742}
   executionNodes: []
   callbackNodes: []
   loadFile: Import.json
   sceneVariables: {fileID: 11400000, guid: bdd8d6e06005ec946a3246ec52c522e8, type: 2}
   message: 
+--- !u!114 &114396156827227882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f12fb12175cf2a4e82cbcad0c0cf255, type: 3}
+  m_Name: Bed _ -71402 - p0Content
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -361.9026, y: -425.4359}
+  ports:
+    keys:
+    - variable
+    values:
+    - _fieldName: variable
+      _node: {fileID: 114396156827227882}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 1
+  hasError: 0
+  error: 
+  isExecuting: 0
+  typeString: NT.SceneObjects.NTDummySceneObject, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  variableKey: Bed _ -71402
+  dataTypeString: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  variablePath: p0Content
+--- !u!114 &114698585984211742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f12fb12175cf2a4e82cbcad0c0cf255, type: 3}
+  m_Name: Defibrilator _ -73438 - p0Content
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -268.32385, y: -213.50314}
+  ports:
+    keys:
+    - variable
+    values:
+    - _fieldName: variable
+      _node: {fileID: 114698585984211742}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 1
+  hasError: 0
+  error: 
+  isExecuting: 0
+  typeString: NT.SceneObjects.NTDummySceneObject, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  variableKey: Defibrilator _ -73438
+  dataTypeString: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  variablePath: p0Content
