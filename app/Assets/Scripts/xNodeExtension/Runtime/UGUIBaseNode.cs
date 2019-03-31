@@ -45,8 +45,11 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
             foreach(KeyValuePair<Type, List<string>> kvp in d){
                 foreach(string variable in kvp.Value){
                     GameObject variableGo =  Instantiate(graph.stringPtoperty, body.transform);
-                    variableGo.transform.Find("Label").GetComponent<Text>().text = variable;
-                    variableGo.transform.Find("Value").GetComponent<InputField>().text = ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node).ToString();
+
+
+                    GUIProperty  gp = variableGo.GetComponent<GUIProperty>();
+
+                    gp.SetData(ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node).ToString(), variable, GUIProperty.PropertyType.String );
                 }
             }
         }

@@ -27,6 +27,8 @@ public class MapEditor : MonoBehaviour{
     public Toggle InspectToggle;
     public Toggle DeleteToggle;
 
+    public MapRaycast mapRaycast;
+
 
     [Header("Map settings")]
     public float gridSize = 0.1f;
@@ -88,7 +90,9 @@ public class MapEditor : MonoBehaviour{
         if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Build; }
         if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; }
 
-        if(EventSystem.current.IsPointerOverGameObject()) return;
+        if(!mapRaycast.shouldRaycastMap){
+            return;
+        }
 
         switch(mode){
             case MapMode.Build:
@@ -101,7 +105,11 @@ public class MapEditor : MonoBehaviour{
     }
 
     private bool TryRaycastFromScreen(LayerMask mask, out RaycastHit hit){
-        Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
+
+        //Compute position from screen to RaycastMap
+
+        //Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = raycastCamera.ViewportPointToRay(mapRaycast.textureCoords);
 
         if (Physics.Raycast(ray, out hit, 5000, mask)) {
             Transform objectHit = hit.transform;

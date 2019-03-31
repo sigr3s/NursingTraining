@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672257177029766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b85b1a2122bf5499f5a5e4c8e22fca, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b026f45a125e6941a1e667b5e902af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 224047001452284434}
@@ -1263,8 +1263,8 @@ MonoBehaviour:
   m_Vertical: 1
   m_MovementType: 0
   m_Elasticity: 0.1
-  m_Inertia: 1
-  m_DecelerationRate: 0.0001
+  m_Inertia: 0
+  m_DecelerationRate: 1
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 224455174510274828}
   m_HorizontalScrollbar: {fileID: 0}
