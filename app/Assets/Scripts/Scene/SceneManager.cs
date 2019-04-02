@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using NT.Graph;
+using NT.SceneObjects;
 using NT.Variables;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SceneManager : Singleton<SceneManager> {
     private SceneVariables _sceneVariables;
@@ -19,5 +21,23 @@ public class SceneManager : Singleton<SceneManager> {
 
     public SceneGraph sceneGraph;
     public List<NTGraph> sceneObjectsGraph;
+
+    private ISceneObject _currentObject;
+    public ISceneObject currentObject{
+        get{
+            return _currentObject;
+        }
+
+        set{
+            _currentObject = value;
+            OnCurrentChanged.Invoke();
+        }
+    }
+
+    public UnityEvent OnCurrentChanged = new UnityEvent();
+
+
+
+
 
 }

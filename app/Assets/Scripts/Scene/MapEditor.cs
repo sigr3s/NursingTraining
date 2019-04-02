@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MapEditor : MonoBehaviour{   
-    public enum MapMode{
+    public enum MapMode{         
         Build,
         Edit,
         Inspect,
@@ -18,16 +18,13 @@ public class MapEditor : MonoBehaviour{
 
     [Header("References")]
     public Camera raycastCamera;
-    public RuntimeInspector runtimeInspector;
-    public SceneVariables sceneVariables;
-
-
-    [Header("UI")]
     public Toggle BuildToggle;
     public Toggle InspectToggle;
     public Toggle DeleteToggle;
-
     public MapRaycast mapRaycast;
+    public Transform objectList;
+    public Transform mapPivot;
+
 
 
     [Header("Map settings")]
@@ -35,11 +32,20 @@ public class MapEditor : MonoBehaviour{
     public int selectedObject  = 0;
     public int placementLayer = 11;
 
-    [Space]
+
+    [Header("Map Object list")]
+    public SceneObjects sceneObjects;
+    public GameObject sceneObjectUiPrefab;
+    
     [Header("Debug")]
-    public ISceneObject current;
+    [Space(50)]
     public GameObject previewGO = null;
     public SceneObjectCollider previewGOSC = null;
+    public SceneVariables sceneVariables;
+
+    private ISceneObject current;
+
+
     
     private MapMode _mode = MapMode.Inspect;
 
@@ -69,10 +75,30 @@ public class MapEditor : MonoBehaviour{
     private LayerMask currentObjectLayer;
     public LayerMask allExceptFloor = ~0;
 
+     private void Awake() {
+        foreach (var so in sceneObjects.objectSet)
+        {
+            ISceneObject isc = (ISceneObject) so;
+
+            if(isc == null) continue;
+
+            UISceneObject uisc = isc.GetUISceneObject();
+            
+            GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);            
+            Button button =  soButton.GetComponent<Button>();
+
+            button.onClick.AddListener(() =>{ SetPlacementObject(isc); });
+
+            button.targetGraphic.color = uisc.color;
+            soButton.transform.Find("Icon").GetComponent<Image>().sprite = uisc.icon;
+
+        }
+    }
+
     void Start()
     {
         items = new GameObject();
-        items.transform.parent = this.transform;
+        items.transform.parent = mapPivot;
         items.transform.localPosition = Vector3.zero;
         items.name = "Items Container"; 
 
@@ -205,11 +231,13 @@ public class MapEditor : MonoBehaviour{
             if(soc != null){
                 current = soc.assignedSo;
 
-                runtimeInspector.SetMouseOver(current);
+                //runtimeInspector.SetMouseOver(current);
 
                 if( Input.GetMouseButtonDown(0) ){
-                    object value =  sceneVariables.variableRepository.GetValue(current.GetName(), current.GetDataType());
-                    runtimeInspector.SetCurrent(current, value);
+                    //object value =  sceneVariables.variableRepository.GetValue(current.GetName(), current.GetDataType());
+                    //runtimeInspector.SetCurrent(current, value);
+
+                    SceneManager.Instance.currentObject = current;
                 }
             }
         }

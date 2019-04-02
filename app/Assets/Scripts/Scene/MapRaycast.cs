@@ -7,6 +7,8 @@ public class MapRaycast : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     public bool shouldRaycastMap = false;
 
+    public CameraRotation cameraRotation;
+
     RectTransform _rectTransform;
     RectTransform rectTransform{
         get{
@@ -38,10 +40,12 @@ public class MapRaycast : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         shouldRaycastMap = true;
+        cameraRotation.hasFocus = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        shouldRaycastMap = true;
+        shouldRaycastMap = false;
+        cameraRotation.hasFocus = false;
     }
 }

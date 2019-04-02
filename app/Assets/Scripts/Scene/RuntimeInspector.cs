@@ -1,3 +1,4 @@
+using System;
 using NT;
 using NT.SceneObjects;
 using NT.Variables;
@@ -15,6 +16,18 @@ public class RuntimeInspector : GUIInspector {
     [Header("Debug")]
     public ISceneObject current;
 
+    private void Start() {
+        SceneManager.Instance.OnCurrentChanged.AddListener(OnCurrentChanged);
+    }
+
+    private void OnCurrentChanged()
+    {
+        current = SceneManager.Instance.currentObject;
+
+        object value =  SceneManager.Instance.sceneVariables.variableRepository.GetValue(current.GetName(), current.GetDataType());
+
+        SetCurrent(current, value);
+    }
 
     public void SetCurrent(ISceneObject dso, object Value, GameObject currentGo = null){
         current = dso;

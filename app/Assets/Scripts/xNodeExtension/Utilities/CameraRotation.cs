@@ -15,6 +15,8 @@ public class CameraRotation : MonoBehaviour
  
     public float distanceMin = .5f;
     public float distanceMax = 15f;
+
+    public bool hasFocus = false;
  
 
     public LayerMask floor;
@@ -32,6 +34,8 @@ public class CameraRotation : MonoBehaviour
  
     void LateUpdate () 
     {
+        if(!hasFocus) return;
+                
         if (target) 
         {
             if(Input.GetKey(KeyCode.LeftArrow) )    x +=  xSpeed * distance * 0.02f;
