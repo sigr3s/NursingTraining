@@ -30,6 +30,8 @@ public class CameraRotation : MonoBehaviour
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+
+        ApplyRotation();
     }
  
     void LateUpdate () 
@@ -38,29 +40,35 @@ public class CameraRotation : MonoBehaviour
                 
         if (target) 
         {
+
+
             if(Input.GetKey(KeyCode.LeftArrow) )    x +=  xSpeed * distance * 0.02f;
             if(Input.GetKey(KeyCode.RightArrow) )   x -=  xSpeed * distance * 0.02f;
 
             if(Input.GetKey(KeyCode.UpArrow) )      y +=  ySpeed * 0.02f; 
             if(Input.GetKey(KeyCode.DownArrow) )    y -=  ySpeed * 0.02f;
  
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
- 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
- 
-            distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel")*scrollSpeed, distanceMin, distanceMax);
- 
-            RaycastHit hit;
-            if (Physics.Linecast (target.position, transform.position, out hit, floor)) 
-            {
-                distance -=  hit.distance;
-            }
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            Vector3 position = rotation * negDistance + target.position;
- 
-            transform.rotation = rotation;
-            transform.position = position;
+            ApplyRotation();
         }
+    }
+
+    void ApplyRotation(){
+        y = ClampAngle(y, yMinLimit, yMaxLimit);
+ 
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+        distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel")*scrollSpeed, distanceMin, distanceMax);
+
+        RaycastHit hit;
+        if (Physics.Linecast (target.position, transform.position, out hit, floor)) 
+        {
+            distance -=  hit.distance;
+        }
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+        Vector3 position = rotation * negDistance + target.position;
+
+        transform.rotation = rotation;
+        transform.position = position;
     }
  
     public static float ClampAngle(float angle, float min, float max)

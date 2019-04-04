@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GUIHierarchy : MonoBehaviour {
     public GameObject prefab;
@@ -57,6 +58,8 @@ public class GUIHierarchy : MonoBehaviour {
         {
             UIFor(rootItem, content.transform);
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
     }
 
     public void UIFor(HierarchyModel model, Transform parent){

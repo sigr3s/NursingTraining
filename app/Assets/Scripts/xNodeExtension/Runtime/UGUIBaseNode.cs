@@ -50,6 +50,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
                     GUIProperty  gp = variableGo.GetComponent<GUIProperty>();
 
                     gp.SetData(ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node).ToString(), variable, GUIProperty.PropertyType.String );
+                    gp.OnValueChanged.AddListener(PropertyChanged);
                 }
             }
         }
@@ -57,10 +58,11 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
         {
             gameObject.SetActive(false);
         }
+    }
 
-
-        //baseImage =  GetComponent<Image>();
-
+    private void PropertyChanged(object arg0, string path)
+    {
+       Debug.Log("Changed something from editor " + path);
     }
 
     public void OnDrag(PointerEventData eventData) {

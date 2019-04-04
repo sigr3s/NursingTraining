@@ -1,6 +1,12 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
+using UnityEngine.Events;
+
+public class PropertyChangedEvent : UnityEvent<object, string>{
+
+}
 
 public class GUIProperty : MonoBehaviour {
 
@@ -8,6 +14,9 @@ public class GUIProperty : MonoBehaviour {
     public TextMeshProUGUI fieldName;
     public InputField textInput;
     public Toggle boolInput;
+
+
+    public PropertyChangedEvent OnValueChanged = new PropertyChangedEvent();
 
     
     [Header("Debug")]
@@ -33,6 +42,8 @@ public class GUIProperty : MonoBehaviour {
                 textInput.contentType = InputField.ContentType.Alphanumeric;
                 textInput.text = (string) data;
 
+
+                textInput.onEndEdit.AddListener(ModifyPropertyString);
             break;
             case PropertyType.Number:
                 boolInput.gameObject.SetActive(false);
@@ -41,6 +52,7 @@ public class GUIProperty : MonoBehaviour {
                 textInput.contentType = InputField.ContentType.DecimalNumber;
 
                 textInput.text = (data).ToString();
+                textInput.onEndEdit.AddListener(ModifyPropertyNumber);
             break;
             case PropertyType.Boolean:
                 boolInput.gameObject.SetActive(true);
@@ -49,6 +61,7 @@ public class GUIProperty : MonoBehaviour {
                 bool value = (bool) data;
 
                 boolInput.isOn = value;
+                boolInput.onValueChanged.AddListener(ModifyPropertyBool);
             break;
         }
         int start = path.LastIndexOf('/');
@@ -56,5 +69,21 @@ public class GUIProperty : MonoBehaviour {
         start = start >= 0 ? start + 1 : 0;
 
         fieldName.text = path.Substring(start, path.Length - start);
+        this.path = path;
+    }
+
+    private void ModifyPropertyNumber(string arg0)
+    {
+        OnValueChanged.Invoke(arg0, path);
+    }
+
+    private void ModifyPropertyBool(bool arg0)
+    {
+        OnValueChanged.Invoke(arg0, path);
+    }
+
+    private void ModifyPropertyString(string arg0)
+    {
+        OnValueChanged.Invoke(arg0, path);
     }
 }

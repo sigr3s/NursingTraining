@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR || ( !UNITY_ANDROID && !UNITY_IOS )
-#define ENABLE_CURSOR_MANAGEMENT
-#endif
+﻿#define ENABLE_CURSOR_MANAGEMENT
 
 using UnityEngine;
 using UnityEngine.EventSystems;

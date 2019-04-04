@@ -31,14 +31,14 @@ public class SceneHierarchy : GUIHierarchy {
             {
                 HierarchyModel model = new HierarchyModel(new HierarchyData{ name = kvpi.Key });
 
-                var d = ReflectionUtilities.DesgloseInBasicTypes(kvpi.Value.GetDataType() );
+                //var d = ReflectionUtilities.DesgloseInBasicTypes(kvpi.Value.GetDataType() );
 
-                foreach (var dv in d)
-                {
-                    foreach(string var in dv.Value){
-                        model.AddChild(new HierarchyModel(new HierarchyData{name = var}));
-                    }
-                }
+                //foreach (var dv in d)
+                //{
+                //    foreach(string var in dv.Value){
+                //        model.AddChild(new HierarchyModel(new HierarchyData{name = var}));
+                //    }
+                //}
                    
                 root.Add(model);
 

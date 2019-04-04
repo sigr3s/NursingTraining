@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NT;
@@ -121,7 +122,8 @@ public class GUIInspector : MonoBehaviour {
                 instancedProperty.transform.SetParent(pathParent.transform);
 
                 properties.Add(gp);
-                
+
+                gp.OnValueChanged.RemoveAllListeners();                
 
                 if(deglossedType.Key.IsString()){
                     gp.SetData( ReflectionUtilities.GetValueOf(path.ToList(), o), propertyPath, GUIProperty.PropertyType.String);
@@ -135,9 +137,14 @@ public class GUIInspector : MonoBehaviour {
                 {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), o), propertyPath, GUIProperty.PropertyType.Boolean);
                 }
+
+                gp.OnValueChanged.AddListener(OnPropertyChanged);
             }
         }
     }
 
-
+    private void OnPropertyChanged(object arg0, string arg1)
+    {
+       Debug.Log("Property changed at  " + arg1);
+    }
 }

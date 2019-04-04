@@ -74,6 +74,7 @@ public class GUIHierarchyItem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     public void OnDrag(PointerEventData data)
     {
+        
         if (m_DraggingIcon != null)
             SetDraggedPosition(data);
     }
@@ -94,6 +95,8 @@ public class GUIHierarchyItem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("End dragging node???");
+
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
     }
