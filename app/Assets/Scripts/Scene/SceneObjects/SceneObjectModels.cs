@@ -16,4 +16,11 @@ namespace NT.SceneObjects
 
     }
 
+    [System.Serializable]
+    public struct SceneObjectExtraData{
+        public string sceneObjectGUID;
+        public Vector3 position;
+        public Vector3 rotation;
+    }
+
 }

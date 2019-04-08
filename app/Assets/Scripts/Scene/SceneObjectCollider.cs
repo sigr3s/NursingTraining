@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using cakeslice;
 using NT;
@@ -82,7 +83,8 @@ public class SceneObjectCollider : MonoBehaviour
     }
     
     public bool isPlacingMode = false;
-    public ISceneObject assignedSo;
+    public string NTKey;
+    public Type NTDataType;
 
     public List<Outline> renderersOutlines;
 
@@ -103,18 +105,12 @@ public class SceneObjectCollider : MonoBehaviour
         if(!isPlacingMode) return;
 
         isColliding = true;
-        //if(errorBox != null){
-        //    errorBox.SetActive(true);
-        //}
     }
 
     private void OnTriggerExit(Collider other) {
         if(!isPlacingMode) return;
         
         isColliding = false;
-        //if(errorBox != null){
-        //   errorBox.SetActive(false);        
-        //}
     }
 
 }

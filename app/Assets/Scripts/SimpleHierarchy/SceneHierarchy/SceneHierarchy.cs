@@ -5,17 +5,23 @@ using NT.Variables;
 using UnityEngine;
 
 public class SceneHierarchy : GUIHierarchy {
-    public SceneVariables variables;
 
     private void Start() {
-        variables =   SceneManager.Instance.sceneVariables;
-        variables.variableRepository.onModified.AddListener(Rebuild);
+        SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
+        SessionManager.Instance.OnSessionLoaded.AddListener(Rehook);
+    }
+
+    private void Rehook(){
+        SessionManager.Instance.sceneVariables.variableRepository.onModified.RemoveListener(Rebuild);
+        SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
+
+        Rebuild();
     }
 
     public override List<HierarchyModel> GetRoot(){
         List<HierarchyModel> root = new List<HierarchyModel>();
 
-        NTVariableRepository repo = variables.variableRepository;
+        NTVariableRepository repo = SessionManager.Instance.sceneVariables.variableRepository;
 
         foreach (var kvp in repo.dictionary)
         {

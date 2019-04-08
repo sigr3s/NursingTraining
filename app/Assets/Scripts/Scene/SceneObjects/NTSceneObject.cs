@@ -45,13 +45,9 @@ namespace NT.SceneObjects
             sceneObjectExtraData.sceneObjectGUID = guid;
         }
 
-        public struct SceneObjectExtraData{
-            public string sceneObjectGUID;
-            public Vector3 position;
-            public Vector3 rotation;
+        public SceneObjectExtraData GetExtraData(){
+            return sceneObjectExtraData;
         }
-
-        
     }
 
 }

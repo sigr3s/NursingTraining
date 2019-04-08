@@ -117,8 +117,12 @@ namespace  NT.Graph
 
         [ContextMenu("Export")]
         public void Export(){
+            Export(Application.dataPath + "/" + name + ".json");
+        }
+
+        public void Export(string path){
             JSONImportExport jep = new JSONImportExport();
-            jep.Export(this, Application.dataPath + "/" + name + ".json");
+            jep.Export(this, path);      
         }
 
         [ContextMenu("Import")]

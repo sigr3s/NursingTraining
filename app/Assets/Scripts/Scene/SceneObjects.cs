@@ -7,4 +7,16 @@ using UnityEngine;
 public class SceneObjects : ScriptableObject {
     public List<SceneObject> objectSet;
 
+
+    public SceneObject GetObject(string guid){
+        if(string.IsNullOrEmpty(guid)) return null;
+
+        foreach (var item in objectSet)
+        {
+            if(guid.Equals(item.GetGUID())) return item;
+        }
+
+        return null;
+    }
+
 }

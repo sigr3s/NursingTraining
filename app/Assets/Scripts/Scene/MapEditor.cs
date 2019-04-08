@@ -40,7 +40,6 @@ public class MapEditor : MonoBehaviour{
     [Space(50)]
     public GameObject previewGO = null;
     public SceneObjectCollider previewGOSC = null;
-    public SceneVariables sceneVariables;
 
     private ISceneObject current;
     private SceneObjectCollider currentSO;
@@ -98,18 +97,63 @@ public class MapEditor : MonoBehaviour{
 
     void Start()
     {
-        items = new GameObject();
-        items.transform.parent = mapPivot;
-        items.transform.localPosition = Vector3.zero;
-        items.name = "Items Container"; 
-
-        sceneVariables = SceneManager.Instance.sceneVariables;
-
         BuildToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Build;});
         InspectToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Inspect;});
         DeleteToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Delete;});
 
         mode = MapMode.Build;
+
+        SessionManager.Instance.OnSessionLoaded.AddListener(LoadMap);
+
+        LoadMap();
+    }
+
+    private void LoadMap(){
+        if(items != null){
+            Destroy(items);
+        }
+
+        items = new GameObject();
+        items.transform.parent = mapPivot;
+        items.transform.localPosition = Vector3.zero;
+        items.name = "Items Container"; 
+
+        NTVariableRepository repo = SessionManager.Instance.sceneVariables.variableRepository;
+
+        foreach (var kvp in repo.dictionary)
+        {
+            string variable = kvp.Key;
+            string displayName = variable.Replace("NT.Variables.NT", "");
+            NTVariableDictionary varDict = kvp.Value;
+
+            if(!typeof(INTSceneObject).IsAssignableFrom(varDict._dictType)){
+                continue;
+            }
+
+            foreach (var kvpi in varDict)
+            {
+                INTSceneObject intSO =  (INTSceneObject) kvpi.Value;
+
+                SceneObjectExtraData sed =  intSO.GetExtraData();
+                SceneObject so = sceneObjects.GetObject(sed.sceneObjectGUID);
+
+                if(so != null){
+                    GameObject previewGO = Instantiate(so.GetModel(), items.transform);
+            
+                    SceneObjectCollider previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
+
+                    if(previewGOSC == null){
+                        previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
+                    }
+
+                    previewGOSC.NTKey = kvpi.Key;
+                    previewGOSC.NTDataType = varDict._dictType;
+
+                }
+            }
+
+        }
+
     }
 
     private void Update() {
@@ -175,8 +219,6 @@ public class MapEditor : MonoBehaviour{
                 previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
             }
 
-            previewGOSC.assignedSo = (ISceneObject) ScriptableObject.Instantiate(current.GetScriptableObject());
-            previewGOSC.assignedSo.SetName(current.GetName() + " _ " + previewGO.GetInstanceID());
             previewGOSC.isPlacingMode = true;
 
             currentObjectLayer = previewGO.layer;
@@ -211,15 +253,20 @@ public class MapEditor : MonoBehaviour{
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
                 previewGOSC.isPlacingMode = false;
                 Type t = current.GetDataType();
+                string key = current.GetName() + previewGO.GetHashCode();
 
                 INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
-                savedSceneObject.SetName(previewGOSC.assignedSo.GetName());
-                savedSceneObject.SetScriptableObject(previewGOSC.assignedSo.GetGUID());
+                savedSceneObject.SetName(key);
+                savedSceneObject.SetScriptableObject(current.GetGUID());
+
                 savedSceneObject.SetPosition(previewGOSC.transform.localPosition);
                 savedSceneObject.SetRotation(previewGOSC.transform.localRotation.eulerAngles);
                 
 
-                sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
+                SessionManager.Instance.sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
+
+                previewGOSC.NTDataType = t;
+                previewGOSC.NTKey = key;
 
                 previewGO = null;
             }
@@ -237,14 +284,13 @@ public class MapEditor : MonoBehaviour{
 
                 currentSO = soc;
                 currentSO.isMouseOver = true;
-                current = soc.assignedSo;
 
                 if( Input.GetMouseButtonDown(0) ){
-                    SceneManager.Instance.currentObject = current;
                     if(selectedSO != null) selectedSO.isSelected = false;
 
                     currentSO.isSelected = true;
                     selectedSO = currentSO;
+                    SessionManager.Instance.selectedSceneObject = selectedSO;
                 }
             }
             else if(currentSO != null){
