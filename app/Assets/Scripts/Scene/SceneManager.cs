@@ -36,7 +36,19 @@ public class SceneManager : Singleton<SceneManager> {
 
     public UnityEvent OnCurrentChanged = new UnityEvent();
 
+    
 
+
+    //Import export!
+
+    public void SaveSession(){
+
+    }
+
+
+    public void LoadSession(){
+
+    }
 
 
 

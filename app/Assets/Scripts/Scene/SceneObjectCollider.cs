@@ -1,31 +1,120 @@
+using System.Collections.Generic;
+using cakeslice;
 using NT;
 using NT.SceneObjects;
 using UnityEngine;
 
 public class SceneObjectCollider : MonoBehaviour
 {
+    private bool _isColliding = false;
+    public bool isColliding{
+        get{
+            return _isColliding;
+        }
+        set{
+            _isColliding = value;
 
-    public bool colliding = false;
-    public GameObject errorBox;
+            if(_isColliding){
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = true;
+                    rendererOutline.color = 2;
+                }
+            }
+            else
+            {
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = false;
+                }
+            }
+        }
+    }
+    
+    private bool _isMouseOver = false;
+    public bool isMouseOver{
+        get{
+            return _isMouseOver;
+        }
+        set{
+            _isMouseOver = value;
+
+            if(_isMouseOver && !_isSelected){
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = true;
+                    rendererOutline.color = 1;
+                }
+            }
+            else if(!_isSelected)
+            {
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = false;
+                }
+            }
+        }
+    }
+
+    private bool _isSelected = false;
+    public bool isSelected{
+        get{
+            return _isSelected;
+        }
+        set{
+            _isSelected = value;
+
+            if(_isSelected){
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = true;
+                    rendererOutline.color = 0;
+                }
+            }
+            else if(!isMouseOver)
+            {
+                foreach (var rendererOutline in renderersOutlines)
+                {
+                    rendererOutline.enabled = false;
+                }
+            }
+        }
+    }
+    
     public bool isPlacingMode = false;
     public ISceneObject assignedSo;
+
+    public List<Outline> renderersOutlines;
+
+    private void Awake() {
+        List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
+        renderersOutlines = new List<Outline>();
+
+        foreach (var r in renderers)
+        {
+            Outline rendererOutiline =  r.gameObject.AddComponent<Outline>();
+            rendererOutiline.enabled = false;
+            renderersOutlines.Add(rendererOutiline);           
+        }
+    }
 
 
     private void OnTriggerEnter(Collider other) {
         if(!isPlacingMode) return;
 
-        colliding = true;
-        if(errorBox != null){
-            errorBox.SetActive(true);
-        }
+        isColliding = true;
+        //if(errorBox != null){
+        //    errorBox.SetActive(true);
+        //}
     }
 
     private void OnTriggerExit(Collider other) {
         if(!isPlacingMode) return;
         
-        colliding = false;
-        if(errorBox != null){
-           errorBox.SetActive(false);        
-        }
+        isColliding = false;
+        //if(errorBox != null){
+        //   errorBox.SetActive(false);        
+        //}
     }
+
 }

@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using NT.Graph;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 using XNode.InportExport;
 
-public class RuntimeGraph : MonoBehaviour {
+public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     [Header("Graph")]
     public NodeGraph graph;
     public string graphPath = "Import.json";
@@ -130,4 +131,11 @@ public class RuntimeGraph : MonoBehaviour {
         return null;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Right)
+				return;
+
+        graphContextMenu.OpenAt(eventData.position);
+    }
 }

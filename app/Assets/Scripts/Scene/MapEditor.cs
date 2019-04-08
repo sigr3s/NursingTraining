@@ -29,7 +29,6 @@ public class MapEditor : MonoBehaviour{
 
     [Header("Map settings")]
     public float gridSize = 0.1f;
-    public int selectedObject  = 0;
     public int placementLayer = 11;
 
 
@@ -44,6 +43,8 @@ public class MapEditor : MonoBehaviour{
     public SceneVariables sceneVariables;
 
     private ISceneObject current;
+    private SceneObjectCollider currentSO;
+    private SceneObjectCollider selectedSO;
 
 
     
@@ -131,10 +132,6 @@ public class MapEditor : MonoBehaviour{
     }
 
     private bool TryRaycastFromScreen(LayerMask mask, out RaycastHit hit){
-
-        //Compute position from screen to RaycastMap
-
-        //Ray ray = raycastCamera.ScreenPointToRay(Input.mousePosition);
         Ray ray = raycastCamera.ViewportPointToRay(mapRaycast.textureCoords);
 
         if (Physics.Raycast(ray, out hit, 5000, mask)) {
@@ -155,8 +152,13 @@ public class MapEditor : MonoBehaviour{
     }
 
     private void ResetCurrent(bool destroyPreview = false, bool cleanCurrent = true){
-        if(destroyPreview) Destroy(previewGO);
         if(cleanCurrent) current = null;
+
+        if(currentSO){
+            currentSO.isMouseOver = false;
+        }
+
+        if(destroyPreview) Destroy(previewGO);
 
         previewGO = null;
     }
@@ -203,7 +205,7 @@ public class MapEditor : MonoBehaviour{
 
             previewGO.transform.position = new Vector3(x, hit.point.y, z);
 
-            if(Input.GetMouseButtonDown(0) && !previewGOSC.colliding){
+            if(Input.GetMouseButtonDown(0) && !previewGOSC.isColliding){
 
                 previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
@@ -229,23 +231,33 @@ public class MapEditor : MonoBehaviour{
             SceneObjectCollider soc = hit.transform.GetComponent<SceneObjectCollider>();
 
             if(soc != null){
+                if(currentSO != null){
+                    currentSO.isMouseOver = false;
+                }
+
+                currentSO = soc;
+                currentSO.isMouseOver = true;
                 current = soc.assignedSo;
 
-                //runtimeInspector.SetMouseOver(current);
-
                 if( Input.GetMouseButtonDown(0) ){
-                    //object value =  sceneVariables.variableRepository.GetValue(current.GetName(), current.GetDataType());
-                    //runtimeInspector.SetCurrent(current, value);
-
                     SceneManager.Instance.currentObject = current;
+                    if(selectedSO != null) selectedSO.isSelected = false;
+
+                    currentSO.isSelected = true;
+                    selectedSO = currentSO;
                 }
             }
+            else if(currentSO != null){
+                currentSO.isMouseOver = false;
+            }
+        }
+        else if(currentSO != null){
+            currentSO.isMouseOver = false;
         }
     }
     
     public void SetPlacementObject(ISceneObject sceneObject){
         ResetCurrent(true);
-
         current = sceneObject;
     }
 }

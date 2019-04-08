@@ -39,8 +39,4 @@ public class RuntimeInspector : GUIInspector {
         
         LayoutRebuilder.ForceRebuildLayoutImmediate(this.GetComponent<RectTransform>());
     }
-
-    public void SetMouseOver(ISceneObject dso){
-        over.text = dso.GetName();
-    }
 }
