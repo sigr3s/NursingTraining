@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NT;
 using NT.SceneObjects;
@@ -7,11 +8,16 @@ using UnityEngine;
 public class SceneHierarchy : GUIHierarchy {
 
     private void Start() {
-        SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
+        SessionManager.Instance.OnSceneChanged.AddListener(Rebuild);
         SessionManager.Instance.OnSessionLoaded.AddListener(Rehook);
+        SessionManager.Instance.OnCurrentChanged.AddListener(Rebuild);
+
+        Rebuild();
     }
 
+
     private void Rehook(){
+
         SessionManager.Instance.sceneVariables.variableRepository.onModified.RemoveListener(Rebuild);
         SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
 
@@ -35,10 +41,11 @@ public class SceneHierarchy : GUIHierarchy {
 
             foreach (var kvpi in varDict)
             {
-                HierarchyModel model = new HierarchyModel(new HierarchyData{ name = kvpi.Key });
+                bool selected = SessionManager.Instance.selectedSceneObject?.NTKey == kvpi.Key;
+
+                HierarchyModel model = new HierarchyModel(new HierarchyData{ name = kvpi.Key, selected = selected});
                    
                 root.Add(model);
-
 
             }
         }

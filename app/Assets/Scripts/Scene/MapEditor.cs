@@ -43,7 +43,6 @@ public class MapEditor : MonoBehaviour{
 
     private ISceneObject current;
     private SceneObjectCollider currentSO;
-    private SceneObjectCollider selectedSO;
 
 
     
@@ -139,6 +138,9 @@ public class MapEditor : MonoBehaviour{
 
                 if(so != null){
                     GameObject previewGO = Instantiate(so.GetModel(), items.transform);
+
+                    previewGO.transform.localPosition = sed.position;
+                    previewGO.transform.localRotation = Quaternion.Euler(sed.rotation);
             
                     SceneObjectCollider previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
 
@@ -148,6 +150,9 @@ public class MapEditor : MonoBehaviour{
 
                     previewGOSC.NTKey = kvpi.Key;
                     previewGOSC.NTDataType = varDict._dictType;
+
+                    SessionManager.Instance.AddSceneObject(previewGOSC);
+
 
                 }
             }
@@ -252,6 +257,7 @@ public class MapEditor : MonoBehaviour{
                 previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
                 previewGOSC.isPlacingMode = false;
+                
                 Type t = current.GetDataType();
                 string key = current.GetName() + previewGO.GetHashCode();
 
@@ -267,6 +273,8 @@ public class MapEditor : MonoBehaviour{
 
                 previewGOSC.NTDataType = t;
                 previewGOSC.NTKey = key;
+
+                SessionManager.Instance.AddSceneObject(previewGOSC);
 
                 previewGO = null;
             }
@@ -286,11 +294,7 @@ public class MapEditor : MonoBehaviour{
                 currentSO.isMouseOver = true;
 
                 if( Input.GetMouseButtonDown(0) ){
-                    if(selectedSO != null) selectedSO.isSelected = false;
-
-                    currentSO.isSelected = true;
-                    selectedSO = currentSO;
-                    SessionManager.Instance.selectedSceneObject = selectedSO;
+                    SessionManager.Instance.SetSelected(currentSO.NTKey);
                 }
             }
             else if(currentSO != null){

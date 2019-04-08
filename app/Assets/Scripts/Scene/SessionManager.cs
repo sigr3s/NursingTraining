@@ -38,13 +38,14 @@ public class SessionManager : Singleton<SessionManager> {
     [Space(20)]
     [Header("Debug")]
 
+    [SerializeField] private Dictionary<string, SceneObjectCollider> sceneObjects;    
     [SerializeField] private SceneObjectCollider _selectedObjectSceneObject;
     public SceneObjectCollider selectedSceneObject{
         get{
             return _selectedObjectSceneObject;
         }
 
-        set{
+        private set{
             _selectedObjectSceneObject = value;
             OnCurrentChanged.Invoke();
         }
@@ -64,24 +65,36 @@ public class SessionManager : Singleton<SessionManager> {
 
     [HideInInspector] public UnityEvent OnCurrentChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnShowingGraphChanged = new UnityEvent();
-
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
+    [HideInInspector] public UnityEvent OnSceneChanged = new UnityEvent();
 
     private void Awake() {
-        if(loadOnAwake){
-           //LoadSession(SessionData.sessionID);
-        }
-        else
-        {
+        if(sceneGraph == null){
             sceneGraph = (SceneGraph) ScriptableObject.CreateInstance(typeof(SceneGraph));
+        }
+
+        if(_sceneVariables == null){
+            _sceneVariables = (SceneVariables) ScriptableObject.CreateInstance(typeof(SceneVariables));
+            _sceneVariables.variableRepository = new NTVariableRepository();
+        }
+
+        sceneObjects = new Dictionary<string, SceneObjectCollider>();
+
+
+        if(loadOnAwake){
+           LoadSession(SessionData.sessionID);
         }
     }
     
     [ContextMenu("Save")]
     public void SaveSession(){
+        if(string.IsNullOrEmpty(SessionData.sessionID)){
+            SessionData.sessionID = DateTime.Now.ToString();
+        }
+
         Debug.Log( $" Saving session to: {Application.persistentDataPath} ");
 
-        string saveFolder = Application.dataPath + "/" + SessionData.sessionID;
+        string saveFolder = Application.dataPath + "/Saves/" + SessionData.sessionID;
         if(Directory.Exists(saveFolder) ){
             Directory.Delete(saveFolder, true);
         }
@@ -107,22 +120,29 @@ public class SessionManager : Singleton<SessionManager> {
         }
 
         string sessionJSON = JsonUtility.ToJson(SessionData);       
-        File.WriteAllText(saveFolder + "/" + "config.json", sceneVariablesJSON);
+        File.WriteAllText(saveFolder + "/" + "config.json", sessionJSON);
     }
 
     public void LoadSession(string sessionID){
-        if(!Directory.Exists(Application.dataPath + "/" + sessionID) ){
+
+        string saveFolder = Application.dataPath + "/Saves/" + sessionID;
+
+        if(string.IsNullOrEmpty(sessionID)) return;
+
+        if(!Directory.Exists(saveFolder) ){
             return;
         }
 
-        //Load graphs!
+        string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
+        SessionData = JsonUtility.FromJson<SessionData>(configJSON); 
 
-
-        //Load variables
-
-
-        string variablesJSON = File.ReadAllText(Application.dataPath + "/" + sessionID +  "/variables.json");
+        string variablesJSON = File.ReadAllText(saveFolder +  "/" + SessionData.variablesFile);
         JsonUtility.FromJsonOverwrite(variablesJSON, _sceneVariables);
+        _sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
+
+        sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
+        sceneGraph.sceneVariables = _sceneVariables;
+
         
         //JSONNode variableRoot = JSON.Parse(variablesJSON);
         //_sceneVariables = SimpleJSONExtension.FromJSON<SceneVariables>(variableRoot);
@@ -133,8 +153,36 @@ public class SessionManager : Singleton<SessionManager> {
         //Rebuild all
 
         //sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
+        sceneObjects = new Dictionary<string, SceneObjectCollider>();
 
         OnSessionLoaded.Invoke();
+    }
+
+    public void AddSceneObject(SceneObjectCollider so){
+        sceneObjects.Add(so.NTKey, so);
+        OnSceneChanged.Invoke();
+    }
+
+    public void Remove(string key){
+
+        if(sceneObjects.ContainsKey(key)){
+            selectedSceneObject = sceneObjects[key];
+            OnSceneChanged.Invoke();
+        }
+    }
+
+    public void SetSelected(string key){
+
+        if(selectedSceneObject != null) selectedSceneObject.isSelected = false;
+
+        if(sceneObjects.ContainsKey(key)){
+            selectedSceneObject = sceneObjects[key];
+            selectedSceneObject.isSelected = true;
+        }
+        else
+        {
+            selectedSceneObject = null;
+        }
     }
 }
 

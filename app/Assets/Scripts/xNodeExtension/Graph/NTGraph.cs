@@ -127,7 +127,12 @@ namespace  NT.Graph
 
         [ContextMenu("Import")]
         public void Import(){
+            sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
             string path = Application.dataPath + "/" + loadFile;
+            Import(path);
+        }
+
+        public void Import(string path){
             JSONImportExport jimp = new JSONImportExport();
             NTGraph g = (NTGraph) jimp.Import(path);
 
@@ -138,7 +143,6 @@ namespace  NT.Graph
             nodes = g.nodes;
             callbackNodes = g.callbackNodes;
             sceneVariables = g.sceneVariables;
-            sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
 
             foreach(Node n in nodes){
                 n.graph = this;

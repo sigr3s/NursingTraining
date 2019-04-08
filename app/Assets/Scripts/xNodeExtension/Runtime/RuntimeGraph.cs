@@ -49,19 +49,29 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     private void Awake() {
         // Create a clone so we don't modify the original asset
-        string path = Application.dataPath + "/" + graphPath;
+        //string path = Application.dataPath + "/" + graphPath;
 
-        JSONImportExport jimp = new JSONImportExport();
-        graph = jimp.Import(path);
+        //JSONImportExport jimp = new JSONImportExport();
+        //graph = jimp.Import(path);
 
-        ((NTGraph) graph).sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
-
+        //((NTGraph) graph).sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
+        
         scrollRect = GetComponentInChildren<ScrollRect>();
-
-        SpawnGraph();
 
         graphContextMenu.onClickSpawn -= SpawnNode;
         graphContextMenu.onClickSpawn += SpawnNode;
+    }
+
+    private void Start() {
+        SessionManager.Instance.OnSessionLoaded.AddListener(ReloadGraphs);
+        graph = SessionManager.Instance.sceneGraph;
+        SpawnGraph();
+    }
+
+    private void ReloadGraphs()
+    {
+        graph = SessionManager.Instance.sceneGraph;
+        SpawnGraph();
     }
 
     public virtual void SpawnNode(Type type, Vector2 position)
@@ -87,6 +97,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public void SpawnGraph() {
         if (nodes != null) nodes.Clear();
         else nodes = new List<UGUIBaseNode>();
+
+        if(graph == null) return;
 
         for (int i = 0; i < graph.nodes.Count; i++) {
             Node node = graph.nodes[i];

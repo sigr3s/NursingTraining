@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GUIHierarchyItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class GUIHierarchyItem : MonoBehaviour, IPointerClickHandler //, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Scene References")]
     public TextMeshProUGUI title;
@@ -21,6 +21,11 @@ public class GUIHierarchyItem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         set{
             _data = value;
             title.text = _data.name;
+            title.color = Color.white;
+
+            if(_data.selected){
+                title.color = Color.red;
+            }
         }
     }
 
@@ -101,4 +106,10 @@ public class GUIHierarchyItem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             Destroy(m_DraggingIcon);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.clickCount > 1){
+            SessionManager.Instance.SetSelected(data.name);
+        }
+    }
 }

@@ -21,8 +21,6 @@ public class GUIInspector : MonoBehaviour {
 
     public static NTPool propertyPool;
 
-    public SurgeonData data;
-
     private void Awake() {
         if(propertyPool == null){
             GameObject p = new GameObject("PoolPropertys");
@@ -31,8 +29,6 @@ public class GUIInspector : MonoBehaviour {
             
             DontDestroyOnLoad(propertyPool);
         }
-
-        Inspect(data);
     }
 
     public void CleanContent(){
