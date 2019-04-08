@@ -44,7 +44,7 @@ public class MapEditor : MonoBehaviour{
     private ISceneObject current;
     private SceneObjectCollider currentSO;
 
-
+    private Vector3 lastRotation = Vector3.zero;
     
     private MapMode _mode = MapMode.Inspect;
 
@@ -165,6 +165,8 @@ public class MapEditor : MonoBehaviour{
     
         if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Build; }
         if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){ mode = MapMode.Delete; }
+
 
         if(!mapRaycast.shouldRaycastMap){
             return;
@@ -176,6 +178,9 @@ public class MapEditor : MonoBehaviour{
             break;
             case MapMode.Inspect:
                 InspectObject();
+            break;
+            case MapMode.Delete:
+                DeleteObjects();
             break;
         }
     }
@@ -205,6 +210,7 @@ public class MapEditor : MonoBehaviour{
 
         if(currentSO){
             currentSO.isMouseOver = false;
+            currentSO.deleteMode = false;
         }
 
         if(destroyPreview) Destroy(previewGO);
@@ -217,6 +223,8 @@ public class MapEditor : MonoBehaviour{
 
         if(previewGO == null){
             previewGO = Instantiate(current.GetModel());
+
+            previewGO.transform.localRotation = Quaternion.Euler(lastRotation);
             
             previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
 
@@ -267,6 +275,8 @@ public class MapEditor : MonoBehaviour{
 
                 savedSceneObject.SetPosition(previewGOSC.transform.localPosition);
                 savedSceneObject.SetRotation(previewGOSC.transform.localRotation.eulerAngles);
+
+                lastRotation = previewGOSC.transform.localRotation.eulerAngles;
                 
 
                 SessionManager.Instance.sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
@@ -280,6 +290,47 @@ public class MapEditor : MonoBehaviour{
             }
         }
     }
+
+    private void DeleteObjects()
+    {
+        if(TryRaycastFromScreen(allExceptFloor, out RaycastHit hit)){
+            SceneObjectCollider soc = hit.transform.GetComponent<SceneObjectCollider>();
+
+            if(soc != null){
+                if(currentSO != null){
+                    currentSO.isMouseOver = false;
+                    currentSO.deleteMode = false;
+                }
+
+                currentSO = soc;
+                currentSO.deleteMode = true;
+                currentSO.isMouseOver = true;
+                
+                if( Input.GetMouseButtonDown(0) ){
+                    SessionManager.Instance.RemoveSceneObject(currentSO.NTKey, currentSO.NTDataType);
+                }
+            }
+            else
+            {
+                if(currentSO != null){                    
+                    currentSO.deleteMode = false;
+                    currentSO.isMouseOver = false;
+                }
+
+                currentSO = null;
+            }
+        }
+        else
+        {
+            if(currentSO != null){                    
+                currentSO.deleteMode = false;
+                currentSO.isMouseOver = false;
+            }
+
+            currentSO = null;
+        }
+    }
+
 
     private void InspectObject(){
         if(TryRaycastFromScreen(allExceptFloor, out RaycastHit hit)){

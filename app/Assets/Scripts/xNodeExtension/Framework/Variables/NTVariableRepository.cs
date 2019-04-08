@@ -107,6 +107,17 @@ namespace NT.Variables
             }
         }
 
+         public void RemoveVariable(string key, Type variableType){
+            if(string.IsNullOrEmpty(key)) return;
+
+            if( dictionary.ContainsKey(variableType.ToString()) ){
+                NTVariableDictionary variableTypeDictionary = dictionary[variableType.ToString()];
+                variableTypeDictionary.Remove(key);
+                dictionary[variableType.ToString()] = variableTypeDictionary;
+                onModified?.Invoke();
+            }
+        }
+
         public object GetValue<T>(string key) where T: NTVariable{
             if(string.IsNullOrEmpty(key)) return default(object);
 

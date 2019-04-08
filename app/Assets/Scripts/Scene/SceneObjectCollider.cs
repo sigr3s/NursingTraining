@@ -31,7 +31,7 @@ public class SceneObjectCollider : MonoBehaviour
             }
         }
     }
-    
+
     private bool _isMouseOver = false;
     public bool isMouseOver{
         get{
@@ -40,11 +40,11 @@ public class SceneObjectCollider : MonoBehaviour
         set{
             _isMouseOver = value;
 
-            if(_isMouseOver && !_isSelected){
+            if( (_isMouseOver && !_isSelected) || (_isMouseOver && deleteMode) ){
                 foreach (var rendererOutline in renderersOutlines)
                 {
-                    rendererOutline.enabled = true;
-                    rendererOutline.color = 1;
+                    rendererOutline.enabled = true;                    
+                    rendererOutline.color = deleteMode ? 2 : 1;
                 }
             }
             else if(!_isSelected)
@@ -83,6 +83,8 @@ public class SceneObjectCollider : MonoBehaviour
     }
     
     public bool isPlacingMode = false;
+    public bool deleteMode = false;
+
     public string NTKey;
     public Type NTDataType;
 

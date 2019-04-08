@@ -163,10 +163,15 @@ public class SessionManager : Singleton<SessionManager> {
         OnSceneChanged.Invoke();
     }
 
-    public void Remove(string key){
+    public void RemoveSceneObject(string key, Type variableType){
 
         if(sceneObjects.ContainsKey(key)){
-            selectedSceneObject = sceneObjects[key];
+            SceneObjectCollider toRemove = sceneObjects[key];
+            sceneObjects.Remove(key);
+
+            Destroy(toRemove.gameObject);
+            _sceneVariables.variableRepository.RemoveVariable(key, variableType);
+
             OnSceneChanged.Invoke();
         }
     }
