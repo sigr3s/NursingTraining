@@ -157,6 +157,24 @@ namespace NT.Variables
             return default(object);
         }
 
+         public object GetDefaultValue(string key, Type t){
+            if(string.IsNullOrEmpty(key)) return default(object);
+
+            Type newVariableType = t;
+            NTVariableDictionary variableTypeDictionary;
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(key)){
+
+                    NTVariable ntvar = variableTypeDictionary[key];
+                    return ntvar.GetDefaultValue();
+                }
+            }
+
+            return default(object);
+        }
+
         public object GetNTValue(string key, Type t){
             if(string.IsNullOrEmpty(key)) return default(object);
 
@@ -219,6 +237,26 @@ namespace NT.Variables
             if(string.IsNullOrEmpty(key)) return;
 
             Type newVariableType = typeof(T);
+            NTVariableDictionary variableTypeDictionary;
+
+            if( dictionary.ContainsKey(newVariableType.ToString()) ){
+                variableTypeDictionary = dictionary[newVariableType.ToString()];
+                if(variableTypeDictionary.ContainsKey(key)){
+                    NTVariable ntvar = variableTypeDictionary[key];
+                    ntvar.SetDefaultValue(value);
+
+                    variableTypeDictionary[key] = ntvar;
+                    dictionary[newVariableType.ToString()] = variableTypeDictionary;
+                }
+            }
+
+            return;
+        }
+
+        public void SetDefaultValue(Type ntVariableType, string key, object value){
+            if(string.IsNullOrEmpty(key)) return;
+
+            Type newVariableType = ntVariableType;
             NTVariableDictionary variableTypeDictionary;
 
             if( dictionary.ContainsKey(newVariableType.ToString()) ){

@@ -349,9 +349,9 @@ GameObject:
   - component: {fileID: 1455158382691267924}
   - component: {fileID: 2638473767970907826}
   - component: {fileID: 3723041153425563904}
-  - component: {fileID: 941486021224800866}
+  - component: {fileID: 307636460444428500}
   m_Layer: 5
-  m_Name: HierarchyItem
+  m_Name: SceneHierarchyItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &941486021224800866
+--- !u!114 &307636460444428500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,12 +424,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4510593013126371536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a7370e58834dd448451bb684e51742, type: 3}
+  m_Script: {fileID: 11500000, guid: d77dc2da3ea65bc4393898f285f9a69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 5175874244109709905}
   childTransfrom: {fileID: 683986893637173107}
-  dragOnSurfaces: 1
 --- !u!1 &6164663213472945794
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,9 +609,9 @@ RectTransform:
   m_Father: {fileID: 1455158382691267924}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.155, y: -30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 65.155, y: 0}
   m_SizeDelta: {x: 100.31, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6297591027884920216

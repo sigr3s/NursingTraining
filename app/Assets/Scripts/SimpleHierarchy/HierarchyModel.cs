@@ -25,7 +25,8 @@ public class HierarchyModel {
 
 
 [System.Serializable]
-public struct HierarchyData{
+public class HierarchyData{
     public string name;
     public bool selected;
+    public string key;
 }

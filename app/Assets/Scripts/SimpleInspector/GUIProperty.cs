@@ -24,7 +24,7 @@ public class GUIProperty : MonoBehaviour {
 
     public enum PropertyType{
         String, 
-        Number, 
+        Number,
         Boolean
     }
 
@@ -38,11 +38,10 @@ public class GUIProperty : MonoBehaviour {
                 boolInput.gameObject.SetActive(false);
                 textInput.gameObject.SetActive(true);
 
-                
                 textInput.contentType = InputField.ContentType.Alphanumeric;
                 textInput.text = (string) data;
 
-
+                textInput.onEndEdit.RemoveAllListeners();
                 textInput.onEndEdit.AddListener(ModifyPropertyString);
             break;
             case PropertyType.Number:
@@ -50,17 +49,32 @@ public class GUIProperty : MonoBehaviour {
                 textInput.gameObject.SetActive(true);
 
                 textInput.contentType = InputField.ContentType.DecimalNumber;
-
                 textInput.text = (data).ToString();
-                textInput.onEndEdit.AddListener(ModifyPropertyNumber);
+
+                textInput.onEndEdit.RemoveAllListeners();
+
+                if(data.GetType() == typeof(int)){
+                    textInput.onEndEdit.AddListener(ModifyPropertyInt);
+                }
+                else if(data.GetType() == typeof(float))
+                {
+                    textInput.onEndEdit.AddListener(ModifyPropertyFloat);
+                }
+                else if(data.GetType() == typeof(double))
+                {   
+                    textInput.onEndEdit.AddListener(ModifyPropertyDouble);
+                }
+
+               
             break;
             case PropertyType.Boolean:
                 boolInput.gameObject.SetActive(true);
                 textInput.gameObject.SetActive(false);
 
                 bool value = (bool) data;
-
                 boolInput.isOn = value;
+
+                boolInput.onValueChanged.RemoveAllListeners();
                 boolInput.onValueChanged.AddListener(ModifyPropertyBool);
             break;
         }
@@ -72,18 +86,34 @@ public class GUIProperty : MonoBehaviour {
         this.path = path;
     }
 
-    private void ModifyPropertyNumber(string arg0)
+    private void ModifyPropertyFloat(string stringValue)
     {
-        OnValueChanged.Invoke(arg0, path);
+        float value = 0;
+        float.TryParse(stringValue, out value);
+        OnValueChanged.Invoke(value, path);
     }
 
-    private void ModifyPropertyBool(bool arg0)
+    private void ModifyPropertyInt(string stringValue)
     {
-        OnValueChanged.Invoke(arg0, path);
+        int value = 0;
+        int.TryParse(stringValue, out value);
+        OnValueChanged.Invoke(value, path);
     }
 
-    private void ModifyPropertyString(string arg0)
+    private void ModifyPropertyDouble(string stringValue)
     {
-        OnValueChanged.Invoke(arg0, path);
+        double value = 0;
+        double.TryParse(stringValue, out value);
+        OnValueChanged.Invoke(value, path);
+    }
+
+    private void ModifyPropertyBool(bool value)
+    {
+        OnValueChanged.Invoke(value, path);
+    }
+
+    private void ModifyPropertyString(string value)
+    {
+        OnValueChanged.Invoke(value, path);
     }
 }

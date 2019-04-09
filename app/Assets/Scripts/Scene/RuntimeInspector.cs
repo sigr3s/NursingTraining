@@ -24,7 +24,7 @@ public class RuntimeInspector : GUIInspector {
     {
         current = SessionManager.Instance.selectedSceneObject;
 
-        object value =  SessionManager.Instance.sceneVariables.variableRepository.GetValue(current.NTKey, current.NTDataType);
+        object value =  SessionManager.Instance.sceneVariables.variableRepository.GetDefaultValue(current.NTKey, current.NTDataType);
 
         SetCurrent(current.NTKey, value);
     }
@@ -32,9 +32,14 @@ public class RuntimeInspector : GUIInspector {
     public void SetCurrent(string name, object Value, GameObject currentGo = null){
         title.text = name;
 
-        Inspect(Value);
+        Inspect(Value, OnChanged);
         
         
-        LayoutRebuilder.ForceRebuildLayoutImmediate(this.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+    }
+
+    private void OnChanged(object value)
+    {
+        SessionManager.Instance.sceneVariables.variableRepository.SetDefaultValue(current.NTDataType, current.NTKey, value);
     }
 }

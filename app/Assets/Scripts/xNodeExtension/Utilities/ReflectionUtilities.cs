@@ -15,7 +15,7 @@ namespace NT
         [NonSerialized] private static Type[] _variableNodeTypes = null;
 
         public static Type[] GetNodeTypes() {
-            return GetDerivedTypes(typeof(XNode.Node));
+            return GetDerivedTypes(typeof(NT.NTNode));
         }
 
         public static Type[] GetVariableNodeTypes() {
@@ -99,6 +99,8 @@ namespace NT
                         SetValueOf(ref fieldVal, value, path);
 
                         f.SetValue(o, fieldVal);
+                        
+                        return;
                     }
                 }
             }

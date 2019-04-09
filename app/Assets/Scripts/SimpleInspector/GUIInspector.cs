@@ -18,6 +18,9 @@ public class GUIInspector : MonoBehaviour {
     [Header("Debug")]
     public List<GUIProperty> properties;
     public List<GUIPropertyObject> propertiesobjects;
+    public object inspectingObject;
+    Action<object> OnValueChanged;
+
 
     public static NTPool propertyPool;
 
@@ -48,12 +51,15 @@ public class GUIInspector : MonoBehaviour {
     }
 
 
-    public void Inspect(object o){
+    public void Inspect(object inspectObject, Action<object> OnValueChanged){
         CleanContent();
 
-        if(o == null) return;
+        if(inspectObject == null) return;
 
-        var degt = ReflectionUtilities.DesgloseInBasicTypes(o.GetType());
+        inspectingObject = inspectObject;
+        this.OnValueChanged = OnValueChanged;
+
+        var degt = ReflectionUtilities.DesgloseInBasicTypes(inspectObject.GetType());
 
         Dictionary<string, GameObject> sublevels = new Dictionary<string,GameObject>();
 
@@ -122,25 +128,33 @@ public class GUIInspector : MonoBehaviour {
                 gp.OnValueChanged.RemoveAllListeners();                
 
                 if(deglossedType.Key.IsString()){
-                    gp.SetData( ReflectionUtilities.GetValueOf(path.ToList(), o), propertyPath, GUIProperty.PropertyType.String);
+                    gp.SetData( ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.String);
                 }
                 else if(deglossedType.Key.IsNumber())
                 {
-                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), o), propertyPath, GUIProperty.PropertyType.Number);
+                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Number);
                     
                 } 
                 else
                 {
-                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), o), propertyPath, GUIProperty.PropertyType.Boolean);
+                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Boolean);
                 }
 
+                gp.OnValueChanged.RemoveAllListeners();
                 gp.OnValueChanged.AddListener(OnPropertyChanged);
             }
         }
     }
 
-    private void OnPropertyChanged(object arg0, string arg1)
+    private void OnPropertyChanged(object value, string path)
     {
-       Debug.Log("Property changed at  " + arg1);
+
+        Debug.Log(value + "  __ "+ value.GetType());
+
+        List<string> variablePath = new List<string>(path.Split('/'));
+
+        ReflectionUtilities.SetValueOf(ref inspectingObject, value, variablePath);
+
+        OnValueChanged(inspectingObject);
     }
 }
