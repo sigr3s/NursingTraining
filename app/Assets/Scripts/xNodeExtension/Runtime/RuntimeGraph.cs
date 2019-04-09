@@ -113,6 +113,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
             runtimeNode.node = node;
             runtimeNode.graph = this;
             runtimeNode.transform.localPosition = new Vector2(node.position.x , -node.position.y);
+            runtimeNode.transform.localScale = Vector3.one;
             runtimeNode.name = node.name;
 
             runtimeNode.GetComponent<Image>().color = GetColorFor(node.GetType());

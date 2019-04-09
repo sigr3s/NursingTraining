@@ -46,6 +46,7 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
 
         image.sprite = GetComponentInChildren<Image>().sprite;
         image.SetNativeSize();
+        image.raycastTarget = false;
 
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
@@ -78,9 +79,29 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
+
+        NodeHierarchyData nhd = (NodeHierarchyData) data;
+
+        if(nhd.nodeType == null) return;
+        if(!eventData.pointerCurrentRaycast.gameObject) return;
+
+        GameObject rect = eventData.pointerCurrentRaycast.gameObject;
+
+        RuntimeGraph rg = rect.GetComponentInParent<RuntimeGraph>();
+
+        if(!rg) return;
+
+        Vector2 nodePosition = Vector2.zero;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rect.GetComponent<RectTransform>(), 
+            eventData.position, Camera.main, out nodePosition
+        ); 
+
+        Debug.Log(eventData.position + " ___ " + nodePosition);
+
+        rg.SpawnNode(nhd.nodeType, nodePosition);
     }
     
 }
