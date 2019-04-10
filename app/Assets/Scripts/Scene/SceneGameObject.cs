@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using cakeslice;
 using NT;
 using NT.SceneObjects;
 using UnityEngine;
 
-public class SceneObjectCollider : MonoBehaviour
+public class SceneGameObject : MonoBehaviour
 {
     private bool _isColliding = false;
     public bool isColliding{
@@ -87,6 +87,7 @@ public class SceneObjectCollider : MonoBehaviour
 
     public string NTKey;
     public Type NTDataType;
+    public ISceneObject sceneObject;
 
     public List<Outline> renderersOutlines;
 

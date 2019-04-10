@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83220f23ec5e36a4db82e3d16d5b7a9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 91614df45926bd247a5b2781bc28be26, type: 3}
   m_Name: Closet
   m_EditorClassIdentifier: 
   sceneGameObject:
@@ -18,6 +18,6 @@ MonoBehaviour:
       m_Bits: 512
     model: {fileID: 3764564900579765852, guid: 672c7cd7f7d34ef4b917e6f57865df3e, type: 3}
   sceneObjectUI:
-    color: {r: 0.4951803, g: 0.8962264, b: 0.2494215, a: 0.7490196}
+    color: {r: 0, g: 0, b: 0, a: 0}
     icon: {fileID: 21300000, guid: 7029861cd3b03e140887d56c9022c007, type: 3}
-  GUID: c2541096-f3c6-444d-9c3e-b985bb2250b1
+  GUID: 3a4e8434-b4fe-4101-ad63-cb5f5051df50

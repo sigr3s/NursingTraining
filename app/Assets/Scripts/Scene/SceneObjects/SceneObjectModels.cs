@@ -10,7 +10,7 @@ namespace NT.SceneObjects
     }
 
     [System.Serializable]
-    public struct SceneGameObject{
+    public struct SceneGameObjectInfo{
         public LayerMask canBePlacedOver;
         public GameObject model;
 

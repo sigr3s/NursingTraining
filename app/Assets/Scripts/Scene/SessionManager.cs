@@ -32,15 +32,15 @@ public class SessionManager : Singleton<SessionManager> {
 
     [Header("Graphs")]
     public SceneGraph sceneGraph;
-    public List<NTGraph> sceneObjectsGraphs;
+    public List<SceneObjectGraph> sceneObjectsGraphs;
 
 
     [Space(20)]
     [Header("Debug")]
 
-    [SerializeField] private Dictionary<string, SceneObjectCollider> sceneObjects;    
-    [SerializeField] private SceneObjectCollider _selectedObjectSceneObject;
-    public SceneObjectCollider selectedSceneObject{
+    [SerializeField] private Dictionary<string, SceneGameObject> sceneGameObjects;    
+    [SerializeField] private SceneGameObject _selectedObjectSceneObject;
+    public SceneGameObject selectedSceneObject{
         get{
             return _selectedObjectSceneObject;
         }
@@ -59,6 +59,7 @@ public class SessionManager : Singleton<SessionManager> {
 
         set{
             _showingGraph = value;
+            OnShowingGraphChanged.Invoke();
         }
     }
 
@@ -66,7 +67,7 @@ public class SessionManager : Singleton<SessionManager> {
     [HideInInspector] public UnityEvent OnCurrentChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnShowingGraphChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
-    [HideInInspector] public UnityEvent OnSceneChanged = new UnityEvent();
+    [HideInInspector] public UnityEvent OnSceneGameObjectsChanged = new UnityEvent();
 
     private void Awake() {
         if(sceneGraph == null){
@@ -78,7 +79,7 @@ public class SessionManager : Singleton<SessionManager> {
             _sceneVariables.variableRepository = new NTVariableRepository();
         }
 
-        sceneObjects = new Dictionary<string, SceneObjectCollider>();
+        sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
 
         if(loadOnAwake){
@@ -143,36 +144,26 @@ public class SessionManager : Singleton<SessionManager> {
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
         sceneGraph.sceneVariables = _sceneVariables;
 
-        
-        //JSONNode variableRoot = JSON.Parse(variablesJSON);
-        //_sceneVariables = SimpleJSONExtension.FromJSON<SceneVariables>(variableRoot);
-        
-        //Assign variables to graphs!
-
-
-        //Rebuild all
-
-        //sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
-        sceneObjects = new Dictionary<string, SceneObjectCollider>();
+        sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
         OnSessionLoaded.Invoke();
     }
 
-    public void AddSceneObject(SceneObjectCollider so){
-        sceneObjects.Add(so.NTKey, so);
-        OnSceneChanged.Invoke();
+    public void AddSceneGameObject(SceneGameObject so){
+        sceneGameObjects.Add(so.NTKey, so);
+        OnSceneGameObjectsChanged.Invoke();
     }
 
-    public void RemoveSceneObject(string key, Type variableType){
+    public void RemoveSceneGameObject(string key, Type variableType){
 
-        if(sceneObjects.ContainsKey(key)){
-            SceneObjectCollider toRemove = sceneObjects[key];
-            sceneObjects.Remove(key);
+        if(sceneGameObjects.ContainsKey(key)){
+            SceneGameObject toRemove = sceneGameObjects[key];
+            sceneGameObjects.Remove(key);
 
             Destroy(toRemove.gameObject);
             _sceneVariables.variableRepository.RemoveVariable(key, variableType);
 
-            OnSceneChanged.Invoke();
+            OnSceneGameObjectsChanged.Invoke();
         }
     }
 
@@ -180,14 +171,32 @@ public class SessionManager : Singleton<SessionManager> {
 
         if(selectedSceneObject != null) selectedSceneObject.isSelected = false;
 
-        if(sceneObjects.ContainsKey(key)){
-            selectedSceneObject = sceneObjects[key];
+        if(!string.IsNullOrEmpty(key) && sceneGameObjects.ContainsKey(key)){
+            selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
         }
         else
         {
             selectedSceneObject = null;
         }
+    }
+
+    public SceneGameObject GetSceneGameObject(string key){
+        if(sceneGameObjects.ContainsKey(key)){
+            return sceneGameObjects[key];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void OpenGraphFor(string key){
+
+    }
+
+    public void OpenSceneGraph(){
+        
     }
 }
 

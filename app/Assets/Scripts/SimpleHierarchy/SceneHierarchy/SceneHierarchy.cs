@@ -8,7 +8,7 @@ using UnityEngine;
 public class SceneHierarchy : GUIHierarchy {
 
     private void Start() {
-        SessionManager.Instance.OnSceneChanged.AddListener(Rebuild);
+        SessionManager.Instance.OnSceneGameObjectsChanged.AddListener(Rebuild);
         SessionManager.Instance.OnSessionLoaded.AddListener(Rehook);
         SessionManager.Instance.OnCurrentChanged.AddListener(Rebuild);
 

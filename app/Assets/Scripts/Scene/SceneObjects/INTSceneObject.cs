@@ -10,7 +10,6 @@ namespace NT.SceneObjects
         void SetPosition(Vector3 position);
         void SetRotation(Vector3 rotation);
 
-
         SceneObjectExtraData GetExtraData();
 
     }

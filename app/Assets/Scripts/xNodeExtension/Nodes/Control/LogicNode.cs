@@ -86,6 +86,8 @@ namespace NT.Nodes.Control
             }
             //Port 0 connected port 1 as string input
             else if(portVal0.IsConnected && !portVal1.IsConnected){
+                if(val0 == null) return false;
+
                 Type val0Type = val0.GetType();
 
                 if(val0 == null){

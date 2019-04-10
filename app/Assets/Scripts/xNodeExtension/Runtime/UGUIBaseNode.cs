@@ -44,12 +44,32 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
 
             foreach(KeyValuePair<Type, List<string>> kvp in d){
                 foreach(string variable in kvp.Value){
-                    GameObject variableGo =  Instantiate(graph.stringPtoperty, body.transform);
+                    GameObject variableGo =  Instantiate(graph.Property, body.transform);
 
 
                     GUIProperty  gp = variableGo.GetComponent<GUIProperty>();
 
-                    gp.SetData(ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node).ToString(), variable, GUIProperty.PropertyType.String );
+                    
+                    object value = ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node);
+
+                    if(kvp.Key.IsString()){
+                        gp.SetData(value, variable, GUIProperty.PropertyType.String);
+                    }
+                    else if(kvp.Key.IsNumber())
+                    {
+                        gp.SetData(value, variable, GUIProperty.PropertyType.Number);
+                        
+                    } 
+                    else if(kvp.Key.IsBool())
+                    {
+                        gp.SetData(value, variable, GUIProperty.PropertyType.Boolean);
+                    }
+                    else if(kvp.Key.IsEnum)
+                    {
+                        gp.SetData(value, variable, GUIProperty.PropertyType.Enumeration);
+                    }
+
+                    gp.OnValueChanged.RemoveAllListeners();
                     gp.OnValueChanged.AddListener(PropertyChanged);
                 }
             }
@@ -79,7 +99,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
 
     public virtual void UpdateGUI()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     private void LateUpdate() {

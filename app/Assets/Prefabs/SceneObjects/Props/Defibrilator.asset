@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83220f23ec5e36a4db82e3d16d5b7a9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 28d5ed2837d13c547a6ad335fb53725e, type: 3}
   m_Name: Defibrilator
   m_EditorClassIdentifier: 
   sceneGameObject:
     canBePlacedOver:
       serializedVersion: 2
-      m_Bits: 4096
+      m_Bits: 7680
     model: {fileID: 3764564900579765852, guid: 6111bebc06011fb4088f24b725c99e88, type: 3}
   sceneObjectUI:
-    color: {r: 0.9433962, g: 0.38714847, b: 0.8831226, a: 0.9843137}
-    icon: {fileID: 21300000, guid: 105d5a0e2ead77c428847ed8572bb93b, type: 3}
-  GUID: c2694b14-ee34-41dc-b61e-e11798b5454e
+    color: {r: 0, g: 0, b: 0, a: 0}
+    icon: {fileID: 21300000, guid: ef24468435bb0d64296ede4cf9b6cc18, type: 3}
+  GUID: 0eede9a1-f439-404a-86a4-1eaca76583d0

@@ -14,7 +14,7 @@ public class RuntimeInspector : GUIInspector {
     public TextMeshProUGUI over;    
 
     [Header("Debug")]
-    public SceneObjectCollider current;
+    public SceneGameObject current;
 
     private void Start() {
         SessionManager.Instance.OnCurrentChanged.AddListener(OnCurrentChanged);
@@ -23,10 +23,17 @@ public class RuntimeInspector : GUIInspector {
     private void OnCurrentChanged()
     {
         current = SessionManager.Instance.selectedSceneObject;
+        object value = null; 
 
-        object value =  SessionManager.Instance.sceneVariables.variableRepository.GetDefaultValue(current.NTKey, current.NTDataType);
+        if(current != null){
+            value = SessionManager.Instance.sceneVariables.variableRepository.GetDefaultValue(current.NTKey, current.NTDataType);
+            SetCurrent(current.NTKey, value);
+        }
+        else
+        {
+            Inspect(null, null);
+        }
 
-        SetCurrent(current.NTKey, value);
     }
 
     public void SetCurrent(string name, object Value, GameObject currentGo = null){

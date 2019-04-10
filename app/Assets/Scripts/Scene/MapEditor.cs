@@ -39,10 +39,10 @@ public class MapEditor : MonoBehaviour{
     [Header("Debug")]
     [Space(50)]
     public GameObject previewGO = null;
-    public SceneObjectCollider previewGOSC = null;
+    public SceneGameObject previewSceneGameObject = null;
 
     private ISceneObject current;
-    private SceneObjectCollider currentSO;
+    private SceneGameObject currentSceneGameObject;
 
     private Vector3 lastRotation = Vector3.zero;
     
@@ -137,21 +137,22 @@ public class MapEditor : MonoBehaviour{
                 SceneObject so = sceneObjects.GetObject(sed.sceneObjectGUID);
 
                 if(so != null){
-                    GameObject previewGO = Instantiate(so.GetModel(), items.transform);
+                    GameObject sceneObjectInstance = Instantiate(so.GetModel(), items.transform);
 
-                    previewGO.transform.localPosition = sed.position;
-                    previewGO.transform.localRotation = Quaternion.Euler(sed.rotation);
+                    sceneObjectInstance.transform.localPosition = sed.position;
+                    sceneObjectInstance.transform.localRotation = Quaternion.Euler(sed.rotation);
             
-                    SceneObjectCollider previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
+                    SceneGameObject sceneGameObjectInstance = sceneObjectInstance.GetComponent<SceneGameObject>();
 
-                    if(previewGOSC == null){
-                        previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
+                    if(sceneGameObjectInstance == null){
+                        sceneGameObjectInstance = sceneObjectInstance.AddComponent<SceneGameObject>();
                     }
 
-                    previewGOSC.NTKey = kvpi.Key;
-                    previewGOSC.NTDataType = varDict._dictType;
+                    sceneGameObjectInstance.NTKey = kvpi.Key;
+                    sceneGameObjectInstance.NTDataType = varDict._dictType;
+                    sceneGameObjectInstance.sceneObject = so;
 
-                    SessionManager.Instance.AddSceneObject(previewGOSC);
+                    SessionManager.Instance.AddSceneGameObject(sceneGameObjectInstance);
 
 
                 }
@@ -208,9 +209,9 @@ public class MapEditor : MonoBehaviour{
     private void ResetCurrent(bool destroyPreview = false, bool cleanCurrent = true){
         if(cleanCurrent) current = null;
 
-        if(currentSO){
-            currentSO.isMouseOver = false;
-            currentSO.deleteMode = false;
+        if(currentSceneGameObject){
+            currentSceneGameObject.isMouseOver = false;
+            currentSceneGameObject.deleteMode = false;
         }
 
         if(destroyPreview) Destroy(previewGO);
@@ -226,13 +227,13 @@ public class MapEditor : MonoBehaviour{
 
             previewGO.transform.localRotation = Quaternion.Euler(lastRotation);
             
-            previewGOSC = previewGO.GetComponent<SceneObjectCollider>();
+            previewSceneGameObject = previewGO.GetComponent<SceneGameObject>();
 
-            if(previewGOSC == null){
-                previewGOSC = previewGO.AddComponent<SceneObjectCollider>();
+            if(previewSceneGameObject == null){
+                previewSceneGameObject = previewGO.AddComponent<SceneGameObject>();
             }
 
-            previewGOSC.isPlacingMode = true;
+            previewSceneGameObject.isPlacingMode = true;
 
             currentObjectLayer = previewGO.layer;
             previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = placementLayer;} );
@@ -254,17 +255,32 @@ public class MapEditor : MonoBehaviour{
 
         if(TryRaycastFromScreen(current.GetLayerMask(), out RaycastHit hit)){
             Transform objectHit = hit.transform;
-            Vector2 hitPointOnPlane = new Vector2(hit.point.x, hit.point.z);
+            Vector3 hitPointOnPlane = hit.point;
             float x = hitPointOnPlane.x - hitPointOnPlane.x%gridSize;  
-            float z = hitPointOnPlane.y - hitPointOnPlane.y%gridSize; 
+            float z = hitPointOnPlane.z - hitPointOnPlane.z%gridSize;
+            float y = hitPointOnPlane.y - hitPointOnPlane.y%gridSize;
 
-            previewGO.transform.position = new Vector3(x, hit.point.y, z);
+            previewGO.transform.position = hitPointOnPlane;
 
-            if(Input.GetMouseButtonDown(0) && !previewGOSC.isColliding){
+            SceneGameObject sco = objectHit.GetComponentInParent<SceneGameObject>();
+
+            if(sco != null){
+                if(sco.sceneObject.CanHoldItem(previewSceneGameObject)){
+                    previewGO.SetActive(false);
+                    SessionManager.Instance.SetSelected(sco.NTKey);
+                }
+            }
+            else
+            {
+                previewGO.SetActive(true);
+                SessionManager.Instance.SetSelected(null);
+            }
+
+            if(Input.GetMouseButtonDown(0) && !previewSceneGameObject.isColliding){
 
                 previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
-                previewGOSC.isPlacingMode = false;
+                previewSceneGameObject.isPlacingMode = false;
                 
                 Type t = current.GetDataType();
                 string key = current.GetName() + previewGO.GetHashCode();
@@ -273,18 +289,19 @@ public class MapEditor : MonoBehaviour{
                 savedSceneObject.SetName(key);
                 savedSceneObject.SetScriptableObject(current.GetGUID());
 
-                savedSceneObject.SetPosition(previewGOSC.transform.localPosition);
-                savedSceneObject.SetRotation(previewGOSC.transform.localRotation.eulerAngles);
+                savedSceneObject.SetPosition(previewSceneGameObject.transform.localPosition);
+                savedSceneObject.SetRotation(previewSceneGameObject.transform.localRotation.eulerAngles);
 
-                lastRotation = previewGOSC.transform.localRotation.eulerAngles;
+                lastRotation = previewSceneGameObject.transform.localRotation.eulerAngles;
                 
 
                 SessionManager.Instance.sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
 
-                previewGOSC.NTDataType = t;
-                previewGOSC.NTKey = key;
+                previewSceneGameObject.NTDataType = t;
+                previewSceneGameObject.NTKey = key;
+                previewSceneGameObject.sceneObject = current;
 
-                SessionManager.Instance.AddSceneObject(previewGOSC);
+                SessionManager.Instance.AddSceneGameObject(previewSceneGameObject);
 
                 previewGO = null;
             }
@@ -294,66 +311,66 @@ public class MapEditor : MonoBehaviour{
     private void DeleteObjects()
     {
         if(TryRaycastFromScreen(allExceptFloor, out RaycastHit hit)){
-            SceneObjectCollider soc = hit.transform.GetComponent<SceneObjectCollider>();
+            SceneGameObject soc = hit.transform.GetComponent<SceneGameObject>();
 
             if(soc != null){
-                if(currentSO != null){
-                    currentSO.isMouseOver = false;
-                    currentSO.deleteMode = false;
+                if(currentSceneGameObject != null){
+                    currentSceneGameObject.isMouseOver = false;
+                    currentSceneGameObject.deleteMode = false;
                 }
 
-                currentSO = soc;
-                currentSO.deleteMode = true;
-                currentSO.isMouseOver = true;
+                currentSceneGameObject = soc;
+                currentSceneGameObject.deleteMode = true;
+                currentSceneGameObject.isMouseOver = true;
                 
                 if( Input.GetMouseButtonDown(0) ){
-                    SessionManager.Instance.RemoveSceneObject(currentSO.NTKey, currentSO.NTDataType);
+                    SessionManager.Instance.RemoveSceneGameObject(currentSceneGameObject.NTKey, currentSceneGameObject.NTDataType);
                 }
             }
             else
             {
-                if(currentSO != null){                    
-                    currentSO.deleteMode = false;
-                    currentSO.isMouseOver = false;
+                if(currentSceneGameObject != null){                    
+                    currentSceneGameObject.deleteMode = false;
+                    currentSceneGameObject.isMouseOver = false;
                 }
 
-                currentSO = null;
+                currentSceneGameObject = null;
             }
         }
         else
         {
-            if(currentSO != null){                    
-                currentSO.deleteMode = false;
-                currentSO.isMouseOver = false;
+            if(currentSceneGameObject != null){                    
+                currentSceneGameObject.deleteMode = false;
+                currentSceneGameObject.isMouseOver = false;
             }
 
-            currentSO = null;
+            currentSceneGameObject = null;
         }
     }
 
 
     private void InspectObject(){
         if(TryRaycastFromScreen(allExceptFloor, out RaycastHit hit)){
-            SceneObjectCollider soc = hit.transform.GetComponent<SceneObjectCollider>();
+            SceneGameObject soc = hit.transform.GetComponent<SceneGameObject>();
 
             if(soc != null){
-                if(currentSO != null){
-                    currentSO.isMouseOver = false;
+                if(currentSceneGameObject != null){
+                    currentSceneGameObject.isMouseOver = false;
                 }
 
-                currentSO = soc;
-                currentSO.isMouseOver = true;
+                currentSceneGameObject = soc;
+                currentSceneGameObject.isMouseOver = true;
 
                 if( Input.GetMouseButtonDown(0) ){
-                    SessionManager.Instance.SetSelected(currentSO.NTKey);
+                    SessionManager.Instance.SetSelected(currentSceneGameObject.NTKey);
                 }
             }
-            else if(currentSO != null){
-                currentSO.isMouseOver = false;
+            else if(currentSceneGameObject != null){
+                currentSceneGameObject.isMouseOver = false;
             }
         }
-        else if(currentSO != null){
-            currentSO.isMouseOver = false;
+        else if(currentSceneGameObject != null){
+            currentSceneGameObject.isMouseOver = false;
         }
     }
     

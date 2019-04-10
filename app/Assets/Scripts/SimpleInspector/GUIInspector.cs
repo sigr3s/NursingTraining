@@ -135,9 +135,13 @@ public class GUIInspector : MonoBehaviour {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Number);
                     
                 } 
-                else
+                else if(deglossedType.Key.IsBool())
                 {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Boolean);
+                }
+                else if(deglossedType.Key.IsEnum)
+                {
+                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Enumeration);
                 }
 
                 gp.OnValueChanged.RemoveAllListeners();

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class PropertyChangedEvent : UnityEvent<object, string>{
 
@@ -14,6 +15,7 @@ public class GUIProperty : MonoBehaviour {
     public TextMeshProUGUI fieldName;
     public InputField textInput;
     public Toggle boolInput;
+    public Dropdown enumInput;
 
 
     public PropertyChangedEvent OnValueChanged = new PropertyChangedEvent();
@@ -25,7 +27,8 @@ public class GUIProperty : MonoBehaviour {
     public enum PropertyType{
         String, 
         Number,
-        Boolean
+        Boolean,
+        Enumeration
     }
 
 
@@ -36,6 +39,7 @@ public class GUIProperty : MonoBehaviour {
         switch(propertyType){
             case PropertyType.String:
                 boolInput.gameObject.SetActive(false);
+                enumInput.gameObject.SetActive(false);
                 textInput.gameObject.SetActive(true);
 
                 textInput.contentType = InputField.ContentType.Alphanumeric;
@@ -46,6 +50,7 @@ public class GUIProperty : MonoBehaviour {
             break;
             case PropertyType.Number:
                 boolInput.gameObject.SetActive(false);
+                enumInput.gameObject.SetActive(false);
                 textInput.gameObject.SetActive(true);
 
                 textInput.contentType = InputField.ContentType.DecimalNumber;
@@ -69,6 +74,7 @@ public class GUIProperty : MonoBehaviour {
             break;
             case PropertyType.Boolean:
                 boolInput.gameObject.SetActive(true);
+                enumInput.gameObject.SetActive(false);
                 textInput.gameObject.SetActive(false);
 
                 bool value = (bool) data;
@@ -76,6 +82,28 @@ public class GUIProperty : MonoBehaviour {
 
                 boolInput.onValueChanged.RemoveAllListeners();
                 boolInput.onValueChanged.AddListener(ModifyPropertyBool);
+            break;
+            case PropertyType.Enumeration:
+                enumInput.gameObject.SetActive(true);
+                boolInput.gameObject.SetActive(false);
+                textInput.gameObject.SetActive(false);
+
+                String[] enumOptions = Enum.GetNames(data.GetType());
+
+                List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+
+                int selected = 0;
+
+                for( int i = 0; i < enumOptions.Length; i++){
+                    string enumOption = enumOptions[i];
+
+                    if(enumOption == data.ToString()) selected = i;
+                    
+                    options.Add(new Dropdown.OptionData(enumOption));
+                }
+                enumInput.options = options;
+                enumInput.value = selected;
+                
             break;
         }
         int start = path.LastIndexOf('/');

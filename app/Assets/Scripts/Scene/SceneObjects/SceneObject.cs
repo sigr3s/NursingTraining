@@ -16,7 +16,7 @@ namespace NT.SceneObjects
     }
 
     public class SceneObject : ScriptableObject, ISceneObject{
-        public SceneGameObject sceneGameObject;
+        public SceneGameObjectInfo sceneGameObject;
         public UISceneObject sceneObjectUI;
         [SerializeField] private string GUID;
 
@@ -35,15 +35,6 @@ namespace NT.SceneObjects
             return new List<string>();
         }
 
-        public virtual List<Type> GetCompatibleNodes()
-        {
-             return new List<Type>();
-        }
-
-        public virtual SceneGameObject GetSceneGameObject()
-        {
-            return sceneGameObject;
-        }
 
         public virtual string GetName()
         {
@@ -86,9 +77,9 @@ namespace NT.SceneObjects
             return null;
         }
 
-        public void SetName(string name)
+        public virtual bool CanHoldItem(SceneGameObject obj)
         {
-            this.name = name;
+            return false;
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace NT.SceneObjects{
 
-    [CreateAssetMenu(fileName = "SceneObject", menuName = "NT/Object")]
+    [CreateAssetMenu(fileName = "SceneObject", menuName = "NT/Scene/Dummy")]
     public class DummySceneObject : SceneObject<NTDummySceneObject>
     {   
 

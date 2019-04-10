@@ -19,7 +19,6 @@ namespace  NT.Graph
 
         public List<CallbackNode> callbackNodes;
 
-        public string loadFile = "ImportGraph.json";
 
 
         [Header("References")]
@@ -128,7 +127,7 @@ namespace  NT.Graph
         [ContextMenu("Import")]
         public void Import(){
             sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
-            string path = Application.dataPath + "/" + loadFile;
+            string path = Application.dataPath + "/" + name + ".json" ;
             Import(path);
         }
 

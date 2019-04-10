@@ -18,11 +18,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public GameObject outputPort;
     
     [Header("Node Properties")]
-    public GameObject floatProperty;
-    public GameObject stringPtoperty;
-    public GameObject intProperty;
-    public GameObject boolProperty;
-
+    public GameObject Property;
+    public GameObject PropertyObject;
 
     [Header("References")]
     public UGUIContextMenu graphContextMenu;
