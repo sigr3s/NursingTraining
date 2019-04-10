@@ -14,13 +14,13 @@ namespace DynamicPanels
 		private Vector2 prevPointerPos;
 
 		[SerializeField]
-		private Texture2D horizontalCursor;
+		public Texture2D horizontalCursor;
 		[SerializeField]
-		private Texture2D verticalCursor;
+		public Texture2D verticalCursor;
 		[SerializeField]
-		private Texture2D diagonalCursorTopLeft;
+		public Texture2D diagonalCursorTopLeft;
 		[SerializeField]
-		private Texture2D diagonalCursorTopRight;
+		public Texture2D diagonalCursorTopRight;
 
 		private void Awake()
 		{

@@ -39,13 +39,13 @@ namespace DynamicPanels
 		}
 
 		[SerializeField]
-		private Image background;
+		public Image background;
 
 		[SerializeField]
-		private Image iconHolder;
+		public Image iconHolder;
 
 		[SerializeField]
-		private Text nameHolder;
+		public Text nameHolder;
 
 		public InternalSettings Internal { get; private set; }
 

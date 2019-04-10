@@ -202,7 +202,7 @@ namespace DynamicPanels
 		private PanelHeader header;
 
 		[SerializeField]
-		private RectTransform tabsParent;
+		public RectTransform tabsParent;
 		private readonly List<PanelTab> tabs = new List<PanelTab>();
 
 		[SerializeField]
@@ -220,15 +220,15 @@ namespace DynamicPanels
 		private float headerHeight = 50f;
 
 		[SerializeField]
-		private Color m_tabNormalColor;
+		public Color m_tabNormalColor;
 		public Color TabNormalColor { get { return m_tabNormalColor; } }
 
 		[SerializeField]
-		private Color m_tabSelectedColor;
+		public Color m_tabSelectedColor;
 		public Color TabSelectedColor { get { return m_tabSelectedColor; } }
 
 		[SerializeField]
-		private Color m_tabDetachingColor;
+		public Color m_tabDetachingColor;
 		public Color TabDetachingColor { get { return m_tabDetachingColor; } }
 
 		public Vector2 Position { get { return RectTransform.anchoredPosition; } }

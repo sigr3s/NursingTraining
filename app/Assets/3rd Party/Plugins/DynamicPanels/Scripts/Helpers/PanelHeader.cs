@@ -7,7 +7,7 @@ namespace DynamicPanels
 	public class PanelHeader : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
 		[SerializeField]
-		private Panel m_panel;
+		public Panel m_panel;
 		public Panel Panel { get { return m_panel; } }
 
 		private int pointerId = PanelManager.NON_EXISTING_TOUCH;
