@@ -87,19 +87,22 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
         if(nhd.nodeType == null) return;
         if(!eventData.pointerCurrentRaycast.gameObject) return;
 
-        GameObject rect = eventData.pointerCurrentRaycast.gameObject;
-
-        RuntimeGraph rg = rect.GetComponentInParent<RuntimeGraph>();
+        RuntimeGraph rg = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<RuntimeGraph>();
 
         if(!rg) return;
 
-        Vector2 nodePosition = Vector2.zero;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rect.GetComponent<RectTransform>(), 
-            eventData.position, Camera.main, out nodePosition
-        ); 
+        NTScrollRect ntScrollRect = rg.GetComponentInChildren<NTScrollRect>();
 
-        Debug.Log(eventData.position + " ___ " + nodePosition);
+        if(ntScrollRect == null) return;
+
+        Vector2 nodePosition = Vector2.zero;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform) ntScrollRect.content.transform , 
+            Input.mousePosition, GetComponentInParent<Canvas>().worldCamera, out nodePosition
+        ); 
+        
+        nodePosition = new Vector2( nodePosition.x - 80, -nodePosition.y);
 
         rg.SpawnNode(nhd.nodeType, nodePosition);
     }

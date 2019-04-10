@@ -833,6 +833,36 @@ PrefabInstance:
       propertyPath: graphPath
       value: ImportGraph.json
       objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 454
+      objectReference: {fileID: 0}
+    - target: {fileID: 224047001452284434, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 892
+      objectReference: {fileID: 0}
     - target: {fileID: 1748578942086232, guid: 93cd8c9c9c49d5a48a1b48ae3415b91b, type: 3}
       propertyPath: m_IsActive
       value: 0
