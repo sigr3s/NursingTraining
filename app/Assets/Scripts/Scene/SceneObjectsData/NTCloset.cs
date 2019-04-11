@@ -13,6 +13,7 @@ namespace NT.SceneObjects
             
     }
 
+    [System.Serializable]
     public struct Drawer{
         public bool canbeOpened;
         public string slot00;

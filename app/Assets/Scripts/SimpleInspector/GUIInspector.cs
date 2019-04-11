@@ -152,9 +152,6 @@ public class GUIInspector : MonoBehaviour {
 
     private void OnPropertyChanged(object value, string path)
     {
-
-        Debug.Log(value + "  __ "+ value.GetType());
-
         List<string> variablePath = new List<string>(path.Split('/'));
 
         ReflectionUtilities.SetValueOf(ref inspectingObject, value, variablePath);
