@@ -183,8 +183,16 @@ public class SessionManager : Singleton<SessionManager> {
 
             Destroy(toRemove.gameObject);
             _sceneVariables.variableRepository.RemoveVariable(key, variableType);
-
             OnSceneGameObjectsChanged.Invoke();
+
+            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
+                if(sceneObjectsGraphs[i].linkedNTVariable == key){
+                    sceneObjectsGraphs.RemoveAt(i);
+                    OnGraphListChanged.Invoke();
+                    showingGraph = sceneGraph;
+                    return;
+                }
+            }  
         }
     }
 
@@ -195,6 +203,12 @@ public class SessionManager : Singleton<SessionManager> {
         if(!string.IsNullOrEmpty(key) && sceneGameObjects.ContainsKey(key)){
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
+
+            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
+                if(sceneObjectsGraphs[i].linkedNTVariable == key){
+                    showingGraph = sceneObjectsGraphs[i];
+                }
+            }  
         }
         else
         {
@@ -216,6 +230,7 @@ public class SessionManager : Singleton<SessionManager> {
         for(int i = 0; i < sceneObjectsGraphs.Count; i++){
             if(sceneObjectsGraphs[i].linkedNTVariable == key){
                 showingGraph = sceneObjectsGraphs[i];
+                SetSelected(key);
                 return; 
             }
         }
@@ -228,6 +243,8 @@ public class SessionManager : Singleton<SessionManager> {
         OnGraphListChanged.Invoke();
 
         showingGraph = soc;
+
+        SetSelected(key);
     }
 
     public void OpenSceneGraph(){
