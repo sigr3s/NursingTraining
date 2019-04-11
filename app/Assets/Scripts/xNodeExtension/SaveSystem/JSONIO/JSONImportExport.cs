@@ -7,6 +7,9 @@ using System;
 namespace XNode.InportExport {
     public class JSONImportExport : ImportExportFormat
     {
+        //  FIXME: Generic export when recieves ignore field parameters
+        // Add attribute like IgnoreExport or similar
+        // For linked types do similar
         public override void ExportData(NodeGraphData data, string path, List<Type> referenceTypes)
         {
             JSONObject exportJSON = new JSONObject();
@@ -23,7 +26,7 @@ namespace XNode.InportExport {
             graph.Add(  "name"  , new JSONString(data.graph.name)               );
             graph.Add(  "id"    , new JSONNumber(data.graph.GetHashCode())      );
             NodeGraph g = data.graph;
-            graph = (JSONObject) SimpleJSONExtension.ToJSON(g, graph, new List<string>(), referenceTypes);
+            graph = (JSONObject) SimpleJSONExtension.ToJSON(g, graph, new List<string>() {"sceneVariables"}, referenceTypes);
 
             JSONArray connections = new JSONArray();
 

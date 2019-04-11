@@ -6,6 +6,9 @@ namespace NT.Graph{
     {
         public string linkedNTVariable;
 
-        
+        public override void LoadFromGraph(NTGraph g){
+            base.LoadFromGraph(g);
+            linkedNTVariable = ((SceneObjectGraph) g).linkedNTVariable;
+        }
     }
 }

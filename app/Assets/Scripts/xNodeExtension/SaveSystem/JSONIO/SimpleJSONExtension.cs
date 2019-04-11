@@ -101,8 +101,6 @@ public static class SimpleJSONExtension {
             bool asignedReference = false;
             
             if(fieldList.Count > 0){
-                if(objectName == "callbackNodes") Debug.Log("Serializing??");
-
                 var item = fieldList[0];
                 if(referencedTypes != null && item != null){
                     foreach (Type refType in referencedTypes){

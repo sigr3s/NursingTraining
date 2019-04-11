@@ -33,6 +33,6 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
 
     private void OpenGraph()
     {
-       Debug.LogWarning("Open graph not implemented yet!");
+       SessionManager.Instance.OpenGraphFor(data.name);
     }
 }

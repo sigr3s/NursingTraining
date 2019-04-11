@@ -44,30 +44,16 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     public ScrollRect scrollRect { get; private set; }
 
-    private void Awake() {
-        // Create a clone so we don't modify the original asset
-        //string path = Application.dataPath + "/" + graphPath;
-
-        //JSONImportExport jimp = new JSONImportExport();
-        //graph = jimp.Import(path);
-
-        //((NTGraph) graph).sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
-        
+    private void Awake() {        
         scrollRect = GetComponentInChildren<ScrollRect>();
 
         graphContextMenu.onClickSpawn -= SpawnNode;
         graphContextMenu.onClickSpawn += SpawnNode;
     }
 
-    private void Start() {
-        SessionManager.Instance.OnSessionLoaded.AddListener(ReloadGraphs);
-        graph = SessionManager.Instance.sceneGraph;
-        SpawnGraph();
-    }
-
-    private void ReloadGraphs()
-    {
-        graph = SessionManager.Instance.sceneGraph;
+    public void SetGraph(NTGraph graph){
+        Clear();
+        this.graph = graph;
         SpawnGraph();
     }
 
@@ -86,6 +72,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     public virtual void Clear() {
         for (int i = nodes.Count - 1; i >= 0; i--) {
+
             Destroy(nodes[i].gameObject);
         }
         nodes.Clear();

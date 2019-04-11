@@ -15,16 +15,16 @@ namespace  NT.Graph
 {
     public class NTGraph : NodeGraph {
         [Header("Execution Flow Nodes")]
-        public List<NTNode> executionNodes;
+        public List<NTNode> executionNodes = new List<NTNode>();
 
-        public List<CallbackNode> callbackNodes;
+        public List<CallbackNode> callbackNodes = new List<CallbackNode>();
 
 
 
         [Header("References")]
         public SceneVariables sceneVariables;
 
-        public Dictionary<string, List<CallbackNode>> callbackNodesDict;
+        public Dictionary<string, List<CallbackNode>> callbackNodesDict = new Dictionary<string, List<CallbackNode>>();
 
         public override Node AddNode(System.Type type){
             Node node = base.AddNode(type);
@@ -138,7 +138,10 @@ namespace  NT.Graph
             if(g == null) return;
 
             Clear();
+            LoadFromGraph(g);            
+        }
 
+        public virtual void LoadFromGraph(NTGraph g){
             nodes = g.nodes;
             callbackNodes = g.callbackNodes;
             sceneVariables = g.sceneVariables;
@@ -146,8 +149,6 @@ namespace  NT.Graph
             foreach(Node n in nodes){
                 n.graph = this;
             }
-
-            
         }
     }
 }

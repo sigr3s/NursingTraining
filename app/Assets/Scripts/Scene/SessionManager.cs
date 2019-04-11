@@ -46,8 +46,10 @@ public class SessionManager : Singleton<SessionManager> {
         }
 
         private set{
-            _selectedObjectSceneObject = value;
-            OnCurrentChanged.Invoke();
+            if(_selectedObjectSceneObject != value){
+                _selectedObjectSceneObject = value;
+                OnCurrentChanged.Invoke();
+            }
         }
     } 
 
@@ -58,14 +60,19 @@ public class SessionManager : Singleton<SessionManager> {
         }  
 
         set{
-            _showingGraph = value;
-            OnShowingGraphChanged.Invoke();
+            if(_showingGraph != value){
+                _showingGraph = value;
+                OnShowingGraphChanged.Invoke();
+            }
         }
     }
 
 
     [HideInInspector] public UnityEvent OnCurrentChanged = new UnityEvent();
+
     [HideInInspector] public UnityEvent OnShowingGraphChanged = new UnityEvent();
+    [HideInInspector] public UnityEvent OnGraphListChanged = new UnityEvent();
+
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
     [HideInInspector] public UnityEvent OnSceneGameObjectsChanged = new UnityEvent();
 
@@ -115,9 +122,9 @@ public class SessionManager : Singleton<SessionManager> {
 
         SessionData.objectsGraphsFiles = new List<string>();
 
-        foreach(NTGraph objectGraph in sceneObjectsGraphs){
-            objectGraph.Export(saveFolder + "/" + objectGraph.name + "json");
-            SessionData.objectsGraphsFiles.Add(objectGraph.name + "json");
+        foreach(SceneObjectGraph objectGraph in sceneObjectsGraphs){
+            objectGraph.Export(saveFolder + "/" + objectGraph.linkedNTVariable + ".json");
+            SessionData.objectsGraphsFiles.Add(objectGraph.linkedNTVariable + ".json");
         }
 
         string sessionJSON = JsonUtility.ToJson(SessionData);       
@@ -134,6 +141,8 @@ public class SessionManager : Singleton<SessionManager> {
             return;
         }
 
+
+
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
         SessionData = JsonUtility.FromJson<SessionData>(configJSON); 
 
@@ -144,9 +153,21 @@ public class SessionManager : Singleton<SessionManager> {
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
         sceneGraph.sceneVariables = _sceneVariables;
 
+
+        sceneObjectsGraphs = new List<SceneObjectGraph>();
+        foreach(string sceneObjectGraphFile in SessionData.objectsGraphsFiles){
+            SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
+            soc.Import(saveFolder + "/" + sceneObjectGraphFile);
+            soc.sceneVariables = _sceneVariables;
+
+            sceneObjectsGraphs.Add(soc);
+        }
+
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
         OnSessionLoaded.Invoke();
+
+        showingGraph = sceneGraph;
     }
 
     public void AddSceneGameObject(SceneGameObject so){
@@ -192,11 +213,25 @@ public class SessionManager : Singleton<SessionManager> {
     }
 
     public void OpenGraphFor(string key){
+        for(int i = 0; i < sceneObjectsGraphs.Count; i++){
+            if(sceneObjectsGraphs[i].linkedNTVariable == key){
+                showingGraph = sceneObjectsGraphs[i];
+                return; 
+            }
+        }
 
+        SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
+        soc.linkedNTVariable = key;
+        soc.sceneVariables = sceneVariables;
+
+        sceneObjectsGraphs.Add(soc);
+        OnGraphListChanged.Invoke();
+
+        showingGraph = soc;
     }
 
     public void OpenSceneGraph(){
-        
+        showingGraph = sceneGraph; 
     }
 }
 
