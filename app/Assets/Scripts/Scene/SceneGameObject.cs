@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using cakeslice;
 using NT;
+using NT.Graph;
 using NT.SceneObjects;
 using UnityEngine;
+
 
 public class SceneGameObject : MonoBehaviour
 {
@@ -85,12 +87,20 @@ public class SceneGameObject : MonoBehaviour
     public bool isPlacingMode = false;
     public bool deleteMode = false;
 
+
+    //Hierarchy
+    public SceneGameObject parent;
+
+    //Data link!
     public string NTKey;
     public Type NTDataType;
+
+    //Scene object link
     public ISceneObject sceneObject;
+    public SceneObjectGraph graph;
 
-    public List<Outline> renderersOutlines;
 
+    private List<Outline> renderersOutlines;
     private void Awake() {
         List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();

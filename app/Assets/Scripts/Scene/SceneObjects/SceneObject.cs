@@ -1,17 +1,15 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using NT.Variables;
 using UnityEngine;
 
 namespace NT.SceneObjects
 {
-    public class SceneObject<T> : SceneObject where T : INTSceneObject 
+    public class SceneObject<T> : SceneObject 
     {
         public override Type GetDataType()
         {
-            return typeof(T);
+            return typeof(NTSceneObject<T>);
         }
     }
 
@@ -19,6 +17,7 @@ namespace NT.SceneObjects
         public SceneGameObjectInfo sceneGameObject;
         public UISceneObject sceneObjectUI;
         [SerializeField] private string GUID;
+
 
         public SceneObject(){
             GUID = Guid.NewGuid().ToString();
@@ -36,16 +35,11 @@ namespace NT.SceneObjects
         }
 
 
-        public virtual string GetName()
-        {
-            return name;
-        }
-
         public virtual UISceneObject GetUI(){
             return sceneObjectUI;
         }
 
-        public GameObject GetModel()
+        public virtual GameObject GetPreviewGameObject()
         {
             return sceneGameObject.model;
         }
@@ -53,11 +47,6 @@ namespace NT.SceneObjects
         public LayerMask GetLayerMask()
         {
             return sceneGameObject.canBePlacedOver;
-        }
-
-        public virtual ScriptableObject GetScriptableObject()
-        {
-            return this;
         }
 
         public string GetGUID()
@@ -80,6 +69,42 @@ namespace NT.SceneObjects
         public virtual bool CanHoldItem(SceneGameObject obj)
         {
             return false;
+        }
+
+        public virtual SceneGameObject Instantiate(string key, Transform parent, 
+            Vector3 localPosition, Quaternion localRotation
+        ){
+            GameObject instancedGo = GameObject.Instantiate(sceneGameObject.model, parent);
+            instancedGo.transform.localPosition = localPosition;
+            instancedGo.transform.localRotation = localRotation;
+
+
+            SceneGameObject scgo = instancedGo.GetComponent<SceneGameObject>();
+
+            if(scgo == null){
+                scgo = instancedGo.AddComponent<SceneGameObject>();
+            }
+
+            scgo.NTDataType = GetDataType();
+            scgo.NTKey = key;
+            scgo.sceneObject = this;
+
+            return scgo;
+        }
+
+
+        public virtual SceneGameObject Instantiate(
+            NTVariableRepository repository, Transform parent, 
+            Vector3 localPosition, Quaternion localRotation
+        ){
+            Type t = GetDataType();
+            string key = name + Guid.NewGuid().ToString();
+            
+            INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
+            savedSceneObject.SetName(key);
+            repository.AddVariable(t, savedSceneObject);
+
+            return Instantiate(key, parent,localPosition, localRotation);
         }
     }
 }

@@ -146,6 +146,16 @@ namespace  NT.Graph
             LoadFromGraph(g);            
         }
 
+        public void ImportSerialized(string serialized){
+            JSONImportExport jimp = new JSONImportExport();
+            NTGraph g = (NTGraph) jimp.ImportSerialized(serialized);
+
+            if(g == null) return;
+
+            Clear();
+            LoadFromGraph(g);  
+        }
+
         public virtual void LoadFromGraph(NTGraph g){
             nodes = g.nodes;
             callbackNodes = g.callbackNodes;

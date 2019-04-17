@@ -52,7 +52,7 @@ public class GraphPanel : MonoBehaviour
 
         tabs.Add(sceneTab);
 
-        foreach(SceneObjectGraph sog in SessionManager.Instance.sceneObjectsGraphs){
+        foreach(SceneObjectGraph sog in SessionManager.Instance.GetAllGraphs()){
             GraphTab sceneObjectTab = Instantiate(graphTab, content);
 
             sceneObjectTab.isSelected = false;

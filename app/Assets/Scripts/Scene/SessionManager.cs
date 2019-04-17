@@ -30,16 +30,18 @@ public class SessionManager : Singleton<SessionManager> {
     }
 
 
-    [Header("Graphs")]
+    [Header("References")]
     public SceneGraph sceneGraph;
-    public List<SceneObjectGraph> sceneObjectsGraphs;
+    public SceneObjects sceneObjects;
+    public SavedScene loadedScene;
 
 
     [Space(20)]
     [Header("Debug")]
 
-    [SerializeField] private Dictionary<string, SceneGameObject> sceneGameObjects;
-    [SerializeField] private SceneGameObject _selectedObjectSceneObject;
+    private Dictionary<string, SceneGameObject> sceneGameObjects;
+    private SceneGameObject _selectedObjectSceneObject;
+
     public SceneGameObject selectedSceneObject{
         get{
             return _selectedObjectSceneObject;
@@ -53,8 +55,10 @@ public class SessionManager : Singleton<SessionManager> {
         }
     } 
 
-    [SerializeField] private NTGraph _showingGraph;
-    [SerializeField] public NTGraph showingGraph{
+    private NTGraph _showingGraph;
+
+
+    public NTGraph showingGraph{
         get{
             return _showingGraph;
         }  
@@ -94,47 +98,45 @@ public class SessionManager : Singleton<SessionManager> {
 
     [System.Serializable]
     public struct SavedScene{
-        public List<SavedObject> objects;
+        public List<SavedSceneObject> objects;
     }
 
     [System.Serializable]
-    public struct SavedObject{
+    public struct SavedSceneObject{
+        public string parent;
+        public int id;
         public string ScriptableObjectGUID;
         public string AssignedNTVariable;
         public Vector3 position;
         public Vector3 rotation;
-        public List<string> childs;
         public string serializedGraph;
     }
 
 
-    [ContextMenu("Scene save")]
-    public void NewSceneSave(){
+    public void SaveScene(string path){
         
-        SavedScene savedScene = new SavedScene(){ objects = new List<SavedObject>()};
+        SavedScene savedScene = new SavedScene(){ objects = new List<SavedSceneObject>()};
 
         foreach(var sceneGameObject in sceneGameObjects){
 
-            SavedObject savedObject = new SavedObject(){
+            SavedSceneObject savedObject = new SavedSceneObject(){
                 ScriptableObjectGUID = sceneGameObject.Value.sceneObject.GetGUID(),
                 AssignedNTVariable = sceneGameObject.Key,
-                position = sceneGameObject.Value.gameObject.transform.position,
+                position = sceneGameObject.Value.gameObject.transform.localPosition,
                 rotation = sceneGameObject.Value.gameObject.transform.localRotation.eulerAngles
             };
 
-            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
-                if(sceneObjectsGraphs[i].linkedNTVariable == sceneGameObject.Key){
-                    savedObject.serializedGraph = sceneObjectsGraphs[i].ExportSerialized(); 
-                }
+            if(sceneGameObject.Value.graph != null){
+                savedObject.serializedGraph = sceneGameObject.Value.graph.ExportSerialized();
             }
 
             savedScene.objects.Add(savedObject);
         }
 
-        Debug.Log( JsonUtility.ToJson(savedScene) );
+        if(!string.IsNullOrEmpty(path)){
+            File.WriteAllText(path, JsonUtility.ToJson(savedScene));
+        }
     }
-
-
     
     [ContextMenu("Save")]
     public void SaveSession(){
@@ -161,16 +163,12 @@ public class SessionManager : Singleton<SessionManager> {
         SessionData.sceneGraphFile = "sceneGraph.json";
         sceneGraph.Export(saveFolder + "/" + SessionData.sceneGraphFile);
 
-
-        SessionData.objectsGraphsFiles = new List<string>();
-
-        foreach(SceneObjectGraph objectGraph in sceneObjectsGraphs){
-            objectGraph.Export(saveFolder + "/" + objectGraph.linkedNTVariable + ".json");
-            SessionData.objectsGraphsFiles.Add(objectGraph.linkedNTVariable + ".json");
-        }
+        SessionData.sceneFile = "scene.json";
+        SaveScene(saveFolder + "/" + SessionData.sceneFile);
 
         string sessionJSON = JsonUtility.ToJson(SessionData);       
         File.WriteAllText(saveFolder + "/" + "config.json", sessionJSON);
+
     }
 
     public void LoadSession(string sessionID){
@@ -194,15 +192,11 @@ public class SessionManager : Singleton<SessionManager> {
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
         sceneGraph.sceneVariables = _sceneVariables;
 
+        //FIXME: Load scene save!
+        string sceneJSON = File.ReadAllText(saveFolder +  "/" + SessionData.sceneFile);
+        loadedScene = JsonUtility.FromJson<SavedScene>(sceneJSON);                
 
-        sceneObjectsGraphs = new List<SceneObjectGraph>();
-        foreach(string sceneObjectGraphFile in SessionData.objectsGraphsFiles){
-            SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
-            soc.Import(saveFolder + "/" + sceneObjectGraphFile);
-            soc.sceneVariables = _sceneVariables;
-
-            sceneObjectsGraphs.Add(soc);
-        }
+        //FIXME: Link scene aghain with data!
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
@@ -222,18 +216,15 @@ public class SessionManager : Singleton<SessionManager> {
             SceneGameObject toRemove = sceneGameObjects[key];
             sceneGameObjects.Remove(key);
 
+            if(toRemove.graph != null){
+                OnGraphListChanged.Invoke();
+                showingGraph = sceneGraph;
+            }
+
+
             Destroy(toRemove.gameObject);
             _sceneVariables.variableRepository.RemoveVariable(key, variableType);
             OnSceneGameObjectsChanged.Invoke();
-
-            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
-                if(sceneObjectsGraphs[i].linkedNTVariable == key){
-                    sceneObjectsGraphs.RemoveAt(i);
-                    OnGraphListChanged.Invoke();
-                    showingGraph = sceneGraph;
-                    return;
-                }
-            }  
         }
     }
 
@@ -245,11 +236,9 @@ public class SessionManager : Singleton<SessionManager> {
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
 
-            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
-                if(sceneObjectsGraphs[i].linkedNTVariable == key){
-                    showingGraph = sceneObjectsGraphs[i];
-                }
-            }  
+            if(selectedSceneObject.graph != null){
+                showingGraph = selectedSceneObject.graph;
+            }
         }
         else
         {
@@ -268,28 +257,39 @@ public class SessionManager : Singleton<SessionManager> {
     }
 
     public void OpenGraphFor(string key){
-        for(int i = 0; i < sceneObjectsGraphs.Count; i++){
-            if(sceneObjectsGraphs[i].linkedNTVariable == key){
-                showingGraph = sceneObjectsGraphs[i];
-                SetSelected(key);
-                return; 
-            }
+        SceneGameObject sobj = GetSceneGameObject(key);
+
+        if(sobj == null) return;
+
+        if(sobj.graph == null){
+            SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
+            soc.linkedNTVariable = key;
+            soc.sceneVariables = sceneVariables;
+
+            sobj.graph = soc;
+            OnGraphListChanged.Invoke();
         }
+        
 
-        SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
-        soc.linkedNTVariable = key;
-        soc.sceneVariables = sceneVariables;
-
-        sceneObjectsGraphs.Add(soc);
-        OnGraphListChanged.Invoke();
-
-        showingGraph = soc;
-
+        showingGraph = sobj.graph;
         SetSelected(key);
     }
 
     public void OpenSceneGraph(){
         showingGraph = sceneGraph; 
+    }
+
+    public List<SceneObjectGraph> GetAllGraphs()
+    {
+        List<SceneObjectGraph> graphs =  new List<SceneObjectGraph>();
+
+        foreach(var sceneGameObject in sceneGameObjects){
+            if(sceneGameObject.Value.graph != null){
+                graphs.Add(sceneGameObject.Value.graph);
+            }
+        }
+
+        return graphs;
     }
 }
 
@@ -298,7 +298,6 @@ public struct SessionData{
     public string sessionID;
     public string lastModified;
     public string variablesFile;
-
-    public string sceneGraphFile;        
-    public List<string> objectsGraphsFiles;
+    public string sceneGraphFile;
+    public string sceneFile;         
 }

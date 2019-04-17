@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NT;
+using NT.Graph;
 using NT.SceneObjects;
 using NT.Variables;
 using UnityEngine;
@@ -33,7 +34,6 @@ public class MapEditor : MonoBehaviour{
 
 
     [Header("Map Object list")]
-    public SceneObjects sceneObjects;
     public GameObject sceneObjectUiPrefab;
     
     [Header("Debug")]
@@ -74,8 +74,8 @@ public class MapEditor : MonoBehaviour{
     private LayerMask currentObjectLayer;
     public LayerMask allExceptFloor = ~0;
 
-     private void Awake() {
-        foreach (var so in sceneObjects.objectSet)
+     private void LoadObjectsButtons() {
+        foreach (var so in SessionManager.Instance.sceneObjects.objectSet)
         {
             ISceneObject isc = (ISceneObject) so;
 
@@ -96,18 +96,19 @@ public class MapEditor : MonoBehaviour{
 
     void Start()
     {
+        SessionManager.Instance.OnSessionLoaded.AddListener(LoadMap);
+
         BuildToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Build;});
         InspectToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Inspect;});
         DeleteToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Delete;});
 
         mode = MapMode.Build;
 
-        SessionManager.Instance.OnSessionLoaded.AddListener(LoadMap);
-
+        LoadObjectsButtons();
         LoadMap();
     }
 
-    private void LoadMap(){
+    private void CreateRoot(){
         if(items != null){
             Destroy(items);
         }
@@ -115,51 +116,40 @@ public class MapEditor : MonoBehaviour{
         items = new GameObject();
         items.transform.parent = mapPivot;
         items.transform.localPosition = Vector3.zero;
-        items.name = "Items Container"; 
+        items.name = "Items Container";
+    }
 
-        NTVariableRepository repo = SessionManager.Instance.sceneVariables.variableRepository;
+    private void LoadMap(){
+        CreateRoot();
 
-        foreach (var kvp in repo.dictionary)
-        {
-            string variable = kvp.Key;
-            string displayName = variable.Replace("NT.Variables.NT", "");
-            NTVariableDictionary varDict = kvp.Value;
+        var loadedScene = SessionManager.Instance.loadedScene;
 
-            if(!typeof(INTSceneObject).IsAssignableFrom(varDict._dictType)){
+        foreach(var loadedSceneObject in loadedScene.objects){
+
+            Debug.Log("Loading object ---- " + loadedSceneObject.AssignedNTVariable);
+
+            Transform itemParent = items.transform;
+
+            if(!string.IsNullOrEmpty(loadedSceneObject.parent)){
+                Debug.LogWarning("Parent not implemneted yet!");
+            }
+
+            SceneObject so = SessionManager.Instance.sceneObjects.GetObject(loadedSceneObject.ScriptableObjectGUID);
+
+            if(so == null){
+                Debug.LogWarning("Could not load SceneObject with this instance");
                 continue;
             }
 
-            foreach (var kvpi in varDict)
-            {
-                INTSceneObject intSO =  (INTSceneObject) kvpi.Value;
+            SceneGameObject scgo =  so.Instantiate(loadedSceneObject.AssignedNTVariable, itemParent, loadedSceneObject.position, Quaternion.Euler(loadedSceneObject.rotation));
 
-                SceneObjectExtraData sed =  intSO.GetExtraData();
-                SceneObject so = sceneObjects.GetObject(sed.sceneObjectGUID);
-
-                if(so != null){
-                    GameObject sceneObjectInstance = Instantiate(so.GetModel(), items.transform);
-
-                    sceneObjectInstance.transform.localPosition = sed.position;
-                    sceneObjectInstance.transform.localRotation = Quaternion.Euler(sed.rotation);
-            
-                    SceneGameObject sceneGameObjectInstance = sceneObjectInstance.GetComponent<SceneGameObject>();
-
-                    if(sceneGameObjectInstance == null){
-                        sceneGameObjectInstance = sceneObjectInstance.AddComponent<SceneGameObject>();
-                    }
-
-                    sceneGameObjectInstance.NTKey = kvpi.Key;
-                    sceneGameObjectInstance.NTDataType = varDict._dictType;
-                    sceneGameObjectInstance.sceneObject = so;
-
-                    SessionManager.Instance.AddSceneGameObject(sceneGameObjectInstance);
-
-
-                }
+            if(!string.IsNullOrEmpty(loadedSceneObject.serializedGraph)){
+                scgo.graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
+                scgo.graph.ImportSerialized(loadedSceneObject.serializedGraph);
             }
 
+            SessionManager.Instance.AddSceneGameObject(scgo);            
         }
-
     }
 
     private void Update() {
@@ -223,7 +213,7 @@ public class MapEditor : MonoBehaviour{
         if(current == null) return;
 
         if(previewGO == null){
-            previewGO = Instantiate(current.GetModel());
+            previewGO = Instantiate(current.GetPreviewGameObject());
 
             previewGO.transform.localRotation = Quaternion.Euler(lastRotation);
             
@@ -281,27 +271,16 @@ public class MapEditor : MonoBehaviour{
                 previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
                 previewSceneGameObject.isPlacingMode = false;
-                
-                Type t = current.GetDataType();
-                string key = current.GetName() + previewGO.GetHashCode();
-
-                INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
-                savedSceneObject.SetName(key);
-                savedSceneObject.SetScriptableObject(current.GetGUID());
-
-                savedSceneObject.SetPosition(previewSceneGameObject.transform.localPosition);
-                savedSceneObject.SetRotation(previewSceneGameObject.transform.localRotation.eulerAngles);
-
                 lastRotation = previewSceneGameObject.transform.localRotation.eulerAngles;
+
                 
+                SceneGameObject instanced = current.Instantiate(SessionManager.Instance.sceneVariables.variableRepository, items.transform,
+                                    previewGO.transform.localPosition, previewGO.transform.localRotation);
+    
 
-                SessionManager.Instance.sceneVariables.variableRepository.AddVariable(t, savedSceneObject);
+                SessionManager.Instance.AddSceneGameObject(instanced);
 
-                previewSceneGameObject.NTDataType = t;
-                previewSceneGameObject.NTKey = key;
-                previewSceneGameObject.sceneObject = current;
-
-                SessionManager.Instance.AddSceneGameObject(previewSceneGameObject);
+                Destroy(previewGO);
 
                 previewGO = null;
             }

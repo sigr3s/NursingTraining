@@ -79,148 +79,141 @@ namespace XNode.InportExport {
         }
 
 
-        public override NodeGraphData ImportData(string path)
+        public override NodeGraphData ImportData(string serializedData)
         {
             NodeGraphData returnData = null;
 
-            if(File.Exists(path)){
-                string jsonString =  File.ReadAllText(path);
-                JSONNode root = JSON.Parse(jsonString);
+            
+            JSONNode root = JSON.Parse(serializedData);
 
-                Dictionary<int, object> references = new Dictionary<int, object>();
-                Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
+            Dictionary<int, object> references = new Dictionary<int, object>();
+            Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
 
-                List<string> ignoredFields =  new List<string> {"name", "graph", "ports", "nodes"};
-                JSONObject graphJObject;
+            List<string> ignoredFields =  new List<string> {"name", "graph", "ports", "nodes"};
+            JSONObject graphJObject;
 
-                if(root.HasKey("graph")){
-                    graphJObject = root["graph"].AsObject;
-                    int id = graphJObject["id"];
-                    string graphTypeS = graphJObject["type"];
-                    Type graphType = Type.GetType(graphTypeS);
+            if(root.HasKey("graph")){
+                graphJObject = root["graph"].AsObject;
+                int id = graphJObject["id"];
+                string graphTypeS = graphJObject["type"];
+                Type graphType = Type.GetType(graphTypeS);
 
-                    NodeGraph  graph = (NodeGraph) ScriptableObject.CreateInstance(graphType);
-                    graph.name = graphJObject["name"];
+                NodeGraph  graph = (NodeGraph) ScriptableObject.CreateInstance(graphType);
+                graph.name = graphJObject["name"];
 
-                    references.Add(id, graph);
-                    returnData = new NodeGraphData(graph);
+                references.Add(id, graph);
+                returnData = new NodeGraphData(graph);
 
-                    Debug.Log("Basic graph OK!");
-                }
-                else
+                Debug.Log("Basic graph OK!");
+            }
+            else
+            {
+                Debug.LogWarning("Basic graph KO!");
+                return returnData;
+            }
+
+            if(root.HasKey("nodes")){
+                JSONArray nodesJArray = root["nodes"].AsArray;
+
+                foreach (JSONObject nodeJObject in nodesJArray.Values)
                 {
-                    Debug.LogWarning("Basic graph KO!");
-                    return returnData;
-                }
+                    int id = nodeJObject["id"];
+                    string nodeTypeS = nodeJObject["type"];
+                    Type nodeType = Type.GetType(nodeTypeS);
 
-                if(root.HasKey("nodes")){
-                    JSONArray nodesJArray = root["nodes"].AsArray;
+                    Node  node = (Node) ScriptableObject.CreateInstance(nodeType);
+                    node.name = nodeJObject["name"];
+                    object nodeOBJ = (object) node;
 
-                    foreach (JSONObject nodeJObject in nodesJArray.Values)
+                    SimpleJSONExtension.FromJSON(ref  nodeOBJ, nodeType, nodeJObject, ignoredFields, references);
+                    node.graph = returnData.graph;
+                    NodeData nodeData = new NodeData(node);
+
+                    JSONArray nodePortsArray = nodeJObject["ports"].AsArray;
+                    foreach (var nodePort in nodePortsArray.Values)
                     {
-                        int id = nodeJObject["id"];
-                        string nodeTypeS = nodeJObject["type"];
-                        Type nodeType = Type.GetType(nodeTypeS);
+                        bool dynamic = nodePort["dynamic"].AsBool;
+                        string portName = nodePort["name"];
+                        NodePort port = null;
+                        int portId = 0;
 
-                        Node  node = (Node) ScriptableObject.CreateInstance(nodeType);
-                        node.name = nodeJObject["name"];
-                        object nodeOBJ = (object) node;
+                        if(dynamic){
+                            if(!node.HasPort(portName)){
+                                Type dynamicType = Type.GetType(nodePort["valueType"]);
+                                Node.TypeConstraint constraint = (Node.TypeConstraint) nodePort["typeConstraint"].AsInt;
+                                Node.ConnectionType connectionType = (Node.ConnectionType) nodePort["connectionType"].AsInt;
+                                NodePort.IO direction = (NodePort.IO) nodePort["direction"].AsInt;
 
-                        SimpleJSONExtension.FromJSON(ref  nodeOBJ, nodeType, nodeJObject, ignoredFields, references);
-                        node.graph = returnData.graph;
-                        NodeData nodeData = new NodeData(node);
-
-                        JSONArray nodePortsArray = nodeJObject["ports"].AsArray;
-                        foreach (var nodePort in nodePortsArray.Values)
-                        {
-                            bool dynamic = nodePort["dynamic"].AsBool;
-                            string portName = nodePort["name"];
-                            NodePort port = null;
-                            int portId = 0;
-
-                            if(dynamic){
-                                if(!node.HasPort(portName)){
-                                    Type dynamicType = Type.GetType(nodePort["valueType"]);
-                                    Node.TypeConstraint constraint = (Node.TypeConstraint) nodePort["typeConstraint"].AsInt;
-                                    Node.ConnectionType connectionType = (Node.ConnectionType) nodePort["connectionType"].AsInt;
-                                    NodePort.IO direction = (NodePort.IO) nodePort["direction"].AsInt;
-
-                                    if(direction == NodePort.IO.Input){
-                                        port = node.AddInstanceInput(dynamicType, connectionType, constraint, portName);
-                                    }
-                                    else
-                                    {
-                                        port = node.AddInstanceOutput(dynamicType, connectionType, constraint, portName);
-                                    }
-
+                                if(direction == NodePort.IO.Input){
+                                    port = node.AddInstanceInput(dynamicType, connectionType, constraint, portName);
                                 }
                                 else
                                 {
-                                    Debug.LogWarning("Ignoring port bc is already created");
+                                    port = node.AddInstanceOutput(dynamicType, connectionType, constraint, portName);
                                 }
+
                             }
-
-                            port = node.GetPort(nodePort["name"]);
-                            portId = nodePort["id"];
-
-                            NodePortData portData = new NodePortData(nodeData, port);
-
-                            nodeData.ports.Add(portData);
-                            portDatas.Add(port, portData);
-                            references.Add(portId, port);
+                            else
+                            {
+                                Debug.LogWarning("Ignoring port bc is already created");
+                            }
                         }
 
-                        references.Add(id, node);
-                        returnData.nodes.Add(nodeData);
+                        port = node.GetPort(nodePort["name"]);
+                        portId = nodePort["id"];
+
+                        NodePortData portData = new NodePortData(nodeData, port);
+
+                        nodeData.ports.Add(portData);
+                        portDatas.Add(port, portData);
+                        references.Add(portId, port);
                     }
 
-                    Debug.Log("Basic Nodes OK!");
-
+                    references.Add(id, node);
+                    returnData.nodes.Add(nodeData);
                 }
-                else
+
+                Debug.Log("Basic Nodes OK!");
+
+            }
+            else
+            {
+                Debug.LogWarning("Basic Nodes KO!");
+                return returnData;
+            }
+
+
+            if(root.HasKey("connections")){
+                JSONArray connectionsJArray = root["connections"].AsArray;
+
+                foreach (JSONObject connectionJObject in connectionsJArray.Values)
                 {
-                    Debug.LogWarning("Basic Nodes KO!");
-                    return returnData;
-                }
+                    int port1ID = connectionJObject["port1ID"].AsInt;
+                    int port2ID = connectionJObject["port2ID"].AsInt;
 
+                    if(references.ContainsKey(port1ID) && references.ContainsKey(port2ID)){
+                        NodePort p1 =  (NodePort) references[port1ID];
+                        NodePort p2 =  (NodePort) references[port2ID];
 
-                if(root.HasKey("connections")){
-                    JSONArray connectionsJArray = root["connections"].AsArray;
-
-                    foreach (JSONObject connectionJObject in connectionsJArray.Values)
+                        p1.Connect(p2);
+                    }
+                    else
                     {
-                        int port1ID = connectionJObject["port1ID"].AsInt;
-                        int port2ID = connectionJObject["port2ID"].AsInt;
-
-                        if(references.ContainsKey(port1ID) && references.ContainsKey(port2ID)){
-                            NodePort p1 =  (NodePort) references[port1ID];
-                            NodePort p2 =  (NodePort) references[port2ID];
-
-                            p1.Connect(p2);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Error recovering one connection");
-                        }
-
+                        Debug.LogWarning("Error recovering one connection");
                     }
-                    Debug.Log("Connections OK!");
-                }
-                else
-                {
-                    Debug.LogWarning("Connections KO!");
-                    return returnData;
-                }
 
-                
-                object graphObject = returnData.graph;
-                SimpleJSONExtension.FromJSON(ref  graphObject, returnData.graph.GetType(), graphJObject , ignoredFields, references);
+                }
+                Debug.Log("Connections OK!");
             }
-            else{
-                Debug.LogError("Path does not exist " + path);
+            else
+            {
+                Debug.LogWarning("Connections KO!");
+                return returnData;
             }
 
-
+            
+            object graphObject = returnData.graph;
+            SimpleJSONExtension.FromJSON(ref  graphObject, returnData.graph.GetType(), graphJObject , ignoredFields, references);
 
 
             return returnData;

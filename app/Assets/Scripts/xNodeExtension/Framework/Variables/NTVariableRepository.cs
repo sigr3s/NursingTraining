@@ -366,9 +366,14 @@ namespace NT.Variables
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
             for (int i = 0; i < keys.Count; i++){
-                NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
-                instance.FromNTVariableData(values[i]);
-                this.Add(keys[i], instance);
+                try{
+                    NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
+                    instance.FromNTVariableData(values[i]);
+                    this.Add(keys[i], instance);
+                }
+                catch(Exception e){
+                    Debug.LogWarning("Error trying to load variable " + keys[i] + "______ of type " + t + "  -- - -- - - - - -" + e);
+                }
             }
         }
     }

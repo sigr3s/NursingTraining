@@ -8,7 +8,18 @@ namespace XNode.InportExport {
     public abstract class ImportExportFormat
 	{
         public NodeGraph Import (string path){
-			NodeGraphData data = ImportData (path);
+			if(File.Exists(path)){
+                string serializedData =  File.ReadAllText(path);
+				return ImportSerialized(serializedData);
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		public NodeGraph ImportSerialized (string serializedData){
+			NodeGraphData data = ImportData (serializedData);
 			if (data == null)
 				return null;
 			return ConvertToNodeCanvas (data);
