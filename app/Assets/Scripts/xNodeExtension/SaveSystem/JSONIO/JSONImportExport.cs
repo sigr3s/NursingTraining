@@ -10,7 +10,7 @@ namespace XNode.InportExport {
         //  FIXME: Generic export when recieves ignore field parameters
         // Add attribute like IgnoreExport or similar
         // For linked types do similar
-        public override void ExportData(NodeGraphData data, string path, List<Type> referenceTypes)
+        public override string ExportData(NodeGraphData data, List<Type> referenceTypes)
         {
             JSONObject exportJSON = new JSONObject();
 
@@ -74,12 +74,8 @@ namespace XNode.InportExport {
             exportJSON.Add("graph", graph);
             exportJSON.Add("connections", connections);
             exportJSON.Add("nodes", nodes);
-
-            if(File.Exists(path)){
-                File.Delete(path);
-            }
-
-            File.WriteAllText(path, exportJSON.ToString());
+            
+            return exportJSON.ToString();
         }
 
 

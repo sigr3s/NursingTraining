@@ -40,6 +40,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     
     [Header("Debug")]
     public List<UGUIBaseNode> nodes;
+    public List<UGUIBaseNode> selectedNodes;
 
 
     public ScrollRect scrollRect { get; private set; }

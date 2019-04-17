@@ -38,7 +38,7 @@ public class SessionManager : Singleton<SessionManager> {
     [Space(20)]
     [Header("Debug")]
 
-    [SerializeField] private Dictionary<string, SceneGameObject> sceneGameObjects;    
+    [SerializeField] private Dictionary<string, SceneGameObject> sceneGameObjects;
     [SerializeField] private SceneGameObject _selectedObjectSceneObject;
     public SceneGameObject selectedSceneObject{
         get{
@@ -69,10 +69,8 @@ public class SessionManager : Singleton<SessionManager> {
 
 
     [HideInInspector] public UnityEvent OnCurrentChanged = new UnityEvent();
-
     [HideInInspector] public UnityEvent OnShowingGraphChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnGraphListChanged = new UnityEvent();
-
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
     [HideInInspector] public UnityEvent OnSceneGameObjectsChanged = new UnityEvent();
 
@@ -93,6 +91,50 @@ public class SessionManager : Singleton<SessionManager> {
            LoadSession(SessionData.sessionID);
         }
     }
+
+    [System.Serializable]
+    public struct SavedScene{
+        public List<SavedObject> objects;
+    }
+
+    [System.Serializable]
+    public struct SavedObject{
+        public string ScriptableObjectGUID;
+        public string AssignedNTVariable;
+        public Vector3 position;
+        public Vector3 rotation;
+        public List<string> childs;
+        public string serializedGraph;
+    }
+
+
+    [ContextMenu("Scene save")]
+    public void NewSceneSave(){
+        
+        SavedScene savedScene = new SavedScene(){ objects = new List<SavedObject>()};
+
+        foreach(var sceneGameObject in sceneGameObjects){
+
+            SavedObject savedObject = new SavedObject(){
+                ScriptableObjectGUID = sceneGameObject.Value.sceneObject.GetGUID(),
+                AssignedNTVariable = sceneGameObject.Key,
+                position = sceneGameObject.Value.gameObject.transform.position,
+                rotation = sceneGameObject.Value.gameObject.transform.localRotation.eulerAngles
+            };
+
+            for(int i = 0; i < sceneObjectsGraphs.Count; i++){
+                if(sceneObjectsGraphs[i].linkedNTVariable == sceneGameObject.Key){
+                    savedObject.serializedGraph = sceneObjectsGraphs[i].ExportSerialized(); 
+                }
+            }
+
+            savedScene.objects.Add(savedObject);
+        }
+
+        Debug.Log( JsonUtility.ToJson(savedScene) );
+    }
+
+
     
     [ContextMenu("Save")]
     public void SaveSession(){
@@ -140,7 +182,6 @@ public class SessionManager : Singleton<SessionManager> {
         if(!Directory.Exists(saveFolder) ){
             return;
         }
-
 
 
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");

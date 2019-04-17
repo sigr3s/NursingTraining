@@ -33,6 +33,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114542133508223834}
   - {fileID: 114483847093333818}
+  - {fileID: 114208691322076756}
   executionNodes: []
   callbackNodes:
   - {fileID: 114542133508223834}
@@ -165,11 +166,13 @@ MonoBehaviour:
     Name: 2
     Value: 5
     DefaultValue: 0
+    ExtraData: 
   _myData:
     serializedData:
       Name: 2
       Value: 5
       DefaultValue: 0
+      ExtraData: 
     collapsed: 1
   variablePath: 
 --- !u!114 &114185855817500422
@@ -217,7 +220,7 @@ MonoBehaviour:
   m_Name: Surgeon 01 - dat/lastSaid2
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -536, y: -856}
+  position: {x: -536, y: -888}
   ports:
     keys:
     - flowIn
@@ -268,11 +271,13 @@ MonoBehaviour:
     Name: Surgeon 01
     Value: '{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":"Hello"}}'
     DefaultValue: '{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":"Hell"}}'
+    ExtraData: 
   _myData:
     serializedData:
       Name: Surgeon 01
       Value: '{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":"Hello"}}'
       DefaultValue: '{"currentObject":"","lastSaid":"","elements":0.0,"dat":{"lastSaid2":"Hell"}}'
+      ExtraData: 
     collapsed: 1
   variablePath: dat/lastSaid2
 --- !u!114 &114198287903354060
@@ -288,7 +293,7 @@ MonoBehaviour:
   m_Name: Surgeon 01 - dat/lastSaid2
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -472, y: -664}
+  position: {x: -488, y: -664}
   ports:
     keys:
     - variable
@@ -313,6 +318,62 @@ MonoBehaviour:
   variableKey: Surgeon 01
   dataTypeString: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
   variablePath: dat/lastSaid2
+--- !u!114 &114208691322076756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3cf6332fba945acaf15bdaf559cc59, type: 3}
+  m_Name: Logic Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: -1032}
+  ports:
+    keys:
+    - input0
+    - input1
+    - result
+    values:
+    - _fieldName: input0
+      _node: {fileID: 114208691322076756}
+      _typeQualifiedName: NT.ValueConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input1
+      _node: {fileID: 114208691322076756}
+      _typeQualifiedName: NT.ValueConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 114208691322076756}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  hasError: 0
+  error: 
+  isExecuting: 0
+  input0:
+    value: 
+  op: 0
+  input1:
+    value: 
+  result: 0
 --- !u!114 &114260672415186112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +580,7 @@ MonoBehaviour:
   m_Name: Send Message Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -40, y: -1256}
+  position: {x: -72, y: -1512}
   ports:
     keys:
     - flowIn
@@ -563,7 +624,7 @@ MonoBehaviour:
   m_Name: Branch Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -1272}
+  position: {x: -360, y: -1528}
   ports:
     keys:
     - flowIn
@@ -633,7 +694,7 @@ MonoBehaviour:
   m_Name: Logic Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -584, y: -1144}
+  position: {x: -616, y: -1400}
   ports:
     keys:
     - result
@@ -695,7 +756,7 @@ MonoBehaviour:
   m_Name: Callback Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: -1320}
+  position: {x: -632, y: -1576}
   ports:
     keys:
     - flowOut
@@ -1142,7 +1203,7 @@ MonoBehaviour:
   m_Name: LLanos
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -872, y: -1128}
+  position: {x: -904, y: -1384}
   ports:
     keys:
     - variable

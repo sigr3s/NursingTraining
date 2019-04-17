@@ -36,8 +36,6 @@ namespace NT.Nodes.Variables{
             if(variableType == null || dataType == null) InitializeNodeTypes();
             if(_myData == null) _myData.FromNTVariableData(data);
 
-            //var value = getValueMethod.Invoke(this, new object[] {variableField, _myData.GetValue()});
-
             object portValue = GetPort(variableField).GetInputValue();
             object value = null;
 
@@ -80,7 +78,7 @@ namespace NT.Nodes.Variables{
 
             if(!typeof(NTVariable).IsAssignableFrom(ntvaribaleType) || ntvaribaleType.IsGenericTypeDefinition) return;
 
-            if(typeString != null) Debug.LogWarning("TRying to reporpouse a node...");
+            if(typeString != null) Debug.LogWarning("Trying to reporpouse a node...");
 
             typeString = ntvaribaleType.AssemblyQualifiedName;
             variableType = ntvaribaleType;

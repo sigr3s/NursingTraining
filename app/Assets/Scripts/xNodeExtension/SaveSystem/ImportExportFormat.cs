@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 
@@ -13,14 +14,26 @@ namespace XNode.InportExport {
 			return ConvertToNodeCanvas (data);
 		}
 
+
+		public string Export(NodeGraph graph){
+			NodeGraphData data = ConvertToNodeGraphData (graph);
+			return ExportData (data,  new List<Type>());
+		}
+
 		public void Export (NodeGraph graph, string path){
 			NodeGraphData data = ConvertToNodeGraphData (graph);
-			ExportData (data, path, new List<Type>());
+			string exportJSON = ExportData (data,  new List<Type>());
+
+            if(File.Exists(path)){
+                File.Delete(path);
+            }
+
+			File.WriteAllText(path, exportJSON);
 		}
 
         public abstract NodeGraphData ImportData (string path);
 
-		public abstract void ExportData (NodeGraphData data, string path, List<Type> referenceTypes);
+		public abstract string ExportData (NodeGraphData data, List<Type> referenceTypes);
 
 
         public NodeGraph ConvertToNodeCanvas(NodeGraphData data){

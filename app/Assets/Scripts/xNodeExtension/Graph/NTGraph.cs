@@ -119,6 +119,11 @@ namespace  NT.Graph
             Export(Application.dataPath + "/" + name + ".json");
         }
 
+        public string ExportSerialized(){
+            JSONImportExport jep = new JSONImportExport();
+            return jep.Export(this); 
+        }
+
         public void Export(string path){
             JSONImportExport jep = new JSONImportExport();
             jep.Export(this, path);      

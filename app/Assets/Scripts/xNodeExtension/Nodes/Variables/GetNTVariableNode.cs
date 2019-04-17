@@ -22,8 +22,6 @@ namespace NT.Nodes.Variables
         private Type dataType;
 
 
-
-
         public override object GetValue(NodePort port) {
             NTGraph g = graph as NTGraph;
             NTVariableRepository repo = g.sceneVariables.variableRepository;
