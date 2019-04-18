@@ -25,29 +25,57 @@ public class SceneHierarchy : GUIHierarchy {
     }
 
     public override List<HierarchyModel> GetRoot(){
+
+        Debug.Log("Get rooot!");
+
         List<HierarchyModel> root = new List<HierarchyModel>();
 
-        NTVariableRepository repo = SessionManager.Instance.sceneVariables.variableRepository;
+        var parents = new Dictionary<string, HierarchyModel>();
+        var childs = new Dictionary<string, List<HierarchyModel>>();
 
-        foreach (var kvp in repo.dictionary)
-        {
-            string variable = kvp.Key;
-            string displayName = variable.Replace("NT.Variables.NT", "");
-            NTVariableDictionary varDict = kvp.Value;
+        foreach(var sgoKVp in SessionManager.Instance.sceneGameObjects){
+            SceneGameObject scgo = sgoKVp.Value;
 
-            if(!typeof(INTSceneObject).IsAssignableFrom(varDict._dictType)){
-                continue;
+            bool selected = SessionManager.Instance.selectedSceneObject?.NTKey == sgoKVp.Key;
+            HierarchyModel model = new HierarchyModel(new HierarchyData{ name = sgoKVp.Value.name, key = sgoKVp.Key, selected = selected});
+
+            if(childs.ContainsKey(sgoKVp.Key)){
+                List<HierarchyModel> scgoChilds = childs[sgoKVp.Key];
+
+                foreach(HierarchyModel hm in scgoChilds){
+                    model.AddChild(hm);
+                }
+
+                childs.Remove(sgoKVp.Key);
             }
 
-            foreach (var kvpi in varDict)
+            if(scgo.parent != null){
+                string parentKey = scgo.parent.NTKey;
+
+                if(parents.ContainsKey(parentKey)){
+                    parents[scgo.parent.NTKey].AddChild(model);
+                }
+                else
+                {
+                    if(childs.ContainsKey(parentKey)){
+                        List<HierarchyModel> scgoChilds = childs[parentKey];
+                        scgoChilds.Add(model);
+                        childs[parentKey] = scgoChilds;
+                    }
+                    else{
+                        List<HierarchyModel> scgoChilds = new List<HierarchyModel>();
+                        scgoChilds.Add(model);
+                        childs.Add(parentKey, scgoChilds);
+                    }
+                }
+            }
+            else
             {
-                bool selected = SessionManager.Instance.selectedSceneObject?.NTKey == kvpi.Key;
-
-                HierarchyModel model = new HierarchyModel(new HierarchyData{ name = kvpi.Key, selected = selected});
-                   
                 root.Add(model);
-
             }
+
+            parents.Add(sgoKVp.Key, model);
+
         }
 
         return root;

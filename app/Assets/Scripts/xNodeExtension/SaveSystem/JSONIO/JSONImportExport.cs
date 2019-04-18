@@ -104,7 +104,7 @@ namespace XNode.InportExport {
                 references.Add(id, graph);
                 returnData = new NodeGraphData(graph);
 
-                Debug.Log("Basic graph OK!");
+                //Debug.Log("Basic graph OK!");
             }
             else
             {
@@ -173,7 +173,7 @@ namespace XNode.InportExport {
                     returnData.nodes.Add(nodeData);
                 }
 
-                Debug.Log("Basic Nodes OK!");
+                //Debug.Log("Basic Nodes OK!");
 
             }
             else
@@ -203,7 +203,7 @@ namespace XNode.InportExport {
                     }
 
                 }
-                Debug.Log("Connections OK!");
+                //Debug.Log("Connections OK!");
             }
             else
             {

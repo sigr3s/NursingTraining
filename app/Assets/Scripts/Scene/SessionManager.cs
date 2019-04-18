@@ -39,7 +39,7 @@ public class SessionManager : Singleton<SessionManager> {
     [Space(20)]
     [Header("Debug")]
 
-    private Dictionary<string, SceneGameObject> sceneGameObjects;
+    public Dictionary<string, SceneGameObject> sceneGameObjects;
     private SceneGameObject _selectedObjectSceneObject;
 
     public SceneGameObject selectedSceneObject{
@@ -50,6 +50,7 @@ public class SessionManager : Singleton<SessionManager> {
         private set{
             if(_selectedObjectSceneObject != value){
                 _selectedObjectSceneObject = value;
+                Debug.Log("Current changed???");
                 OnCurrentChanged.Invoke();
             }
         }
@@ -217,14 +218,21 @@ public class SessionManager : Singleton<SessionManager> {
             sceneGameObjects.Remove(key);
 
             if(toRemove.graph != null){
-                OnGraphListChanged.Invoke();
                 showingGraph = sceneGraph;
             }
 
+            List<SceneGameObject> childsToRemove = new List<SceneGameObject>(toRemove.GetComponentsInChildren<SceneGameObject>());
+
+            foreach(SceneGameObject childToRemove in childsToRemove){
+                string childKey = childToRemove.NTKey;
+                sceneGameObjects.Remove(childKey);
+                 _sceneVariables.variableRepository.RemoveVariable(childKey, childToRemove.NTDataType);
+            }
 
             Destroy(toRemove.gameObject);
             _sceneVariables.variableRepository.RemoveVariable(key, variableType);
             OnSceneGameObjectsChanged.Invoke();
+            OnGraphListChanged.Invoke();
         }
     }
 
@@ -233,6 +241,8 @@ public class SessionManager : Singleton<SessionManager> {
         if(selectedSceneObject != null) selectedSceneObject.isSelected = false;
 
         if(!string.IsNullOrEmpty(key) && sceneGameObjects.ContainsKey(key)){
+            Debug.Log("??????");
+
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
 

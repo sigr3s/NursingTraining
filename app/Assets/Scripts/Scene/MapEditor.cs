@@ -126,8 +126,6 @@ public class MapEditor : MonoBehaviour{
 
         foreach(var loadedSceneObject in loadedScene.objects){
 
-            Debug.Log("Loading object ---- " + loadedSceneObject.AssignedNTVariable);
-
             Transform itemParent = items.transform;
 
             if(!string.IsNullOrEmpty(loadedSceneObject.parent)){
@@ -266,18 +264,18 @@ public class MapEditor : MonoBehaviour{
                 SessionManager.Instance.SetSelected(null);
             }
 
-            if(Input.GetMouseButtonDown(0) && !previewSceneGameObject.isColliding){
+            if(Input.GetMouseButtonDown(0) && (!previewSceneGameObject.isColliding || sco != null) ){
+                Transform p = sco != null ? sco.transform : items.transform;
+                previewGO.transform.parent = p;
 
-                previewGO.transform.parent = items.transform;
                 previewGO.RunOnChildrenRecursive( (GameObject g) => {g.layer = currentObjectLayer;} );
                 previewSceneGameObject.isPlacingMode = false;
                 lastRotation = previewSceneGameObject.transform.localRotation.eulerAngles;
-
                 
-                SceneGameObject instanced = current.Instantiate(SessionManager.Instance.sceneVariables.variableRepository, items.transform,
+                SceneGameObject instanced = current.Instantiate(SessionManager.Instance.sceneVariables.variableRepository, p,
                                     previewGO.transform.localPosition, previewGO.transform.localRotation);
     
-
+                instanced.parent = sco;
                 SessionManager.Instance.AddSceneGameObject(instanced);
 
                 Destroy(previewGO);

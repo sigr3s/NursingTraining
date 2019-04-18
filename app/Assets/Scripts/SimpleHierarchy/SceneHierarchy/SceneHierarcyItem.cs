@@ -22,8 +22,8 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.clickCount > 1){
-            SessionManager.Instance.SetSelected(data.name);
+        if(eventData.clickCount > 1){        
+            SessionManager.Instance.SetSelected(data.key);
         }
     }
 
@@ -33,6 +33,6 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
 
     private void OpenGraph()
     {
-       SessionManager.Instance.OpenGraphFor(data.name);
+       SessionManager.Instance.OpenGraphFor(data.key);
     }
 }
