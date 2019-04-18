@@ -57,8 +57,15 @@ namespace NT.Variables
             }
             Assembly asm = typeof(NTNode).Assembly;
 
-            for (int i = 0; i < keys.Count; i++)
+            for (int i = 0; i < keys.Count; i++){
+                if(string.IsNullOrEmpty(keys[i])) continue;
+                Type t = asm.GetType(keys[i]);
+
+                if(t == null) continue;
+                values[i] = values[i] == null ? Color.red : values[i];
+
                 this.Add(asm.GetType(keys[i]), values[i]);
+            }
         }
     }
 }

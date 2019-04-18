@@ -325,6 +325,8 @@ namespace NT.Variables
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
             for (int i = 0; i < keys.Count; i++){
+                if(string.IsNullOrEmpty(values[i].DictType) ) continue;
+
                 values[i].OnAfterDeserialize();
                 this.Add(keys[i], values[i]);
             }
@@ -361,19 +363,19 @@ namespace NT.Variables
             this.Clear();
             Type t = Type.GetType(DictType);
 
-            _dictType = t;        
+            _dictType = t;      
+
+            if(t == null){
+                return;
+            }
+  
             if (keys.Count != values.Count)
                 throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
 
             for (int i = 0; i < keys.Count; i++){
-                try{
-                    NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
-                    instance.FromNTVariableData(values[i]);
-                    this.Add(keys[i], instance);
-                }
-                catch(Exception e){
-                    Debug.LogWarning("Error trying to load variable " + keys[i] + "______ of type " + t + "  -- - -- - - - - -" + e);
-                }
+                NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
+                instance.FromNTVariableData(values[i]);
+                this.Add(keys[i], instance);
             }
         }
     }
