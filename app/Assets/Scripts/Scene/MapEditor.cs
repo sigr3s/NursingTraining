@@ -124,13 +124,12 @@ public class MapEditor : MonoBehaviour{
 
         var loadedScene = SessionManager.Instance.loadedScene;
 
+        
+        var childs = new Dictionary<string, List<SceneGameObject>>();
+
         foreach(var loadedSceneObject in loadedScene.objects){
 
             Transform itemParent = items.transform;
-
-            if(!string.IsNullOrEmpty(loadedSceneObject.parent)){
-                Debug.LogWarning("Parent not implemneted yet!");
-            }
 
             SceneObject so = SessionManager.Instance.sceneObjects.GetObject(loadedSceneObject.ScriptableObjectGUID);
 
@@ -147,7 +146,45 @@ public class MapEditor : MonoBehaviour{
                 scgo.graph.sceneVariables = SessionManager.Instance.sceneVariables;
             }
 
+            if(!string.IsNullOrEmpty(loadedSceneObject.parent)){
+                SceneGameObject parentscgo = SessionManager.Instance.GetSceneGameObject(loadedSceneObject.parent);
+
+                if(parentscgo != null){
+                    scgo.transform.SetParent(parentscgo.transform);
+                    scgo.parent = parentscgo;
+                    scgo.transform.localScale = Vector3.one;
+                }
+                else
+                {
+                    if(childs.ContainsKey(loadedSceneObject.parent)){
+                        List<SceneGameObject> childsForObj = childs[loadedSceneObject.parent];
+                        childsForObj.Add(scgo);
+                        childs[loadedSceneObject.parent] = childsForObj;
+                    }
+                    else
+                    {
+                        childs.Add(loadedSceneObject.parent, new List<SceneGameObject>(){ scgo });
+                    }
+                }                
+            }
+
+            if(childs.ContainsKey(loadedSceneObject.AssignedNTVariable)){
+                List<SceneGameObject> childsForObj = childs[loadedSceneObject.AssignedNTVariable];
+
+                foreach(SceneGameObject sgo in childsForObj){
+                    sgo.transform.SetParent(scgo.transform);
+                    sgo.parent = scgo;
+                    sgo.transform.localScale = Vector3.one;
+                }
+
+                childs.Remove(loadedSceneObject.AssignedNTVariable);
+            }
+
             SessionManager.Instance.AddSceneGameObject(scgo);
+        }
+
+        foreach(var ll in childs){
+            Debug.Log("sksksksk   " + ll.Key);
         }
     }
 

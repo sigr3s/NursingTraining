@@ -49,7 +49,6 @@ public class SessionManager : Singleton<SessionManager> {
         private set{
             if(_selectedObjectSceneObject != value){
                 _selectedObjectSceneObject = value;
-                Debug.Log("Current changed???");
                 OnCurrentChanged.Invoke();
             }
         }

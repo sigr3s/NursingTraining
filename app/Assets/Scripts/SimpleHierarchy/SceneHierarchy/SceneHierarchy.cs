@@ -26,8 +26,6 @@ public class SceneHierarchy : GUIHierarchy {
 
     public override List<HierarchyModel> GetRoot(){
 
-        Debug.Log("Get rooot!");
-
         List<HierarchyModel> root = new List<HierarchyModel>();
 
         var parents = new Dictionary<string, HierarchyModel>();

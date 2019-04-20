@@ -1,4 +1,5 @@
 using System;
+using NT.SceneObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,8 +23,14 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.clickCount > 1){        
-            SessionManager.Instance.SetSelected(data.key);
+        if(eventData.button == PointerEventData.InputButton.Left){
+            if(eventData.clickCount > 1){        
+                SessionManager.Instance.SetSelected(data.key);
+            }
+        }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            PrefabObject.CreatePrefab(data.name, SessionManager.Instance.GetSceneGameObject(data.key));           
         }
     }
 

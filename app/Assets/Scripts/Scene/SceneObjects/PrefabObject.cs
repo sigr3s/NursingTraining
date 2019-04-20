@@ -8,7 +8,7 @@ namespace NT.SceneObjects
 {
     public class PrefabObject : SceneObject{
 
-        string exportPath = Application.dataPath + "/saves/prefabs/";
+        static string exportPath = Application.dataPath + "/saves/prefabs/";
 
         public override Type GetDataType(){
             return typeof(string);
@@ -19,12 +19,12 @@ namespace NT.SceneObjects
         }
 
 
-        public bool CreatePrefab(string prefabID, SceneGameObject root){
+        public static bool CreatePrefab(string prefabID, SceneGameObject root){
             if(string.IsNullOrEmpty(prefabID)){
                 return false;
             }
 
-            string prefabFolder = exportPath + "/" + prefabID;
+            string prefabFolder = exportPath + "/" ;
 
             if(Directory.Exists(exportPath)){
                 Directory.Delete(prefabFolder, true);
@@ -51,17 +51,38 @@ namespace NT.SceneObjects
                 prefabRoot.serializedGraph = root.graph.ExportSerialized();
             }
 
-
             savedPrefab.root = prefabRoot;
 
-            //NTData can be saved and loaded!
+
+            List<SceneGameObject> childs = new List<SceneGameObject>(root.GetComponentsInChildren<SceneGameObject>());
 
 
-            //
+            foreach(SceneGameObject sgo in childs){
+                if(sgo.parent == null){
+                    Debug.Log("No parent? ", sgo);
+                    continue;
+                }
+
+                PrefabSceneObject childPrefab = new PrefabSceneObject();
+                childPrefab.id = sgo.NTKey;
+                childPrefab.parent = sgo.parent.NTKey;
+                childPrefab.scneObjectGUID = sgo.sceneObject.GetGUID();
+
+                NTVariable childNtData = (NTVariable) SessionManager.Instance.sceneVariables.variableRepository.GetNTValue(sgo.NTKey, sgo.NTDataType);
+                NTVariableData  childntRootVarData = childNtData.ToNTVariableData();
+
+                childPrefab.serializedNTData = JsonUtility.ToJson(ntRootVarData);
+
+                if(sgo.graph != null){
+                    childPrefab.serializedGraph = sgo.graph.ExportSerialized();
+                }
+
+                savedPrefab.prefabObjects.Add(childPrefab);
+            }
 
             string exportJSON = JsonUtility.ToJson(savedPrefab);
 
-            File.WriteAllText(exportPath, exportJSON);
+            File.WriteAllText(exportPath + "/" + prefabID + ".json" , exportJSON);
 
             return true;
         }
