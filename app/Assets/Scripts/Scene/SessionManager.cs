@@ -13,7 +13,6 @@ public class SessionManager : Singleton<SessionManager> {
     [Header("Session Data")]
     public SessionData SessionData;
     public bool loadOnAwake = true;
-    
 
     [Header("Scene Variables")]
     [SerializeField] private SceneVariables _sceneVariables;
@@ -105,7 +104,6 @@ public class SessionManager : Singleton<SessionManager> {
     [System.Serializable]
     public struct SavedSceneObject{
         public string parent;
-        public int id;
         public string ScriptableObjectGUID;
         public string AssignedNTVariable;
         public Vector3 position;
@@ -113,9 +111,9 @@ public class SessionManager : Singleton<SessionManager> {
         public string serializedGraph;
     }
 
-
+#region Export/Import
     public void SaveScene(string path){
-        
+
         SavedScene savedScene = new SavedScene(){ objects = new List<SavedSceneObject>()};
 
         foreach(var sceneGameObject in sceneGameObjects){
@@ -124,7 +122,8 @@ public class SessionManager : Singleton<SessionManager> {
                 ScriptableObjectGUID = sceneGameObject.Value.sceneObject.GetGUID(),
                 AssignedNTVariable = sceneGameObject.Key,
                 position = sceneGameObject.Value.gameObject.transform.localPosition,
-                rotation = sceneGameObject.Value.gameObject.transform.localRotation.eulerAngles
+                rotation = sceneGameObject.Value.gameObject.transform.localRotation.eulerAngles,
+                parent = sceneGameObject.Value.parent != null ? sceneGameObject.Value.parent.NTKey : ""
             };
 
             if(sceneGameObject.Value.graph != null){
@@ -138,7 +137,7 @@ public class SessionManager : Singleton<SessionManager> {
             File.WriteAllText(path, JsonUtility.ToJson(savedScene));
         }
     }
-    
+
     [ContextMenu("Save")]
     public void SaveSession(){
         if(string.IsNullOrEmpty(SessionData.sessionID)){
@@ -158,7 +157,7 @@ public class SessionManager : Singleton<SessionManager> {
         SessionData.lastModified = DateTime.Now.ToString();
         SessionData.variablesFile = "variables.json";
 
-        string sceneVariablesJSON = JsonUtility.ToJson(_sceneVariables);       
+        string sceneVariablesJSON = JsonUtility.ToJson(_sceneVariables);
         File.WriteAllText(saveFolder + "/" + SessionData.variablesFile, sceneVariablesJSON);
 
         SessionData.sceneGraphFile = "sceneGraph.json";
@@ -167,7 +166,7 @@ public class SessionManager : Singleton<SessionManager> {
         SessionData.sceneFile = "scene.json";
         SaveScene(saveFolder + "/" + SessionData.sceneFile);
 
-        string sessionJSON = JsonUtility.ToJson(SessionData);       
+        string sessionJSON = JsonUtility.ToJson(SessionData);
         File.WriteAllText(saveFolder + "/" + "config.json", sessionJSON);
 
     }
@@ -184,7 +183,7 @@ public class SessionManager : Singleton<SessionManager> {
 
 
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
-        SessionData = JsonUtility.FromJson<SessionData>(configJSON); 
+        SessionData = JsonUtility.FromJson<SessionData>(configJSON);
 
         string variablesJSON = File.ReadAllText(saveFolder +  "/" + SessionData.variablesFile);
         JsonUtility.FromJsonOverwrite(variablesJSON, _sceneVariables);
@@ -193,11 +192,8 @@ public class SessionManager : Singleton<SessionManager> {
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
         sceneGraph.sceneVariables = _sceneVariables;
 
-        //FIXME: Load scene save!
         string sceneJSON = File.ReadAllText(saveFolder +  "/" + SessionData.sceneFile);
-        loadedScene = JsonUtility.FromJson<SavedScene>(sceneJSON);                
-
-        //FIXME: Link scene aghain with data!
+        loadedScene = JsonUtility.FromJson<SavedScene>(sceneJSON);
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
@@ -205,7 +201,9 @@ public class SessionManager : Singleton<SessionManager> {
 
         showingGraph = sceneGraph;
     }
+#endregion
 
+#region Scene GameObjcts
     public void AddSceneGameObject(SceneGameObject so){
         sceneGameObjects.Add(so.NTKey, so);
         OnSceneGameObjectsChanged.Invoke();
@@ -241,8 +239,6 @@ public class SessionManager : Singleton<SessionManager> {
         if(selectedSceneObject != null) selectedSceneObject.isSelected = false;
 
         if(!string.IsNullOrEmpty(key) && sceneGameObjects.ContainsKey(key)){
-            Debug.Log("??????");
-
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
 
@@ -265,7 +261,9 @@ public class SessionManager : Singleton<SessionManager> {
             return null;
         }
     }
+#endregion
 
+#region  Graph functions
     public void OpenGraphFor(string key){
         SceneGameObject sobj = GetSceneGameObject(key);
 
@@ -279,14 +277,13 @@ public class SessionManager : Singleton<SessionManager> {
             sobj.graph = soc;
             OnGraphListChanged.Invoke();
         }
-        
 
         showingGraph = sobj.graph;
         SetSelected(key);
     }
 
     public void OpenSceneGraph(){
-        showingGraph = sceneGraph; 
+        showingGraph = sceneGraph;
     }
 
     public List<SceneObjectGraph> GetAllGraphs()
@@ -301,6 +298,7 @@ public class SessionManager : Singleton<SessionManager> {
 
         return graphs;
     }
+#endregion
 }
 
 [System.Serializable]
@@ -309,5 +307,5 @@ public struct SessionData{
     public string lastModified;
     public string variablesFile;
     public string sceneGraphFile;
-    public string sceneFile;         
+    public string sceneFile;
 }

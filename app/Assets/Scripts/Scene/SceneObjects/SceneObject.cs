@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NT.SceneObjects
 {
-    public class SceneObject<T> : SceneObject 
+    public class SceneObject<T> : SceneObject
     {
         public override Type GetDataType()
         {
@@ -22,7 +22,6 @@ namespace NT.SceneObjects
         public SceneObject(){
             GUID = Guid.NewGuid().ToString();
         }
-        
 
         private void OnEnable() {
             if(string.IsNullOrEmpty(GUID)) GUID = Guid.NewGuid().ToString();
@@ -71,7 +70,7 @@ namespace NT.SceneObjects
             return false;
         }
 
-        public virtual SceneGameObject Instantiate(string key, Transform parent, 
+        public virtual SceneGameObject Instantiate(string key, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){
             GameObject instancedGo = GameObject.Instantiate(sceneGameObject.model, parent);
@@ -94,12 +93,12 @@ namespace NT.SceneObjects
 
 
         public virtual SceneGameObject Instantiate(
-            NTVariableRepository repository, Transform parent, 
+            NTVariableRepository repository, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){
             Type t = GetDataType();
             string key = name + Guid.NewGuid().ToString();
-            
+
             INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
             savedSceneObject.SetName(key);
             repository.AddVariable(t, savedSceneObject);

@@ -35,7 +35,7 @@ public class MapEditor : MonoBehaviour{
 
     [Header("Map Object list")]
     public GameObject sceneObjectUiPrefab;
-    
+
     [Header("Debug")]
     [Space(50)]
     public GameObject previewGO = null;
@@ -45,7 +45,7 @@ public class MapEditor : MonoBehaviour{
     private SceneGameObject currentSceneGameObject;
 
     private Vector3 lastRotation = Vector3.zero;
-    
+
     private MapMode _mode = MapMode.Inspect;
 
     public MapMode mode{
@@ -82,8 +82,8 @@ public class MapEditor : MonoBehaviour{
             if(isc == null) continue;
 
             UISceneObject uisc = isc.GetUISceneObject();
-            
-            GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);            
+
+            GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
             Button button =  soButton.GetComponent<Button>();
 
             button.onClick.AddListener(() =>{ SetPlacementObject(isc); });
@@ -144,14 +144,14 @@ public class MapEditor : MonoBehaviour{
             if(!string.IsNullOrEmpty(loadedSceneObject.serializedGraph)){
                 scgo.graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
                 scgo.graph.ImportSerialized(loadedSceneObject.serializedGraph);
+                scgo.graph.sceneVariables = SessionManager.Instance.sceneVariables;
             }
 
-            SessionManager.Instance.AddSceneGameObject(scgo);            
+            SessionManager.Instance.AddSceneGameObject(scgo);
         }
     }
 
     private void Update() {
-    
         if(Input.GetKeyDown(KeyCode.Alpha1)){ mode = MapMode.Build; }
         if(Input.GetKeyDown(KeyCode.Alpha2)){ mode = MapMode.Inspect; }
         if(Input.GetKeyDown(KeyCode.Alpha3)){ mode = MapMode.Delete; }

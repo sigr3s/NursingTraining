@@ -6,8 +6,8 @@ using UnityEngine;
 namespace NT.SceneObjects
 {
     public interface ISceneObject {
-        List<string> GetCallbacks();    
-        
+        List<string> GetCallbacks();
+
         UISceneObject GetUISceneObject();
         GameObject GetPreviewGameObject();
         LayerMask GetLayerMask();
@@ -16,11 +16,11 @@ namespace NT.SceneObjects
         bool CanHoldItem(SceneGameObject obj);
 
         SceneGameObject Instantiate(
-            NTVariableRepository repository, Transform parent, 
+            NTVariableRepository repository, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         );
         SceneGameObject Instantiate(
-            string key, Transform parent, 
+            string key, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         );
     }
