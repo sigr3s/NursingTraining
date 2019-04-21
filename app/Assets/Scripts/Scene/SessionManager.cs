@@ -89,6 +89,8 @@ public class SessionManager : Singleton<SessionManager> {
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
+        sceneObjects.LoadPrefabs();
+
 
         if(loadOnAwake){
            LoadSession(SessionData.sessionID);

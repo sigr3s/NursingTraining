@@ -40,10 +40,10 @@ namespace NT.SceneObjects
 
         public virtual GameObject GetPreviewGameObject()
         {
-            return sceneGameObject.model;
+            return GameObject.Instantiate(sceneGameObject.model);
         }
 
-        public LayerMask GetLayerMask()
+        public virtual LayerMask GetLayerMask()
         {
             return sceneGameObject.canBePlacedOver;
         }

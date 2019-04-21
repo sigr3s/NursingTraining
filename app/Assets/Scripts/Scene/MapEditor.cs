@@ -35,6 +35,7 @@ public class MapEditor : MonoBehaviour{
 
     [Header("Map Object list")]
     public GameObject sceneObjectUiPrefab;
+    public Sprite prefabSprite;
 
     [Header("Debug")]
     [Space(50)]
@@ -90,6 +91,24 @@ public class MapEditor : MonoBehaviour{
 
             button.targetGraphic.color = uisc.color;
             soButton.transform.Find("Icon").GetComponent<Image>().sprite = uisc.icon;
+
+        }
+
+        foreach (var so in SessionManager.Instance.sceneObjects.prefabSet)
+        {
+            ISceneObject isc = (ISceneObject) so;
+
+            if(isc == null) continue;
+
+            UISceneObject uisc = isc.GetUISceneObject();
+
+            GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
+            Button button =  soButton.GetComponent<Button>();
+
+            button.onClick.AddListener(() =>{ SetPlacementObject(isc); });
+
+            button.targetGraphic.color = Color.yellow;
+            soButton.transform.Find("Icon").GetComponent<Image>().sprite = prefabSprite;
 
         }
     }
@@ -153,9 +172,14 @@ public class MapEditor : MonoBehaviour{
                     scgo.transform.SetParent(parentscgo.transform);
                     scgo.parent = parentscgo;
                     scgo.transform.localScale = Vector3.one;
+                    scgo.transform.localPosition = loadedSceneObject.position;
+                    scgo.transform.localRotation = Quaternion.Euler(loadedSceneObject.rotation);
                 }
                 else
                 {
+                    scgo.transform.localPosition = loadedSceneObject.position;
+                    scgo.transform.localRotation = Quaternion.Euler(loadedSceneObject.rotation);
+
                     if(childs.ContainsKey(loadedSceneObject.parent)){
                         List<SceneGameObject> childsForObj = childs[loadedSceneObject.parent];
                         childsForObj.Add(scgo);
@@ -172,9 +196,14 @@ public class MapEditor : MonoBehaviour{
                 List<SceneGameObject> childsForObj = childs[loadedSceneObject.AssignedNTVariable];
 
                 foreach(SceneGameObject sgo in childsForObj){
+                    Vector3 localPos = sgo.transform.localPosition;
+                    Quaternion loclRot = sgo.transform.localRotation;
+
                     sgo.transform.SetParent(scgo.transform);
                     sgo.parent = scgo;
                     sgo.transform.localScale = Vector3.one;
+                    sgo.transform.localPosition = localPos;
+                    sgo.transform.localRotation = loclRot;
                 }
 
                 childs.Remove(loadedSceneObject.AssignedNTVariable);
@@ -248,7 +277,7 @@ public class MapEditor : MonoBehaviour{
         if(current == null) return;
 
         if(previewGO == null){
-            previewGO = Instantiate(current.GetPreviewGameObject());
+            previewGO = current.GetPreviewGameObject();
 
             previewGO.transform.localRotation = Quaternion.Euler(lastRotation);
             

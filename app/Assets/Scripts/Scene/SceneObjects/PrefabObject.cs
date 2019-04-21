@@ -7,15 +7,148 @@ using UnityEngine;
 namespace NT.SceneObjects
 {
     public class PrefabObject : SceneObject{
+        public SavedPrefab prefab;
+        public GameObject craftedPrefab;
 
-        static string exportPath = Application.dataPath + "/saves/prefabs/";
+        public static string exportPath = Application.dataPath + "/saves/prefabs/";
 
-        public override Type GetDataType(){
-            return typeof(string);
-        }
 
         public override GameObject GetPreviewGameObject(){
-            return new GameObject();
+
+            if(craftedPrefab != null){
+                return GameObject.Instantiate(craftedPrefab);
+            }
+
+                        
+            //FIXME: This depends on the session manager... 
+            // Ideally this should work kind of alone with the scene objects
+
+            SceneObject rootSo = SessionManager.Instance.sceneObjects.GetObject(prefab.root.scneObjectGUID);
+
+            if(rootSo != null){
+                sceneGameObject.canBePlacedOver = rootSo.GetLayerMask();
+
+                craftedPrefab = rootSo.GetPreviewGameObject();
+
+                SceneGameObject parentSGO = craftedPrefab.GetComponent<SceneGameObject>();
+
+                if(parentSGO == null){
+                    parentSGO = craftedPrefab.AddComponent<SceneGameObject>();
+                }
+
+                parentSGO.NTDataType = rootSo.GetDataType();
+                parentSGO.sceneObject = rootSo;
+
+                Dictionary<string, GameObject> parentsGO = new Dictionary<string, GameObject>();
+                Dictionary<string, List<GameObject>> childsGO = new Dictionary<string, List<GameObject>>();
+
+                parentsGO.Add(prefab.root.id, craftedPrefab);
+
+                foreach(PrefabSceneObject childPrefab in prefab.prefabObjects){
+                    GameObject childGO = null;
+
+                    SceneObject childSo = SessionManager.Instance.sceneObjects.GetObject(childPrefab.scneObjectGUID);
+
+                    if(childSo == null){
+                        Debug.LogWarning("Broken prefab!!!");
+                        continue;
+                    } 
+
+                    childGO = childSo.GetPreviewGameObject();
+
+                    SceneGameObject scgo = childGO.GetComponent<SceneGameObject>();
+
+                    if(scgo == null){
+                        scgo = childGO.AddComponent<SceneGameObject>();
+                    }
+
+                    scgo.NTDataType = childSo.GetDataType();
+                    scgo.sceneObject = childSo;
+
+
+                    if(childsGO.ContainsKey(childPrefab.id)){
+                        List<GameObject> childsOfChild = childsGO[childPrefab.id];
+
+                        foreach(GameObject childOfChild in childsOfChild){
+                            Vector3 loclPos = childOfChild.transform.localPosition;
+                            Quaternion loclRot = childOfChild.transform.localRotation;
+
+                            //Recover local pos / rotation
+                            childOfChild.transform.SetParent(childGO.transform);
+                            childOfChild.transform.localScale = Vector3.one;
+                            childOfChild.transform.localPosition = loclPos;
+                            childOfChild.transform.localRotation = loclRot;
+                        }
+
+                        childsGO.Remove(childPrefab.id);
+                    } 
+
+                    if(parentsGO.ContainsKey(childPrefab.parent)){
+                        GameObject parent = parentsGO[childPrefab.parent];
+                        childGO.transform.SetParent(parent.transform);
+
+                        childGO.transform.localPosition = childPrefab.localPosition;
+                        childGO.transform.localRotation = Quaternion.Euler(childPrefab.localRotation);
+                    }   
+                    else
+                    {
+                        childGO.transform.localPosition = childPrefab.localPosition;
+                        childGO.transform.localRotation = Quaternion.Euler(childPrefab.localRotation);
+
+                        if(childsGO.ContainsKey(childPrefab.parent)){
+                            List<GameObject> parentChilds = childsGO[childPrefab.parent];
+                            parentChilds.Add(childGO);
+                            childsGO[childPrefab.parent] = parentChilds;
+                        }
+                        else
+                        {
+                            List<GameObject> parentChilds = new List<GameObject>(){childGO};
+                            childsGO.Add(childPrefab.parent, parentChilds); 
+                        }
+                    }
+
+                    parentsGO.Add(childPrefab.id, childGO);   
+             
+                }
+
+            }
+            
+            return GameObject.Instantiate(craftedPrefab);
+
+        }
+
+        public static PrefabObject LoadPrefab(string prefabFile){
+            PrefabObject loadedPrefab = ScriptableObject.CreateInstance<PrefabObject>();
+            if(File.Exists(prefabFile)){
+                string loadedPrefabJSON = File.ReadAllText(prefabFile);
+                loadedPrefab.prefab = JsonUtility.FromJson<SavedPrefab>(loadedPrefabJSON);
+            }
+            else
+            {
+                return null;
+            }
+
+            return loadedPrefab;
+        }
+
+        public virtual SceneGameObject Instantiate(string key, Transform parent,
+            Vector3 localPosition, Quaternion localRotation
+        ){
+            GameObject instancedGo = GameObject.Instantiate(craftedPrefab, parent);
+            instancedGo.transform.localPosition = localPosition;
+            instancedGo.transform.localRotation = localRotation;
+
+            SceneGameObject scgo = instancedGo.GetComponent<SceneGameObject>();
+
+            if(scgo == null){
+                scgo = instancedGo.AddComponent<SceneGameObject>();
+            }
+
+            //FIXME: WTF
+            //Needs only key assignement and recovery of all data :O
+            scgo.NTKey = ;
+
+            return scgo;
         }
 
 
@@ -40,6 +173,8 @@ namespace NT.SceneObjects
             PrefabSceneObject prefabRoot = new PrefabSceneObject();
             prefabRoot.scneObjectGUID = root.sceneObject.GetGUID();
             prefabRoot.id = root.NTKey;
+            prefabRoot.localPosition = root.transform.localPosition;
+            prefabRoot.localRotation = root.transform.localRotation.eulerAngles;
 
             //Get NT DATA of the root
             NTVariable ntData = (NTVariable) SessionManager.Instance.sceneVariables.variableRepository.GetNTValue(root.NTKey, root.NTDataType);
@@ -67,6 +202,8 @@ namespace NT.SceneObjects
                 childPrefab.id = sgo.NTKey;
                 childPrefab.parent = sgo.parent.NTKey;
                 childPrefab.scneObjectGUID = sgo.sceneObject.GetGUID();
+                childPrefab.localPosition = sgo.transform.localPosition;
+                childPrefab.localRotation = sgo.transform.localRotation.eulerAngles;
 
                 NTVariable childNtData = (NTVariable) SessionManager.Instance.sceneVariables.variableRepository.GetNTValue(sgo.NTKey, sgo.NTDataType);
                 NTVariableData  childntRootVarData = childNtData.ToNTVariableData();
@@ -102,6 +239,8 @@ namespace NT.SceneObjects
             public string serializedGraph; // Serialized Graph
             public string parent; //Link to parent
 
+            public Vector3 localPosition;
+            public Vector3 localRotation;
         }
 
 
