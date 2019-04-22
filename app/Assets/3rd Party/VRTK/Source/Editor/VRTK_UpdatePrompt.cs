@@ -89,7 +89,10 @@ public sealed class VRTK_UpdatePrompt : EditorWindow
 
     private static bool isManualCheck;
     private static bool versionChecked;
+
+    #pragma warning disable
     private static WWW versionResource;
+    #pragma warning restore
     private static LatestRelease latestRelease;
     private static VRTK_UpdatePrompt promptWindow;
 
@@ -272,7 +275,10 @@ public sealed class VRTK_UpdatePrompt : EditorWindow
             }
         }
 
+        #pragma warning disable
         versionResource = versionResource == null ? new WWW(remoteURL) : versionResource;
+        #pragma warning restore
+
         if (!versionResource.isDone)
         {
             return;
