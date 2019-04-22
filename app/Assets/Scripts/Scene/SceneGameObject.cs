@@ -89,18 +89,45 @@ public class SceneGameObject : MonoBehaviour
 
 
     //Hierarchy
-    public SceneGameObject parent;
+    private SceneGameObject _parent;
+    public SceneGameObject parent{
+        get{
+            if(_parent == null){
+                _parent = transform.parent.GetComponent<SceneGameObject>();
+                if(_parent == this) Debug.Log("WTF??");
+            }
+            
+            return _parent;
+        }
+
+        set{
+            _parent = value;
+        }
+    }
 
     //Data link!
     public string NTKey;
     public Type NTDataType;
 
     //Scene object link
-    public ISceneObject sceneObject;
+    private ISceneObject _sceneObject;
+    public ISceneObject sceneObject{
+        get{
+            return _sceneObject;
+        }
+        set{
+            _sceneObject = value;
+        }
+    }
     public SceneObjectGraph graph;
 
 
     private List<Outline> renderersOutlines;
+
+    [ContextMenu("Debug")]
+    public void GetSo(){
+        Debug.Log(sceneObject.GetGUID());
+    }
     private void Awake() {
         List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();

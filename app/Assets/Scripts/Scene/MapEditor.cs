@@ -170,7 +170,6 @@ public class MapEditor : MonoBehaviour{
 
                 if(parentscgo != null){
                     scgo.transform.SetParent(parentscgo.transform);
-                    scgo.parent = parentscgo;
                     scgo.transform.localScale = Vector3.one;
                     scgo.transform.localPosition = loadedSceneObject.position;
                     scgo.transform.localRotation = Quaternion.Euler(loadedSceneObject.rotation);
@@ -200,7 +199,6 @@ public class MapEditor : MonoBehaviour{
                     Quaternion loclRot = sgo.transform.localRotation;
 
                     sgo.transform.SetParent(scgo.transform);
-                    sgo.parent = scgo;
                     sgo.transform.localScale = Vector3.one;
                     sgo.transform.localPosition = localPos;
                     sgo.transform.localRotation = loclRot;
@@ -341,7 +339,6 @@ public class MapEditor : MonoBehaviour{
                 SceneGameObject instanced = current.Instantiate(SessionManager.Instance.sceneVariables.variableRepository, p,
                                     previewGO.transform.localPosition, previewGO.transform.localRotation);
     
-                instanced.parent = sco;
                 SessionManager.Instance.AddSceneGameObject(instanced);
 
                 Destroy(previewGO);

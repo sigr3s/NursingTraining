@@ -9,14 +9,17 @@ namespace NT.SceneObjects
     public class PrefabObject : SceneObject{
         public SavedPrefab prefab;
         public GameObject craftedPrefab;
+        public Dictionary<string, NTVariableData> childsData = new Dictionary<string, NTVariableData>();
 
-        public static string exportPath = Application.dataPath + "/saves/prefabs/";
+        public static string exportPath = Application.dataPath + "/saves/Prefabs/";
 
 
         public override GameObject GetPreviewGameObject(){
 
             if(craftedPrefab != null){
-                return GameObject.Instantiate(craftedPrefab);
+                var rg = GameObject.Instantiate(craftedPrefab);
+                rg.SetActive(true);
+                return rg;
             }
 
                         
@@ -112,8 +115,12 @@ namespace NT.SceneObjects
                 }
 
             }
-            
-            return GameObject.Instantiate(craftedPrefab);
+
+            craftedPrefab.SetActive(false);
+            craftedPrefab.name = "Carfted Prefab -- " + prefab.root.id;
+            var retGO = GameObject.Instantiate(craftedPrefab);
+            retGO.SetActive(true);
+            return retGO;
 
         }
 
@@ -131,10 +138,11 @@ namespace NT.SceneObjects
             return loadedPrefab;
         }
 
-        public virtual SceneGameObject Instantiate(string key, Transform parent,
+        public override SceneGameObject Instantiate(string key, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){
             GameObject instancedGo = GameObject.Instantiate(craftedPrefab, parent);
+            instancedGo.SetActive(true);
             instancedGo.transform.localPosition = localPosition;
             instancedGo.transform.localRotation = localRotation;
 
@@ -146,9 +154,16 @@ namespace NT.SceneObjects
 
             //FIXME: WTF
             //Needs only key assignement and recovery of all data :O
-            scgo.NTKey = ;
+            //scgo.NTKey = ;
 
             return scgo;
+        }
+
+        public override SceneGameObject Instantiate(
+            NTVariableRepository repository, Transform parent,
+            Vector3 localPosition, Quaternion localRotation
+        ){
+            return Instantiate("", parent, localPosition, localRotation);
         }
 
 
@@ -157,18 +172,21 @@ namespace NT.SceneObjects
                 return false;
             }
 
+            Debug.Log("Create prefab? ____ " + prefabID);
+
             string prefabFolder = exportPath + "/" ;
 
-            if(Directory.Exists(exportPath)){
-                Directory.Delete(prefabFolder, true);
+            if(!Directory.Exists(exportPath)){
+                Directory.CreateDirectory(prefabFolder);
             }
 
-            Directory.CreateDirectory(prefabFolder);
 
             SavedPrefab savedPrefab = new SavedPrefab {
                 GUID = Guid.NewGuid().ToString(),
                 prefabObjects = new List<PrefabSceneObject>()
             };
+
+            Debug.Log("root is prefab: " + root.sceneObject.GetGUID(), root);
 
             PrefabSceneObject prefabRoot = new PrefabSceneObject();
             prefabRoot.scneObjectGUID = root.sceneObject.GetGUID();

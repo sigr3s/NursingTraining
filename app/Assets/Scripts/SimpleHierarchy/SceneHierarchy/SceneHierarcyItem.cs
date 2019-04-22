@@ -30,7 +30,8 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
         }
         else if(eventData.button == PointerEventData.InputButton.Right)
         {
-            PrefabObject.CreatePrefab(data.name, SessionManager.Instance.GetSceneGameObject(data.key));           
+            PrefabObject.CreatePrefab(Guid.NewGuid().ToString() , SessionManager.Instance.GetSceneGameObject(data.key));           
+            SessionManager.Instance.sceneObjects.LoadPrefabs();
         }
     }
 

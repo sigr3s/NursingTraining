@@ -86,6 +86,7 @@ namespace NT.SceneObjects
 
             scgo.NTDataType = GetDataType();
             scgo.NTKey = key;
+
             scgo.sceneObject = this;
 
             return scgo;
