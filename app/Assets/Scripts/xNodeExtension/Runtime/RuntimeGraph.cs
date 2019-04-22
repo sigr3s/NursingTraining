@@ -66,6 +66,21 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         Refresh();
     }
 
+    public void GroupSelected()
+    {
+        //FIXME: 
+        List<Node> nodesToGroup = new List<Node>();
+        foreach(var selectedNode in selectedNodes){
+            nodesToGroup.Add(selectedNode.node);
+        }
+
+        Node craftedNode = NTGraph.GroupNodes(nodesToGroup);
+
+        //Replace crafted node
+
+        //Generate node
+    }
+
     public virtual void Refresh(){
         Clear();
 		SpawnGraph();

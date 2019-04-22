@@ -8,6 +8,7 @@ using XNode;
 public class UGUIContextMenu : MonoBehaviour, IPointerExitHandler {
 
 	public Action<Type, Vector2> onClickSpawn;
+	public Action onGroupClick;
 	public CanvasGroup group;
 	[HideInInspector] public Node selectedNode;
 	private Vector2 pos;
@@ -50,6 +51,13 @@ public class UGUIContextMenu : MonoBehaviour, IPointerExitHandler {
 	public void RemoveNode() {
 		RuntimeGraph runtimeMathGraph = GetComponentInParent<RuntimeGraph>();
 		runtimeMathGraph.graph.RemoveNode(selectedNode);
+		runtimeMathGraph.Refresh();
+		Close();
+	}
+
+	public void GroupNodes(){
+		RuntimeGraph runtimeMathGraph = GetComponentInParent<RuntimeGraph>();
+		runtimeMathGraph.GroupSelected();
 		runtimeMathGraph.Refresh();
 		Close();
 	}

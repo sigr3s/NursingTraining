@@ -66,6 +66,19 @@ namespace  NT.Graph
             }
         }
 
+        public static Node GroupNodes(List<Node> nodesToGroup)
+        {
+            Debug.LogWarning("Not yet implemented");
+            
+            //Get all inputs
+            //Get all ports
+            foreach(Node n in nodesToGroup){
+
+            }
+
+            return null;
+        }
+
         public IEnumerator StartExecutionFlow(CallbackNode callbackNode)
         {
             NodeExecutionContext nodeExecutionContext = new NodeExecutionContext{node = callbackNode};
