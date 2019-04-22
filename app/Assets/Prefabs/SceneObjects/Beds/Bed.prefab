@@ -77,7 +77,7 @@ MonoBehaviour:
   isPlacingMode: 0
   deleteMode: 0
   NTKey: 
-  renderersOutlines: []
+  graph: {fileID: 0}
 --- !u!1001 &3453659324903783611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +281,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2300042, guid: c9daff021ede6ac4ebd01ae746170ea4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1a39f9a5dcebb343b003dbf2caf1d63, type: 2}
+    - target: {fileID: 2300046, guid: c9daff021ede6ac4ebd01ae746170ea4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d8920ac2ca276b7499ac8c00bdf5fbc8, type: 2}
+    - target: {fileID: 2300044, guid: c9daff021ede6ac4ebd01ae746170ea4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1a39f9a5dcebb343b003dbf2caf1d63, type: 2}
+    - target: {fileID: 2300000, guid: c9daff021ede6ac4ebd01ae746170ea4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d8920ac2ca276b7499ac8c00bdf5fbc8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9daff021ede6ac4ebd01ae746170ea4, type: 3}
 --- !u!1 &3453659324903815705 stripped

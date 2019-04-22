@@ -223,6 +223,8 @@ public class MapEditor : MapLoader {
 
             previewGO.transform.position = hitPointOnPlane;
 
+            Debug.Log(y);
+
             SceneGameObject sco = objectHit.GetComponentInParent<SceneGameObject>();
 
             if(sco != null){
