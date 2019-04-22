@@ -1,5 +1,116 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6661069150777639875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3cf6332fba945acaf15bdaf559cc59, type: 3}
+  m_Name: Logic Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 8.917713, y: -188.59639}
+  ports:
+    keys:
+    - input0
+    - input1
+    - result
+    values:
+    - _fieldName: input0
+      _node: {fileID: -6661069150777639875}
+      _typeQualifiedName: NT.ValueConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: input1
+      _node: {fileID: -6661069150777639875}
+      _typeQualifiedName: NT.ValueConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: -6661069150777639875}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  hasError: 0
+  error: 
+  isExecuting: 0
+  input0:
+    value: 
+  op: 0
+  input1:
+    value: 
+  result: 0
+--- !u!114 &-3698057758108614717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e529790f049c9eb45bc6446289d893c0, type: 3}
+  m_Name: Logic Operation Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 251.74945, y: -285.32547}
+  ports:
+    keys:
+    - result
+    - condittion0
+    - condittion1
+    values:
+    - _fieldName: result
+      _node: {fileID: -3698057758108614717}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: condittion0
+      _node: {fileID: -3698057758108614717}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: condittion1
+      _node: {fileID: -3698057758108614717}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  hasError: 0
+  error: 
+  isExecuting: 0
+  result: 0
+  operation: 0
+  condittion0: 1
+  condittion1: 1
+  extraConditions: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,11 +124,10 @@ MonoBehaviour:
   m_Name: Import
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114396156827227882}
-  - {fileID: 114698585984211742}
+  - {fileID: -6661069150777639875}
+  - {fileID: -3698057758108614717}
   executionNodes: []
   callbackNodes: []
-  loadFile: Import.json
   sceneVariables: {fileID: 11400000, guid: bdd8d6e06005ec946a3246ec52c522e8, type: 2}
   message: 
 --- !u!114 &114396156827227882
