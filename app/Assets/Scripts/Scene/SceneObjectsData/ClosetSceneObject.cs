@@ -34,5 +34,9 @@ namespace NT.SceneObjects{
         public override bool CanHoldItem(SceneGameObject obj){
             return true;
         }
+
+        public override void HoldItem(SceneGameObject obj, SceneGameObject parent){
+            obj.gameObject.SetActive(false);
+        }
     }
 }

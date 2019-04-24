@@ -18,6 +18,10 @@ namespace NT.Graph{
     public class SceneGraph : NTGraph
     {
 
+        public override List<string> GetCallbacks(){
+            return new List<string>(){"onApplicationStart", "onApplicationEnd", "exerciceStarted", "exerciceEnd", "pauseButton", "resumeButton", "completedButton", "quitButton" };
+        }
+
         public string message;
 
         [ContextMenu("Start Execution")]

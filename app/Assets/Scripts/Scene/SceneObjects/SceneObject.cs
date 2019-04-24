@@ -70,6 +70,11 @@ namespace NT.SceneObjects
             return false;
         }
 
+
+        public virtual void HoldItem(SceneGameObject obj, SceneGameObject parent){
+            
+        }
+
         public virtual SceneGameObject Instantiate(string key, Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){

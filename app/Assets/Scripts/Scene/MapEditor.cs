@@ -223,8 +223,6 @@ public class MapEditor : MapLoader {
 
             previewGO.transform.position = hitPointOnPlane;
 
-            Debug.Log(y);
-
             SceneGameObject sco = objectHit.GetComponentInParent<SceneGameObject>();
 
             if(sco != null){
@@ -251,6 +249,10 @@ public class MapEditor : MapLoader {
                                     previewGO.transform.localPosition, previewGO.transform.localRotation);
     
                 SessionManager.Instance.AddSceneGameObject(instanced);
+
+                if(sco != null){
+                    sco.sceneObject.HoldItem( instanced , sco);
+                }
 
                 Destroy(previewGO);
 

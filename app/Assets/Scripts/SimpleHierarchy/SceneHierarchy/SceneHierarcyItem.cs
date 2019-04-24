@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
     public Button graphButton;
     public override void OnDataSetted(){
-        SceneGameObject sceneGameObject = SessionManager.Instance.GetSceneGameObject(data.name);
+        SceneGameObject sceneGameObject = SessionManager.Instance.GetSceneGameObject(data.key);
 
         if(sceneGameObject != null){
             if(sceneGameObject.sceneObject.GetCallbacks().Count > 0){

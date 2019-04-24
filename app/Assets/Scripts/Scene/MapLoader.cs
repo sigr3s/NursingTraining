@@ -59,6 +59,8 @@ public class MapLoader : MonoBehaviour {
                     scgo.transform.localScale = Vector3.one;
                     scgo.transform.localPosition = loadedSceneObject.position;
                     scgo.transform.localRotation = Quaternion.Euler(loadedSceneObject.rotation);
+
+                    parentscgo.sceneObject.HoldItem(scgo, parentscgo);
                 }
                 else
                 {
@@ -88,6 +90,8 @@ public class MapLoader : MonoBehaviour {
                     sgo.transform.localScale = Vector3.one;
                     sgo.transform.localPosition = localPos;
                     sgo.transform.localRotation = loclRot;
+
+                    scgo.sceneObject.HoldItem(sgo, scgo);
                 }
 
                 childs.Remove(loadedSceneObject.AssignedNTVariable);

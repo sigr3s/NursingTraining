@@ -17,6 +17,11 @@ namespace  NT.Graph
         [Header("Execution Flow Nodes")]
         public List<NTNode> executionNodes = new List<NTNode>();
 
+        public virtual List<string> GetCallbacks()
+        {
+            return new List<string>();
+        }
+
         public List<CallbackNode> callbackNodes = new List<CallbackNode>();
 
 

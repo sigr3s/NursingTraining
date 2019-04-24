@@ -15,6 +15,11 @@ public class UGUIContextMenu : MonoBehaviour, IPointerExitHandler {
 
 	private void Start() {
 		Close();
+		Initialize();
+	}
+
+	public virtual void Initialize(){
+
 	}
 
 	public void OpenAt(Vector2 pos) {
@@ -31,19 +36,7 @@ public class UGUIContextMenu : MonoBehaviour, IPointerExitHandler {
 		group.blocksRaycasts = false;
 	}
 
-	public void SpawnMathNode() {
-		SpawnNode(typeof(XNode.Examples.MathNodes.MathNode));
-	}
-
-	public void SpawnDisplayNode() {
-		SpawnNode(typeof(XNode.Examples.MathNodes.DisplayValue));
-	}
-
-	public void SpawnVectorNode() {
-		SpawnNode(typeof(XNode.Examples.MathNodes.Vector));
-	}
-
-	private void SpawnNode(Type nodeType) {
+	public void SpawnNode(Type nodeType) {
 		Vector2 pos = new Vector2(transform.localPosition.x, -transform.localPosition.y);
 		onClickSpawn(nodeType, pos);
 	}

@@ -14,6 +14,7 @@ namespace NT.SceneObjects
 
         string GetGUID();
         bool CanHoldItem(SceneGameObject obj);
+        void HoldItem(SceneGameObject obj, SceneGameObject parent);
 
         SceneGameObject Instantiate(
             NTVariableRepository repository, Transform parent,

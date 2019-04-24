@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NT.Nodes.Messages;
 using UnityEngine;
 
-public class CallbackHierarchy : MonoBehaviour
+public class CallbackHierarchy : GUIHierarchy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Start() {
+        Rebuild();
+        SessionManager.Instance.OnShowingGraphChanged.AddListener(Rebuild);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override List<HierarchyModel> GetRoot(){
+        List<HierarchyModel> root = new List<HierarchyModel>();
+
+        List<string> callbacks =  SessionManager.Instance.showingGraph.GetCallbacks();
+
+        foreach (var callback in callbacks)
+        {
+            root.Add(new HierarchyModel(
+                    new NodeHierarchyData{ name = callback, key = callback, nodeType = typeof(CallbackNode)}
+                ));
+            
+        }
+        return root;
     }
 }
