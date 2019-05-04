@@ -192,6 +192,14 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void LoadFromData(SceneGameObjectData data){
         this.data = data;
+
+        if(!string.IsNullOrEmpty(data.graphJSON)){
+            graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
+            graph.ImportSerialized(data.graphJSON);
+            graph.linkedNTVariable = data.id;
+            graph.assignedSCGO = this;
+        }
+
         RestoreTransform();
     }
 

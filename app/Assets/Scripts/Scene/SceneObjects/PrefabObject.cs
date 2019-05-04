@@ -38,10 +38,13 @@ namespace NT.SceneObjects
 
                 prefabElementSCGO.sceneObject = prefabElementSO;
 
-                prefabElementSCGO.LoadFromData(prefabElement.data);
-                prefabElementSCGO.data.id = prefabElementSO.name + Guid.NewGuid().ToString();
-                prefabElementSCGO.data.childs = new List<string>();
-                prefabElementSCGO.data.parent = "";
+                SceneGameObjectData prefabElementInstanceData = prefabElement.data;
+
+                prefabElementInstanceData.id = prefabElementSO.name + Guid.NewGuid().ToString();
+                prefabElementInstanceData.childs = new List<string>();
+                prefabElementInstanceData.parent = "";
+
+                prefabElementSCGO.LoadFromData(prefabElementInstanceData);
 
                 if(childsGO.ContainsKey(prefabElement.data.id)){
                     List<SceneGameObject> childsOfElement = childsGO[prefabElement.data.id];
