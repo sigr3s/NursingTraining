@@ -5,16 +5,16 @@
         "$id": 1,
         "$type": "1|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
     },
-    "$rlength": 5,
+    "$rlength": 7,
     "$rcontent": [
         {
-            "$k": "Bedaeee7b4c-bf29-4b17-9a8f-4dd6e4337da0",
+            "$k": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
             "$v": {
                 "$id": 2,
                 "$type": "2|SceneGameObject, Assembly-CSharp",
                 "data": {
                     "$type": "3|SceneGameObjectData, Assembly-CSharp",
-                    "id": "Bedaeee7b4c-bf29-4b17-9a8f-4dd6e4337da0",
+                    "id": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
                     "childs": {
                         "$id": 3,
                         "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
@@ -25,56 +25,112 @@
                     "parent": "",
                     "data": {
                         "$id": 4,
-                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.BedData, Assembly-CSharp]], Assembly-CSharp",
+                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
                         "serializedData": {
                             "$type": "6|NT.Variables.NTVariableData, Assembly-CSharp",
                             "Name": null,
-                            "Value": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
-                            "DefaultValue": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
                             "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
                         },
                         "collapsed": true,
                         "value": {
-                            "$type": "7|NT.SceneObjects.BedData, Assembly-CSharp",
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "$type": "7|NT.SceneObjects.ClosetData, Assembly-CSharp",
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "defaultValue": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "sceneObjectExtraData": {
-                            "$type": "8|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
+                            "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
                             "sceneObjectGUID": null,
                             "position": {
-                                "$type": "9|UnityEngine.Vector3, UnityEngine.CoreModule",
+                                "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
                                 0,
                                 0,
                                 0
                             },
                             "rotation": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             }
                         }
                     },
-                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
                     "graphJSON": "",
                     "position": {
-                        "$type": 9,
-                        -1.91906738,
+                        "$type": 10,
+                        -2.22973633,
                         0,
-                        -1.90899765
+                        -1.496052
                     },
                     "rotation": {
-                        "$type": 9,
+                        "$type": 10,
                         0,
                         0,
                         0
@@ -83,13 +139,13 @@
             }
         },
         {
-            "$k": "Bede0b2033a-c952-4359-a188-07479df0564a",
+            "$k": "Closet M2885292e6-84d3-44c3-b132-add83767c5de",
             "$v": {
                 "$id": 5,
                 "$type": 2,
                 "data": {
                     "$type": 3,
-                    "id": "Bede0b2033a-c952-4359-a188-07479df0564a",
+                    "id": "Closet M2885292e6-84d3-44c3-b132-add83767c5de",
                     "childs": {
                         "$id": 6,
                         "$type": 4,
@@ -104,52 +160,108 @@
                         "serializedData": {
                             "$type": 6,
                             "Name": null,
-                            "Value": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
-                            "DefaultValue": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
                             "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
                         },
                         "collapsed": true,
                         "value": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "defaultValue": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "sceneObjectExtraData": {
-                            "$type": 8,
+                            "$type": 9,
                             "sceneObjectGUID": null,
                             "position": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             },
                             "rotation": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             }
                         }
                     },
-                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
                     "graphJSON": "",
                     "position": {
-                        "$type": 9,
-                        -2.84759521,
+                        "$type": 10,
+                        3.862671,
                         0,
-                        0.273324579
+                        -2.56518555
                     },
                     "rotation": {
-                        "$type": 9,
+                        "$type": 10,
                         0,
                         0,
                         0
@@ -158,13 +270,13 @@
             }
         },
         {
-            "$k": "Bed5974fa78-2867-4c72-8330-b4559accb36c",
+            "$k": "Closet M2f3d5acdc-55a0-40a6-b0cf-2b4770ec506c",
             "$v": {
                 "$id": 8,
                 "$type": 2,
                 "data": {
                     "$type": 3,
-                    "id": "Bed5974fa78-2867-4c72-8330-b4559accb36c",
+                    "id": "Closet M2f3d5acdc-55a0-40a6-b0cf-2b4770ec506c",
                     "childs": {
                         "$id": 9,
                         "$type": 4,
@@ -179,52 +291,108 @@
                         "serializedData": {
                             "$type": 6,
                             "Name": null,
-                            "Value": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
-                            "DefaultValue": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
                             "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
                         },
                         "collapsed": true,
                         "value": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "defaultValue": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "sceneObjectExtraData": {
-                            "$type": 8,
+                            "$type": 9,
                             "sceneObjectGUID": null,
                             "position": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             },
                             "rotation": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             }
                         }
                     },
-                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
                     "graphJSON": "",
                     "position": {
-                        "$type": 9,
-                        0.125610352,
+                        "$type": 10,
+                        2.10913086,
                         0,
-                        2.78356123
+                        1.313981
                     },
                     "rotation": {
-                        "$type": 9,
+                        "$type": 10,
                         0,
                         0,
                         0
@@ -233,13 +401,13 @@
             }
         },
         {
-            "$k": "Bed21f6f958-e9bd-4834-b513-75fed0fa765d",
+            "$k": "Closet M2488279c8-eb3c-432c-bd1e-9f270d02c70f",
             "$v": {
                 "$id": 11,
                 "$type": 2,
                 "data": {
                     "$type": 3,
-                    "id": "Bed21f6f958-e9bd-4834-b513-75fed0fa765d",
+                    "id": "Closet M2488279c8-eb3c-432c-bd1e-9f270d02c70f",
                     "childs": {
                         "$id": 12,
                         "$type": 4,
@@ -254,52 +422,108 @@
                         "serializedData": {
                             "$type": 6,
                             "Name": null,
-                            "Value": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
-                            "DefaultValue": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
                             "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
                         },
                         "collapsed": true,
                         "value": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "defaultValue": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "sceneObjectExtraData": {
-                            "$type": 8,
+                            "$type": 9,
                             "sceneObjectGUID": null,
                             "position": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             },
                             "rotation": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             }
                         }
                     },
-                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
                     "graphJSON": "",
                     "position": {
-                        "$type": 9,
-                        2.7520752,
+                        "$type": 10,
+                        -0.120422363,
                         0,
-                        -0.6827225
+                        2.689022
                     },
                     "rotation": {
-                        "$type": 9,
+                        "$type": 10,
                         0,
                         0,
                         0
@@ -308,13 +532,13 @@
             }
         },
         {
-            "$k": "Bed23cb12e8-60bf-4e4e-9ac0-cd528bf264f6",
+            "$k": "Closet M2974869e2-c9ae-449a-818a-5532547a4f12",
             "$v": {
                 "$id": 14,
                 "$type": 2,
                 "data": {
                     "$type": 3,
-                    "id": "Bed23cb12e8-60bf-4e4e-9ac0-cd528bf264f6",
+                    "id": "Closet M2974869e2-c9ae-449a-818a-5532547a4f12",
                     "childs": {
                         "$id": 15,
                         "$type": 4,
@@ -329,52 +553,370 @@
                         "serializedData": {
                             "$type": 6,
                             "Name": null,
-                            "Value": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
-                            "DefaultValue": "{\"bedHeight\":0.0,\"tilt\":0.0,\"temperature\":0.0,\"wheelsBlocked\":false}",
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
                             "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
                         },
                         "collapsed": true,
                         "value": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "defaultValue": {
                             "$type": 7,
-                            "bedHeight": 0,
-                            "tilt": 0,
-                            "temperature": 0,
-                            "wheelsBlocked": false
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
                         },
                         "sceneObjectExtraData": {
-                            "$type": 8,
+                            "$type": 9,
                             "sceneObjectGUID": null,
                             "position": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             },
                             "rotation": {
-                                "$type": 9,
+                                "$type": 10,
                                 0,
                                 0,
                                 0
                             }
                         }
                     },
-                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
                     "graphJSON": "",
                     "position": {
-                        "$type": 9,
-                        2.03009033,
+                        "$type": 10,
+                        -0.448059082,
                         0,
-                        -3.98171782
+                        -2.017488
                     },
                     "rotation": {
-                        "$type": 9,
+                        "$type": 10,
+                        0,
+                        0,
+                        0
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M234ad1871-86eb-481c-bd9d-16a9b5b5720b",
+            "$v": {
+                "$id": 17,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M234ad1871-86eb-481c-bd9d-16a9b5b5720b",
+                    "childs": {
+                        "$id": 18,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 19,
+                        "$type": 5,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        1.20916748,
+                        0,
+                        -2.870783
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        0,
+                        0
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M2b082009f-12a5-4b57-8050-bab41a88dcad",
+            "$v": {
+                "$id": 20,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M2b082009f-12a5-4b57-8050-bab41a88dcad",
+                    "childs": {
+                        "$id": 21,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 22,
+                        "$type": 5,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        2.30316162,
+                        0,
+                        -2.09507322
+                    },
+                    "rotation": {
+                        "$type": 10,
                         0,
                         0,
                         0

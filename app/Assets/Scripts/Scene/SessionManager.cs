@@ -118,17 +118,12 @@ public class SessionManager : Singleton<SessionManager> {
 
     }
 
-    public void LoadScene(){
-        //FIXME: 
-        byte[] ojson = SerializationUtility.SerializeValue(sceneGameObjects, DataFormat.JSON);
+    public void LoadScene(string path){
+        byte[] ojson = File.ReadAllBytes(path);
 
         var newRoot = SerializationUtility.DeserializeValue<Dictionary<string,SceneGameObject>>(ojson, DataFormat.JSON);
-
-        foreach(var c in newRoot){
-            GameObject go = new GameObject(c.Key);
-            SceneGameObject scgo = go.AddComponent<SceneGameObject>();
-            scgo.LoadFromData(c.Value.data);
-        }
+        
+        mapLoader.LoadMap(newRoot);
     }
 
     public void LoadSession(string sessionID){
@@ -141,6 +136,8 @@ public class SessionManager : Singleton<SessionManager> {
             return;
         }
 
+        sceneGameObjects = new Dictionary<string, SceneGameObject>();
+
 
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
         SessionData = JsonUtility.FromJson<SessionData>(configJSON);
@@ -148,8 +145,9 @@ public class SessionManager : Singleton<SessionManager> {
 
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
 
+        LoadScene(saveFolder +  "/" + SessionData.sceneFile);
 
-        sceneGameObjects = new Dictionary<string, SceneGameObject>();
+
 
         OnSessionLoaded.Invoke();
 

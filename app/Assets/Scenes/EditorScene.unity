@@ -324,40 +324,6 @@ MonoBehaviour:
     initialSize: {x: 0, y: 0}
     childCount: 0
     indexOfFirstChild: 5
---- !u!84 &77815536
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &120207284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1411,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 77815536}
+      objectReference: {fileID: 1824419898}
     - target: {fileID: 4041785981204265352, guid: 11dd07c903f20ca45af0addbe476b07b,
         type: 3}
       propertyPath: m_IsOn
@@ -1531,7 +1497,7 @@ MonoBehaviour:
     lastModified: 
     sceneGraphFile: 
     sceneFile: 
-  loadOnAwake: 0
+  loadOnAwake: 1
   sceneGraph: {fileID: 0}
   sceneObjects: {fileID: 11400000, guid: 9d4e06adb30179644bad9a2a814833bf, type: 2}
   OnCurrentChanged:
@@ -2047,6 +2013,40 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1757940789}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1824419898
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1879518524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,7 +2204,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886836533}
   m_CullTransparentMesh: 0
---- !u!84 &2066630615
+--- !u!84 &1961124395
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
