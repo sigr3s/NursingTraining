@@ -1,0 +1,594 @@
+{
+    "$type": "0|NT.SceneObjects.PrefabObject+SavedPrefab, Assembly-CSharp",
+    "root": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+    "prefabObjects": {
+        "$id": 0,
+        "$type": "1|System.Collections.Generic.List`1[[SceneGameObject, Assembly-CSharp]], mscorlib",
+        "$rlength": 8,
+        "$rcontent": [
+            {
+                "$id": 1,
+                "$type": "2|SceneGameObject, Assembly-CSharp",
+                "data": {
+                    "$type": "3|SceneGameObjectData, Assembly-CSharp",
+                    "id": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "childs": {
+                        "$id": 2,
+                        "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+                        "$rlength": 7,
+                        "$rcontent": [
+                            "Sphere6468640c-3bb5-42ea-acc9-5f5c38d6e7f3",
+                            "Sphere33c270c7-05c4-4a10-8e77-fe56a2803666",
+                            "Sphere83823149-9b24-4468-91f3-f4ee4f87ae1b",
+                            "Sphere903ac871-a475-4735-8bdd-f52bced1ed67",
+                            "Sphere2884ebab-5516-43db-a638-c521dd246191",
+                            "Sphereb3499e8a-9f9f-4c8c-9f92-39c1fa60dfb6",
+                            "Spherea45c5999-2306-4503-944f-646a19ac535e"
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 3,
+                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": "6|NT.Variables.NTVariableData, Assembly-CSharp",
+                            "Name": null,
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":2.0,\"numberOfItems\":21321,\"d0\":{\"canbeOpened\":true,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"dsa\",\"slot02\":\"dsa\",\"slot03\":\"weqd\",\"slot04\":\"asd\",\"slot05\":\"cas\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "7|NT.SceneObjects.ClosetData, Assembly-CSharp",
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 7,
+                            "MaxItems": 2,
+                            "numberOfItems": 21321,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": true,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": "dsa",
+                                "slot02": "dsa",
+                                "slot03": "weqd",
+                                "slot04": "asd",
+                                "slot05": "cas"
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "3a4e8434-b4fe-4101-ad63-cb5f5051df50",
+                    "graphJSON": "{\"graph\":{\"type\":\"NT.Graph.SceneObjectGraph, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"name\":\"\",\"id\":-748448,\"linkedNTVariable\":\"Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c\",\"executionNodes\":[],\"callbackNodes\":[-748912],\"callbackNodesDict\":{\"count\":0,\"version\":0,\"freeList\":0,\"freeCount\":0,\"comparer\":{}},\"nodes\":[-748912,-749188]},\"connections\":[],\"nodes\":[{\"name\":\"CallbackNode\",\"type\":\"NT.Nodes.Messages.CallbackNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"position\":{\"x\":-21.2061920166016,\"y\":-264.179992675781},\"id\":-748912,\"ports\":[{\"name\":\"flowOut\",\"id\":547293824,\"dynamic\":false,\"valueType\":\"NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"typeConstraint\":0,\"connectionType\":0,\"direction\":1}],\"hasError\":false,\"error\":\"\",\"isExecuting\":false,\"graph\":-748448},{\"name\":\"SendMessageNode\",\"type\":\"NT.Nodes.Messages.SendMessageNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"position\":{\"x\":-136.206192016602,\"y\":-384.179992675781},\"id\":-749188,\"ports\":[{\"name\":\"flowIn\",\"id\":1519846272,\"dynamic\":false,\"valueType\":\"NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"typeConstraint\":2,\"connectionType\":1,\"direction\":0},{\"name\":\"flowOut\",\"id\":-806958848,\"dynamic\":false,\"valueType\":\"NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"typeConstraint\":0,\"connectionType\":0,\"direction\":1}],\"hasError\":false,\"error\":\"\",\"isExecuting\":false,\"graph\":-748448}]}",
+                    "position": {
+                        "$type": 10,
+                        -1.67071533,
+                        0,
+                        0.190567777
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 4,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphere6468640c-3bb5-42ea-acc9-5f5c38d6e7f3",
+                    "childs": {
+                        "$id": 5,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 6,
+                        "$type": "11|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.DummyData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "12|NT.SceneObjects.DummyData, Assembly-CSharp"
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        5.008956E-06,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 7,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphere33c270c7-05c4-4a10-8e77-fe56a2803666",
+                    "childs": {
+                        "$id": 8,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 9,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 10,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphere83823149-9b24-4468-91f3-f4ee4f87ae1b",
+                    "childs": {
+                        "$id": 11,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 12,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        5.008956E-06,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 13,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphere903ac871-a475-4735-8bdd-f52bced1ed67",
+                    "childs": {
+                        "$id": 14,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 15,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 16,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphere2884ebab-5516-43db-a638-c521dd246191",
+                    "childs": {
+                        "$id": 17,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 18,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        5.008956E-06,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 19,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Sphereb3499e8a-9f9f-4c8c-9f92-39c1fa60dfb6",
+                    "childs": {
+                        "$id": 20,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 21,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    }
+                }
+            },
+            {
+                "$id": 22,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Spherea45c5999-2306-4503-944f-646a19ac535e",
+                    "childs": {
+                        "$id": 23,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet6b1c5602-42a8-41d3-8015-ba6a13ffa93c",
+                    "data": {
+                        "$id": 24,
+                        "$type": 11,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{}",
+                            "DefaultValue": "{}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 12
+                        },
+                        "defaultValue": {
+                            "$type": 12
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "e3d3b597-e48f-42be-9f62-48e62e25427a",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.015625,
+                        0.3239746,
+                        0.202183545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        5.008956E-06,
+                        0
+                    }
+                }
+            }
+        ]
+    }
+}

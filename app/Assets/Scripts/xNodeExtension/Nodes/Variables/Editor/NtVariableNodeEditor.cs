@@ -42,7 +42,7 @@ namespace NT.Nodes.Variables
                 Type t = ivn.GetVariableType();
 
                 if(t != null){
-                    return graph.sceneVariables.GetColorFor(t);
+//                    return graph.sceneVariables.GetColorFor(t);
                 }
                 return base.GetTint();
             }

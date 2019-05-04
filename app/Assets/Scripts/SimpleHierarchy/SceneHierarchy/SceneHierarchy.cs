@@ -18,8 +18,10 @@ public class SceneHierarchy : GUIHierarchy {
 
     private void Rehook(){
 
-        SessionManager.Instance.sceneVariables.variableRepository.onModified.RemoveListener(Rebuild);
-        SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
+        Debug.LogWarning("Need changes to handle scene changes");
+
+        //SessionManager.Instance.sceneVariables.variableRepository.onModified.RemoveListener(Rebuild);
+        //SessionManager.Instance.sceneVariables.variableRepository.onModified.AddListener(Rebuild);
 
         Rebuild();
     }
@@ -34,7 +36,7 @@ public class SceneHierarchy : GUIHierarchy {
         foreach(var sgoKVp in SessionManager.Instance.sceneGameObjects){
             SceneGameObject scgo = sgoKVp.Value;
 
-            bool selected = SessionManager.Instance.selectedSceneObject?.NTKey == sgoKVp.Key;
+            bool selected = SessionManager.Instance.selectedSceneObject?.data.id == sgoKVp.Key;
             HierarchyModel model = new HierarchyModel(new HierarchyData{ name = sgoKVp.Value.name, key = sgoKVp.Key, selected = selected});
 
             if(childs.ContainsKey(sgoKVp.Key)){
@@ -48,10 +50,10 @@ public class SceneHierarchy : GUIHierarchy {
             }
 
             if(scgo.parent != null){
-                string parentKey = scgo.parent.NTKey;
+                string parentKey = scgo.parent.data.id;
 
                 if(parents.ContainsKey(parentKey)){
-                    parents[scgo.parent.NTKey].AddChild(model);
+                    parents[scgo.parent.data.id].AddChild(model);
                 }
                 else
                 {

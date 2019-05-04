@@ -23,6 +23,7 @@ namespace NT.Nodes.Variables
 
 
         public override object GetValue(NodePort port) {
+            /*
             NTGraph g = graph as NTGraph;
             NTVariableRepository repo = g.sceneVariables.variableRepository;
 
@@ -37,6 +38,7 @@ namespace NT.Nodes.Variables
                 }
                 return ntVariable;
             }
+            */
 
             return null;
         }

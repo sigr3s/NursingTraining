@@ -16,8 +16,7 @@ namespace NT.SceneObjects
         bool CanHoldItem(SceneGameObject obj);
         void HoldItem(SceneGameObject obj, SceneGameObject parent);
 
-        SceneGameObject Instantiate(
-            NTVariableRepository repository, Transform parent,
+        SceneGameObject Instantiate(Transform parent,
             Vector3 localPosition, Quaternion localRotation
         );
         SceneGameObject Instantiate(

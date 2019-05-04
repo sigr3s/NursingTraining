@@ -26,8 +26,8 @@ namespace  NT.Graph
 
 
 
-        [Header("References")]
-        public SceneVariables sceneVariables;
+        //[Header("References")]
+        //public SceneVariables sceneVariables;
 
         public Dictionary<string, List<CallbackNode>> callbackNodesDict = new Dictionary<string, List<CallbackNode>>();
 
@@ -149,7 +149,6 @@ namespace  NT.Graph
 
         [ContextMenu("Import")]
         public void Import(){
-            sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
             string path = Application.dataPath + "/" + name + ".json" ;
             Import(path);
         }
@@ -177,7 +176,6 @@ namespace  NT.Graph
         public virtual void LoadFromGraph(NTGraph g){
             nodes = g.nodes;
             callbackNodes = g.callbackNodes;
-            sceneVariables = g.sceneVariables;
 
             foreach(Node n in nodes){
                 n.graph = this;

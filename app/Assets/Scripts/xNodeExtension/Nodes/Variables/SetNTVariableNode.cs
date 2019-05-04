@@ -30,8 +30,9 @@ namespace NT.Nodes.Variables{
         public string variablePath = "";
 
         public override IEnumerator ExecuteNode(NodeExecutionContext context){
+            /*
             NTGraph g = graph as NTGraph;
-
+            
             if(string.IsNullOrEmpty(typeString)) yield break;
             if(variableType == null || dataType == null) InitializeNodeTypes();
             if(_myData == null) _myData.FromNTVariableData(data);
@@ -58,6 +59,7 @@ namespace NT.Nodes.Variables{
             }
 
             g.sceneVariables.variableRepository.SetValue(variableType,variableKey, value);
+            */
             yield return null;
         }
 

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NT.Graph;
 using NT.SceneObjects;
 using NT.Variables;
+using OdinSerializer;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,34 +16,19 @@ public class SessionManager : Singleton<SessionManager> {
     public SessionData SessionData;
     public bool loadOnAwake = true;
 
-    [Header("Scene Variables")]
-    [SerializeField] private SceneVariables _sceneVariables;
-
-    public SceneVariables sceneVariables {
-        get{
-            if(_sceneVariables == null){
-                _sceneVariables = (SceneVariables) ScriptableObject.CreateInstance(typeof(SceneVariables));
-                _sceneVariables.variableRepository = new NTVariableRepository();
-            }
-
-            return _sceneVariables;
-        }
-    }
-
 
     [Header("References")]
     public SceneGraph sceneGraph;
     public SceneObjects sceneObjects;
-    public SavedScene loadedScene;
+    public IMapLoader mapLoader;
 
 
     [Space(20)]
     [Header("Debug")]
-
     public Dictionary<string, SceneGameObject> sceneGameObjects;
     private SceneGameObject _selectedObjectSceneObject;
-
     public SceneGameObject selectedSceneObject{
+
         get{
             return _selectedObjectSceneObject;
         }
@@ -55,8 +42,6 @@ public class SessionManager : Singleton<SessionManager> {
     } 
 
     private NTGraph _showingGraph;
-
-
     public NTGraph showingGraph{
         get{
             return _showingGraph;
@@ -82,14 +67,11 @@ public class SessionManager : Singleton<SessionManager> {
             sceneGraph = (SceneGraph) ScriptableObject.CreateInstance(typeof(SceneGraph));
         }
 
-        if(_sceneVariables == null){
-            _sceneVariables = (SceneVariables) ScriptableObject.CreateInstance(typeof(SceneVariables));
-            _sceneVariables.variableRepository = new NTVariableRepository();
-        }
-
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
         sceneObjects.LoadPrefabs();
+
+        var sceneRoot = new GameObject("SceneRoot");
 
 
         if(loadOnAwake){
@@ -97,45 +79,13 @@ public class SessionManager : Singleton<SessionManager> {
         }
     }
 
-    [System.Serializable]
-    public struct SavedScene{
-        public List<SavedSceneObject> objects;
-    }
-
-    [System.Serializable]
-    public struct SavedSceneObject{
-        public string parent;
-        public string ScriptableObjectGUID;
-        public string AssignedNTVariable;
-        public Vector3 position;
-        public Vector3 rotation;
-        public string serializedGraph;
-    }
-
 #region Export/Import
     public void SaveScene(string path){
-
-        SavedScene savedScene = new SavedScene(){ objects = new List<SavedSceneObject>()};
-
-        foreach(var sceneGameObject in sceneGameObjects){
-
-            SavedSceneObject savedObject = new SavedSceneObject(){
-                ScriptableObjectGUID = sceneGameObject.Value.sceneObject.GetGUID(),
-                AssignedNTVariable = sceneGameObject.Key,
-                position = sceneGameObject.Value.gameObject.transform.localPosition,
-                rotation = sceneGameObject.Value.gameObject.transform.localRotation.eulerAngles,
-                parent = sceneGameObject.Value.parent != null ? sceneGameObject.Value.parent.NTKey : ""
-            };
-
-            if(sceneGameObject.Value.graph != null){
-                savedObject.serializedGraph = sceneGameObject.Value.graph.ExportSerialized();
-            }
-
-            savedScene.objects.Add(savedObject);
-        }
+        
+        byte[] ojson = SerializationUtility.SerializeValue(sceneGameObjects, DataFormat.JSON);
 
         if(!string.IsNullOrEmpty(path)){
-            File.WriteAllText(path, JsonUtility.ToJson(savedScene));
+            File.WriteAllBytes(path, ojson);
         }
     }
 
@@ -156,10 +106,6 @@ public class SessionManager : Singleton<SessionManager> {
 
 
         SessionData.lastModified = DateTime.Now.ToString();
-        SessionData.variablesFile = "variables.json";
-
-        string sceneVariablesJSON = JsonUtility.ToJson(_sceneVariables);
-        File.WriteAllText(saveFolder + "/" + SessionData.variablesFile, sceneVariablesJSON);
 
         SessionData.sceneGraphFile = "sceneGraph.json";
         sceneGraph.Export(saveFolder + "/" + SessionData.sceneGraphFile);
@@ -170,6 +116,19 @@ public class SessionManager : Singleton<SessionManager> {
         string sessionJSON = JsonUtility.ToJson(SessionData);
         File.WriteAllText(saveFolder + "/" + "config.json", sessionJSON);
 
+    }
+
+    public void LoadScene(){
+        //FIXME: 
+        byte[] ojson = SerializationUtility.SerializeValue(sceneGameObjects, DataFormat.JSON);
+
+        var newRoot = SerializationUtility.DeserializeValue<Dictionary<string,SceneGameObject>>(ojson, DataFormat.JSON);
+
+        foreach(var c in newRoot){
+            GameObject go = new GameObject(c.Key);
+            SceneGameObject scgo = go.AddComponent<SceneGameObject>();
+            scgo.LoadFromData(c.Value.data);
+        }
     }
 
     public void LoadSession(string sessionID){
@@ -186,15 +145,9 @@ public class SessionManager : Singleton<SessionManager> {
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
         SessionData = JsonUtility.FromJson<SessionData>(configJSON);
 
-        string variablesJSON = File.ReadAllText(saveFolder +  "/" + SessionData.variablesFile);
-        JsonUtility.FromJsonOverwrite(variablesJSON, _sceneVariables);
-        _sceneVariables.variableRepository.dictionary.OnAfterDeserialize();
 
         sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
-        sceneGraph.sceneVariables = _sceneVariables;
 
-        string sceneJSON = File.ReadAllText(saveFolder +  "/" + SessionData.sceneFile);
-        loadedScene = JsonUtility.FromJson<SavedScene>(sceneJSON);
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
@@ -206,11 +159,11 @@ public class SessionManager : Singleton<SessionManager> {
 
 #region Scene GameObjcts
     public void AddSceneGameObject(SceneGameObject so){
-        sceneGameObjects.Add(so.NTKey, so);
+        sceneGameObjects.Add(so.data.id, so);
         OnSceneGameObjectsChanged.Invoke();
     }
 
-    public void RemoveSceneGameObject(string key, Type variableType){
+    public void RemoveSceneGameObject(string key){
 
         if(sceneGameObjects.ContainsKey(key)){
             SceneGameObject toRemove = sceneGameObjects[key];
@@ -220,16 +173,21 @@ public class SessionManager : Singleton<SessionManager> {
                 showingGraph = sceneGraph;
             }
 
+            if(!string.IsNullOrEmpty(toRemove.data.parent) ){
+                SceneGameObject toRemoveParent = sceneGameObjects[toRemove.data.parent];
+                toRemoveParent.data.childs.Remove(key);
+
+                Debug.Log("Removed from parent!");
+            }
+
             List<SceneGameObject> childsToRemove = new List<SceneGameObject>(toRemove.GetComponentsInChildren<SceneGameObject>());
 
             foreach(SceneGameObject childToRemove in childsToRemove){
-                string childKey = childToRemove.NTKey;
+                string childKey = childToRemove.data.id;
                 sceneGameObjects.Remove(childKey);
-                 _sceneVariables.variableRepository.RemoveVariable(childKey, childToRemove.NTDataType);
             }
 
             Destroy(toRemove.gameObject);
-            _sceneVariables.variableRepository.RemoveVariable(key, variableType);
             OnSceneGameObjectsChanged.Invoke();
             OnGraphListChanged.Invoke();
         }
@@ -273,7 +231,6 @@ public class SessionManager : Singleton<SessionManager> {
         if(sobj.graph == null){
             SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
             soc.linkedNTVariable = key;
-            soc.sceneVariables = sceneVariables;
 
             sobj.graph = soc;
             OnGraphListChanged.Invoke();
@@ -306,7 +263,6 @@ public class SessionManager : Singleton<SessionManager> {
 public struct SessionData{
     public string sessionID;
     public string lastModified;
-    public string variablesFile;
     public string sceneGraphFile;
     public string sceneFile;
 }

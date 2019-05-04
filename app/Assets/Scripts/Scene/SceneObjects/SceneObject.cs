@@ -7,9 +7,9 @@ namespace NT.SceneObjects
 {
     public class SceneObject<T> : SceneObject
     {
-        public override Type GetDataType()
-        {
-            return typeof(NTSceneObject<T>);
+        public override NTVariable GetDefaultData(){
+            NTVariable savedSceneObject = (NTVariable) Activator.CreateInstance( typeof(NTSceneObject<T>) );
+            return savedSceneObject;
         }
     }
 
@@ -60,7 +60,7 @@ namespace NT.SceneObjects
             return sceneObjectUI;
         }
 
-        public virtual Type GetDataType()
+        public virtual NTVariable GetDefaultData()
         {
             return null;
         }
@@ -82,15 +82,29 @@ namespace NT.SceneObjects
             instancedGo.transform.localPosition = localPosition;
             instancedGo.transform.localRotation = localRotation;
 
-
             SceneGameObject scgo = instancedGo.GetComponent<SceneGameObject>();
 
             if(scgo == null){
                 scgo = instancedGo.AddComponent<SceneGameObject>();
             }
 
-            scgo.NTDataType = GetDataType();
-            scgo.NTKey = key;
+            scgo.data.id = key;
+            scgo.data.data =  GetDefaultData();
+
+            SceneGameObject parentSCGO = parent.GetComponent<SceneGameObject>();
+
+            if(parentSCGO != null){
+                scgo.data.parent = parentSCGO.data.id;
+                
+                if(!parentSCGO.data.childs.Contains(key)){
+                    parentSCGO.data.childs.Add(key);
+                }
+                else
+                {
+                    Debug.LogError("Something went wrong!");
+                }
+            }
+            
 
             scgo.sceneObject = this;
 
@@ -98,18 +112,11 @@ namespace NT.SceneObjects
         }
 
 
-        public virtual SceneGameObject Instantiate(
-            NTVariableRepository repository, Transform parent,
+        public virtual SceneGameObject Instantiate( Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){
-            Type t = GetDataType();
-            string key = name + Guid.NewGuid().ToString();
-
-            INTSceneObject savedSceneObject = (INTSceneObject) Activator.CreateInstance(t);
-            savedSceneObject.SetName(key);
-            repository.AddVariable(t, savedSceneObject);
-
-            return Instantiate(key, parent,localPosition, localRotation);
+            string key = name + Guid.NewGuid().ToString();            
+            return Instantiate(key, parent, localPosition, localRotation);
         }
     }
 }

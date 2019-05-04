@@ -26,8 +26,8 @@ public class RuntimeInspector : GUIInspector {
         object value = null; 
 
         if(current != null){
-            value = SessionManager.Instance.sceneVariables.variableRepository.GetDefaultValue(current.NTKey, current.NTDataType);
-            SetCurrent(current.NTKey, value);
+            value = current.data.data.GetDefaultValue();
+            SetCurrent(current.data.id, value);
         }
         else
         {
@@ -47,6 +47,6 @@ public class RuntimeInspector : GUIInspector {
 
     private void OnChanged(object value)
     {
-        SessionManager.Instance.sceneVariables.variableRepository.SetDefaultValue(current.NTDataType, current.NTKey, value);
+        current.data.data.SetDefaultValue(value);
     }
 }

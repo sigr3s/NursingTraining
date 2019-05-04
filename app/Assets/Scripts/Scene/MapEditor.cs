@@ -112,8 +112,6 @@ public class MapEditor : MapLoader {
 
     void Start()
     {
-        SessionManager.Instance.OnSessionLoaded.AddListener(LoadMap);
-
         BuildToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Build;});
         InspectToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Inspect;});
         DeleteToggle.onValueChanged.AddListener( (bool active) => { if(active) mode = MapMode.Delete;});
@@ -121,7 +119,6 @@ public class MapEditor : MapLoader {
         mode = MapMode.Build;
 
         LoadObjectsButtons();
-        LoadMap();
     }
 
     private void Update() {
@@ -228,7 +225,7 @@ public class MapEditor : MapLoader {
             if(sco != null){
                 if(sco.sceneObject.CanHoldItem(previewSceneGameObject)){
                     previewGO.SetActive(false);
-                    SessionManager.Instance.SetSelected(sco.NTKey);
+                    SessionManager.Instance.SetSelected(sco.data.id);
                 }
             }
             else
@@ -245,7 +242,7 @@ public class MapEditor : MapLoader {
                 previewSceneGameObject.isPlacingMode = false;
                 lastRotation = previewSceneGameObject.transform.localRotation.eulerAngles;
                 
-                SceneGameObject instanced = current.Instantiate(SessionManager.Instance.sceneVariables.variableRepository, p,
+                SceneGameObject instanced = current.Instantiate(p,
                                     previewGO.transform.localPosition, previewGO.transform.localRotation);
     
                 SessionManager.Instance.AddSceneGameObject(instanced);
@@ -277,7 +274,7 @@ public class MapEditor : MapLoader {
                 currentSceneGameObject.isMouseOver = true;
                 
                 if( Input.GetMouseButtonDown(0) ){
-                    SessionManager.Instance.RemoveSceneGameObject(currentSceneGameObject.NTKey, currentSceneGameObject.NTDataType);
+                    SessionManager.Instance.RemoveSceneGameObject(currentSceneGameObject.data.id);
                 }
             }
             else
@@ -315,7 +312,7 @@ public class MapEditor : MapLoader {
                 currentSceneGameObject.isMouseOver = true;
 
                 if( Input.GetMouseButtonDown(0) ){
-                    SessionManager.Instance.SetSelected(currentSceneGameObject.NTKey);
+                    SessionManager.Instance.SetSelected(currentSceneGameObject.data.id);
                 }
             }
             else if(currentSceneGameObject != null){

@@ -51,8 +51,8 @@ namespace NT.Graph
 
 			if(sceneGraph == null){
 				sceneGraph = (SceneGraph) target;
-				sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadSceneTree);
-				sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadVariableTree);
+				//sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadSceneTree);
+				//sceneGraph.sceneVariables.variableRepository.onModified.AddListener(ReloadVariableTree);
 			}
 
 			Rect r = EditorGUILayout.BeginVertical(GUI.skin.button ,GUILayout.Width(200) );
@@ -276,6 +276,7 @@ namespace NT.Graph
 			variablesID = 0;
 			variableItems = new List<TreeViewItem>();
 
+			/*
 			SceneGraph t = target as SceneGraph;
 			if(t.sceneVariables != null){
 				NTVariableRepository repo = t.sceneVariables.variableRepository;
@@ -308,7 +309,7 @@ namespace NT.Graph
 					}
 				}
 			}
-
+			*/
 			variableTreeView = new VariableTreeView(variableTreeViewState, variableItems);
 		}
 
@@ -382,6 +383,7 @@ namespace NT.Graph
 
 			SceneGraph t = target as SceneGraph;
 
+			/*
 			if(t.sceneVariables != null){
 				NTVariableRepository repo = t.sceneVariables.variableRepository;
 				for(int i = 0; i < repo.dictionary.keys.Count; i++){
@@ -429,6 +431,7 @@ namespace NT.Graph
 					}
 				}
 			}
+			 */
 
 			sceneTreeView = new VariableTreeView(sceneTreeViewState, sceneItems);
 		}

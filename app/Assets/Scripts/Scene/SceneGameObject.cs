@@ -4,12 +4,36 @@ using cakeslice;
 using NT;
 using NT.Graph;
 using NT.SceneObjects;
+using NT.Variables;
 using UnityEngine;
 
+[System.Serializable]
+public struct SceneGameObjectData{
+    //Scene data
+    public string id;
+    public List<string> childs;
+    public string parent;
+    public NTVariable data;
+    public string sceneObjectGUID;
+    
+    //Graph
+    public string graphJSON;
 
-public class SceneGameObject : MonoBehaviour
+    //Transform
+    public Vector3 position;
+    public Vector3 rotation;
+}
+
+public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 {
-    private bool _isColliding = false;
+
+#region  Serialized
+    [SerializeField] public SceneGameObjectData data;
+#endregion
+
+
+
+    [NonSerialized] private bool _isColliding = false;
     public bool isColliding{
         get{
             return _isColliding;
@@ -34,7 +58,7 @@ public class SceneGameObject : MonoBehaviour
         }
     }
 
-    private bool _isMouseOver = false;
+    [NonSerialized] private bool _isMouseOver = false;
     public bool isMouseOver{
         get{
             return _isMouseOver;
@@ -59,7 +83,7 @@ public class SceneGameObject : MonoBehaviour
         }
     }
 
-    private bool _isSelected = false;
+    [NonSerialized] private bool _isSelected = false;
     public bool isSelected{
         get{
             return _isSelected;
@@ -84,17 +108,15 @@ public class SceneGameObject : MonoBehaviour
         }
     }
     
-    public bool isPlacingMode = false;
-    public bool deleteMode = false;
+    [NonSerialized] public bool isPlacingMode = false;
+    [NonSerialized] public bool deleteMode = false;
 
 
-    //Hierarchy
-    private SceneGameObject _parent;
+    [NonSerialized] private SceneGameObject _parent;
     public SceneGameObject parent{
         get{
             if(_parent == null){
                 _parent = transform.parent.GetComponent<SceneGameObject>();
-                if(_parent == this) Debug.Log("WTF??");
             }
             
             return _parent;
@@ -105,29 +127,24 @@ public class SceneGameObject : MonoBehaviour
         }
     }
 
-    //Data link!
-    public string NTKey;
-    public Type NTDataType;
-
-    //Scene object link
-    private ISceneObject _sceneObject;
-    public ISceneObject sceneObject{
+    [NonSerialized] private ISceneObject _sceneObject;
+    public ISceneObject sceneObject {
         get{
+            if(_sceneObject == null && !string.IsNullOrEmpty(data.sceneObjectGUID) ){
+                _sceneObject =  SessionManager.Instance.sceneObjects.GetObject(data.sceneObjectGUID);
+            }
             return _sceneObject;
         }
         set{
             _sceneObject = value;
+            data.sceneObjectGUID = _sceneObject.GetGUID();
         }
     }
-    public SceneObjectGraph graph;
+    [NonSerialized] public SceneObjectGraph graph;
 
 
-    private List<Outline> renderersOutlines;
-
-    [ContextMenu("Debug")]
-    public void GetSo(){
-        Debug.Log(sceneObject.GetGUID());
-    }
+    [NonSerialized] private List<Outline> renderersOutlines;
+    
     private void Awake() {
         List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();
@@ -139,7 +156,6 @@ public class SceneGameObject : MonoBehaviour
             renderersOutlines.Add(rendererOutiline);           
         }
     }
-
 
     private void OnTriggerEnter(Collider other) {
         if(!isPlacingMode) return;
@@ -153,4 +169,47 @@ public class SceneGameObject : MonoBehaviour
         isColliding = false;
     }
 
+    public void OnBeforeSerialize()
+    {
+        if(graph != null){
+            data.graphJSON = graph.ExportSerialized();
+        }
+
+        data.position = transform.localPosition;
+        data.rotation = transform.localRotation.eulerAngles;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        if(!string.IsNullOrEmpty(data.graphJSON)){
+            graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
+            graph.ImportSerialized(data.graphJSON);
+        }
+        if(data.childs == null){
+            data.childs = new List<string>();
+        }
+    }
+
+    public void LoadFromData(SceneGameObjectData data){
+        this.data = data;
+        RestoreTransform();
+    }
+
+    public void RestoreTransform(){
+        transform.localPosition = data.position;
+        transform.localRotation = Quaternion.Euler(data.position);
+        transform.localScale = Vector3.one;
+    }
+
+    public void RebuildParents()
+    {
+        if(transform.parent != null){
+            SceneGameObject parentSCGO = transform.parent.GetComponentInParent<SceneGameObject>();
+
+            if(parentSCGO != null){
+                data.parent = parentSCGO.data.id;
+                parentSCGO.data.childs.Add(data.id);
+            }
+        }
+    }
 }

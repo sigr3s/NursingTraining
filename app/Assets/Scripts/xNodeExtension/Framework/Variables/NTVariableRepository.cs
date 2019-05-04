@@ -107,7 +107,7 @@ namespace NT.Variables
             }
         }
 
-         public void RemoveVariable(string key, Type variableType){
+        public void RemoveVariable(string key, Type variableType){
             if(string.IsNullOrEmpty(key)) return;
 
             if( dictionary.ContainsKey(variableType.ToString()) ){
@@ -157,7 +157,7 @@ namespace NT.Variables
             return default(object);
         }
 
-         public object GetDefaultValue(string key, Type t){
+        public object GetDefaultValue(string key, Type t){
             if(string.IsNullOrEmpty(key)) return default(object);
 
             Type newVariableType = t;

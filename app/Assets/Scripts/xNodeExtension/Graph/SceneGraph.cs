@@ -30,9 +30,8 @@ namespace NT.Graph{
             MessageSystem.onMessageSent += MessageRecieved;
 
             GenerateCallbackDict();
-            sceneVariables.variableRepository.ResetToDefault();
-            MessageSystem.SendMessage("start");
 
+            MessageSystem.SendMessage("start");
         }
 
          [ContextMenu("Send message")]
