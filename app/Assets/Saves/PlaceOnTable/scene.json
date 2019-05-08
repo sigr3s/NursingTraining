@@ -41,32 +41,32 @@
                             "d0": {
                                 "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -76,37 +76,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
                                 0,
@@ -131,9 +131,9 @@
                     },
                     "rotation": {
                         "$type": 10,
+                        357.770264,
                         0,
-                        0,
-                        0
+                        358.503937
                     }
                 }
             }
@@ -172,32 +172,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -207,37 +207,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -262,9 +262,9 @@
                     },
                     "rotation": {
                         "$type": 10,
-                        0,
-                        0,
-                        0
+                        3.86267233,
+                        -6.68529232E-09,
+                        357.4348
                     }
                 }
             }
@@ -303,32 +303,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -338,37 +338,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -393,9 +393,9 @@
                     },
                     "rotation": {
                         "$type": 10,
+                        2.109131,
                         0,
-                        0,
-                        0
+                        1.313981
                     }
                 }
             }
@@ -434,32 +434,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -469,37 +469,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -524,9 +524,9 @@
                     },
                     "rotation": {
                         "$type": 10,
+                        359.879578,
                         0,
-                        0,
-                        0
+                        2.689022
                     }
                 }
             }
@@ -565,32 +565,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -600,37 +600,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -655,9 +655,9 @@
                     },
                     "rotation": {
                         "$type": 10,
+                        359.551941,
                         0,
-                        0,
-                        0
+                        357.9825
                     }
                 }
             }
@@ -696,32 +696,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -731,37 +731,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -786,9 +786,9 @@
                     },
                     "rotation": {
                         "$type": 10,
-                        0,
-                        0,
-                        0
+                        1.2091676,
+                        3.335796E-09,
+                        357.1292
                     }
                 }
             }
@@ -827,32 +827,32 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "defaultValue": {
@@ -862,37 +862,37 @@
                             "d0": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d1": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             },
                             "d2": {
                                 "$type": 8,
                                 "canbeOpened": false,
-                                "slot00": null,
-                                "slot01": null,
-                                "slot02": null,
-                                "slot03": null,
-                                "slot04": null,
-                                "slot05": null
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
                             }
                         },
                         "sceneObjectExtraData": {
                             "$type": 9,
-                            "sceneObjectGUID": null,
+                            "sceneObjectGUID": "",
                             "position": {
                                 "$type": 10,
                                 0,
@@ -917,9 +917,9 @@
                     },
                     "rotation": {
                         "$type": 10,
-                        0,
-                        0,
-                        0
+                        2.30316234,
+                        -3.33774919E-09,
+                        357.904938
                     }
                 }
             }

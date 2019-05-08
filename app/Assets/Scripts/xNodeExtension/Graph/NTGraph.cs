@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,11 +22,6 @@ namespace  NT.Graph
         }
 
         public List<CallbackNode> callbackNodes = new List<CallbackNode>();
-
-
-
-        //[Header("References")]
-        //public SceneVariables sceneVariables;
 
         public Dictionary<string, List<CallbackNode>> callbackNodesDict = new Dictionary<string, List<CallbackNode>>();
 
@@ -73,15 +67,74 @@ namespace  NT.Graph
 
         public static Node GroupNodes(List<Node> nodesToGroup)
         {
-            Debug.LogWarning("Not yet implemented");
-            
-            //Get all inputs
-            //Get all ports
-            foreach(Node n in nodesToGroup){
+           var ngd = SS(nodesToGroup);
+           return null;
+        }
 
+
+        static NodeGraphData SS(List<Node> nodesToGroup){
+            NodeGraphData nodeGraphData = new NodeGraphData(null);
+
+            Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
+
+            Dictionary<Type, List<string>> inputPorts  = new Dictionary<Type, List<string>>();            
+            Dictionary<Type, List<string>> outputPorts  = new Dictionary<Type, List<string>>();
+
+            foreach (Node node in nodesToGroup)
+			{
+				if(!node) continue;
+
+				NodeData nodeData = new NodeData (node);
+				nodeGraphData.nodes.Add (nodeData);
+
+                foreach (NodePort nodePort in node.Ports)
+				{
+					NodePortData portData = new NodePortData(nodeData, nodePort);
+
+					nodeData.ports.Add(portData);
+					portDatas.Add(nodePort, portData);
+
+                    if(nodePort.IsConnected && nodesToGroup.Contains(nodePort.Connection.node) ){
+                        Debug.Log("Internal  Connedtion???");
+                        continue;
+                    } 
+                    
+                    if(nodePort.IsInput){
+                        if(inputPorts.ContainsKey(nodePort.ValueType)){
+                            var input = inputPorts[nodePort.ValueType];
+                            input.Add(nodePort.fieldName);
+                            inputPorts[nodePort.ValueType] = input;
+                        }
+                        else
+                        {
+                            inputPorts.Add(nodePort.ValueType, new List<string>(){nodePort.fieldName});
+                        }
+                    }
+                    else{ 
+                        if(outputPorts.ContainsKey(nodePort.ValueType)){
+                            var input = outputPorts[nodePort.ValueType];
+                            input.Add(nodePort.fieldName);
+                            outputPorts[nodePort.ValueType] = input;
+                        }
+                        else
+                        {
+                            outputPorts.Add(nodePort.ValueType, new List<string>(){nodePort.fieldName});
+                        }
+                    }
+				}
             }
 
-            return null;
+            foreach (NodePortData portData in portDatas.Values)
+			{
+				foreach (NodePort conPort in portData.port.GetConnections())
+				{
+					NodePortData conPortData; // Get portData associated with the connection port
+					if (portDatas.TryGetValue(conPort, out conPortData))
+						nodeGraphData.RecordConnection(portData, conPortData);
+				}
+			}
+
+            return nodeGraphData;
         }
 
         public IEnumerator StartExecutionFlow(CallbackNode callbackNode)

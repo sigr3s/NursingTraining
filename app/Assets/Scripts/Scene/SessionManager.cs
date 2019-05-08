@@ -10,7 +10,7 @@ using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SessionManager : Singleton<SessionManager> {
+public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
     [Header("Session Data")]
     public SessionData SessionData;
@@ -62,7 +62,7 @@ public class SessionManager : Singleton<SessionManager> {
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
     [HideInInspector] public UnityEvent OnSceneGameObjectsChanged = new UnityEvent();
 
-    private void Awake() {
+    private void Start() {
         if(sceneGraph == null){
             sceneGraph = (SceneGraph) ScriptableObject.CreateInstance(typeof(SceneGraph));
         }
@@ -246,6 +246,8 @@ public class SessionManager : Singleton<SessionManager> {
     {
         List<SceneObjectGraph> graphs =  new List<SceneObjectGraph>();
 
+        if(sceneGameObjects == null) return graphs;
+
         foreach(var sceneGameObject in sceneGameObjects){
             if(sceneGameObject.Value.graph != null){
                 graphs.Add(sceneGameObject.Value.graph);
@@ -254,7 +256,12 @@ public class SessionManager : Singleton<SessionManager> {
 
         return graphs;
     }
-#endregion
+
+    public object GetValue(string key)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
 }
 
 [System.Serializable]

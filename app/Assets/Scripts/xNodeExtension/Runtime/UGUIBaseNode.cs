@@ -35,6 +35,10 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
                 ports.Add(guiport);
 
                 ignored.Add(port.fieldName);
+
+                if(port.IsDynamic){
+                    Debug.LogWarning("Instantiate dynamic port!");
+                }
             }
 
             transform.Find("Header/Title").GetComponent<Text>().text = node.name;

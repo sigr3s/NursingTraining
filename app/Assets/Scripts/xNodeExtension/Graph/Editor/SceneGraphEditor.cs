@@ -263,7 +263,6 @@ namespace NT.Graph
 		TreeViewState variableTreeViewState;
 		VariableTreeView variableTreeView;
 		List<TreeViewItem> variableItems = new List<TreeViewItem>();
-		int variablesID = 0;
 		Node currentVariableNode = null;
 
 		private void InitializeVariablesTree(){
@@ -273,7 +272,6 @@ namespace NT.Graph
 		}
 
 		private void ReloadVariableTree(){
-			variablesID = 0;
 			variableItems = new List<TreeViewItem>();
 
 			/*
@@ -365,7 +363,6 @@ namespace NT.Graph
 		TreeViewState sceneTreeViewState;
 		VariableTreeView sceneTreeView;
 		List<TreeViewItem> sceneItems = new List<TreeViewItem>();
-		int sceneItemsID = 0;
 		Node currentSceneNode = null;
 
 
@@ -378,7 +375,6 @@ namespace NT.Graph
 
         private void ReloadSceneTree()
         {
-			sceneItemsID = 0;
 			sceneItems = new List<TreeViewItem>();
 
 			SceneGraph t = target as SceneGraph;
