@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using OdinSerializer;
@@ -6,18 +7,23 @@ using XNode;
 
 namespace  NT.Graph
 {
+    public static class NodeGroupGraphExtensions{
+        public static void Export(this NodeGroupGraph graph){
+            byte[] serializedData = SerializationUtility.SerializeValue(graph, NodeGroupGraph.dataFormat);
+            File.WriteAllBytes(NodeGroupGraph.exportPath + graph.assetID + ".nt", serializedData);
+        }
+    }
     public class NodeGroupGraph : NodeGraph {
         public static string exportPath = Application.dataPath + "/Saves/NodeGroups/";
         public static DataFormat dataFormat = DataFormat.JSON;
 
-        public List<NodePort> inputs = new List<NodePort>();
-        public List<NodePort> outputs = new List<NodePort>();
+        public Vector2 position = Vector2.zero;
+        public string assetID = "";
+        public List<NodePort> ports = new List<NodePort>();
 
-
-        public static void Export(NodeGroupGraph graph){
-            SerializationUtility.SerializeValue(graph, dataFormat);
+        public NodeGroupGraph(string id){
+            this.assetID = id;
         }
-
         public static List<NodeGroupGraph> GetAll(){
             List<NodeGroupGraph> groupedNodes = new List<NodeGroupGraph>();
             DirectoryInfo prefabsDir = new DirectoryInfo(NodeGroupGraph.exportPath);
@@ -33,18 +39,24 @@ namespace  NT.Graph
             }
             return groupedNodes;
         }
-
         public static NodeGroupGraph GroupNodes(List<Node> nodesToGroup, NodeGraph g){
             if(nodesToGroup.Count < 2){
                 Debug.LogWarning("Should be 2 or more nodes to make a group");
                 return null;
             }
+
             foreach(var node in nodesToGroup){
+                if(node == null){
+                    Debug.LogError("Something went wrong!");
+                    return null;
+                }
                 node.name = node.name + "_" + node.GetHashCode();
             }
 
             NodeGraph gcopy = g.Copy();            
-            NodeGroupGraph nodeGroupGraph = new NodeGroupGraph();
+            NodeGroupGraph nodeGroupGraph = new NodeGroupGraph(Guid.NewGuid().ToString());
+            nodeGroupGraph.position = nodesToGroup[0].position;
+            
             nodeGroupGraph.nodes = gcopy.nodes;
 
             for(int i = nodeGroupGraph.nodes.Count - 1; i >= 0; i--){
@@ -58,37 +70,26 @@ namespace  NT.Graph
                 }
             }
 
+            foreach(Node n in nodesToGroup){
+                g.nodes.Remove(n);
+            }           
+
+
             foreach(var n in nodeGroupGraph.nodes){
                 foreach(var p in n.Ports){
                     if(!p.IsConnected){
-                        if(p.IsInput){
-                            nodeGroupGraph.inputs.Add(p);
-                        }
-                        else
-                        {
-                            nodeGroupGraph.outputs.Add(p);
-                        }
+                        nodeGroupGraph.ports.Add(p);
                     }
                 }
             }
 
-            Debug.Log("Inputs");
-
-            foreach(var np in nodeGroupGraph.inputs){
-                Debug.Log(" ___ INPUT " + np.fieldName);
-            }
-
-            Debug.Log("Outputs");
-
-            foreach(var np in nodeGroupGraph.outputs){
-                Debug.Log(" ___ OUT " + np.fieldName);
-            }
-
-            Debug.Log(nodeGroupGraph.nodes.Count);
-
             
+            if(g is NTGraph){
+                ( (NTGraph) g).AddGroupedNodes( (NodeGroupGraph) nodeGroupGraph.Copy());
+            }
+            
+            nodeGroupGraph.Export();
 
-        
             return nodeGroupGraph;
         }
     }

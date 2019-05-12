@@ -66,6 +66,16 @@ namespace  NT.Graph
             }
         }
 
+        public void AddGroupedNodes(NodeGroupGraph group)
+        {
+            packedNodes.Add(group);
+        }
+
+        public void RemoveGroupedNodes(NodeGroupGraph group)
+        {
+            packedNodes.Remove(group);
+        }
+
         public IEnumerator StartExecutionFlow(CallbackNode callbackNode)
         {
             NodeExecutionContext nodeExecutionContext = new NodeExecutionContext{node = callbackNode};

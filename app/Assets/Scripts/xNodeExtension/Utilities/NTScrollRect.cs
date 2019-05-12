@@ -69,7 +69,7 @@ public class NTScrollRect : ScrollRect
 
             UGUIBaseNode[] nodes =  GetComponentsInChildren<UGUIBaseNode>();
             RuntimeGraph rtg = GetComponentInParent<RuntimeGraph>();
-            rtg.selectedNodes = new List<UGUIBaseNode>();
+            rtg.selectedNodes = new List<IUGUINode>();
             
             foreach (var item in nodes)
             {

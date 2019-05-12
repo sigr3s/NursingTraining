@@ -444,7 +444,7 @@
                         },
                         "packedNodes": {
                             "$id": 34,
-                            "$type": "22|System.Collections.Generic.List`1[[NodeGroupGraph, Assembly-CSharp]], mscorlib",
+                            "$type": "22|System.Collections.Generic.List`1[[NT.Graph.NodeGroupGraph, Assembly-CSharp]], mscorlib",
                             "$rlength": 0,
                             "$rcontent": [
                             ]

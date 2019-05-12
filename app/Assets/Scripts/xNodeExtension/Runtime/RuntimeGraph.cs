@@ -27,7 +27,9 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public UGUIContextMenu graphContextMenu;
     public UGUIContextMenu nodeContextMenu;    
     public Connection runtimeConnectionPrefab;
-    public UGUIBaseNode nodePrefab;
+    public UGUIBaseNode nodePrefab;    
+    public UGUIGroupedNode groupedNodePrefab;
+
     public UGUITooltip tooltip;
 
 
@@ -41,8 +43,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     
     [Header("Debug")]
-    public List<UGUIBaseNode> nodes;
-    public List<UGUIBaseNode> selectedNodes;
+    public List<IUGUINode> nodes = new List<IUGUINode>();
+    public List<IUGUINode> selectedNodes  = new List<IUGUINode>();
 
 
     public ScrollRect scrollRect { get; private set; }
@@ -69,13 +71,14 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     public void GroupSelected()
     {
-        //FIXME: 
         List<Node> nodesToGroup = new List<Node>();
         foreach(var selectedNode in selectedNodes){
-            nodesToGroup.Add(selectedNode.node);
+            nodesToGroup.Add(selectedNode.GetNode());
         }
 
         NodeGroupGraph.GroupNodes(nodesToGroup, graph);
+
+        Refresh();
     }
 
     public virtual void Refresh(){
@@ -85,15 +88,14 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     public virtual void Clear() {
         for (int i = nodes.Count - 1; i >= 0; i--) {
-
-            Destroy(nodes[i].gameObject);
+            Destroy(nodes[i].GetGameObject());
         }
         nodes.Clear();
     }
 
     public void SpawnGraph() {
         if (nodes != null) nodes.Clear();
-        else nodes = new List<UGUIBaseNode>();
+        else nodes = new List<IUGUINode>();
 
         if(graph == null) return;
 
@@ -119,6 +121,27 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
             nodes.Add(runtimeNode);
         }
+    
+        if(graph is NTGraph){
+            NTGraph gnt = (NTGraph) graph;
+
+            foreach(var extra in gnt.packedNodes){
+                UGUIGroupedNode runtimeNode = null;
+
+                runtimeNode = Instantiate(groupedNodePrefab);
+
+                runtimeNode.transform.SetParent(scrollRect.content);
+                runtimeNode.group = extra;
+                runtimeNode.graph = this;
+                runtimeNode.transform.localPosition = new Vector2(extra.position.x , -extra.position.y);
+                runtimeNode.transform.localScale = Vector3.one;
+                runtimeNode.name = "Extra thing????";
+
+                runtimeNode.GetComponent<Image>().color = Color.green;
+                runtimeNode.gameObject.SetActive(true);
+                nodes.Add(runtimeNode);
+            }
+        }
     }
 
     public virtual Color GetColorFor(Type t){
@@ -131,10 +154,10 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         return Color.white;
     }
 
-    public virtual UGUIBaseNode GetRuntimeNode(Node node)
+    public virtual IUGUINode GetRuntimeNode(Node node)
     {
         for (int i = 0; i < nodes.Count; i++) {
-            if (nodes[i].node == node) {
+            if (nodes[i].HasNode(node)) {
                 return nodes[i];
             } else { }
         }

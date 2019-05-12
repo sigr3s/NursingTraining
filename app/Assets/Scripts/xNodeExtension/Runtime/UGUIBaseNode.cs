@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 
-public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
+public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode {
     public Node node;
     public RuntimeGraph graph;
 
@@ -108,5 +108,20 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler {
 
     private void LateUpdate() {
         foreach (UGUIPort port in ports) port.UpdateConnectionTransforms();
+    }
+
+    public bool HasNode(Node node)
+    {
+        return this.node == node;
+    }
+
+    public Node GetNode()
+    {
+        return this.node;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
