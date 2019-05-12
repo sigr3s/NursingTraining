@@ -91,6 +91,7 @@ public class MapEditor : MapLoader {
 
         }
 
+
         foreach (var so in SessionManager.Instance.sceneObjects.prefabSet)
         {
             ISceneObject isc = (ISceneObject) so;
@@ -100,6 +101,7 @@ public class MapEditor : MapLoader {
             UISceneObject uisc = isc.GetUISceneObject();
 
             GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
+
             Button button =  soButton.GetComponent<Button>();
 
             button.onClick.AddListener(() =>{ SetPlacementObject(isc); });

@@ -17,10 +17,15 @@ public class SceneObjects : ScriptableObject {
 
         if(!prefabsDir.Exists) return;
 
-        FileInfo[] files = prefabsDir.GetFiles("*.json");
+        FileInfo[] files = prefabsDir.GetFiles("*.nt");
 
         foreach(var file in files){
             PrefabObject po = PrefabObject.LoadPrefab(file.FullName);
+
+            if(po == null){
+                Debug.LogWarning("Cannot load???");
+            }
+            
             prefabSet.Add(po);
         }
 

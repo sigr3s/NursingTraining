@@ -22,6 +22,7 @@ public struct SceneGameObjectData{
     //Transform
     public Vector3 position;
     public Vector3 rotation;
+    public SceneObjectGraph graph;
 }
 
 public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
@@ -140,7 +141,6 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
             data.sceneObjectGUID = _sceneObject.GetGUID();
         }
     }
-    [NonSerialized] public SceneObjectGraph graph;
 
 
     [NonSerialized] private List<Outline> renderersOutlines;
@@ -171,20 +171,12 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        if(graph != null){
-            data.graphJSON = graph.ExportSerialized();
-        }
-
         data.position = transform.localPosition;
         data.rotation = transform.localRotation.eulerAngles;
     }
 
     public void OnAfterDeserialize()
     {
-        if(!string.IsNullOrEmpty(data.graphJSON)){
-            graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
-            graph.ImportSerialized(data.graphJSON);
-        }
         if(data.childs == null){
             data.childs = new List<string>();
         }
@@ -192,14 +184,6 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void LoadFromData(SceneGameObjectData data){
         this.data = data;
-
-        if(!string.IsNullOrEmpty(data.graphJSON)){
-            graph = ScriptableObject.CreateInstance<SceneObjectGraph>();
-            graph.ImportSerialized(data.graphJSON);
-            graph.linkedNTVariable = data.id;
-            graph.assignedSCGO = this;
-        }
-
         RestoreTransform();
     }
 

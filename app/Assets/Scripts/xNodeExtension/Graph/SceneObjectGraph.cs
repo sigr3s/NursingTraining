@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace NT.Graph{
-    [CreateAssetMenu(fileName = "Scene Object Graph", menuName = "NT/Scene Object Graph")]
+
+    [System.Serializable]
     public class SceneObjectGraph : NTGraph
     {
         public string linkedNTVariable;
@@ -18,11 +19,6 @@ namespace NT.Graph{
             else{
                 return new List<string>();
             }
-        }
-
-        public override void LoadFromGraph(NTGraph g){
-            base.LoadFromGraph(g);
-            linkedNTVariable = ((SceneObjectGraph) g).linkedNTVariable;
         }
     }
 }

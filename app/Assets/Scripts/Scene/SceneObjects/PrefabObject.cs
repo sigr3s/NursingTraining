@@ -9,7 +9,9 @@ namespace NT.SceneObjects
 {
     public class PrefabObject : SceneObject{
         public SavedPrefab prefab;
-        public static string exportPath = Application.dataPath + "/saves/Prefabs/";
+        public static string exportPath = Application.dataPath + "/Saves/Prefabs/";
+        public static DataFormat dataFormat = DataFormat.JSON;
+
 
         public GameObject CraftPrefab(Transform rootParent){
             SceneGameObject root = null;
@@ -101,7 +103,6 @@ namespace NT.SceneObjects
             return root.gameObject;
         }
 
-
         public override GameObject GetPreviewGameObject(){
             return CraftPrefab(null);
         }
@@ -111,7 +112,7 @@ namespace NT.SceneObjects
 
             if(File.Exists(prefabFile)){
                 byte[] loadedPrefabData = File.ReadAllBytes(prefabFile);
-                loadedPrefab.prefab = SerializationUtility.DeserializeValue<SavedPrefab>(loadedPrefabData, DataFormat.JSON);
+                loadedPrefab.prefab = SerializationUtility.DeserializeValue<SavedPrefab>(loadedPrefabData, dataFormat);
             }
             else
             {
@@ -170,9 +171,9 @@ namespace NT.SceneObjects
                 prefabObjects = new List<SceneGameObject>(root.GetComponentsInChildren<SceneGameObject>(true))
             };
 
-            byte[] exportData = SerializationUtility.SerializeValue(savedPrefab, DataFormat.JSON);
+            byte[] exportData = SerializationUtility.SerializeValue(savedPrefab, dataFormat);
 
-            File.WriteAllBytes(exportPath + "/" + prefabID + ".json" , exportData);
+            File.WriteAllBytes(exportPath + "/" + prefabID + ".nt" , exportData);
 
             return true;
         }

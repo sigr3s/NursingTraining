@@ -1,20 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using System.IO;
-using System.Xml.Serialization;
 using NT.Nodes.Messages;
 using NT.Variables;
 using UnityEditor;
 using UnityEngine;
+
 using XNode;
-using XNode.InportExport;
 
 namespace  NT.Graph
 {
     public class NTGraph : NodeGraph {
         [Header("Execution Flow Nodes")]
         public List<NTNode> executionNodes = new List<NTNode>();
+        public List<NodeGroupGraph> packedNodes = new List<NodeGroupGraph>();
 
         public virtual List<string> GetCallbacks()
         {
@@ -65,94 +66,22 @@ namespace  NT.Graph
             }
         }
 
-        public static Node GroupNodes(List<Node> nodesToGroup)
-        {
-           var ngd = SS(nodesToGroup);
-           return null;
-        }
-
-
-        static NodeGraphData SS(List<Node> nodesToGroup){
-            NodeGraphData nodeGraphData = new NodeGraphData(null);
-
-            Dictionary<NodePort, NodePortData> portDatas = new Dictionary<NodePort, NodePortData>();
-
-            Dictionary<Type, List<string>> inputPorts  = new Dictionary<Type, List<string>>();            
-            Dictionary<Type, List<string>> outputPorts  = new Dictionary<Type, List<string>>();
-
-            foreach (Node node in nodesToGroup)
-			{
-				if(!node) continue;
-
-				NodeData nodeData = new NodeData (node);
-				nodeGraphData.nodes.Add (nodeData);
-
-                foreach (NodePort nodePort in node.Ports)
-				{
-					NodePortData portData = new NodePortData(nodeData, nodePort);
-
-					nodeData.ports.Add(portData);
-					portDatas.Add(nodePort, portData);
-
-                    if(nodePort.IsConnected && nodesToGroup.Contains(nodePort.Connection.node) ){
-                        Debug.Log("Internal  Connedtion???");
-                        continue;
-                    } 
-                    
-                    if(nodePort.IsInput){
-                        if(inputPorts.ContainsKey(nodePort.ValueType)){
-                            var input = inputPorts[nodePort.ValueType];
-                            input.Add(nodePort.fieldName);
-                            inputPorts[nodePort.ValueType] = input;
-                        }
-                        else
-                        {
-                            inputPorts.Add(nodePort.ValueType, new List<string>(){nodePort.fieldName});
-                        }
-                    }
-                    else{ 
-                        if(outputPorts.ContainsKey(nodePort.ValueType)){
-                            var input = outputPorts[nodePort.ValueType];
-                            input.Add(nodePort.fieldName);
-                            outputPorts[nodePort.ValueType] = input;
-                        }
-                        else
-                        {
-                            outputPorts.Add(nodePort.ValueType, new List<string>(){nodePort.fieldName});
-                        }
-                    }
-				}
-            }
-
-            foreach (NodePortData portData in portDatas.Values)
-			{
-				foreach (NodePort conPort in portData.port.GetConnections())
-				{
-					NodePortData conPortData; // Get portData associated with the connection port
-					if (portDatas.TryGetValue(conPort, out conPortData))
-						nodeGraphData.RecordConnection(portData, conPortData);
-				}
-			}
-
-            return nodeGraphData;
-        }
-
         public IEnumerator StartExecutionFlow(CallbackNode callbackNode)
         {
             NodeExecutionContext nodeExecutionContext = new NodeExecutionContext{node = callbackNode};
 
             while(nodeExecutionContext.node != null){
 
-                Debug.Log("Execute node:  " + nodeExecutionContext.node.name);
+                Debug.Log("Execute node:  " + nodeExecutionContext.node);
                 nodeExecutionContext.node.Enter();
 
                 yield return new YieldNode(nodeExecutionContext );
 
-                Debug.Log("Finished node:  " + nodeExecutionContext.node.name);
+                Debug.Log("Finished node:  " + nodeExecutionContext.node);
 
                 yield return new WaitForSeconds(1.25f);
 
-                Debug.Log("Finished waiting?:  " + nodeExecutionContext.node.name);
+                Debug.Log("Finished waiting?:  " + nodeExecutionContext.node);
 
                 nodeExecutionContext.node.Exit();
 
@@ -185,54 +114,5 @@ namespace  NT.Graph
             return null;
         }
 
-        [ContextMenu("Export")]
-        public void Export(){
-            Export(Application.dataPath + "/" + name + ".json");
-        }
-
-        public string ExportSerialized(){
-            JSONImportExport jep = new JSONImportExport();
-            return jep.Export(this); 
-        }
-
-        public void Export(string path){
-            JSONImportExport jep = new JSONImportExport();
-            jep.Export(this, path);      
-        }
-
-        [ContextMenu("Import")]
-        public void Import(){
-            string path = Application.dataPath + "/" + name + ".json" ;
-            Import(path);
-        }
-
-        public void Import(string path){
-            JSONImportExport jimp = new JSONImportExport();
-            NTGraph g = (NTGraph) jimp.Import(path);
-
-            if(g == null) return;
-
-            Clear();
-            LoadFromGraph(g);            
-        }
-
-        public void ImportSerialized(string serialized){
-            JSONImportExport jimp = new JSONImportExport();
-            NTGraph g = (NTGraph) jimp.ImportSerialized(serialized);
-
-            if(g == null) return;
-
-            Clear();
-            LoadFromGraph(g);  
-        }
-
-        public virtual void LoadFromGraph(NTGraph g){
-            nodes = g.nodes;
-            callbackNodes = g.callbackNodes;
-
-            foreach(Node n in nodes){
-                n.graph = this;
-            }
-        }
     }
 }

@@ -13,8 +13,6 @@ using XNode.InportExport;
 
 namespace NT.Graph{
 
-
-    [CreateAssetMenu(fileName = "New Scene Graph", menuName = "NT/Scene Graph")]
     public class SceneGraph : NTGraph
     {
 

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using NT.Graph;
+using OdinSerializer;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -61,7 +63,6 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public virtual void SpawnNode(Type type, Vector2 position)
     {
         Node node = graph.AddNode(type);
-        node.name = type.Name;
         node.position = position;
         Refresh();
     }
@@ -74,11 +75,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
             nodesToGroup.Add(selectedNode.node);
         }
 
-        Node craftedNode = NTGraph.GroupNodes(nodesToGroup);
-
-        //Replace crafted node
-
-        //Generate node
+        NodeGroupGraph.GroupNodes(nodesToGroup, graph);
     }
 
     public virtual void Refresh(){
@@ -114,7 +111,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
             runtimeNode.graph = this;
             runtimeNode.transform.localPosition = new Vector2(node.position.x , -node.position.y);
             runtimeNode.transform.localScale = Vector3.one;
-            runtimeNode.name = node.name;
+            runtimeNode.name = node.GetType().Name;
 
             runtimeNode.GetComponent<Image>().color = GetColorFor(node.GetType());
 

@@ -5,8 +5,10 @@ using System.Linq;
 using NT.Graph;
 using NT.SceneObjects;
 using NT.Variables;
+
 using OdinSerializer;
 using SimpleJSON;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +17,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     [Header("Session Data")]
     public SessionData SessionData;
     public bool loadOnAwake = true;
+
+    //public static string exportPath = Application.dataPath + "/Saves/Sessions/";
 
 
     [Header("References")]
@@ -62,9 +66,9 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     [HideInInspector] public UnityEvent OnSessionLoaded = new UnityEvent();
     [HideInInspector] public UnityEvent OnSceneGameObjectsChanged = new UnityEvent();
 
-    private void Start() {
+    private void Awake() {
         if(sceneGraph == null){
-            sceneGraph = (SceneGraph) ScriptableObject.CreateInstance(typeof(SceneGraph));
+            sceneGraph = new SceneGraph();
         }
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
@@ -72,8 +76,9 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         sceneObjects.LoadPrefabs();
 
         var sceneRoot = new GameObject("SceneRoot");
+    }
 
-
+    private void Start() {
         if(loadOnAwake){
            LoadSession(SessionData.sessionID);
         }
@@ -97,7 +102,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         Debug.Log( $" Saving session to: {Application.persistentDataPath} ");
 
-        string saveFolder = Application.dataPath + "/Saves/" + SessionData.sessionID;
+        string saveFolder = Application.dataPath + "/Saves/Sessions/" + SessionData.sessionID;
         if(Directory.Exists(saveFolder) ){
             Directory.Delete(saveFolder, true);
         }
@@ -107,14 +112,17 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         SessionData.lastModified = DateTime.Now.ToString();
 
-        SessionData.sceneGraphFile = "sceneGraph.json";
-        sceneGraph.Export(saveFolder + "/" + SessionData.sceneGraphFile);
+        SessionData.sceneGraphFile = "sceneGraph.nt";
 
-        SessionData.sceneFile = "scene.json";
+        byte[] sceneGraphData = SerializationUtility.SerializeValue(sceneGraph, DataFormat.JSON);
+
+        File.WriteAllBytes(saveFolder + "/" + SessionData.sceneGraphFile, sceneGraphData);
+
+        SessionData.sceneFile = "scene.nt";
         SaveScene(saveFolder + "/" + SessionData.sceneFile);
 
         string sessionJSON = JsonUtility.ToJson(SessionData);
-        File.WriteAllText(saveFolder + "/" + "config.json", sessionJSON);
+        File.WriteAllText(saveFolder + "/" + "config.nt", sessionJSON);
 
     }
 
@@ -128,7 +136,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
     public void LoadSession(string sessionID){
 
-        string saveFolder = Application.dataPath + "/Saves/" + sessionID;
+        string saveFolder = Application.dataPath + "/Saves/Sessions/" + sessionID;
 
         if(string.IsNullOrEmpty(sessionID)) return;
 
@@ -139,15 +147,13 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         sceneGameObjects = new Dictionary<string, SceneGameObject>();
 
 
-        string configJSON = File.ReadAllText(saveFolder + "/" + "config.json");
+        string configJSON = File.ReadAllText(saveFolder + "/" + "config.nt");
         SessionData = JsonUtility.FromJson<SessionData>(configJSON);
 
-
-        sceneGraph.Import(saveFolder +  "/" + SessionData.sceneGraphFile);
+        byte[] sceneGraphData = File.ReadAllBytes(saveFolder +  "/" + SessionData.sceneGraphFile);
+        sceneGraph = SerializationUtility.DeserializeValue<SceneGraph>(sceneGraphData, DataFormat.JSON);
 
         LoadScene(saveFolder +  "/" + SessionData.sceneFile);
-
-
 
         OnSessionLoaded.Invoke();
 
@@ -167,7 +173,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             SceneGameObject toRemove = sceneGameObjects[key];
             sceneGameObjects.Remove(key);
 
-            if(toRemove.graph != null){
+            if(toRemove.data.graph != null){
                 showingGraph = sceneGraph;
             }
 
@@ -199,8 +205,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
 
-            if(selectedSceneObject.graph != null){
-                showingGraph = selectedSceneObject.graph;
+            if(selectedSceneObject.data.graph != null){
+                showingGraph = selectedSceneObject.data.graph;
             }
         }
         else
@@ -226,15 +232,15 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         if(sobj == null) return;
 
-        if(sobj.graph == null){
-            SceneObjectGraph soc = ScriptableObject.CreateInstance<SceneObjectGraph>();
+        if(sobj.data.graph == null){
+            SceneObjectGraph soc = new SceneObjectGraph();
             soc.linkedNTVariable = key;
 
-            sobj.graph = soc;
+            sobj.data.graph = soc;
             OnGraphListChanged.Invoke();
         }
 
-        showingGraph = sobj.graph;
+        showingGraph = sobj.data.graph;
         SetSelected(key);
     }
 
@@ -249,8 +255,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(sceneGameObjects == null) return graphs;
 
         foreach(var sceneGameObject in sceneGameObjects){
-            if(sceneGameObject.Value.graph != null){
-                graphs.Add(sceneGameObject.Value.graph);
+            if(sceneGameObject.Value.data.graph != null){
+                graphs.Add(sceneGameObject.Value.data.graph);
             }
         }
 

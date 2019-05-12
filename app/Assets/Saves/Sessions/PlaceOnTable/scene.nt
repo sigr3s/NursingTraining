@@ -1,0 +1,478 @@
+{
+    "$id": 0,
+    "$type": "0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[SceneGameObject, Assembly-CSharp]], mscorlib",
+    "comparer": {
+        "$id": 1,
+        "$type": "1|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
+    },
+    "$rlength": 1,
+    "$rcontent": [
+        {
+            "$k": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+            "$v": {
+                "$id": 2,
+                "$type": "2|SceneGameObject, Assembly-CSharp",
+                "data": {
+                    "$type": "3|SceneGameObjectData, Assembly-CSharp",
+                    "id": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "childs": {
+                        "$id": 3,
+                        "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 4,
+                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": "6|NT.Variables.NTVariableData, Assembly-CSharp",
+                            "Name": null,
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "7|NT.SceneObjects.ClosetData, Assembly-CSharp",
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            }
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
+                            "sceneObjectGUID": "",
+                            "position": {
+                                "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -2.22973633,
+                        0,
+                        -1.496052
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        357.770264,
+                        0,
+                        358.503937
+                    },
+                    "graph": {
+                        "$id": 5,
+                        "$type": "11|NT.Graph.SceneObjectGraph, Assembly-CSharp",
+                        "nodes": {
+                            "$id": 6,
+                            "$type": "12|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
+                            "$rlength": 4,
+                            "$rcontent": [
+                                {
+                                    "$id": 7,
+                                    "$type": "13|NT.Nodes.Variables.GetVariableNode, Assembly-CSharp",
+                                    "_name": null,
+                                    "graph": $iref:5,
+                                    "position": {
+                                        "$type": "14|UnityEngine.Vector2, UnityEngine.CoreModule",
+                                        -239.146347,
+                                        -881.2317
+                                    },
+                                    "ports": {
+                                        "$id": 8,
+                                        "$type": "15|XNode.Node+NodePortDictionary, Assembly-CSharp",
+                                        "comparer": $iref:1,
+                                        "$rlength": 2,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "result",
+                                                "$v": {
+                                                    "$id": 9,
+                                                    "$type": "16|XNode.NodePort, Assembly-CSharp",
+                                                    "_fieldName": "result",
+                                                    "_node": $iref:7,
+                                                    "_typeQualifiedName": "System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                    "connections": {
+                                                        "$id": 10,
+                                                        "$type": "17|System.Collections.Generic.List`1[[XNode.NodePort+PortConnection, Assembly-CSharp]], mscorlib",
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            },
+                                            {
+                                                "$k": "type",
+                                                "$v": {
+                                                    "$id": 11,
+                                                    "$type": 16,
+                                                    "_fieldName": "type",
+                                                    "_node": $iref:7,
+                                                    "_typeQualifiedName": "System.Type, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                    "connections": {
+                                                        "$id": 12,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "variableField": "variable",
+                                    "variableKey": null,
+                                    "result": null,
+                                    "type": null
+                                },
+                                {
+                                    "$id": 13,
+                                    "$type": "18|NT.Nodes.Messages.CallbackNode, Assembly-CSharp",
+                                    "_name": null,
+                                    "graph": $iref:5,
+                                    "position": {
+                                        "$type": 14,
+                                        65.7317047,
+                                        -892.207336
+                                    },
+                                    "ports": {
+                                        "$id": 14,
+                                        "$type": 15,
+                                        "comparer": $iref:1,
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "flowOut",
+                                                "$v": {
+                                                    "$id": 15,
+                                                    "$type": 16,
+                                                    "_fieldName": "flowOut",
+                                                    "_node": $iref:13,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 16,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "flowOut": null,
+                                    "callbackKey": null
+                                },
+                                {
+                                    "$id": 17,
+                                    "$type": "19|NT.Nodes.Flow.WaitForNode, Assembly-CSharp",
+                                    "_name": null,
+                                    "graph": $iref:5,
+                                    "position": {
+                                        "$type": 14,
+                                        -30.6097565,
+                                        -677.5732
+                                    },
+                                    "ports": {
+                                        "$id": 18,
+                                        "$type": 15,
+                                        "comparer": $iref:1,
+                                        "$rlength": 4,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "seconds",
+                                                "$v": {
+                                                    "$id": 19,
+                                                    "$type": 16,
+                                                    "_fieldName": "seconds",
+                                                    "_node": $iref:17,
+                                                    "_typeQualifiedName": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                    "connections": {
+                                                        "$id": 20,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 0,
+                                                    "_connectionType": 1,
+                                                    "_typeConstraint": 2,
+                                                    "_dynamic": false
+                                                }
+                                            },
+                                            {
+                                                "$k": "breakFlow",
+                                                "$v": {
+                                                    "$id": 21,
+                                                    "$type": 16,
+                                                    "_fieldName": "breakFlow",
+                                                    "_node": $iref:17,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 22,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 0,
+                                                    "_connectionType": 1,
+                                                    "_typeConstraint": 2,
+                                                    "_dynamic": false
+                                                }
+                                            },
+                                            {
+                                                "$k": "flowIn",
+                                                "$v": {
+                                                    "$id": 23,
+                                                    "$type": 16,
+                                                    "_fieldName": "flowIn",
+                                                    "_node": $iref:17,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 24,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 0,
+                                                    "_connectionType": 1,
+                                                    "_typeConstraint": 2,
+                                                    "_dynamic": false
+                                                }
+                                            },
+                                            {
+                                                "$k": "flowOut",
+                                                "$v": {
+                                                    "$id": 25,
+                                                    "$type": 16,
+                                                    "_fieldName": "flowOut",
+                                                    "_node": $iref:17,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 26,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "flowIn": null,
+                                    "flowOut": null,
+                                    "seconds": 0,
+                                    "breakFlow": null
+                                },
+                                {
+                                    "$id": 27,
+                                    "$type": "20|NT.Nodes.Other.DisplayMessage, Assembly-CSharp",
+                                    "_name": null,
+                                    "graph": $iref:5,
+                                    "position": {
+                                        "$type": 14,
+                                        -309.878052,
+                                        -626.353638
+                                    },
+                                    "ports": {
+                                        "$id": 28,
+                                        "$type": 15,
+                                        "comparer": $iref:1,
+                                        "$rlength": 2,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "flowIn",
+                                                "$v": {
+                                                    "$id": 29,
+                                                    "$type": 16,
+                                                    "_fieldName": "flowIn",
+                                                    "_node": $iref:27,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 30,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 0,
+                                                    "_connectionType": 1,
+                                                    "_typeConstraint": 2,
+                                                    "_dynamic": false
+                                                }
+                                            },
+                                            {
+                                                "$k": "flowOut",
+                                                "$v": {
+                                                    "$id": 31,
+                                                    "$type": 16,
+                                                    "_fieldName": "flowOut",
+                                                    "_node": $iref:27,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 32,
+                                                        "$type": 17,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "flowIn": null,
+                                    "flowOut": null,
+                                    "input": null
+                                }
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 33,
+                            "$type": "21|System.Collections.Generic.List`1[[NT.NTNode, Assembly-CSharp]], mscorlib",
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 34,
+                            "$type": "22|System.Collections.Generic.List`1[[NodeGroupGraph, Assembly-CSharp]], mscorlib",
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 35,
+                            "$type": "23|System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib",
+                            "$rlength": 1,
+                            "$rcontent": [
+                                $iref:13
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 36,
+                            "$type": "24|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib]], mscorlib",
+                            "comparer": {
+                                "$id": 37,
+                                "$type": 1
+                            },
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                        "assignedSCGO": null
+                    }
+                }
+            }
+        }
+    ]
+}

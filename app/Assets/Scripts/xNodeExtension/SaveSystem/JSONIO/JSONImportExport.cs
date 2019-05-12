@@ -98,7 +98,7 @@ namespace XNode.InportExport {
                 string graphTypeS = graphJObject["type"];
                 Type graphType = Type.GetType(graphTypeS);
 
-                NodeGraph  graph = (NodeGraph) ScriptableObject.CreateInstance(graphType);
+                NodeGraph  graph = (NodeGraph) Activator.CreateInstance(graphType);
                 graph.name = graphJObject["name"];
 
                 references.Add(id, graph);
@@ -121,7 +121,7 @@ namespace XNode.InportExport {
                     string nodeTypeS = nodeJObject["type"];
                     Type nodeType = Type.GetType(nodeTypeS);
 
-                    Node  node = (Node) ScriptableObject.CreateInstance(nodeType);
+                    Node  node = (Node) Activator.CreateInstance(nodeType);
                     node.name = nodeJObject["name"];
                     object nodeOBJ = (object) node;
 
@@ -160,6 +160,15 @@ namespace XNode.InportExport {
                         }
 
                         port = node.GetPort(nodePort["name"]);
+
+                        if(port == null){
+                            Debug.Log("Port is null? " + node.name);
+
+                            foreach(var p in node.Ports){
+                                Debug.Log(p.fieldName);
+                            }
+                        }
+
                         portId = nodePort["id"];
 
                         NodePortData portData = new NodePortData(nodeData, port);

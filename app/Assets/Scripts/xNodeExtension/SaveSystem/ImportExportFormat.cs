@@ -64,7 +64,7 @@ namespace XNode.InportExport {
 
             foreach (Node node in graph.nodes)
 			{
-				if(!node) continue;
+				if(node == null) continue;
                 // Create node data
 				NodeData nodeData = new NodeData (node);
 				nodeGraphData.nodes.Add (nodeData);

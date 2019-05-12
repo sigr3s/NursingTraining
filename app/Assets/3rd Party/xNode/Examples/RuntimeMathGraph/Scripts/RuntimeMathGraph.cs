@@ -25,7 +25,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 
 		private void Awake() {
 			// Create a clone so we don't modify the original asset
-			graph = graph.Copy() as MathGraph;
+			//graph = graph.Copy() as MathGraph;
 			scrollRect = GetComponentInChildren<ScrollRect>();
 			graphContextMenu.onClickSpawn -= SpawnNode;
 			graphContextMenu.onClickSpawn += SpawnNode;
