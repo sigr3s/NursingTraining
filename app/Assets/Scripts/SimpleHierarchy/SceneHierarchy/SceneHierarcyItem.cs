@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
+public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler, IContextItem {
     public Button graphButton;
+
     public override void OnDataSetted(){
         SceneGameObject sceneGameObject = SessionManager.Instance.GetSceneGameObject(data.key);
 
@@ -30,8 +31,11 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
         }
         else if(eventData.button == PointerEventData.InputButton.Right)
         {
-            PrefabObject.CreatePrefab(Guid.NewGuid().ToString() , SessionManager.Instance.GetSceneGameObject(data.key));           
-            SessionManager.Instance.sceneObjects.LoadPrefabs();
+            GetComponentInParent<SceneHierarchy>().ShowContextMenu(this, eventData.position);
+
+            //PrefabObject.CreatePrefab(Guid.NewGuid().ToString() , SessionManager.Instance.GetSceneGameObject(data.key));           
+            //SessionManager.Instance.sceneObjects.LoadPrefabs();
+            //SessionManager.Instance.mapLoader.ReloadUI();
         }
     }
 
@@ -42,5 +46,15 @@ public class SceneHierarcyItem : GUIHierarchyItem, IPointerClickHandler {
     private void OpenGraph()
     {
        SessionManager.Instance.OpenGraphFor(data.key);
+    }
+
+    public void Remove()
+    {
+        SessionManager.Instance.RemoveSceneGameObject(data.key);
+    }
+
+    public string GetKey()
+    {
+        return data.key;
     }
 }

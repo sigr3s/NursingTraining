@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class SceneHierarchy : GUIHierarchy {
 
+    public UGUIContextMenu contextMenu;
     private void Start() {
         SessionManager.Instance.OnSceneGameObjectsChanged.AddListener(Rebuild);
         SessionManager.Instance.OnSessionLoaded.AddListener(Rehook);
@@ -79,5 +80,10 @@ public class SceneHierarchy : GUIHierarchy {
         }
 
         return root;
+    }
+
+    public void ShowContextMenu(SceneHierarcyItem sceneHierarcyItem, Vector2 position)
+    {
+        contextMenu.OpenAt(position, sceneHierarcyItem);
     }
 }

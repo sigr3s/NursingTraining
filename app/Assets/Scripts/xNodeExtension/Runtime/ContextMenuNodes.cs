@@ -4,7 +4,7 @@ using NT.Nodes.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContextMenuNodes : UGUIContextMenu {
+public class ContextMenuNodes : UGUINodeContextMenu {
     public GameObject prefabButton;
 
 

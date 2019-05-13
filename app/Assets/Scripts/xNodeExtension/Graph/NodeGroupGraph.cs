@@ -12,6 +12,12 @@ namespace  NT.Graph
             byte[] serializedData = SerializationUtility.SerializeValue(graph, NodeGroupGraph.dataFormat);
             File.WriteAllBytes(NodeGroupGraph.exportPath + graph.assetID + ".nt", serializedData);
         }
+
+        public static void AddTo(this NodeGroupGraph graph, NTGraph parentGraph, Vector2 position){
+            var ngc = (NodeGroupGraph) graph.Copy();
+            ngc.position = position;
+            parentGraph.AddGroupedNodes(ngc);
+        }
     }
     public class NodeGroupGraph : NodeGraph {
         public static string exportPath = Application.dataPath + "/Saves/NodeGroups/";
@@ -39,7 +45,7 @@ namespace  NT.Graph
             }
             return groupedNodes;
         }
-        public static NodeGroupGraph GroupNodes(List<Node> nodesToGroup, NodeGraph g){
+        public static NodeGroupGraph GroupNodes(List<Node> nodesToGroup, NodeGraph g, string name = "Nodes Group"){
             if(nodesToGroup.Count < 2){
                 Debug.LogWarning("Should be 2 or more nodes to make a group");
                 return null;
@@ -55,7 +61,7 @@ namespace  NT.Graph
 
             NodeGraph gcopy = g.Copy();            
             NodeGroupGraph nodeGroupGraph = new NodeGroupGraph(Guid.NewGuid().ToString());
-            nodeGroupGraph.position = nodesToGroup[0].position;
+            nodeGroupGraph.name = name;
             
             nodeGroupGraph.nodes = gcopy.nodes;
 
@@ -85,12 +91,13 @@ namespace  NT.Graph
 
             
             if(g is NTGraph){
-                ( (NTGraph) g).AddGroupedNodes( (NodeGroupGraph) nodeGroupGraph.Copy());
+                nodeGroupGraph.AddTo((NTGraph) g, nodesToGroup[0].position);
             }
             
             nodeGroupGraph.Export();
 
             return nodeGroupGraph;
         }
+
     }
 }

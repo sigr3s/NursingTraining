@@ -16,8 +16,8 @@ namespace XNode.Examples.RuntimeMathNodes {
 		public XNode.Examples.RuntimeMathNodes.UGUIDisplayValue runtimeDisplayValuePrefab;
 		public Connection runtimeConnectionPrefab;
 		[Header("References")]
-		public UGUIContextMenu graphContextMenu;
-		public UGUIContextMenu nodeContextMenu;
+		public UGUINodeContextMenu graphContextMenu;
+		public UGUINodeContextMenu nodeContextMenu;
 		public UGUITooltip tooltip;
 
 		public ScrollRect scrollRect { get; private set; }
@@ -89,7 +89,7 @@ namespace XNode.Examples.RuntimeMathNodes {
 			if (eventData.button != PointerEventData.InputButton.Right)
 				return;
 
-			graphContextMenu.OpenAt(eventData.position);
+			graphContextMenu.OpenAt(eventData.position, null);
 		}
 	}
 }

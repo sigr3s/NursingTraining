@@ -61,7 +61,7 @@ public class NodeHierarchy : GUIHierarchy {
                 root.Add(new HierarchyModel(new NodeHierarchyData{name = path, nodeType = t}));   
             }
         }
-
+        
         return root;
     }
 }

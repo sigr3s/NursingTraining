@@ -73,6 +73,10 @@ namespace  NT.Graph
 
         public void RemoveGroupedNodes(NodeGroupGraph group)
         {
+            for(int i = group.nodes.Count - 1; i >= 0; i--){
+                group.RemoveNode(group.nodes[i]);
+            }
+
             packedNodes.Remove(group);
         }
 

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 
-public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode {
+public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextItem {
     public Node node;
     public RuntimeGraph graph;
 
@@ -123,5 +123,30 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode {
     public GameObject GetGameObject()
     {
         return gameObject;
+    }
+
+    public RuntimeGraph GetRuntimeGraph()
+    {
+        return graph;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        node.position = position;
+    }
+
+    public void RemoveNode()
+    {
+	    graph.graph.RemoveNode(node);
+    }
+
+    public void Remove()
+    {
+       RemoveNode();
+    }
+
+    public string GetKey()
+    {
+        return node.name;
     }
 }

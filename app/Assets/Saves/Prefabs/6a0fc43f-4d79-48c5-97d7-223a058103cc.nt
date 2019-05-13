@@ -1,10 +1,12 @@
 {
     "$type": "0|NT.SceneObjects.PrefabObject+SavedPrefab, Assembly-CSharp",
+    "sprite": 2,
+    "name": "DefArm",
     "root": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
     "prefabObjects": {
         "$id": 0,
         "$type": "1|System.Collections.Generic.List`1[[SceneGameObject, Assembly-CSharp]], mscorlib",
-        "$rlength": 1,
+        "$rlength": 4,
         "$rcontent": [
             {
                 "$id": 1,
@@ -15,8 +17,11 @@
                     "childs": {
                         "$id": 2,
                         "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
-                        "$rlength": 0,
+                        "$rlength": 3,
                         "$rcontent": [
+                            "Defibrilator92932aef-8d40-40cc-acdd-e9005df56620",
+                            "Defibrilatorc5cf9d2d-a938-49d6-bd37-4ef604f91109",
+                            "Defibrilator37e64f61-5f06-412a-b09a-14980e3badb8"
                         ]
                     },
                     "parent": "",
@@ -135,6 +140,7 @@
                     "graph": {
                         "$id": 4,
                         "$type": "11|NT.Graph.SceneObjectGraph, Assembly-CSharp",
+                        "_name": null,
                         "nodes": {
                             "$id": 5,
                             "$type": "12|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
@@ -143,7 +149,7 @@
                                 {
                                     "$id": 6,
                                     "$type": "13|NT.Nodes.Variables.GetVariableNode, Assembly-CSharp",
-                                    "_name": null,
+                                    "_name": "GetVariableNode",
                                     "graph": $iref:4,
                                     "position": {
                                         "$type": "14|UnityEngine.Vector2, UnityEngine.CoreModule",
@@ -214,7 +220,7 @@
                                 {
                                     "$id": 13,
                                     "$type": "19|NT.Nodes.Messages.CallbackNode, Assembly-CSharp",
-                                    "_name": null,
+                                    "_name": "CallbackNode",
                                     "graph": $iref:4,
                                     "position": {
                                         "$type": 14,
@@ -259,7 +265,7 @@
                                 {
                                     "$id": 17,
                                     "$type": "20|NT.Nodes.Flow.WaitForNode, Assembly-CSharp",
-                                    "_name": null,
+                                    "_name": "WaitForNode",
                                     "graph": $iref:4,
                                     "position": {
                                         "$type": 14,
@@ -369,7 +375,7 @@
                                 {
                                     "$id": 27,
                                     "$type": "21|NT.Nodes.Other.DisplayMessage, Assembly-CSharp",
-                                    "_name": null,
+                                    "_name": "DisplayMessage",
                                     "graph": $iref:4,
                                     "position": {
                                         "$type": 14,
@@ -469,6 +475,345 @@
                             ]
                         },
                         "linkedNTVariable": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 38,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator92932aef-8d40-40cc-acdd-e9005df56620",
+                    "childs": {
+                        "$id": 39,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 40,
+                        "$type": "26|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.DefibrilatorData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "27|NT.SceneObjects.DefibrilatorData, Assembly-CSharp",
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 27,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        2.22897625,
+                        0.0582435,
+                        1.49718511
+                    },
+                    "graph": {
+                        "$id": 41,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 42,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 43,
+                            "$type": 22,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 44,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 45,
+                            "$type": 24,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 46,
+                            "$type": 25,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 47,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilatorc5cf9d2d-a938-49d6-bd37-4ef604f91109",
+                    "childs": {
+                        "$id": 48,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 49,
+                        "$type": 26,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 27,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 27,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        4.45566559,
+                        0.174999624,
+                        3.00004554
+                    },
+                    "graph": {
+                        "$id": 50,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 51,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 52,
+                            "$type": 22,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 53,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 54,
+                            "$type": 24,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 55,
+                            "$type": 25,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 56,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator37e64f61-5f06-412a-b09a-14980e3badb8",
+                    "childs": {
+                        "$id": 57,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 58,
+                        "$type": 26,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 27,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 27,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        6.678518,
+                        0.3509414,
+                        4.513169
+                    },
+                    "graph": {
+                        "$id": 59,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 60,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 61,
+                            "$type": 22,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 62,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 63,
+                            "$type": 24,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 64,
+                            "$type": 25,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
                         "assignedSCGO": null
                     }
                 }

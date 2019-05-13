@@ -7,4 +7,7 @@ public interface IUGUINode {
     bool HasNode(Node node);
     Node GetNode(); 
     GameObject GetGameObject();
+    RuntimeGraph GetRuntimeGraph();
+    void SetPosition(Vector2 position);
+    void RemoveNode();
 }

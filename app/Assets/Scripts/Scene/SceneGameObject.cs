@@ -189,7 +189,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void RestoreTransform(){
         transform.localPosition = data.position;
-        transform.localRotation = Quaternion.Euler(data.position);
+        transform.localRotation = Quaternion.Euler(data.rotation);
         transform.localScale = Vector3.one;
     }
 

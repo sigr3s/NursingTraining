@@ -108,4 +108,7 @@ public class MapLoader : MonoBehaviour, IMapLoader {
         }
     }
 
+    public virtual void ReloadUI()
+    {
+    }
 }

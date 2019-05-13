@@ -286,9 +286,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6012824208260999050}
   - component: {fileID: 6012824208260999048}
-  - component: {fileID: 4691526631458034286}
+  - component: {fileID: 2820713535161636469}
   m_Layer: 5
-  m_Name: NodesPanel
+  m_Name: GroupedNodesPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6012824208260999051}
   m_CullTransparentMesh: 0
---- !u!114 &4691526631458034286
+--- !u!114 &2820713535161636469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -331,10 +331,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6012824208260999051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca04f6ceada229442b318b854998765c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ffafc7feb95db2478549de56f0c8376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4510593013126371536, guid: 1f28785a0b12acd46bd98bc0d667e4c5, type: 3}
+  prefab: {fileID: 4510593013126371536, guid: 44684fe74c20f07418ff1a8dab36fe5e, type: 3}
   content: {fileID: 6012824208029781530}
   pool: {fileID: 0}
   activeItems: []

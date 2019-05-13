@@ -72,7 +72,16 @@ public class MapEditor : MapLoader {
     private LayerMask currentObjectLayer;
     public LayerMask allExceptFloor = ~0;
 
+    public override void ReloadUI(){
+        LoadObjectsButtons();
+    }
+
      private void LoadObjectsButtons() {
+
+        foreach (Transform child in objectList.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+
         foreach (var so in SessionManager.Instance.sceneObjects.objectSet)
         {
             ISceneObject isc = (ISceneObject) so;

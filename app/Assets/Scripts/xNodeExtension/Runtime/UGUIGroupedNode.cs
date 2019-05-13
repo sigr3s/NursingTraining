@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 
-public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode {
+public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextItem {
     public NodeGroupGraph group;
     public RuntimeGraph graph;
 
@@ -73,5 +73,30 @@ public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode {
     public GameObject GetGameObject()
     {
         return gameObject;
+    }
+
+    public RuntimeGraph GetRuntimeGraph()
+    {
+        return graph;
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        group.position = position;
+    }
+
+    public void RemoveNode()
+    {
+        ((NTGraph) graph.graph).RemoveGroupedNodes(group);
+    }
+
+    public void Remove()
+    {
+        RemoveNode();
+    }
+
+    public string GetKey()
+    {
+        return group.name;
     }
 }

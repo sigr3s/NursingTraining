@@ -1,0 +1,940 @@
+{
+    "$type": "0|NT.SceneObjects.PrefabObject+SavedPrefab, Assembly-CSharp",
+    "sprite": 2,
+    "name": "DefArm",
+    "root": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+    "prefabObjects": {
+        "$id": 0,
+        "$type": "1|System.Collections.Generic.List`1[[SceneGameObject, Assembly-CSharp]], mscorlib",
+        "$rlength": 4,
+        "$rcontent": [
+            {
+                "$id": 1,
+                "$type": "2|SceneGameObject, Assembly-CSharp",
+                "data": {
+                    "$type": "3|SceneGameObjectData, Assembly-CSharp",
+                    "id": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "childs": {
+                        "$id": 2,
+                        "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+                        "$rlength": 3,
+                        "$rcontent": [
+                            "Defibrilator92932aef-8d40-40cc-acdd-e9005df56620",
+                            "Defibrilatorc5cf9d2d-a938-49d6-bd37-4ef604f91109",
+                            "Defibrilator37e64f61-5f06-412a-b09a-14980e3badb8"
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 3,
+                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": "6|NT.Variables.NTVariableData, Assembly-CSharp",
+                            "Name": null,
+                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "7|NT.SceneObjects.ClosetData, Assembly-CSharp",
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 7,
+                            "MaxItems": 0,
+                            "numberOfItems": 0,
+                            "d0": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d1": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            },
+                            "d2": {
+                                "$type": 8,
+                                "canbeOpened": false,
+                                "slot00": "",
+                                "slot01": "",
+                                "slot02": "",
+                                "slot03": "",
+                                "slot04": "",
+                                "slot05": ""
+                            }
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
+                            "sceneObjectGUID": "",
+                            "position": {
+                                "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -2.22973633,
+                        0,
+                        -1.496052
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        357.770264,
+                        0,
+                        358.503937
+                    },
+                    "graph": {
+                        "$id": 4,
+                        "$type": "11|NT.Graph.SceneObjectGraph, Assembly-CSharp",
+                        "_name": null,
+                        "nodes": {
+                            "$id": 5,
+                            "$type": "12|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
+                            "$rlength": 1,
+                            "$rcontent": [
+                                {
+                                    "$id": 6,
+                                    "$type": "13|NT.Nodes.Messages.CallbackNode, Assembly-CSharp",
+                                    "_name": "CallbackNode",
+                                    "graph": $iref:4,
+                                    "position": {
+                                        "$type": "14|UnityEngine.Vector2, UnityEngine.CoreModule",
+                                        65.7317047,
+                                        -892.207336
+                                    },
+                                    "ports": {
+                                        "$id": 7,
+                                        "$type": "15|XNode.Node+NodePortDictionary, Assembly-CSharp",
+                                        "comparer": {
+                                            "$id": 8,
+                                            "$type": "16|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
+                                        },
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "flowOut",
+                                                "$v": {
+                                                    "$id": 9,
+                                                    "$type": "17|XNode.NodePort, Assembly-CSharp",
+                                                    "_fieldName": "flowOut",
+                                                    "_node": $iref:6,
+                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                    "connections": {
+                                                        "$id": 10,
+                                                        "$type": "18|System.Collections.Generic.List`1[[XNode.NodePort+PortConnection, Assembly-CSharp]], mscorlib",
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 0,
+                                                    "_typeConstraint": 0,
+                                                    "_dynamic": false
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "flowOut": null,
+                                    "callbackKey": null
+                                }
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 11,
+                            "$type": "19|System.Collections.Generic.List`1[[NT.NTNode, Assembly-CSharp]], mscorlib",
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 12,
+                            "$type": "20|System.Collections.Generic.List`1[[NT.Graph.NodeGroupGraph, Assembly-CSharp]], mscorlib",
+                            "$rlength": 1,
+                            "$rcontent": [
+                                {
+                                    "$id": 13,
+                                    "$type": "21|NT.Graph.NodeGroupGraph, Assembly-CSharp",
+                                    "_name": "Node Group",
+                                    "nodes": {
+                                        "$id": 14,
+                                        "$type": 12,
+                                        "$rlength": 3,
+                                        "$rcontent": [
+                                            {
+                                                "$id": 15,
+                                                "$type": "22|NT.Nodes.Variables.GetVariableNode, Assembly-CSharp",
+                                                "_name": "GetVariableNode_-398853504",
+                                                "graph": {
+                                                    "$id": 16,
+                                                    "$type": 11,
+                                                    "_name": null,
+                                                    "nodes": $iref:14,
+                                                    "executionNodes": {
+                                                        "$id": 17,
+                                                        "$type": 19,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "packedNodes": {
+                                                        "$id": 18,
+                                                        "$type": 20,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "callbackNodes": {
+                                                        "$id": 19,
+                                                        "$type": "23|System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib",
+                                                        "$rlength": 1,
+                                                        "$rcontent": [
+                                                            {
+                                                                "$id": 20,
+                                                                "$type": 13,
+                                                                "_name": "CallbackNode",
+                                                                "graph": $iref:16,
+                                                                "position": {
+                                                                    "$type": 14,
+                                                                    65.7317047,
+                                                                    -892.207336
+                                                                },
+                                                                "ports": {
+                                                                    "$id": 21,
+                                                                    "$type": 15,
+                                                                    "comparer": $iref:8,
+                                                                    "$rlength": 1,
+                                                                    "$rcontent": [
+                                                                        {
+                                                                            "$k": "flowOut",
+                                                                            "$v": {
+                                                                                "$id": 22,
+                                                                                "$type": 17,
+                                                                                "_fieldName": "flowOut",
+                                                                                "_node": $iref:20,
+                                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                                "connections": {
+                                                                                    "$id": 23,
+                                                                                    "$type": 18,
+                                                                                    "$rlength": 0,
+                                                                                    "$rcontent": [
+                                                                                    ]
+                                                                                },
+                                                                                "_direction": 1,
+                                                                                "_connectionType": 0,
+                                                                                "_typeConstraint": 0,
+                                                                                "_dynamic": false
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "hasError": false,
+                                                                "error": "",
+                                                                "isExecuting": false,
+                                                                "flowOut": null,
+                                                                "callbackKey": null
+                                                            }
+                                                        ]
+                                                    },
+                                                    "callbackNodesDict": {
+                                                        "$id": 24,
+                                                        "$type": "24|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib]], mscorlib",
+                                                        "comparer": {
+                                                            "$id": 25,
+                                                            "$type": 16
+                                                        },
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "linkedNTVariable": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                                                    "assignedSCGO": null
+                                                },
+                                                "position": {
+                                                    "$type": 14,
+                                                    -239.146347,
+                                                    -881.2317
+                                                },
+                                                "ports": {
+                                                    "$id": 26,
+                                                    "$type": 15,
+                                                    "comparer": $iref:8,
+                                                    "$rlength": 2,
+                                                    "$rcontent": [
+                                                        {
+                                                            "$k": "result",
+                                                            "$v": {
+                                                                "$id": 27,
+                                                                "$type": 17,
+                                                                "_fieldName": "result",
+                                                                "_node": $iref:15,
+                                                                "_typeQualifiedName": "System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                                "connections": {
+                                                                    "$id": 28,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 1,
+                                                                "_connectionType": 0,
+                                                                "_typeConstraint": 0,
+                                                                "_dynamic": false
+                                                            }
+                                                        },
+                                                        {
+                                                            "$k": "type",
+                                                            "$v": {
+                                                                "$id": 29,
+                                                                "$type": 17,
+                                                                "_fieldName": "type",
+                                                                "_node": $iref:15,
+                                                                "_typeQualifiedName": "System.Type, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                                "connections": {
+                                                                    "$id": 30,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 1,
+                                                                "_connectionType": 0,
+                                                                "_typeConstraint": 0,
+                                                                "_dynamic": false
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "hasError": false,
+                                                "error": "",
+                                                "isExecuting": false,
+                                                "variableField": "variable",
+                                                "variableKey": null,
+                                                "result": null,
+                                                "type": null
+                                            },
+                                            {
+                                                "$id": 31,
+                                                "$type": "25|NT.Nodes.Flow.WaitForNode, Assembly-CSharp",
+                                                "_name": "WaitForNode_-1581500416",
+                                                "graph": $iref:16,
+                                                "position": {
+                                                    "$type": 14,
+                                                    -30.6097565,
+                                                    -677.5732
+                                                },
+                                                "ports": {
+                                                    "$id": 32,
+                                                    "$type": 15,
+                                                    "comparer": $iref:8,
+                                                    "$rlength": 4,
+                                                    "$rcontent": [
+                                                        {
+                                                            "$k": "seconds",
+                                                            "$v": {
+                                                                "$id": 33,
+                                                                "$type": 17,
+                                                                "_fieldName": "seconds",
+                                                                "_node": $iref:31,
+                                                                "_typeQualifiedName": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                                "connections": {
+                                                                    "$id": 34,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 0,
+                                                                "_connectionType": 1,
+                                                                "_typeConstraint": 2,
+                                                                "_dynamic": false
+                                                            }
+                                                        },
+                                                        {
+                                                            "$k": "breakFlow",
+                                                            "$v": {
+                                                                "$id": 35,
+                                                                "$type": 17,
+                                                                "_fieldName": "breakFlow",
+                                                                "_node": $iref:31,
+                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                "connections": {
+                                                                    "$id": 36,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 0,
+                                                                "_connectionType": 1,
+                                                                "_typeConstraint": 2,
+                                                                "_dynamic": false
+                                                            }
+                                                        },
+                                                        {
+                                                            "$k": "flowIn",
+                                                            "$v": {
+                                                                "$id": 37,
+                                                                "$type": 17,
+                                                                "_fieldName": "flowIn",
+                                                                "_node": $iref:31,
+                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                "connections": {
+                                                                    "$id": 38,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 0,
+                                                                "_connectionType": 1,
+                                                                "_typeConstraint": 2,
+                                                                "_dynamic": false
+                                                            }
+                                                        },
+                                                        {
+                                                            "$k": "flowOut",
+                                                            "$v": {
+                                                                "$id": 39,
+                                                                "$type": 17,
+                                                                "_fieldName": "flowOut",
+                                                                "_node": $iref:31,
+                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                "connections": {
+                                                                    "$id": 40,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 1,
+                                                                "_connectionType": 0,
+                                                                "_typeConstraint": 0,
+                                                                "_dynamic": false
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "hasError": false,
+                                                "error": "",
+                                                "isExecuting": false,
+                                                "flowIn": null,
+                                                "flowOut": null,
+                                                "seconds": 0,
+                                                "breakFlow": null
+                                            },
+                                            {
+                                                "$id": 41,
+                                                "$type": "26|NT.Nodes.Other.DisplayMessage, Assembly-CSharp",
+                                                "_name": "DisplayMessage_-2123749888",
+                                                "graph": $iref:16,
+                                                "position": {
+                                                    "$type": 14,
+                                                    -309.878052,
+                                                    -626.353638
+                                                },
+                                                "ports": {
+                                                    "$id": 42,
+                                                    "$type": 15,
+                                                    "comparer": $iref:8,
+                                                    "$rlength": 2,
+                                                    "$rcontent": [
+                                                        {
+                                                            "$k": "flowIn",
+                                                            "$v": {
+                                                                "$id": 43,
+                                                                "$type": 17,
+                                                                "_fieldName": "flowIn",
+                                                                "_node": $iref:41,
+                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                "connections": {
+                                                                    "$id": 44,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 0,
+                                                                "_connectionType": 1,
+                                                                "_typeConstraint": 2,
+                                                                "_dynamic": false
+                                                            }
+                                                        },
+                                                        {
+                                                            "$k": "flowOut",
+                                                            "$v": {
+                                                                "$id": 45,
+                                                                "$type": 17,
+                                                                "_fieldName": "flowOut",
+                                                                "_node": $iref:41,
+                                                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                                                "connections": {
+                                                                    "$id": 46,
+                                                                    "$type": 18,
+                                                                    "$rlength": 0,
+                                                                    "$rcontent": [
+                                                                    ]
+                                                                },
+                                                                "_direction": 1,
+                                                                "_connectionType": 0,
+                                                                "_typeConstraint": 0,
+                                                                "_dynamic": false
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "hasError": false,
+                                                "error": "",
+                                                "isExecuting": false,
+                                                "flowIn": null,
+                                                "flowOut": null,
+                                                "input": null
+                                            }
+                                        ]
+                                    },
+                                    "position": {
+                                        "$type": 14,
+                                        -239.146347,
+                                        -881.2317
+                                    },
+                                    "assetID": "94ec5cce-e084-4956-99f5-242af71188e0",
+                                    "ports": {
+                                        "$id": 47,
+                                        "$type": "27|System.Collections.Generic.List`1[[XNode.NodePort, Assembly-CSharp]], mscorlib",
+                                        "$rlength": 8,
+                                        "$rcontent": [
+                                            $iref:27,
+                                            $iref:29,
+                                            $iref:33,
+                                            $iref:35,
+                                            $iref:37,
+                                            $iref:39,
+                                            $iref:43,
+                                            $iref:45
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 48,
+                            "$type": 23,
+                            "$rlength": 1,
+                            "$rcontent": [
+                                $iref:6
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 49,
+                            "$type": 24,
+                            "comparer": {
+                                "$id": 50,
+                                "$type": 16
+                            },
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 51,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator92932aef-8d40-40cc-acdd-e9005df56620",
+                    "childs": {
+                        "$id": 52,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 53,
+                        "$type": "28|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.DefibrilatorData, Assembly-CSharp]], Assembly-CSharp",
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": "29|NT.SceneObjects.DefibrilatorData, Assembly-CSharp",
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 29,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        2.22897625,
+                        0.0582435,
+                        1.49718511
+                    },
+                    "graph": {
+                        "$id": 54,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 55,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 56,
+                            "$type": 19,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 57,
+                            "$type": 20,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 58,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 59,
+                            "$type": 24,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 60,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilatorc5cf9d2d-a938-49d6-bd37-4ef604f91109",
+                    "childs": {
+                        "$id": 61,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 62,
+                        "$type": 28,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 29,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 29,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        4.45566559,
+                        0.174999624,
+                        3.00004554
+                    },
+                    "graph": {
+                        "$id": 63,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 64,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 65,
+                            "$type": 19,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 66,
+                            "$type": 20,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 67,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 68,
+                            "$type": 24,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null
+                    }
+                }
+            },
+            {
+                "$id": 69,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator37e64f61-5f06-412a-b09a-14980e3badb8",
+                    "childs": {
+                        "$id": 70,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "data": {
+                        "$id": 71,
+                        "$type": 28,
+                        "serializedData": {
+                            "$type": 6,
+                            "Name": null,
+                            "Value": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "DefaultValue": "{\"hasCharge\":false,\"configuredVoltage\":0.0,\"isCharging\":false}",
+                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
+                        },
+                        "collapsed": true,
+                        "value": {
+                            "$type": 29,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 29,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "sceneObjectExtraData": {
+                            "$type": 9,
+                            "sceneObjectGUID": null,
+                            "position": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            },
+                            "rotation": {
+                                "$type": 10,
+                                0,
+                                0,
+                                0
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.02735451,
+                        0.5155375,
+                        -0.239999443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        6.678518,
+                        0.3509414,
+                        4.513169
+                    },
+                    "graph": {
+                        "$id": 72,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 73,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 74,
+                            "$type": 19,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 75,
+                            "$type": 20,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 76,
+                            "$type": 23,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 77,
+                            "$type": 24,
+                            "comparer": $iref:8,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null
+                    }
+                }
+            }
+        ]
+    }
+}

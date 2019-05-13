@@ -24,8 +24,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public GameObject PropertyObject;
 
     [Header("References")]
-    public UGUIContextMenu graphContextMenu;
-    public UGUIContextMenu nodeContextMenu;    
+    public UGUINodeContextMenu graphContextMenu;
+    public UGUINodeContextMenu nodeContextMenu;    
     public Connection runtimeConnectionPrefab;
     public UGUIBaseNode nodePrefab;    
     public UGUIGroupedNode groupedNodePrefab;
@@ -75,10 +75,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         foreach(var selectedNode in selectedNodes){
             nodesToGroup.Add(selectedNode.GetNode());
         }
-
-        NodeGroupGraph.GroupNodes(nodesToGroup, graph);
-
-        Refresh();
+        
+        NodeGroupWindow.Instance.Open(nodesToGroup, graph);
     }
 
     public virtual void Refresh(){
@@ -144,6 +142,12 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         }
     }
 
+    public void AddNodeGroup(NodeGroupGraph nhd, Vector2 nodePosition)
+    {
+        nhd.AddTo((NTGraph) graph, nodePosition);
+        Refresh();
+    }
+
     public virtual Color GetColorFor(Type t){
         foreach(ColorByType cbt in colors){
             if(t.AssemblyQualifiedName.Contains(cbt.type)){
@@ -169,6 +173,6 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         if (eventData.button != PointerEventData.InputButton.Right)
 				return;
 
-        graphContextMenu.OpenAt(eventData.position);
+        graphContextMenu.OpenAt(eventData.position, null);
     }
 }

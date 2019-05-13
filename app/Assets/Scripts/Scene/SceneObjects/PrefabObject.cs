@@ -155,7 +155,7 @@ namespace NT.SceneObjects
         }
 
 
-        public static bool CreatePrefab(string prefabID, SceneGameObject root){
+        public static bool CreatePrefab(string prefabID, SceneGameObject root, string name = "", int sprite = 0){
             if(string.IsNullOrEmpty(prefabID)){
                 return false;
             }
@@ -167,6 +167,8 @@ namespace NT.SceneObjects
             }
             
             SavedPrefab savedPrefab = new SavedPrefab {
+                name = name,
+                sprite = sprite,
                 root = root.data.id,
                 prefabObjects = new List<SceneGameObject>(root.GetComponentsInChildren<SceneGameObject>(true))
             };
@@ -180,6 +182,8 @@ namespace NT.SceneObjects
 
         [System.Serializable]
         public struct SavedPrefab{
+            public int sprite;
+            public string name;
             public string root;
             public List<SceneGameObject> prefabObjects;
         }
