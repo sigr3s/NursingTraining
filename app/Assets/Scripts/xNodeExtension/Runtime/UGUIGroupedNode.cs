@@ -32,6 +32,8 @@ public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode, IContext
                     Debug.LogWarning("Instantiate dynamic port!");
                 }
             }
+
+            transform.Find("Header/Title").GetComponent<Text>().text = group.name;
         }
         else
         {

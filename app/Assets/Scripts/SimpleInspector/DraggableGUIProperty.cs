@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using NT.Nodes.Variables;
+using XNode;
 
 public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public bool dragOnSurfaces = true;
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
+    public GetSetContextMenu contextMenu;
 
     static public T FindInParents<T>(GameObject go) where T : Component
     {
@@ -29,10 +33,7 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         var canvas = FindInParents<Canvas>(gameObject);
         if (canvas == null)
             return;
-
-
-        // We have clicked something that can be dragged.
-        // What we want to do is create an icon for this.
+        
         m_DraggingIcon = new GameObject("icon");
 
         m_DraggingIcon.transform.SetParent(canvas.transform, false);
@@ -73,15 +74,25 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         }
     }
 
+    private RuntimeGraph rg;
     public void OnEndDrag(PointerEventData eventData)
     {
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
 
         if(!eventData.pointerCurrentRaycast.gameObject) return;
+        
+        rg = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<RuntimeGraph>();
 
-        RuntimeGraph rg = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<RuntimeGraph>();
+        contextMenu.OpenAt(eventData.position, null);
+        contextMenu.SetAction = CreateSetNode;
+        contextMenu.GetAction = CreateGetNode;
 
+        return;
+    }
+
+    private void CreateGetNode()
+    {
         if(!rg) return;
 
         NTScrollRect ntScrollRect = rg.GetComponentInChildren<NTScrollRect>();
@@ -97,6 +108,39 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         
         nodePosition = new Vector2( nodePosition.x - 80, -nodePosition.y);
 
-        rg.SpawnNode(typeof(NT.Nodes.Variables.GetNTVariableNode), nodePosition);
+        Node node = rg.graph.AddNode(typeof(GetNTVariableNode));
+        node.position = nodePosition;
+        node.name = "GET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
+
+        ((GetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, data.GetType() );
+
+        rg.Refresh();
+    }
+
+    private void CreateSetNode()
+    {
+        if(!rg) return;
+
+        NTScrollRect ntScrollRect = rg.GetComponentInChildren<NTScrollRect>();
+
+        if(ntScrollRect == null) return;
+
+        Vector2 nodePosition = Vector2.zero;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform) ntScrollRect.content.transform , 
+            Input.mousePosition, GetComponentInParent<Canvas>().worldCamera, out nodePosition
+        ); 
+        
+        nodePosition = new Vector2( nodePosition.x - 80, -nodePosition.y);
+
+        string dataid = SessionManager.Instance.selectedSceneObject.data.id;
+
+        Node node = rg.graph.AddNode(typeof(SetNTVariableNode));
+        node.position = nodePosition;
+        node.name = "SET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
+        ((SetNTVariableNode) node).SetVariableKey(dataid, typeof(string), path, data.GetType() );
+
+        rg.Refresh();
     }
 }

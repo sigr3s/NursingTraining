@@ -95,13 +95,10 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		} else {
 			if (port.IsConnected) {
 				NodePort output = port.Connection;
-				Debug.Log("has " + port.ConnectionCount + " connections");
-				Debug.Log(port.GetConnection(0));
-
+				
 				IUGUINode otherNode = graph.GetRuntimeNode(output.node);
 				UGUIPort otherUGUIPort = otherNode.GetPort(output.fieldName);
 				
-				Debug.Log("Disconnect");
 				output.Disconnect(port);
 				tempConnection = Instantiate(graph.runtimeConnectionPrefab);
 				tempConnection.transform.SetParent(graph.scrollRect.content);

@@ -11,7 +11,8 @@ public class RuntimeInspector : GUIInspector {
 
     [Header("References")]    
     public TextMeshProUGUI title;
-    public TextMeshProUGUI over;    
+    public TextMeshProUGUI over;
+    public GetSetContextMenu contextMenu;
 
     [Header("Debug")]
     public SceneGameObject current;
@@ -27,7 +28,7 @@ public class RuntimeInspector : GUIInspector {
 
         if(current != null){
             value = current.data.data.GetDefaultValue();
-            SetCurrent(current.data.id, value);
+            SetCurrent(current.name, value);
         }
         else
         {
@@ -40,6 +41,12 @@ public class RuntimeInspector : GUIInspector {
         title.text = name;
 
         Inspect(Value, OnChanged);
+
+        var draggables = GetComponentsInChildren<DraggableGUIProperty>();
+
+        foreach(var draggable in draggables){
+            draggable.contextMenu = this.contextMenu;
+        }
         
         
         LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());

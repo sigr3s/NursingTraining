@@ -49,6 +49,7 @@ public class GraphPanel : MonoBehaviour
         sceneTab.isSelected = true;
         sceneTab.isScene = true;
         sceneTab.NTKey = SceneGraphKey;
+        sceneTab.DisplayName = SceneGraphKey;
 
         tabs.Add(sceneTab);
 
@@ -58,6 +59,7 @@ public class GraphPanel : MonoBehaviour
             sceneObjectTab.isSelected = false;
             sceneObjectTab.isScene = false;
             sceneObjectTab.NTKey = sog.linkedNTVariable;
+            sceneObjectTab.DisplayName = sog.displayName;
             
             tabs.Add(sceneObjectTab);
         }

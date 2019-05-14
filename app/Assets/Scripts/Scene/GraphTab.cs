@@ -42,17 +42,21 @@ public class GraphTab : MonoBehaviour {
 
     public bool isScene;
 
-    private string _NTKey;
-    public string NTKey{
+    public string NTKey;
+    
+    private string displayName;
+    public string DisplayName {
         get{
-            return _NTKey;
+            return displayName;
         }
 
         set{
-            _NTKey = value;
+            displayName = value;
             title.text = value;
         }
     }
+
+
 
     private void Awake() {
         button = GetComponent<Button>();    

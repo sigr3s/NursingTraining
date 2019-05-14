@@ -165,6 +165,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     public void AddSceneGameObject(SceneGameObject so){
         sceneGameObjects.Add(so.data.id, so);
         OnSceneGameObjectsChanged.Invoke();
+        OnGraphListChanged.Invoke();    
     }
 
     public void RemoveSceneGameObject(string key){
@@ -234,7 +235,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         if(sobj.data.graph == null){
             SceneObjectGraph soc = new SceneObjectGraph();
-            soc.linkedNTVariable = key;
+            soc.linkedNTVariable = sobj.data.id;
 
             sobj.data.graph = soc;
             OnGraphListChanged.Invoke();
@@ -255,7 +256,12 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(sceneGameObjects == null) return graphs;
 
         foreach(var sceneGameObject in sceneGameObjects){
-            if(sceneGameObject.Value.data.graph != null){
+            if(sceneGameObject.Value.data.graph != null && sceneGameObject.Value.data.graph.nodes.Count > 0){
+                SceneObjectGraph sog = sceneGameObject.Value.data.graph;
+
+                sog.linkedNTVariable = sceneGameObject.Value.data.id;
+                sog.displayName = sceneGameObject.Value.name;
+
                 graphs.Add(sceneGameObject.Value.data.graph);
             }
         }

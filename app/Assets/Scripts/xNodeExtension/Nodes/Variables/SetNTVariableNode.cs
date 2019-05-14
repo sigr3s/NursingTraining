@@ -12,41 +12,27 @@ namespace NT.Nodes.Variables{
     [System.Serializable]
     public class SetNTVariableNode : FlowNode, IVariableNode
     {
-        [HideInInspector] public string typeString;
-        [HideInInspector] public string dataTypeString;
-        [HideInInspector] public string variableKey;
+        private readonly string variableField = "variable";
 
+        [SerializeField] private Type variableType;
+        [SerializeField] private string variablePath;
+        [SerializeField] private Type dataType;
+        [SerializeField] private string dataKey;
 
-        [HideInInspector] public NTVariableData data;
-        [HideInInspector] public NTVariable _myData;
-
-        public readonly string variableField = "variable";
-
-        private Type variableType;
-        private Type dataType;
-        private MethodInfo getValueMethod;
-
-
-        public string variablePath = "";
 
         public override IEnumerator ExecuteNode(NodeExecutionContext context){
-            /*
+            
             NTGraph g = graph as NTGraph;
             
-            if(string.IsNullOrEmpty(typeString)) yield break;
-            if(variableType == null || dataType == null) InitializeNodeTypes();
-            if(_myData == null) _myData.FromNTVariableData(data);
-
             object portValue = GetPort(variableField).GetInputValue();
             object value = null;
 
-            if(portValue == null){
-                value = _myData.GetValue();
-            }
-            else
-            {
+
+            Debug.LogError("NOT IMPLEMENTED YET!");
+
+            if(portValue != null){
                 if(!string.IsNullOrEmpty(variablePath)){
-                    value = g.sceneVariables.variableRepository.GetNTValue(variableKey, variableType);
+                    //value = g.sceneVariables.variableRepository.GetNTValue(variableKey, variableType);
                     
                     if(value == null) yield break;
 
@@ -58,76 +44,26 @@ namespace NT.Nodes.Variables{
                 }
             }
 
-            g.sceneVariables.variableRepository.SetValue(variableType,variableKey, value);
-            */
+
             yield return null;
         }
 
-        public string GetVariableKey()
-        {
-            return variableKey;
-        }
+        public void SetVariableKey(string dataKey,Type dataType, string variablePath, Type variableType){
 
-        public void SetVariableKey(string v,Type ntvaribaleType, string path, Type dataType = null)
-        {
-            variableKey = v;
-            data.Name = variableKey;
-            variablePath = path;
+            this.dataType = dataType;
+            this.dataKey = dataKey;
 
-            if(dataType != null){
-                dataTypeString = dataType.AssemblyQualifiedName;
-            }
-
-            if(!typeof(NTVariable).IsAssignableFrom(ntvaribaleType) || ntvaribaleType.IsGenericTypeDefinition) return;
-
-            if(typeString != null) Debug.LogWarning("Trying to reporpouse a node...");
-
-            typeString = ntvaribaleType.AssemblyQualifiedName;
-            variableType = ntvaribaleType;
+            this.variablePath = variablePath;
+            this.variableType = variableType;
 
             InitializeNodeTypes();
         }
 
         private void InitializeNodeTypes(){
-            NTGraph g = (NTGraph) graph;
-            _myData = ((NTVariable) Activator.CreateInstance(variableType));
-            data.Name = variableKey;
 
-            if(!string.IsNullOrEmpty(dataTypeString)){
-                dataType = Type.GetType(dataTypeString);
+            if(!HasPort(variablePath)){
+                AddInstanceInput(variableType, ConnectionType.Override, TypeConstraint.Strict, variablePath);
             }
-            else
-            {            
-                dataType = _myData.GetDataType();
-                dataTypeString = dataType.AssemblyQualifiedName;                
-            }
-
-            if(!HasPort(variableField)){
-                AddInstanceInput(dataType, ConnectionType.Override, TypeConstraint.Strict, variableField);
-            }
-            //Need data type
-            MethodInfo method = GetType().GetMethod("GetInputValue");
-            getValueMethod = method.MakeGenericMethod(dataType);
-        }
-
-        public Type GetVariableType()
-        {
-            if(string.IsNullOrEmpty(typeString)) return GetType();
-            if(variableType == null)variableType = Type.GetType(typeString);
-
-            if(dataType == null) InitializeNodeTypes();
-
-            return variableType;
-        }
-
-        public Type GetDataType()
-        {
-            if(string.IsNullOrEmpty(typeString)) return GetType();
-            if(variableType == null)variableType = Type.GetType(typeString);
-
-            if(dataType == null) InitializeNodeTypes();
-
-            return dataType;
         }
 
     }

@@ -53,8 +53,10 @@ namespace NT.SceneObjects
 
                     foreach(SceneGameObject childOfElement in childsOfElement){
                         childOfElement.transform.SetParent(prefabElementGO.transform);
-
                         childOfElement.RestoreTransform();
+
+                        prefabElementSO.HoldItem(childOfElement, prefabElementSCGO);
+
 
                         childOfElement.data.parent = prefabElementSCGO.data.id;
                         prefabElementSCGO.data.childs.Add(childOfElement.data.id);
@@ -75,6 +77,8 @@ namespace NT.SceneObjects
 
                     prefabElementSCGO.transform.SetParent(parent.transform);
                     prefabElementSCGO.RestoreTransform();
+
+                    parent.sceneObject.HoldItem(prefabElementSCGO, parent);
                 }   
                 else
                 {

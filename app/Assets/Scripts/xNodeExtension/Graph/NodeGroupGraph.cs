@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NT.Nodes.Variables;
 using OdinSerializer;
 using UnityEngine;
 using XNode;
@@ -19,6 +20,7 @@ namespace  NT.Graph
             parentGraph.AddGroupedNodes(ngc);
         }
     }
+    
     public class NodeGroupGraph : NodeGraph {
         public static string exportPath = Application.dataPath + "/Saves/NodeGroups/";
         public static DataFormat dataFormat = DataFormat.JSON;
@@ -51,12 +53,21 @@ namespace  NT.Graph
                 return null;
             }
 
-            foreach(var node in nodesToGroup){
+            for(int i = nodesToGroup.Count - 1; i >= 0; i--){
+                Node node = nodesToGroup[i];
                 if(node == null){
                     Debug.LogError("Something went wrong!");
                     return null;
                 }
-                node.name = node.name + "_" + node.GetHashCode();
+
+                if((node is GetNTVariableNode) || (node is SetNTVariableNode) ){
+                    nodesToGroup.Remove(node);
+                    Debug.LogWarning("Removed GET/SET");
+                }
+                else
+                {
+                    node.name = node.name + "_" + node.GetHashCode();
+                }
             }
 
             NodeGraph gcopy = g.Copy();            
@@ -67,11 +78,9 @@ namespace  NT.Graph
 
             for(int i = nodeGroupGraph.nodes.Count - 1; i >= 0; i--){
                 var n = nodeGroupGraph.nodes[i];
-                if(nodesToGroup.Find( no => no.name == n.name ) != null){
-                    Debug.LogWarning("OK¿?");
-                }
-                else
-                {
+                Node nod = nodesToGroup.Find( no => no.name == n.name );
+
+                if(nod == null){
                     nodeGroupGraph.RemoveNode(n);
                 }
             }

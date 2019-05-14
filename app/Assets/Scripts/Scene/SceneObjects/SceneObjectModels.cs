@@ -7,6 +7,16 @@ namespace NT.SceneObjects
     public struct UISceneObject{
         public Color color;
         public Sprite icon;
+        public ObjectCategory category;
+    }
+
+    public enum ObjectCategory
+    {
+        UserPrefabs,
+        Furniture,
+        Props,
+        Tools,
+        Decoration
     }
 
     [System.Serializable]

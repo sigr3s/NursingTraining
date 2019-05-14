@@ -8,6 +8,7 @@ namespace NT.Graph{
     {
         public string linkedNTVariable;
         public SceneGameObject assignedSCGO = null;
+        public string displayName = "";
 
         public override List<string> GetCallbacks(){
 

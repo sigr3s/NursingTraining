@@ -23,6 +23,7 @@ public class GUIProperty : MonoBehaviour {
     
     [Header("Debug")]
     public string path;
+    public object data;
 
     public enum PropertyType{
         String, 
@@ -35,6 +36,8 @@ public class GUIProperty : MonoBehaviour {
 
 
     public void SetData(object data, string path, PropertyType propertyType){
+        this.data = data;
+        this.path = path;
 
         switch(propertyType){
             case PropertyType.String:
@@ -111,7 +114,6 @@ public class GUIProperty : MonoBehaviour {
         start = start >= 0 ? start + 1 : 0;
 
         fieldName.text = path.Substring(start, path.Length - start);
-        this.path = path;
     }
 
     private void ModifyPropertyFloat(string stringValue)

@@ -40,7 +40,9 @@ namespace NT.SceneObjects
 
         public virtual GameObject GetPreviewGameObject()
         {
-            return GameObject.Instantiate(sceneGameObject.model);
+            GameObject ig = GameObject.Instantiate(sceneGameObject.model);
+            ig.name = ig.name.Replace("(Clone)", "");
+            return ig;
         }
 
         public virtual LayerMask GetLayerMask()
@@ -79,6 +81,8 @@ namespace NT.SceneObjects
             Vector3 localPosition, Quaternion localRotation
         ){
             GameObject instancedGo = GameObject.Instantiate(sceneGameObject.model, parent);
+            instancedGo.name = instancedGo.name.Replace("(Clone)", "");
+            
             instancedGo.transform.localPosition = localPosition;
             instancedGo.transform.localRotation = localRotation;
 

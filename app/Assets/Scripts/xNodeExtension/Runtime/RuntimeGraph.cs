@@ -59,6 +59,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     public void SetGraph(NTGraph graph){
         Clear();
         this.graph = graph;
+        scrollRect.content.localPosition = Vector2.zero;
         SpawnGraph();
     }
 

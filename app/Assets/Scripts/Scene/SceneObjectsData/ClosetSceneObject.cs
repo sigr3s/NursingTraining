@@ -9,8 +9,6 @@ namespace NT.SceneObjects{
         public int numberOfItems;
 
         public Drawer d0;
-        public Drawer d1;
-        public Drawer d2;
             
     }
 
