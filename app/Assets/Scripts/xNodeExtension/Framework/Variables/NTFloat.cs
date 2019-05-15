@@ -6,16 +6,6 @@ namespace NT.Variables
 
     [Serializable]
     public class NTFloat : NTVariable<float>{
-       
-
-        public override float DeserializeValue(string data){ 
-            float v = 0;
-            float.TryParse(data, out v);
-            return v; 
-        }
-
-        public override string SerializeValue(float val){ return val.ToString(); }
-
         public override bool Evaluate(Operator op, string value, bool isLeft){
 
             float floatValue = 0f;

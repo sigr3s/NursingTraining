@@ -76,11 +76,16 @@ public class MapEditor : MapLoader {
         LoadObjectsButtons();
     }
 
-     private void LoadObjectsButtons() {
+    public void LoadObjectsButtons(int filter = 0) {
+
 
         foreach (Transform child in objectList.transform) {
             GameObject.Destroy(child.gameObject);
         }
+
+        ObjectCategory ocFilter = (ObjectCategory) filter;
+
+
 
         foreach (var so in SessionManager.Instance.sceneObjects.objectSet)
         {
@@ -89,6 +94,9 @@ public class MapEditor : MapLoader {
             if(isc == null) continue;
 
             UISceneObject uisc = isc.GetUISceneObject();
+
+            if(ocFilter != ObjectCategory.All && ocFilter != uisc.category ) continue;
+
 
             GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
             Button button =  soButton.GetComponent<Button>();
@@ -108,6 +116,8 @@ public class MapEditor : MapLoader {
             if(isc == null) continue;
 
             UISceneObject uisc = isc.GetUISceneObject();
+
+            if(ocFilter != ObjectCategory.All && ocFilter != ObjectCategory.UserPrefabs ) continue;
 
             GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
 

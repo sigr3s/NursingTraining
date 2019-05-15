@@ -7,10 +7,6 @@ namespace NT.Variables
     [Serializable]
     public class NTString : NTVariable<string>{
 
-        public override string DeserializeValue(string data){ return data; }
-
-        public override string SerializeValue(string val){ return val; }
-
         public override object GetValue(){
             if(this.value == null) return "";
             return base.GetValue();

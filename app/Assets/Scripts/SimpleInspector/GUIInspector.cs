@@ -143,6 +143,10 @@ public class GUIInspector : MonoBehaviour {
                 {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Enumeration);
                 }
+                else
+                {
+                    gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.SceneReference);
+                }
 
                 gp.OnValueChanged.RemoveAllListeners();
                 gp.OnValueChanged.AddListener(OnPropertyChanged);

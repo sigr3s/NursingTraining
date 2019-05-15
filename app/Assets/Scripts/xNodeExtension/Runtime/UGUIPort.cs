@@ -10,8 +10,11 @@ using XNode;
 public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler {
 
 	public string fieldName;
+	public GUIProperty backingValue;
 	[HideInInspector] public XNode.Node node;
 
+	public GUIProperty.PropertyType propertyType;
+	private bool isBasicTypePort = false;
 	private NodePort port;
 	private Connection tempConnection;
 	private NodePort startPort;
@@ -36,13 +39,33 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		if(port.ValueType == typeof(bool) ){
 			transform.parent.GetComponent<Image>().color = Color.green;
+			isBasicTypePort = true;
+			propertyType = GUIProperty.PropertyType.Boolean;
+		}
+		else if(port.ValueType == typeof(string) ){
+			transform.parent.GetComponent<Image>().color = Color.magenta;
+			isBasicTypePort = true;
+			propertyType = GUIProperty.PropertyType.String;
+		}
+		else if(port.ValueType.IsNumber()){
+			transform.parent.GetComponent<Image>().color = Color.yellow;
+			isBasicTypePort = true;
+			propertyType = GUIProperty.PropertyType.Number;
+		}
+		else if(port.ValueType == typeof(DummyConnection))
+		{
+			transform.parent.GetComponent<Image>().color = Color.white;
+		}
+		else if(port.ValueType == typeof(SceneGameObject))
+		{
+			transform.parent.GetComponent<Image>().color = Color.red;
 		}
 		else
 		{
-			transform.parent.GetComponent<Image>().color = Color.white;
-			
+			transform.parent.GetComponent<Image>().color = Color.blue;
 		}
 
+		if(backingValue != null) backingValue.gameObject.SetActive(false);
 	}
 
 	void Reset() {
@@ -57,7 +80,30 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		connections.Clear();
 	}
 
-	public void UpdateConnectionTransforms() {
+	private void Update() {
+		if(backingValue != null && isBasicTypePort && port.IsInput){
+
+			if(!port.IsConnected && !backingValue.gameObject.activeInHierarchy){
+				backingValue.gameObject.SetActive(true);
+				backingValue.SetData(ReflectionUtilities.GetValueOf(new List<string>(){fieldName}, node) , fieldName, propertyType);
+				backingValue.OnValueChanged.AddListener(ValueChanged);
+			}
+			else if(port.IsConnected && backingValue.gameObject.activeInHierarchy)
+			{
+				backingValue.gameObject.SetActive(false);
+				backingValue.OnValueChanged.RemoveListener(ValueChanged);
+			}
+
+		}
+	}
+
+    private void ValueChanged(object value, string path)
+    {
+		object n = node;
+		ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
+    }
+
+    public void UpdateConnectionTransforms() {
 		if (port.IsInput) return;
 
 		while (connections.Count < port.ConnectionCount) AddConnection();

@@ -18,7 +18,9 @@ public class CallbackHierarchy : GUIHierarchy
         foreach (var callback in callbacks)
         {
             root.Add(new HierarchyModel(
-                    new NodeHierarchyData{ name = callback, key = callback, nodeType = typeof(CallbackNode)}
+                    new NodeHierarchyData{ name = callback, key = callback, onNodeCreated = (n) =>{
+                        ( (CallbackNode) n).callbackKey = callback;
+                    }  ,nodeType = typeof(CallbackNode)}
                 ));
             
         }

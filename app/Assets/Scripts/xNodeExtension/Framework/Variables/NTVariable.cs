@@ -8,48 +8,16 @@ namespace NT.Variables
         [SerializeField] public string Name;
         [SerializeField] public string Value;
         [SerializeField] public string DefaultValue;
-        [SerializeField] public string ExtraData;
     }
 
     [Serializable]
-    public class NTVariable<T> : NTVariable, ISerializationCallbackReceiver
+    public class NTVariable<T> : NTVariable
     {
         public T value;
         public T defaultValue;
 
         public NTVariable(){
         }
-
-        public void OnAfterDeserialize(){
-            value =  DeserializeValue(serializedData.Value);
-            defaultValue = DeserializeValue(serializedData.DefaultValue);           
-            DeserializeExtraData(serializedData.ExtraData);
-        }
-
-        public void OnBeforeSerialize(){ 
-           serializedData.Value =  SerializeValue(value);
-           serializedData.DefaultValue = SerializeValue(defaultValue);
-           serializedData.ExtraData = SerializeExtraData();
-        }
-
-        public virtual string SerializeExtraData()
-        {
-            return "";
-        }
-
-        public virtual void DeserializeExtraData(string ExtraData){
-
-        }
-
-        public virtual T DeserializeValue(string data){ 
-            if(string.IsNullOrEmpty(data)){ 
-                return default(T);
-            } 
-            return JsonUtility.FromJson<T>(data); 
-        }
-
-
-        public virtual string SerializeValue(T val){ return JsonUtility.ToJson(val);}
 
         public override void SetValue(object value){
             this.value = (T) value;
@@ -71,19 +39,6 @@ namespace NT.Variables
             value = defaultValue;
         }
 
-
-        public override void FromNTVariableData(NTVariableData data){
-            this.serializedData = data;
-            OnAfterDeserialize();
-            SetKey(data.Name);
-        }
-
-
-        public override NTVariableData ToNTVariableData(){
-            OnBeforeSerialize();
-            return this.serializedData;
-        }
-
         public override Type GetDataType(){
             return typeof(T);
         }
@@ -92,16 +47,14 @@ namespace NT.Variables
     [Serializable]
     public class NTVariable : INTVaribale
     {
-        public NTVariableData serializedData;
         public bool collapsed = true;
-
-        public virtual void FromNTVariableData(NTVariableData data){}
+        public string name;
 
         public virtual Type GetDataType(){ return null;}
 
         public virtual object GetDefaultValue(){ return null;}
 
-        public string GetKey(){return serializedData.Name; }
+        public string GetKey(){return name; }
 
         public virtual object GetValue(){return null;}
 
@@ -109,11 +62,11 @@ namespace NT.Variables
 
         public virtual void Reset(){}
 
-        public virtual void SetCaollapsed(bool collapsed){this.collapsed = collapsed;}
+        public virtual void SetCollapsed(bool collapsed){this.collapsed = collapsed;}
 
         public virtual void SetDefaultValue(object value){}
 
-        public void SetKey(string key) {this.serializedData.Name = key;}
+        public void SetKey(string key) {name = key;}
 
         public virtual void SetValue(object value){}
 
@@ -139,16 +92,13 @@ namespace NT.Variables
 
         void Reset();
 
-        void FromNTVariableData(NTVariableData data);
-        NTVariableData ToNTVariableData();
-
         string GetKey();
         void SetKey(string key);
 
         Type GetDataType();
 
         bool IsCollapsed();
-        void SetCaollapsed(bool collapsed);
+        void SetCollapsed(bool collapsed);
     }
 
     public enum Operator

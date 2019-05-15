@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using XNode;
 
 public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public bool dragOnSurfaces = true;
@@ -104,7 +105,14 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
         
         nodePosition = new Vector2( nodePosition.x - 80, -nodePosition.y);
 
-        rg.SpawnNode(nhd.nodeType, nodePosition);
+        Node node = rg.graph.AddNode(nhd.nodeType);
+        node.position = nodePosition;
+
+        if(nhd.onNodeCreated != null){
+            nhd.onNodeCreated.Invoke(node);
+        }
+        
+        rg.Refresh();
     }
     
 }

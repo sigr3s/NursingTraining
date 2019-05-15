@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace NT.SceneObjects{
     public struct TebleData{
-        public string slot1;
-        public string slot2;
-        public string slot3;
-        public string slot4;
-        public string slot5;
-        public string slot6;
+        public SceneGameObject slot00;
+        public SceneGameObject slot01;
+        public SceneGameObject slot02;
+        public SceneGameObject slot03;
+        public SceneGameObject slot04;
+        public SceneGameObject slot05;
     }
 
     [CreateAssetMenu(fileName = "TableObject", menuName = "NT/Scene/Table")]

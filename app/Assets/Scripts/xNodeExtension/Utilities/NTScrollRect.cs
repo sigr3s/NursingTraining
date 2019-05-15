@@ -87,7 +87,7 @@ public class NTScrollRect : ScrollRect
                 }
                 else
                 {
-                    item.GetComponent<Image>().color = Color.magenta;
+                    item.SetColor();
                 }
             }
 

@@ -238,11 +238,13 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             soc.linkedNTVariable = sobj.data.id;
 
             sobj.data.graph = soc;
-            OnGraphListChanged.Invoke();
         }
 
         showingGraph = sobj.data.graph;
         SetSelected(key);
+
+        OnGraphListChanged.Invoke();
+
     }
 
     public void OpenSceneGraph(){
@@ -256,7 +258,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(sceneGameObjects == null) return graphs;
 
         foreach(var sceneGameObject in sceneGameObjects){
-            if(sceneGameObject.Value.data.graph != null && sceneGameObject.Value.data.graph.nodes.Count > 0){
+            if( sceneGameObject.Value.data.graph != null && 
+                (sceneGameObject.Value.data.graph.nodes.Count > 0 || sceneGameObject.Value.data.graph == showingGraph)){
                 SceneObjectGraph sog = sceneGameObject.Value.data.graph;
 
                 sog.linkedNTVariable = sceneGameObject.Value.data.id;

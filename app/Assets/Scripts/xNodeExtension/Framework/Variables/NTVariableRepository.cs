@@ -374,7 +374,7 @@ namespace NT.Variables
 
             for (int i = 0; i < keys.Count; i++){
                 NTVariable instance = (NTVariable)FormatterServices.GetUninitializedObject(t); //does not call ctor
-                instance.FromNTVariableData(values[i]);
+                //instance.FromNTVariableData(values[i]);
                 this.Add(keys[i], instance);
             }
         }

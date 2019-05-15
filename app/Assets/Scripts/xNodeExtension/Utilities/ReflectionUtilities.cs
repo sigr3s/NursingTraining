@@ -152,7 +152,8 @@ namespace NT
                             t == typeof(float)  ||
                             t == typeof(double) ||
                             t == typeof(bool)   ||
-                            t.IsEnum );
+                            t.IsEnum            ||
+                            t == typeof(SceneGameObject));
 
             return isBasic;
         }

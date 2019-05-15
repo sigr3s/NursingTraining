@@ -24,12 +24,14 @@ public class GUIProperty : MonoBehaviour {
     [Header("Debug")]
     public string path;
     public object data;
+    public PropertyType propertyType;
 
     public enum PropertyType{
         String, 
         Number,
         Boolean,
-        Enumeration
+        Enumeration,
+        SceneReference
     }
 
 
@@ -38,6 +40,7 @@ public class GUIProperty : MonoBehaviour {
     public void SetData(object data, string path, PropertyType propertyType){
         this.data = data;
         this.path = path;
+        this.propertyType = propertyType;
 
         switch(propertyType){
             case PropertyType.String:
@@ -108,12 +111,18 @@ public class GUIProperty : MonoBehaviour {
                 enumInput.value = selected;
                 
             break;
+            case PropertyType.SceneReference:
+                boolInput.gameObject.SetActive(false);
+                enumInput.gameObject.SetActive(false);
+                textInput.gameObject.SetActive(false);
+            break;
         }
+
         int start = path.LastIndexOf('/');
 
         start = start >= 0 ? start + 1 : 0;
 
-        fieldName.text = path.Substring(start, path.Length - start);
+        if(fieldName != null) fieldName.text = path.Substring(start, path.Length - start);
     }
 
     private void ModifyPropertyFloat(string stringValue)

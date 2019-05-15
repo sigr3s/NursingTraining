@@ -35,10 +35,6 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
                 ports.Add(guiport);
 
                 ignored.Add(port.fieldName);
-
-                if(port.IsDynamic){
-                    Debug.LogWarning("Instantiate dynamic port!");
-                }
             }
 
             transform.Find("Header/Title").GetComponent<Text>().text = node.name;
@@ -84,9 +80,10 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
         }
     }
 
-    private void PropertyChanged(object arg0, string path)
+    private void PropertyChanged(object value, string path)
     {
-       Debug.Log("Changed something from editor " + path);
+        object n = node;
+        ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -99,6 +96,11 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
             if (ports[i].name == fieldName) return ports[i];
         }
         return null;
+    }
+
+    public void SetColor()
+    {
+        GetComponent<Image>().color = graph.GetColorFor(node.GetType());
     }
 
     public virtual void UpdateGUI()

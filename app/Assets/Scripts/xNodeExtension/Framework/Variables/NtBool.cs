@@ -7,17 +7,6 @@ namespace NT.Variables
     [Serializable]
     public class NTBool : NTVariable<bool>{
 
-        public override bool DeserializeValue(string data){ 
-            bool b = false;
-            bool.TryParse(data, out b);
-            return b; 
-        }
-
-        public override string SerializeValue(bool val){
-            return val.ToString(); 
-        }
-
-
         public override bool Evaluate(Operator op, string value, bool isLeft){
 
             bool conditionBool = false;

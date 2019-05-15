@@ -20,4 +20,5 @@ MonoBehaviour:
   sceneObjectUI:
     color: {r: 0.5514998, g: 0.9528302, b: 0.5348434, a: 0.49019608}
     icon: {fileID: 21300000, guid: 7029861cd3b03e140887d56c9022c007, type: 3}
+    category: 1
   GUID: 3a4e8434-b4fe-4101-ad63-cb5f5051df50

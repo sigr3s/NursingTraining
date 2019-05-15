@@ -171,8 +171,14 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        data.position = transform.localPosition;
-        data.rotation = transform.localRotation.eulerAngles;
+        if(this == null){
+            Debug.Log("Null???");
+        }
+        
+        if(this != null && transform != null){
+            data.position = transform.localPosition;
+            data.rotation = transform.localRotation.eulerAngles;
+        }
     }
 
     public void OnAfterDeserialize()

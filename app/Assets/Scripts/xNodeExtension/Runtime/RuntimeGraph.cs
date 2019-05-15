@@ -114,7 +114,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
             runtimeNode.transform.localScale = Vector3.one;
             runtimeNode.name = node.GetType().Name;
 
-            runtimeNode.GetComponent<Image>().color = GetColorFor(node.GetType());
+            runtimeNode.SetColor();
 
             runtimeNode.gameObject.SetActive(true);
 

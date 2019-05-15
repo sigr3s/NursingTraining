@@ -5,471 +5,3701 @@
         "$id": 1,
         "$type": "1|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
     },
-    "$rlength": 1,
+    "$rlength": 34,
     "$rcontent": [
         {
-            "$k": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+            "$k": "Closet2c491899-e85a-4a4b-9b80-14c60bd5f6cb",
             "$v": {
                 "$id": 2,
                 "$type": "2|SceneGameObject, Assembly-CSharp",
                 "data": {
                     "$type": "3|SceneGameObjectData, Assembly-CSharp",
-                    "id": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
+                    "id": "Closet2c491899-e85a-4a4b-9b80-14c60bd5f6cb",
                     "childs": {
                         "$id": 3,
                         "$type": "4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
+                        "$rlength": 3,
+                        "$rcontent": [
+                            "Defibrilator805e5ac0-3061-4b59-8db5-637220934f52",
+                            "Defibrilatore692a1a9-34fd-46bb-b270-8d0ba64ccdc9",
+                            "Defibrilator7ba56340-5fad-40d7-bbd4-3fc1a5e08d68"
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 4,
+                        "$type": "5|NT.Variables.NTVariable`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": "6|NT.SceneObjects.ClosetData, Assembly-CSharp",
+                            "mainDrawer": {
+                                "$type": "7|NT.SceneObjects.Drawer, Assembly-CSharp",
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": {
+                                    "$id": 5,
+                                    "$type": 2,
+                                    "data": {
+                                        "$type": 3,
+                                        "id": "Defibrilator7ba56340-5fad-40d7-bbd4-3fc1a5e08d68",
+                                        "childs": {
+                                            "$id": 6,
+                                            "$type": 4,
+                                            "$rlength": 0,
+                                            "$rcontent": [
+                                            ]
+                                        },
+                                        "parent": "Closet2c491899-e85a-4a4b-9b80-14c60bd5f6cb",
+                                        "data": {
+                                            "$id": 7,
+                                            "$type": "8|NT.Variables.NTVariable`1[[NT.SceneObjects.DefibrilatorData, Assembly-CSharp]], Assembly-CSharp",
+                                            "collapsed": true,
+                                            "name": null,
+                                            "value": {
+                                                "$type": "9|NT.SceneObjects.DefibrilatorData, Assembly-CSharp",
+                                                "hasCharge": false,
+                                                "configuredVoltage": 0,
+                                                "isCharging": false
+                                            },
+                                            "defaultValue": {
+                                                "$type": 9,
+                                                "hasCharge": false,
+                                                "configuredVoltage": 0,
+                                                "isCharging": false
+                                            }
+                                        },
+                                        "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                                        "graphJSON": "",
+                                        "position": {
+                                            "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
+                                            -0.110595718,
+                                            0.471069336,
+                                            0.202183709
+                                        },
+                                        "rotation": {
+                                            "$type": 10,
+                                            0,
+                                            180,
+                                            0
+                                        },
+                                        "graph": {
+                                            "$id": 8,
+                                            "$type": "11|NT.Graph.SceneObjectGraph, Assembly-CSharp",
+                                            "_name": "",
+                                            "nodes": {
+                                                "$id": 9,
+                                                "$type": "12|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "executionNodes": {
+                                                "$id": 10,
+                                                "$type": "13|System.Collections.Generic.List`1[[NT.NTNode, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "packedNodes": {
+                                                "$id": 11,
+                                                "$type": "14|System.Collections.Generic.List`1[[NT.Graph.NodeGroupGraph, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "callbackNodes": {
+                                                "$id": 12,
+                                                "$type": "15|System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "callbackNodesDict": {
+                                                "$id": 13,
+                                                "$type": "16|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib]], mscorlib",
+                                                "comparer": {
+                                                    "$id": 14,
+                                                    "$type": 1
+                                                },
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "linkedNTVariable": "",
+                                            "assignedSCGO": null,
+                                            "displayName": ""
+                                        }
+                                    }
+                                },
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "3a4e8434-b4fe-4101-ad63-cb5f5051df50",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.415374756,
+                        0,
+                        4.56576252
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 15,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 16,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 17,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 18,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 19,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 20,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+            "$v": {
+                "$id": 21,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+                    "childs": {
+                        "$id": 22,
+                        "$type": 4,
+                        "$rlength": 3,
+                        "$rcontent": [
+                            "Defibrilator444d5580-83d7-4c51-954e-7ea4ec7d589a",
+                            "Defibrilator0c29c40d-0ecd-4fe0-9472-39982fb37f2e",
+                            "Defibrilator4da580e9-9ff4-4e57-ba7a-4be671687cb2"
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 23,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": {
+                                    "$id": 24,
+                                    "$type": 2,
+                                    "data": {
+                                        "$type": 3,
+                                        "id": "Defibrilator4da580e9-9ff4-4e57-ba7a-4be671687cb2",
+                                        "childs": {
+                                            "$id": 25,
+                                            "$type": 4,
+                                            "$rlength": 0,
+                                            "$rcontent": [
+                                            ]
+                                        },
+                                        "parent": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+                                        "data": {
+                                            "$id": 26,
+                                            "$type": 8,
+                                            "collapsed": true,
+                                            "name": null,
+                                            "value": {
+                                                "$type": 9,
+                                                "hasCharge": false,
+                                                "configuredVoltage": 0,
+                                                "isCharging": false
+                                            },
+                                            "defaultValue": {
+                                                "$type": 9,
+                                                "hasCharge": false,
+                                                "configuredVoltage": 0,
+                                                "isCharging": false
+                                            }
+                                        },
+                                        "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                                        "graphJSON": "",
+                                        "position": {
+                                            "$type": 10,
+                                            -0.282348633,
+                                            0.440917969,
+                                            0.202183723
+                                        },
+                                        "rotation": {
+                                            "$type": 10,
+                                            0,
+                                            5.008956E-06,
+                                            0
+                                        },
+                                        "graph": {
+                                            "$id": 27,
+                                            "$type": 11,
+                                            "_name": "",
+                                            "nodes": {
+                                                "$id": 28,
+                                                "$type": 12,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "executionNodes": {
+                                                "$id": 29,
+                                                "$type": 13,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "packedNodes": {
+                                                "$id": 30,
+                                                "$type": 14,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "callbackNodes": {
+                                                "$id": 31,
+                                                "$type": 15,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "callbackNodesDict": {
+                                                "$id": 32,
+                                                "$type": 16,
+                                                "comparer": $iref:14,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "linkedNTVariable": "Defibrilator4da580e9-9ff4-4e57-ba7a-4be671687cb2",
+                                            "assignedSCGO": {
+                                                "$id": 33,
+                                                "$type": 2,
+                                                "data": {
+                                                    "$type": 3,
+                                                    "id": "Defibrilator4da580e9-9ff4-4e57-ba7a-4be671687cb2",
+                                                    "childs": {
+                                                        "$id": 34,
+                                                        "$type": 4,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "parent": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+                                                    "data": $iref:26,
+                                                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                                                    "graphJSON": "",
+                                                    "position": {
+                                                        "$type": 10,
+                                                        -0.282348633,
+                                                        0.440917969,
+                                                        0.202183723
+                                                    },
+                                                    "rotation": {
+                                                        "$type": 10,
+                                                        0,
+                                                        5.008956E-06,
+                                                        0
+                                                    },
+                                                    "graph": $iref:27
+                                                }
+                                            },
+                                            "displayName": "Defibriltor"
+                                        }
+                                    }
+                                },
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "3a4e8434-b4fe-4101-ad63-cb5f5051df50",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -1.49661255,
+                        0,
+                        4.565762
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 35,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 36,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 37,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 38,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 39,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 40,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet0b07df7d-b443-42c9-95b6-72d6f7ca64fa",
+            "$v": {
+                "$id": 41,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet0b07df7d-b443-42c9-95b6-72d6f7ca64fa",
+                    "childs": {
+                        "$id": 42,
+                        "$type": 4,
                         "$rlength": 0,
                         "$rcontent": [
                         ]
                     },
                     "parent": "",
                     "data": {
-                        "$id": 4,
-                        "$type": "5|NT.SceneObjects.NTSceneObject`1[[NT.SceneObjects.ClosetData, Assembly-CSharp]], Assembly-CSharp",
-                        "serializedData": {
-                            "$type": "6|NT.Variables.NTVariableData, Assembly-CSharp",
-                            "Name": null,
-                            "Value": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
-                            "DefaultValue": "{\"MaxItems\":0.0,\"numberOfItems\":0,\"d0\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d1\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"},\"d2\":{\"canbeOpened\":false,\"slot00\":\"\",\"slot01\":\"\",\"slot02\":\"\",\"slot03\":\"\",\"slot04\":\"\",\"slot05\":\"\"}}",
-                            "ExtraData": "{\"sceneObjectGUID\":\"\",\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}"
-                        },
+                        "$id": 43,
+                        "$type": 5,
                         "collapsed": true,
+                        "name": null,
                         "value": {
-                            "$type": "7|NT.SceneObjects.ClosetData, Assembly-CSharp",
-                            "MaxItems": 0,
-                            "numberOfItems": 0,
-                            "d0": {
-                                "$type": "8|NT.SceneObjects.Drawer, Assembly-CSharp",
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
                                 "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
-                            },
-                            "d1": {
-                                "$type": 8,
-                                "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
-                            },
-                            "d2": {
-                                "$type": 8,
-                                "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
                             }
                         },
                         "defaultValue": {
-                            "$type": 7,
-                            "MaxItems": 0,
-                            "numberOfItems": 0,
-                            "d0": {
-                                "$type": 8,
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
                                 "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
-                            },
-                            "d1": {
-                                "$type": 8,
-                                "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
-                            },
-                            "d2": {
-                                "$type": 8,
-                                "canbeOpened": false,
-                                "slot00": "",
-                                "slot01": "",
-                                "slot02": "",
-                                "slot03": "",
-                                "slot04": "",
-                                "slot05": ""
-                            }
-                        },
-                        "sceneObjectExtraData": {
-                            "$type": "9|NT.SceneObjects.SceneObjectExtraData, Assembly-CSharp",
-                            "sceneObjectGUID": "",
-                            "position": {
-                                "$type": "10|UnityEngine.Vector3, UnityEngine.CoreModule",
-                                0,
-                                0,
-                                0
-                            },
-                            "rotation": {
-                                "$type": 10,
-                                0,
-                                0,
-                                0
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
                             }
                         }
                     },
-                    "sceneObjectGUID": "c72737ce-ae63-4f27-9d98-ca7dc873bbb2",
+                    "sceneObjectGUID": "3a4e8434-b4fe-4101-ad63-cb5f5051df50",
                     "graphJSON": "",
                     "position": {
                         "$type": 10,
-                        -2.22973633,
+                        0.713104248,
                         0,
-                        -1.496052
+                        4.56576157
                     },
                     "rotation": {
                         "$type": 10,
-                        357.770264,
                         0,
-                        358.503937
+                        180,
+                        0
                     },
                     "graph": {
-                        "$id": 5,
-                        "$type": "11|NT.Graph.SceneObjectGraph, Assembly-CSharp",
+                        "$id": 44,
+                        "$type": 11,
+                        "_name": "",
                         "nodes": {
-                            "$id": 6,
-                            "$type": "12|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
-                            "$rlength": 4,
+                            "$id": 45,
+                            "$type": 12,
+                            "$rlength": 0,
                             "$rcontent": [
-                                {
-                                    "$id": 7,
-                                    "$type": "13|NT.Nodes.Variables.GetVariableNode, Assembly-CSharp",
-                                    "_name": null,
-                                    "graph": $iref:5,
-                                    "position": {
-                                        "$type": "14|UnityEngine.Vector2, UnityEngine.CoreModule",
-                                        -239.146347,
-                                        -881.2317
-                                    },
-                                    "ports": {
-                                        "$id": 8,
-                                        "$type": "15|XNode.Node+NodePortDictionary, Assembly-CSharp",
-                                        "comparer": $iref:1,
-                                        "$rlength": 2,
-                                        "$rcontent": [
-                                            {
-                                                "$k": "result",
-                                                "$v": {
-                                                    "$id": 9,
-                                                    "$type": "16|XNode.NodePort, Assembly-CSharp",
-                                                    "_fieldName": "result",
-                                                    "_node": $iref:7,
-                                                    "_typeQualifiedName": "System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                                                    "connections": {
-                                                        "$id": 10,
-                                                        "$type": "17|System.Collections.Generic.List`1[[XNode.NodePort+PortConnection, Assembly-CSharp]], mscorlib",
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 1,
-                                                    "_connectionType": 0,
-                                                    "_typeConstraint": 0,
-                                                    "_dynamic": false
-                                                }
-                                            },
-                                            {
-                                                "$k": "type",
-                                                "$v": {
-                                                    "$id": 11,
-                                                    "$type": 16,
-                                                    "_fieldName": "type",
-                                                    "_node": $iref:7,
-                                                    "_typeQualifiedName": "System.Type, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                                                    "connections": {
-                                                        "$id": 12,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 1,
-                                                    "_connectionType": 0,
-                                                    "_typeConstraint": 0,
-                                                    "_dynamic": false
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "hasError": false,
-                                    "error": "",
-                                    "isExecuting": false,
-                                    "variableField": "variable",
-                                    "variableKey": null,
-                                    "result": null,
-                                    "type": null
-                                },
-                                {
-                                    "$id": 13,
-                                    "$type": "18|NT.Nodes.Messages.CallbackNode, Assembly-CSharp",
-                                    "_name": null,
-                                    "graph": $iref:5,
-                                    "position": {
-                                        "$type": 14,
-                                        65.7317047,
-                                        -892.207336
-                                    },
-                                    "ports": {
-                                        "$id": 14,
-                                        "$type": 15,
-                                        "comparer": $iref:1,
-                                        "$rlength": 1,
-                                        "$rcontent": [
-                                            {
-                                                "$k": "flowOut",
-                                                "$v": {
-                                                    "$id": 15,
-                                                    "$type": 16,
-                                                    "_fieldName": "flowOut",
-                                                    "_node": $iref:13,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 16,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 1,
-                                                    "_connectionType": 0,
-                                                    "_typeConstraint": 0,
-                                                    "_dynamic": false
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "hasError": false,
-                                    "error": "",
-                                    "isExecuting": false,
-                                    "flowOut": null,
-                                    "callbackKey": null
-                                },
-                                {
-                                    "$id": 17,
-                                    "$type": "19|NT.Nodes.Flow.WaitForNode, Assembly-CSharp",
-                                    "_name": null,
-                                    "graph": $iref:5,
-                                    "position": {
-                                        "$type": 14,
-                                        -30.6097565,
-                                        -677.5732
-                                    },
-                                    "ports": {
-                                        "$id": 18,
-                                        "$type": 15,
-                                        "comparer": $iref:1,
-                                        "$rlength": 4,
-                                        "$rcontent": [
-                                            {
-                                                "$k": "seconds",
-                                                "$v": {
-                                                    "$id": 19,
-                                                    "$type": 16,
-                                                    "_fieldName": "seconds",
-                                                    "_node": $iref:17,
-                                                    "_typeQualifiedName": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-                                                    "connections": {
-                                                        "$id": 20,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 0,
-                                                    "_connectionType": 1,
-                                                    "_typeConstraint": 2,
-                                                    "_dynamic": false
-                                                }
-                                            },
-                                            {
-                                                "$k": "breakFlow",
-                                                "$v": {
-                                                    "$id": 21,
-                                                    "$type": 16,
-                                                    "_fieldName": "breakFlow",
-                                                    "_node": $iref:17,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 22,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 0,
-                                                    "_connectionType": 1,
-                                                    "_typeConstraint": 2,
-                                                    "_dynamic": false
-                                                }
-                                            },
-                                            {
-                                                "$k": "flowIn",
-                                                "$v": {
-                                                    "$id": 23,
-                                                    "$type": 16,
-                                                    "_fieldName": "flowIn",
-                                                    "_node": $iref:17,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 24,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 0,
-                                                    "_connectionType": 1,
-                                                    "_typeConstraint": 2,
-                                                    "_dynamic": false
-                                                }
-                                            },
-                                            {
-                                                "$k": "flowOut",
-                                                "$v": {
-                                                    "$id": 25,
-                                                    "$type": 16,
-                                                    "_fieldName": "flowOut",
-                                                    "_node": $iref:17,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 26,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 1,
-                                                    "_connectionType": 0,
-                                                    "_typeConstraint": 0,
-                                                    "_dynamic": false
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "hasError": false,
-                                    "error": "",
-                                    "isExecuting": false,
-                                    "flowIn": null,
-                                    "flowOut": null,
-                                    "seconds": 0,
-                                    "breakFlow": null
-                                },
-                                {
-                                    "$id": 27,
-                                    "$type": "20|NT.Nodes.Other.DisplayMessage, Assembly-CSharp",
-                                    "_name": null,
-                                    "graph": $iref:5,
-                                    "position": {
-                                        "$type": 14,
-                                        -309.878052,
-                                        -626.353638
-                                    },
-                                    "ports": {
-                                        "$id": 28,
-                                        "$type": 15,
-                                        "comparer": $iref:1,
-                                        "$rlength": 2,
-                                        "$rcontent": [
-                                            {
-                                                "$k": "flowIn",
-                                                "$v": {
-                                                    "$id": 29,
-                                                    "$type": 16,
-                                                    "_fieldName": "flowIn",
-                                                    "_node": $iref:27,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 30,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 0,
-                                                    "_connectionType": 1,
-                                                    "_typeConstraint": 2,
-                                                    "_dynamic": false
-                                                }
-                                            },
-                                            {
-                                                "$k": "flowOut",
-                                                "$v": {
-                                                    "$id": 31,
-                                                    "$type": 16,
-                                                    "_fieldName": "flowOut",
-                                                    "_node": $iref:27,
-                                                    "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                                                    "connections": {
-                                                        "$id": 32,
-                                                        "$type": 17,
-                                                        "$rlength": 0,
-                                                        "$rcontent": [
-                                                        ]
-                                                    },
-                                                    "_direction": 1,
-                                                    "_connectionType": 0,
-                                                    "_typeConstraint": 0,
-                                                    "_dynamic": false
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    "hasError": false,
-                                    "error": "",
-                                    "isExecuting": false,
-                                    "flowIn": null,
-                                    "flowOut": null,
-                                    "input": null
-                                }
                             ]
                         },
                         "executionNodes": {
-                            "$id": 33,
-                            "$type": "21|System.Collections.Generic.List`1[[NT.NTNode, Assembly-CSharp]], mscorlib",
+                            "$id": 46,
+                            "$type": 13,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
                         "packedNodes": {
-                            "$id": 34,
-                            "$type": "22|System.Collections.Generic.List`1[[NT.Graph.NodeGroupGraph, Assembly-CSharp]], mscorlib",
+                            "$id": 47,
+                            "$type": 14,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
                         "callbackNodes": {
-                            "$id": 35,
-                            "$type": "23|System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib",
-                            "$rlength": 1,
-                            "$rcontent": [
-                                $iref:13
-                            ]
-                        },
-                        "callbackNodesDict": {
-                            "$id": 36,
-                            "$type": "24|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib]], mscorlib",
-                            "comparer": {
-                                "$id": 37,
-                                "$type": 1
-                            },
+                            "$id": 48,
+                            "$type": 15,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
-                        "linkedNTVariable": "Closet M2aacdeffd-9309-44f8-b32c-77c53b8c085c",
-                        "assignedSCGO": null
+                        "callbackNodesDict": {
+                            "$id": 49,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Defibrilator444d5580-83d7-4c51-954e-7ea4ec7d589a",
+            "$v": {
+                "$id": 50,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator444d5580-83d7-4c51-954e-7ea4ec7d589a",
+                    "childs": {
+                        "$id": 51,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+                    "data": {
+                        "$id": 52,
+                        "$type": 8,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.282348633,
+                        0.440917969,
+                        0.202183723
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        5.008956E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 53,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 54,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 55,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 56,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 57,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 58,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Defibrilator0c29c40d-0ecd-4fe0-9472-39982fb37f2e",
+            "$v": {
+                "$id": 59,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator0c29c40d-0ecd-4fe0-9472-39982fb37f2e",
+                    "childs": {
+                        "$id": 60,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closeta5c03d09-7995-4fc6-9c99-b03e3942cf34",
+                    "data": {
+                        "$id": 61,
+                        "$type": 8,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.282348633,
+                        0.440917969,
+                        0.202183723
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 62,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 63,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 64,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 65,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 66,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 67,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Defibrilator4da580e9-9ff4-4e57-ba7a-4be671687cb2",
+            "$v": $iref:24
+        },
+        {
+            "$k": "Defibrilator805e5ac0-3061-4b59-8db5-637220934f52",
+            "$v": {
+                "$id": 68,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilator805e5ac0-3061-4b59-8db5-637220934f52",
+                    "childs": {
+                        "$id": 69,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet2c491899-e85a-4a4b-9b80-14c60bd5f6cb",
+                    "data": {
+                        "$id": 70,
+                        "$type": 8,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.110595718,
+                        0.471069336,
+                        0.202183709
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 71,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 72,
+                            "$type": 12,
+                            "$rlength": 1,
+                            "$rcontent": [
+                                {
+                                    "$id": 73,
+                                    "$type": "17|NT.Nodes.Variables.GetNTVariableNode, Assembly-CSharp",
+                                    "_name": "GET - (Defibriltor)",
+                                    "graph": $iref:71,
+                                    "position": {
+                                        "$type": "18|UnityEngine.Vector2, UnityEngine.CoreModule",
+                                        -253.499969,
+                                        -216.78
+                                    },
+                                    "ports": {
+                                        "$id": 74,
+                                        "$type": "19|XNode.Node+NodePortDictionary, Assembly-CSharp",
+                                        "comparer": $iref:1,
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$k": "hasCharge",
+                                                "$v": {
+                                                    "$id": 75,
+                                                    "$type": "20|XNode.NodePort, Assembly-CSharp",
+                                                    "_fieldName": "hasCharge",
+                                                    "_node": $iref:73,
+                                                    "_typeQualifiedName": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                                    "connections": {
+                                                        "$id": 76,
+                                                        "$type": "21|System.Collections.Generic.List`1[[XNode.NodePort+PortConnection, Assembly-CSharp]], mscorlib",
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "_direction": 1,
+                                                    "_connectionType": 1,
+                                                    "_typeConstraint": 2,
+                                                    "_dynamic": true
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "hasError": false,
+                                    "error": "",
+                                    "isExecuting": false,
+                                    "variableType": {
+                                        "$id": 77,
+                                        "$type": "22|System.RuntimeType, mscorlib",
+                                        "System.Boolean, mscorlib"
+                                    },
+                                    "variablePath": "hasCharge",
+                                    "dataType": {
+                                        "$id": 78,
+                                        "$type": 22,
+                                        "System.String, mscorlib"
+                                    },
+                                    "dataKey": "Defibrilator805e5ac0-3061-4b59-8db5-637220934f52"
+                                }
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 79,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 80,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 81,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 82,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Defibrilatore692a1a9-34fd-46bb-b270-8d0ba64ccdc9",
+            "$v": {
+                "$id": 83,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Defibrilatore692a1a9-34fd-46bb-b270-8d0ba64ccdc9",
+                    "childs": {
+                        "$id": 84,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "Closet2c491899-e85a-4a4b-9b80-14c60bd5f6cb",
+                    "data": {
+                        "$id": 85,
+                        "$type": 8,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        },
+                        "defaultValue": {
+                            "$type": 9,
+                            "hasCharge": false,
+                            "configuredVoltage": 0,
+                            "isCharging": false
+                        }
+                    },
+                    "sceneObjectGUID": "0eede9a1-f439-404a-86a4-1eaca76583d0",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.110595718,
+                        0.471069336,
+                        0.202183709
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        0,
+                        0
+                    },
+                    "graph": {
+                        "$id": 86,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 87,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 88,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 89,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 90,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 91,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Defibrilator7ba56340-5fad-40d7-bbd4-3fc1a5e08d68",
+            "$v": $iref:5
+        },
+        {
+            "$k": "Beda3e5ab0a-cd8a-4c37-a4c7-6bb9c4fc5da7",
+            "$v": {
+                "$id": 92,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Beda3e5ab0a-cd8a-4c37-a4c7-6bb9c4fc5da7",
+                    "childs": {
+                        "$id": 93,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 94,
+                        "$type": "23|NT.Variables.NTVariable`1[[NT.SceneObjects.BedData, Assembly-CSharp]], Assembly-CSharp",
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": "24|NT.SceneObjects.BedData, Assembly-CSharp",
+                            "bedHeight": 0,
+                            "tilt": 0,
+                            "temperature": 0,
+                            "wheelsBlocked": false
+                        },
+                        "defaultValue": {
+                            "$type": 24,
+                            "bedHeight": 0,
+                            "tilt": 0,
+                            "temperature": 0,
+                            "wheelsBlocked": false
+                        }
+                    },
+                    "sceneObjectGUID": "9cfa6334-ef52-407b-b870-98ed702c9902",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        0.0948181152,
+                        0,
+                        2.037219
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 95,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 96,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 97,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 98,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 99,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 100,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Table116c29d6-26d5-4995-872e-0d37e1339f98",
+            "$v": {
+                "$id": 101,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Table116c29d6-26d5-4995-872e-0d37e1339f98",
+                    "childs": {
+                        "$id": 102,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 103,
+                        "$type": "25|NT.Variables.NTVariable`1[[NT.SceneObjects.TebleData, Assembly-CSharp]], Assembly-CSharp",
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": "26|NT.SceneObjects.TebleData, Assembly-CSharp",
+                            "slot00": null,
+                            "slot01": null,
+                            "slot02": null,
+                            "slot03": null,
+                            "slot04": null,
+                            "slot05": null
+                        },
+                        "defaultValue": {
+                            "$type": 26,
+                            "slot00": null,
+                            "slot01": null,
+                            "slot02": null,
+                            "slot03": null,
+                            "slot04": null,
+                            "slot05": null
+                        }
+                    },
+                    "sceneObjectGUID": "1d69c319-2f83-4919-9a46-ffcd3fa8cab1",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        1.9201355,
+                        0,
+                        0.7322681
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 104,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 105,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 106,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 107,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 108,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 109,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M13a8435b7-b2ce-49ce-8f7c-7b73310a4b7b",
+            "$v": {
+                "$id": 110,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M13a8435b7-b2ce-49ce-8f7c-7b73310a4b7b",
+                    "childs": {
+                        "$id": 111,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 112,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -2.58450317,
+                        0,
+                        4.66628838
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        6.83019E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 113,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 114,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 115,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 116,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 117,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 118,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1af5fc52b-830c-4743-bb7d-5b55b7e72fbb",
+            "$v": {
+                "$id": 119,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1af5fc52b-830c-4743-bb7d-5b55b7e72fbb",
+                    "childs": {
+                        "$id": 120,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 121,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        1.77633667,
+                        0,
+                        4.61978769
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        6.83019E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 122,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 123,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 124,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 125,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 126,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 127,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1fe3b392c-e6f8-446c-978d-be901a4debea",
+            "$v": {
+                "$id": 128,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1fe3b392c-e6f8-446c-978d-be901a4debea",
+                    "childs": {
+                        "$id": 129,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 130,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        2.80081177,
+                        0,
+                        4.526691
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        6.83019E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 131,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 132,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 133,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 134,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 135,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 136,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M116fa6f81-c1bd-4833-a7ed-ec406950ad5a",
+            "$v": {
+                "$id": 137,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M116fa6f81-c1bd-4833-a7ed-ec406950ad5a",
+                    "childs": {
+                        "$id": 138,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 139,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        3.7918396,
+                        0,
+                        4.53049564
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        6.83019E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 140,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 141,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 142,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 143,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 144,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 145,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M17089b2f7-a85a-4797-97a5-32ad2382cd72",
+            "$v": {
+                "$id": 146,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M17089b2f7-a85a-4797-97a5-32ad2382cd72",
+                    "childs": {
+                        "$id": 147,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 148,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.749115,
+                        0,
+                        3.554229
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 149,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 150,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 151,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 152,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 153,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 154,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M126a3769a-5b79-42e2-8b00-3fed8e37cde7",
+            "$v": {
+                "$id": 155,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M126a3769a-5b79-42e2-8b00-3fed8e37cde7",
+                    "childs": {
+                        "$id": 156,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 157,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.822235,
+                        0,
+                        2.32143879
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 158,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 159,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 160,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 161,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 162,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 163,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1fb3cda2e-87ba-40a2-8279-65eb0abdb5f6",
+            "$v": {
+                "$id": 164,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1fb3cda2e-87ba-40a2-8279-65eb0abdb5f6",
+                    "childs": {
+                        "$id": 165,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 166,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.761078,
+                        0,
+                        0.905514657
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 167,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 168,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 169,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 170,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 171,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 172,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M18cba496e-80e8-455f-86f3-563e48ab400e",
+            "$v": {
+                "$id": 173,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M18cba496e-80e8-455f-86f3-563e48ab400e",
+                    "childs": {
+                        "$id": 174,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 175,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -3.70632935,
+                        0,
+                        4.545736
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        6.83019E-06,
+                        0
+                    },
+                    "graph": {
+                        "$id": 176,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 177,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 178,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 179,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 180,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 181,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1341138b2-3e67-4be6-bfd1-e9d55e3485d6",
+            "$v": {
+                "$id": 182,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1341138b2-3e67-4be6-bfd1-e9d55e3485d6",
+                    "childs": {
+                        "$id": 183,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 184,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -4.7414856,
+                        0,
+                        3.130506
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        270,
+                        0
+                    },
+                    "graph": {
+                        "$id": 185,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 186,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 187,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 188,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 189,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 190,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M193dd1205-1f42-492f-816f-a0758e393558",
+            "$v": {
+                "$id": 191,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M193dd1205-1f42-492f-816f-a0758e393558",
+                    "childs": {
+                        "$id": 192,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 193,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -4.666168,
+                        0,
+                        2.073886
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        270,
+                        0
+                    },
+                    "graph": {
+                        "$id": 194,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 195,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 196,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 197,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 198,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 199,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1736a1e25-35b0-43dd-8f9e-b04251da11a6",
+            "$v": {
+                "$id": 200,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1736a1e25-35b0-43dd-8f9e-b04251da11a6",
+                    "childs": {
+                        "$id": 201,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 202,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -4.69046,
+                        0,
+                        0.432722062
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        270,
+                        0
+                    },
+                    "graph": {
+                        "$id": 203,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 204,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 205,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 206,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 207,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 208,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1f4a186e7-9230-4b44-b418-7915e23f8b37",
+            "$v": {
+                "$id": 209,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1f4a186e7-9230-4b44-b418-7915e23f8b37",
+                    "childs": {
+                        "$id": 210,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 211,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -4.719635,
+                        0,
+                        -1.38007641
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        270,
+                        0
+                    },
+                    "graph": {
+                        "$id": 212,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 213,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 214,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 215,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 216,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 217,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1146f986a-9a44-4f93-8d6e-1d35ab13b76d",
+            "$v": {
+                "$id": 218,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1146f986a-9a44-4f93-8d6e-1d35ab13b76d",
+                    "childs": {
+                        "$id": 219,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 220,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -4.64505,
+                        0,
+                        -3.2032814
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        270,
+                        0
+                    },
+                    "graph": {
+                        "$id": 221,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 222,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 223,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 224,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 225,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 226,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1c39bff36-000d-455a-8230-01893d944b25",
+            "$v": {
+                "$id": 227,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1c39bff36-000d-455a-8230-01893d944b25",
+                    "childs": {
+                        "$id": 228,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 229,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -3.81900024,
+                        0,
+                        -4.403735
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 230,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 231,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 232,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 233,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 234,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 235,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1fc9058bb-d027-42c7-8739-320463e280a3",
+            "$v": {
+                "$id": 236,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1fc9058bb-d027-42c7-8739-320463e280a3",
+                    "childs": {
+                        "$id": 237,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 238,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -2.53152466,
+                        0,
+                        -4.387762
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 239,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 240,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 241,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 242,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 243,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 244,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1779ac6f6-c3f4-42fe-8a94-ef834439ddee",
+            "$v": {
+                "$id": 245,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1779ac6f6-c3f4-42fe-8a94-ef834439ddee",
+                    "childs": {
+                        "$id": 246,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 247,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -1.36917114,
+                        0,
+                        -4.50023842
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 248,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 249,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 250,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 251,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 252,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 253,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M101e5ddae-d752-4337-bbd1-55b980b57e24",
+            "$v": {
+                "$id": 254,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M101e5ddae-d752-4337-bbd1-55b980b57e24",
+                    "childs": {
+                        "$id": 255,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 256,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        -0.0493469238,
+                        0,
+                        -4.50788927
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 257,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 258,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 259,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 260,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 261,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 262,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M10860ca23-5584-4c6b-835e-029796da9b4d",
+            "$v": {
+                "$id": 263,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M10860ca23-5584-4c6b-835e-029796da9b4d",
+                    "childs": {
+                        "$id": 264,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 265,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        1.23751831,
+                        0,
+                        -4.42259
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 266,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 267,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 268,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 269,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 270,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 271,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1151ca93e-7315-4ec3-99c4-6208b709ed52",
+            "$v": {
+                "$id": 272,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1151ca93e-7315-4ec3-99c4-6208b709ed52",
+                    "childs": {
+                        "$id": 273,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 274,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        2.38571167,
+                        0,
+                        -4.4829216
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 275,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 276,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 277,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 278,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 279,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 280,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M172126453-a26b-4caf-8930-7ad4a6a40a2c",
+            "$v": {
+                "$id": 281,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M172126453-a26b-4caf-8930-7ad4a6a40a2c",
+                    "childs": {
+                        "$id": 282,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 283,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        3.51071167,
+                        0,
+                        -4.52083826
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        180,
+                        0
+                    },
+                    "graph": {
+                        "$id": 284,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 285,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 286,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 287,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 288,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 289,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M17db17a1c-42b6-4d61-bc76-74016e243a57",
+            "$v": {
+                "$id": 290,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M17db17a1c-42b6-4d61-bc76-74016e243a57",
+                    "childs": {
+                        "$id": 291,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 292,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.78158569,
+                        0,
+                        -0.3087545
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 293,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 294,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 295,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 296,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 297,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 298,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1e12c4bc1-efdc-4749-b944-e78752de2af4",
+            "$v": {
+                "$id": 299,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1e12c4bc1-efdc-4749-b944-e78752de2af4",
+                    "childs": {
+                        "$id": 300,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 301,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.94833374,
+                        0,
+                        -1.34666443
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 302,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 303,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 304,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 305,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 306,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 307,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
+                    }
+                }
+            }
+        },
+        {
+            "$k": "Closet M1ff1d9b34-e18a-41f0-b119-cd8767bb4496",
+            "$v": {
+                "$id": 308,
+                "$type": 2,
+                "data": {
+                    "$type": 3,
+                    "id": "Closet M1ff1d9b34-e18a-41f0-b119-cd8767bb4496",
+                    "childs": {
+                        "$id": 309,
+                        "$type": 4,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "parent": "",
+                    "data": {
+                        "$id": 310,
+                        "$type": 5,
+                        "collapsed": true,
+                        "name": null,
+                        "value": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        },
+                        "defaultValue": {
+                            "$type": 6,
+                            "mainDrawer": {
+                                "$type": 7,
+                                "canbeOpened": false,
+                                "slot00": null,
+                                "slot01": null,
+                                "slot02": null,
+                                "slot03": null,
+                                "slot04": null,
+                                "slot05": null
+                            }
+                        }
+                    },
+                    "sceneObjectGUID": "26391fb5-b877-4f52-b453-3f811a194a98",
+                    "graphJSON": "",
+                    "position": {
+                        "$type": 10,
+                        4.6993103,
+                        0,
+                        -2.73309016
+                    },
+                    "rotation": {
+                        "$type": 10,
+                        0,
+                        90.00001,
+                        0
+                    },
+                    "graph": {
+                        "$id": 311,
+                        "$type": 11,
+                        "_name": "",
+                        "nodes": {
+                            "$id": 312,
+                            "$type": 12,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "executionNodes": {
+                            "$id": 313,
+                            "$type": 13,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "packedNodes": {
+                            "$id": 314,
+                            "$type": 14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodes": {
+                            "$id": 315,
+                            "$type": 15,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "callbackNodesDict": {
+                            "$id": 316,
+                            "$type": 16,
+                            "comparer": $iref:14,
+                            "$rlength": 0,
+                            "$rcontent": [
+                            ]
+                        },
+                        "linkedNTVariable": "",
+                        "assignedSCGO": null,
+                        "displayName": ""
                     }
                 }
             }

@@ -41,7 +41,7 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
 
         var image = m_DraggingIcon.AddComponent<Image>();
 
-        image.sprite = GetComponentInChildren<Image>().sprite;
+        image.sprite = GetComponentInChildren<Image>(true).sprite;
         image.SetNativeSize();
         image.raycastTarget = false;
 
@@ -112,7 +112,13 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         node.position = nodePosition;
         node.name = "GET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
 
-        ((GetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, data.GetType() );
+        if(propertyType == PropertyType.SceneReference){
+            ((GetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, typeof(SceneGameObject) );
+        }
+        else
+        {
+            ((GetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, data.GetType() );
+        }
 
         rg.Refresh();
     }
@@ -139,7 +145,14 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         Node node = rg.graph.AddNode(typeof(SetNTVariableNode));
         node.position = nodePosition;
         node.name = "SET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
-        ((SetNTVariableNode) node).SetVariableKey(dataid, typeof(string), path, data.GetType() );
+
+        if(propertyType == PropertyType.SceneReference){
+            ((SetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, typeof(SceneGameObject) );
+        }
+        else
+        {
+            ((SetNTVariableNode) node).SetVariableKey(dataid, typeof(string), path, data.GetType() );
+        }
 
         rg.Refresh();
     }

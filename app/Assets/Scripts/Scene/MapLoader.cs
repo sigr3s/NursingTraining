@@ -67,6 +67,8 @@ public class MapLoader : MonoBehaviour, IMapLoader {
 
                     childOfElement.RestoreTransform();
 
+                    prefabElementSCGO.sceneObject.HoldItem(childOfElement, prefabElementSCGO);
+
                     childOfElement.data.parent = prefabElementSCGO.data.id;
                     prefabElementSCGO.data.childs.Add(childOfElement.data.id);
                 }
@@ -86,6 +88,9 @@ public class MapLoader : MonoBehaviour, IMapLoader {
 
                 prefabElementSCGO.transform.SetParent(parent.transform);
                 prefabElementSCGO.RestoreTransform();
+
+                parent.sceneObject.HoldItem(prefabElementSCGO, parent);
+
             }   
             else
             {

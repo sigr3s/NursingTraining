@@ -5,7 +5,17 @@ namespace NT.Nodes.Other {
     public class CompareTypes : NTNode {
 
         [Input(ShowBackingValue.Never, ConnectionType.Override)] public DummyConnection type01;
-        [Input(ShowBackingValue.Never, ConnectionType.Override)] public DummyConnection type02;
+        public Tools tool;
+        
+        public enum Tools
+        {
+            Scissors01,
+            Scissors02,
+            Forceps01,
+            Forceps02,
+            Clamp01,     
+            Clamp02,
+        }
         
         [NTOutput] public bool result;
 

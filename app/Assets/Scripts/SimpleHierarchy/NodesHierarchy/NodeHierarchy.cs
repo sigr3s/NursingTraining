@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NT;
 using NT.Nodes.Variables;
 using UnityEngine;
+using XNode;
 
 public class NodeHierarchy : GUIHierarchy {
 
@@ -68,4 +69,5 @@ public class NodeHierarchy : GUIHierarchy {
 
 public class NodeHierarchyData : HierarchyData{
     public Type nodeType;
+    public Action<Node> onNodeCreated;
 }

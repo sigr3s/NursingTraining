@@ -8,7 +8,7 @@ namespace NT.SceneObjects
     public class SceneObject<T> : SceneObject
     {
         public override NTVariable GetDefaultData(){
-            NTVariable savedSceneObject = (NTVariable) Activator.CreateInstance( typeof(NTSceneObject<T>) );
+            NTVariable savedSceneObject = (NTVariable) Activator.CreateInstance( typeof(NTVariable<T>) );
             return savedSceneObject;
         }
     }

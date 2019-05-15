@@ -12,11 +12,12 @@ namespace NT.SceneObjects
 
     public enum ObjectCategory
     {
-        UserPrefabs,
-        Furniture,
-        Props,
-        Tools,
-        Decoration
+        All = 0,
+        Furniture = 1,
+        Props = 2,
+        Tools = 3,
+        Decoration = 4,
+        UserPrefabs = 5
     }
 
     [System.Serializable]
