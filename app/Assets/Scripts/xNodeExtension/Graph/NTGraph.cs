@@ -16,6 +16,7 @@ namespace  NT.Graph
         [Header("Execution Flow Nodes")]
         public List<NTNode> executionNodes = new List<NTNode>();
         public List<NodeGroupGraph> packedNodes = new List<NodeGroupGraph>();
+        public IVariableDelegate variableDelegate;
 
         public virtual List<string> GetCallbacks()
         {

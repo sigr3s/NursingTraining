@@ -12,9 +12,6 @@ namespace NT.Nodes.Variables
     [System.Serializable]
     public class GetNTVariableNode : NTNode, IVariableNode //<T,K> : NTNode, IVariableNode where K: INTVaribale
     {
-
-        private readonly string variableField = "variable";
-
         [SerializeField] private Type variableType;
         [SerializeField] private string variablePath;
         [SerializeField] private Type dataType;

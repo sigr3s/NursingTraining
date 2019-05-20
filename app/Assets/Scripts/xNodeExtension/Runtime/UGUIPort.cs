@@ -113,10 +113,14 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		}
 
 		// Loop through connections
-		for (int i = 0; i < port.ConnectionCount; i++) {
+		for (int i = port.ConnectionCount - 1 ; i >= 0; i--) {
 			NodePort other = port.GetConnection(i);
 			IUGUINode otherNode = graph.GetRuntimeNode(other.node);
-			if (otherNode == null) Debug.LogWarning(other.node.name + " node not found", this);
+			if (otherNode == null){
+				Debug.LogWarning(other.node.name + " node not found ||| " + other.node, this);
+				port.Disconnect(i);
+				continue;
+			}
 			
 			Transform port2 = otherNode.GetPort(other.fieldName).transform;
 			if (!port2) Debug.LogWarning(other.fieldName + " not found", this);

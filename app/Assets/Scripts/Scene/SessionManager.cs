@@ -11,6 +11,7 @@ using SimpleJSON;
 
 using UnityEngine;
 using UnityEngine.Events;
+using XNode;
 
 public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
@@ -45,8 +46,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         }
     } 
 
-    private NTGraph _showingGraph;
-    public NTGraph showingGraph{
+    private NodeGraph _showingGraph;
+    public NodeGraph showingGraph{
         get{
             return _showingGraph;
         }  

@@ -29,7 +29,6 @@ namespace NT.SceneObjects{
         }
 
         public override void HoldItem(SceneGameObject obj, SceneGameObject parent){
-            Debug.Log("Handele item???");
             obj.gameObject.SetActive(false);
             
             ClosetData cd = (ClosetData) parent.data.data.GetDefaultValue();

@@ -14,10 +14,11 @@ namespace  NT.Graph
             File.WriteAllBytes(NodeGroupGraph.exportPath + graph.assetID + ".nt", serializedData);
         }
 
-        public static void AddTo(this NodeGroupGraph graph, NTGraph parentGraph, Vector2 position){
+        public static NodeGroupGraph AddTo(this NodeGroupGraph graph, NTGraph parentGraph, Vector2 position){
             var ngc = (NodeGroupGraph) graph.Copy();
             ngc.position = position;
             parentGraph.AddGroupedNodes(ngc);
+            return ngc;
         }
     }
     
@@ -79,16 +80,26 @@ namespace  NT.Graph
             for(int i = nodeGroupGraph.nodes.Count - 1; i >= 0; i--){
                 var n = nodeGroupGraph.nodes[i];
                 Node nod = nodesToGroup.Find( no => no.name == n.name );
+                
 
+                // node is not contained in the group => remove it from the grouped graph!
                 if(nod == null){
+                    foreach(var port in n.Ports){
+		                for (int c = port.ConnectionCount - 1 ; c >= 0; c--) {
+                            NodePort other = port.GetConnection(c);
+                            
+                            //if this node is in the grouped ones then we should remove it from group graph but keep the connection
+                            Node nodeInGroup = nodesToGroup.Find( no => no.name == other.node.name);
+
+                            if(nodeInGroup != null){
+                                port.Redirect(new List<Node>(){other.node}, new List<Node>(){nodeInGroup});
+                                Debug.Log("Rdirect connection?");
+                            }
+                        }
+                    }
                     nodeGroupGraph.RemoveNode(n);
                 }
             }
-
-            foreach(Node n in nodesToGroup){
-                g.nodes.Remove(n);
-            }           
-
 
             foreach(var n in nodeGroupGraph.nodes){
                 foreach(var p in n.Ports){
@@ -100,7 +111,11 @@ namespace  NT.Graph
 
             
             if(g is NTGraph){
-                nodeGroupGraph.AddTo((NTGraph) g, nodesToGroup[0].position);
+                NodeGroupGraph ngc = nodeGroupGraph.AddTo((NTGraph) g, nodesToGroup[0].position);
+
+                foreach(Node n in nodesToGroup){
+                    g.nodes.Remove(n);
+                }
             }
             
             nodeGroupGraph.Export();

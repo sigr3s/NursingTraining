@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
 
-public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextItem {
+public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandler, IUGUINode, IContextItem {
     public NodeGroupGraph group;
     public RuntimeGraph graph;
 
@@ -44,6 +44,11 @@ public class UGUIGroupedNode :  MonoBehaviour, IDragHandler, IUGUINode, IContext
     public void OnDrag(PointerEventData eventData) {
 
     }
+
+    public void OnPointerClick(PointerEventData eventData){
+        SessionManager.Instance.showingGraph = group;
+    }
+
 
     public virtual UGUIPort GetPort(string fieldName)
     {

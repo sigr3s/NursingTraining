@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NT.Graph;
 using UnityEngine;
+using XNode;
 
 public class GraphPanel : MonoBehaviour
 {   
@@ -43,10 +44,12 @@ public class GraphPanel : MonoBehaviour
     }
 
     private void RefillTabs(){
-        CleanTabs();        
+        CleanTabs();
+
+        string key = GetCurrentKey();
 
         GraphTab sceneTab = Instantiate(graphTab, content);
-        sceneTab.isSelected = true;
+        sceneTab.isSelected = key == SceneGraphKey;
         sceneTab.isScene = true;
         sceneTab.NTKey = SceneGraphKey;
         sceneTab.DisplayName = SceneGraphKey;
@@ -56,7 +59,7 @@ public class GraphPanel : MonoBehaviour
         foreach(SceneObjectGraph sog in SessionManager.Instance.GetAllGraphs()){
             GraphTab sceneObjectTab = Instantiate(graphTab, content);
 
-            sceneObjectTab.isSelected = false;
+            sceneObjectTab.isSelected = key == sog.linkedNTVariable;
             sceneObjectTab.isScene = false;
             sceneObjectTab.NTKey = sog.linkedNTVariable;
             sceneObjectTab.DisplayName = sog.displayName;
@@ -70,16 +73,29 @@ public class GraphPanel : MonoBehaviour
         RefillTabs();
     }
 
-    private void ChangeGraph()
-    {
-        NTGraph graph = SessionManager.Instance.showingGraph;
-        runtimeGraph.SetGraph(graph);
+    public string GetCurrentKey(){
+        NodeGraph graph = SessionManager.Instance.showingGraph;
 
         string key = SceneGraphKey;
 
-        if(graph.GetType() == typeof(SceneObjectGraph)){
+        if(graph is SceneObjectGraph){
             key = ((SceneObjectGraph) graph).linkedNTVariable;
         }
+        else if(graph is NodeGroupGraph)
+        {
+            key = "";
+        }
+
+        return key;
+
+    }
+
+    private void ChangeGraph()
+    {
+        NodeGraph graph = SessionManager.Instance.showingGraph;
+        runtimeGraph.SetGraph(graph);
+
+        string key = GetCurrentKey();
 
         foreach(GraphTab tab in tabs){
             if(tab.NTKey == key){

@@ -56,7 +56,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         graphContextMenu.onClickSpawn += SpawnNode;
     }
 
-    public void SetGraph(NTGraph graph){
+    public void SetGraph(NodeGraph graph){
         Clear();
         this.graph = graph;
         scrollRect.content.localPosition = Vector2.zero;
@@ -145,8 +145,10 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
 
     public void AddNodeGroup(NodeGroupGraph nhd, Vector2 nodePosition)
     {
-        nhd.AddTo((NTGraph) graph, nodePosition);
-        Refresh();
+        if(graph is NTGraph){
+            nhd.AddTo((NTGraph) graph, nodePosition);
+            Refresh();
+        }
     }
 
     public virtual Color GetColorFor(Type t){
@@ -166,6 +168,7 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
                 return nodes[i];
             } else { }
         }
+    
         return null;
     }
 
