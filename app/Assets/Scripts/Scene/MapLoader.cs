@@ -105,6 +105,8 @@ public class MapLoader : MonoBehaviour, IMapLoader {
                     childsGO.Add(prefabElement.data.parent, parentChilds); 
                 }
             }
+
+            
             
             SessionManager.Instance.AddSceneGameObject(prefabElementSCGO);
             parentsGO.Add(prefabElement.data.id, prefabElementSCGO);

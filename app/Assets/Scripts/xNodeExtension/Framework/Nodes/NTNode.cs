@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NT.Atributes;
 using UnityEngine;
 using XNode;
@@ -48,6 +49,20 @@ namespace NT{
 
         public virtual Color GetColor(){
             return Color.white;
+        }
+
+
+        public virtual string GetDisplayName(){
+            return GetType().Name;
+        }
+        public virtual List<string> GetPath(){
+            string path = GetType().ToString().Replace("NT.Nodes.", "");
+            path = path.Replace(".", "/");
+
+            List<string> pathParts = new List<string>(path.Split('/') );
+
+            pathParts[pathParts.Count - 1] = GetDisplayName();
+            return pathParts;
         }
     }
 }

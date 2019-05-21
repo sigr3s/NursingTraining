@@ -24,6 +24,7 @@ namespace NT.Variables
         }
         public override void SetDefaultValue(object value){
             this.defaultValue = (T) value;
+            this.value = this.defaultValue;
         }
 
         public override object GetValue(){

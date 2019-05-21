@@ -28,15 +28,15 @@ namespace NT.Nodes.Variables{
             object value = null;
 
 
-            Debug.LogError("NOT IMPLEMENTED YET!");
-
             if(portValue != null){
                 if(!string.IsNullOrEmpty(variablePath)){
-                    //value = g.sceneVariables.variableRepository.GetNTValue(variableKey, variableType);
+                    value = g.variableDelegate.GetValue(dataKey);
                     
                     if(value == null) yield break;
 
                     ReflectionUtilities.SetValueOf(ref value, portValue, variablePath.Split('/').ToList());
+
+                    object v2 = g.variableDelegate.GetValue(dataKey);
                 }
                 else
                 {

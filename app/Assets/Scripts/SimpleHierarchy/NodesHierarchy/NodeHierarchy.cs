@@ -23,10 +23,11 @@ public class NodeHierarchy : GUIHierarchy {
 
             if(t == typeof(FlowNode) ||  t == typeof(NTNode)) continue;
 
-            string path = t.ToString().Replace("NT.Nodes.", "");
-            path = path.Replace(".", "/");
+            //FIXME: Freindly names
 
-            List<string> pathParts = new List<string>(path.Split('/') );
+            var node =  (NTNode) Activator.CreateInstance(t);
+
+            List<string> pathParts = node.GetPath();
 
             HierarchyModel parent = null;
 
@@ -59,7 +60,7 @@ public class NodeHierarchy : GUIHierarchy {
             }
             else
             {
-                root.Add(new HierarchyModel(new NodeHierarchyData{name = path, nodeType = t}));   
+                root.Add(new HierarchyModel(new NodeHierarchyData{name = pathParts[pathParts.Count -1], nodeType = t}));   
             }
         }
         

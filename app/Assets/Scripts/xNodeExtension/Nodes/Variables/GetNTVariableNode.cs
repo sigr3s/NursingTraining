@@ -6,6 +6,7 @@ using UnityEngine;
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace NT.Nodes.Variables
 {
@@ -18,11 +19,24 @@ namespace NT.Nodes.Variables
         [SerializeField] private string dataKey;
 
         public override object GetValue(NodePort port) {
-            
+            if(graph is NTGraph){
+                NTGraph g = (NTGraph) graph;
+                object variableValue = g.variableDelegate.GetValue(dataKey);
 
-            Debug.LogError("Not implemented yet!");
+                if(variableValue != null){
+                    object value = ReflectionUtilities.GetValueOf(new List<string>(variablePath.Split('/')), variableValue);
+                    return value;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
 
-            return null;
         }
 
 

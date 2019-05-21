@@ -153,6 +153,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         byte[] sceneGraphData = File.ReadAllBytes(saveFolder +  "/" + SessionData.sceneGraphFile);
         sceneGraph = SerializationUtility.DeserializeValue<SceneGraph>(sceneGraphData, DataFormat.JSON);
+        sceneGraph.variableDelegate = this;
 
         LoadScene(saveFolder +  "/" + SessionData.sceneFile);
 
@@ -165,8 +166,13 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 #region Scene GameObjcts
     public void AddSceneGameObject(SceneGameObject so){
         sceneGameObjects.Add(so.data.id, so);
+        
+        if(so.data.graph != null){
+            so.data.graph.variableDelegate = this;
+        }
+
         OnSceneGameObjectsChanged.Invoke();
-        OnGraphListChanged.Invoke();    
+        OnGraphListChanged.Invoke();
     }
 
     public void RemoveSceneGameObject(string key){
@@ -237,6 +243,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(sobj.data.graph == null){
             SceneObjectGraph soc = new SceneObjectGraph();
             soc.linkedNTVariable = sobj.data.id;
+            soc.variableDelegate = this;
 
             sobj.data.graph = soc;
         }
@@ -266,6 +273,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
                 sog.linkedNTVariable = sceneGameObject.Value.data.id;
                 sog.displayName = sceneGameObject.Value.name;
 
+                if(sog.variableDelegate == null) sog.variableDelegate = this;
+
                 graphs.Add(sceneGameObject.Value.data.graph);
             }
         }
@@ -275,9 +284,16 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
     public object GetValue(string key)
     {
-        throw new NotImplementedException();
+        SceneGameObject scgo =  GetSceneGameObject(key);
+        if(scgo != null){
+            return scgo.data.data.GetValue();
+        }
+
+        return null;
     }
-    #endregion
+
+    
+#endregion
 }
 
 [System.Serializable]
