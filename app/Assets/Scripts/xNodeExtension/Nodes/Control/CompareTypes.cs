@@ -22,5 +22,9 @@ namespace NT.Nodes.Other {
         public object GetValue() {
             return GetInputValue<object>("result");
         }
+
+        public override string GetDisplayName(){
+            return "Object is type of";
+        }
     }
 }

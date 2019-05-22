@@ -24,6 +24,10 @@ namespace NT.Nodes.Control{
             return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
 
+        public override string GetDisplayName(){
+            return "Branch";
+        }
+
         
     }
 }

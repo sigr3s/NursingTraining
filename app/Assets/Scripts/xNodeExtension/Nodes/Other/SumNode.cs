@@ -22,6 +22,10 @@ namespace NT.Nodes.Other{
             return result;
         }
 
+        public override string GetDisplayName(){
+            return "Sum";
+        }
+
         
     }   
 

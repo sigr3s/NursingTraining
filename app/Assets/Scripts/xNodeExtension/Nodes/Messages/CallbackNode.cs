@@ -18,5 +18,9 @@ namespace NT.Nodes.Messages{
 
             return new NodeExecutionContext{node = node, inputPort = port?.Connection, outputPort = port};
         }
+
+        public override string GetDisplayName(){
+            return "Message Recieved";
+        }
     }
 }

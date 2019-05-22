@@ -253,6 +253,10 @@ namespace NT.Nodes.Control
                     return false;
             }
         }
+    
+        public override string GetDisplayName(){
+            return "Compare";
+        }
     }
 
     public enum LogicNodeTypes{

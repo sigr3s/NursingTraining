@@ -23,5 +23,9 @@ namespace NT.Nodes.Messages{
             
             yield return null;
         }
+
+        public override string GetDisplayName(){
+            return "Send Message";
+        }
     }
 }

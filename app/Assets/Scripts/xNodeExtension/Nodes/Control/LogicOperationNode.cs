@@ -49,6 +49,10 @@ namespace NT.Nodes.Control
             }
         }
 
+        public override string GetDisplayName(){
+            return "Boolean Operation";
+        }
+
         
         public enum LogicOperation{
             AND,

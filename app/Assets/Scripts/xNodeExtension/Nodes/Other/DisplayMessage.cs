@@ -8,5 +8,9 @@ namespace NT.Nodes.Other {
         public object GetValue() {
             return null;
         }
+
+        public override string GetDisplayName(){
+            return "Dsiplay Message";
+        }
     }
 }

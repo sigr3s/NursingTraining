@@ -8,5 +8,9 @@ namespace NT.Nodes.Other {
         public object GetValue() {
             return GetInputValue<object>("input");
         }
+
+        public override string GetDisplayName(){
+            return "Fail Exercice";
+        }
     }
 }

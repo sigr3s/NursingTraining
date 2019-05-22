@@ -43,6 +43,10 @@ namespace NT.Nodes.Flow{
             {
                 return base.NextNode(context);
             }
+        }
+
+        public override string GetDisplayName(){
+            return "Wait For Seconds";
         }        
     }
 }
