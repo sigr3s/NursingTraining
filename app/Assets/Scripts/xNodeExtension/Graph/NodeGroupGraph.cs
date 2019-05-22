@@ -29,25 +29,50 @@ namespace  NT.Graph
         public Vector2 position = Vector2.zero;
         public string assetID = "";
         public List<NodePort> ports = new List<NodePort>();
+        public static Dictionary<string, NodeGroupGraph> loadedGraphs = new Dictionary<string, NodeGroupGraph>(); 
 
         public NodeGroupGraph(string id){
             this.assetID = id;
         }
+        
         public static List<NodeGroupGraph> GetAll(){
             List<NodeGroupGraph> groupedNodes = new List<NodeGroupGraph>();
-            DirectoryInfo prefabsDir = new DirectoryInfo(NodeGroupGraph.exportPath);
+            DirectoryInfo customNodesDir = new DirectoryInfo(NodeGroupGraph.exportPath);
 
-            if(!prefabsDir.Exists) return null;
+            if(!customNodesDir.Exists) return null;
 
-            FileInfo[] files = prefabsDir.GetFiles("*.nt");
+            FileInfo[] files = customNodesDir.GetFiles("*.nt");
 
             foreach(var file in files){
-                byte[] nodeGroupData = File.ReadAllBytes(file.FullName);
-                NodeGroupGraph po = SerializationUtility.DeserializeValue<NodeGroupGraph>(nodeGroupData, dataFormat);
-                groupedNodes.Add(po);
+                string assID = file.Name.Replace(".nt", "");
+
+                if(loadedGraphs.ContainsKey(assID)){
+                    groupedNodes.Add(loadedGraphs[assID]);
+                }
+                else
+                {
+                    byte[] nodeGroupData = File.ReadAllBytes(file.FullName);
+                    NodeGroupGraph po = SerializationUtility.DeserializeValue<NodeGroupGraph>(nodeGroupData, dataFormat);
+                    groupedNodes.Add(po);
+                    loadedGraphs.Add(po.assetID, po);
+                }
+               
             }
             return groupedNodes;
         }
+
+        public static void Remove(string assetID){
+            string path = NodeGroupGraph.exportPath + assetID + ".nt";
+            if(File.Exists(path)){
+                File.Delete(path);
+            }
+
+            if(loadedGraphs.ContainsKey(assetID)){
+                loadedGraphs.Remove(assetID);
+            }
+
+        }
+        
         public static NodeGroupGraph GroupNodes(List<Node> nodesToGroup, NodeGraph g, string name = "Nodes Group"){
             if(nodesToGroup.Count < 2){
                 Debug.LogWarning("Should be 2 or more nodes to make a group");
@@ -84,19 +109,6 @@ namespace  NT.Graph
 
                 // node is not contained in the group => remove it from the grouped graph!
                 if(nod == null){
-                    foreach(var port in n.Ports){
-		                for (int c = port.ConnectionCount - 1 ; c >= 0; c--) {
-                            NodePort other = port.GetConnection(c);
-                            
-                            //if this node is in the grouped ones then we should remove it from group graph but keep the connection
-                            Node nodeInGroup = nodesToGroup.Find( no => no.name == other.node.name);
-
-                            if(nodeInGroup != null){
-                                port.Redirect(new List<Node>(){other.node}, new List<Node>(){nodeInGroup});
-                                Debug.Log("Rdirect connection?");
-                            }
-                        }
-                    }
                     nodeGroupGraph.RemoveNode(n);
                 }
             }
@@ -113,8 +125,46 @@ namespace  NT.Graph
             if(g is NTGraph){
                 NodeGroupGraph ngc = nodeGroupGraph.AddTo((NTGraph) g, nodesToGroup[0].position);
 
-                foreach(Node n in nodesToGroup){
-                    g.nodes.Remove(n);
+                for(int i = g.nodes.Count -1; i >= 0; i--){
+                    Node n = g.nodes[i];
+                    var nodeInNG = ngc.nodes.Find( no => no.name == n.name );
+
+                    if(nodeInNG == null){
+
+                        /*foreach(var port in n.Ports){
+                            for (int c = port.ConnectionCount - 1 ; c >= 0; c--) {
+                                NodePort other = port.GetConnection(c);
+                                
+                                Node nodeInGroup = ngc.nodes.Find( no => no.name == other.node.name);
+
+                                if(nodeInGroup != null){
+
+                                    Debug.Log("Redirect it to??? __ " + n.name);
+
+                                    port.Redirect(new List<Node>(){other.node}, new List<Node>(){nodeInGroup});
+                                }
+                            }
+                        }*/
+                    }
+                    else
+                    {
+                        foreach(var port in n.Ports){
+
+                            for (int c = port.ConnectionCount - 1 ; c >= 0; c--) {
+                                NodePort other = port.GetConnection(c);
+
+                                Node nodeInGroup = ngc.nodes.Find( no => no.name == other.node.name);
+
+                                if(nodeInGroup == null){
+                                    nodeInNG.GetPort(port.fieldName).Connect(other);
+                                }
+                            }
+                        }
+
+                        g.nodes.Remove(n);
+
+                    }
+
                 }
             }
             

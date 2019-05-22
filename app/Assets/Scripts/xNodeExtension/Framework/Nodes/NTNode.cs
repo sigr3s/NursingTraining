@@ -55,6 +55,12 @@ namespace NT{
         public virtual string GetDisplayName(){
             return GetType().Name;
         }
+
+
+        public virtual int GetWidth(){
+            return 200;
+        }
+
         public virtual List<string> GetPath(){
             string path = GetType().ToString().Replace("NT.Nodes.", "");
             path = path.Replace(".", "/");

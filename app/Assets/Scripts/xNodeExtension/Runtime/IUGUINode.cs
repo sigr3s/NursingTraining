@@ -3,7 +3,7 @@ using XNode;
 
 public interface IUGUINode {
     void UpdateGUI();
-    UGUIPort GetPort(string fieldName);
+    UGUIPort GetPort(string fieldName, Node n);
     bool HasNode(Node node);
     Node GetNode(); 
     GameObject GetGameObject();

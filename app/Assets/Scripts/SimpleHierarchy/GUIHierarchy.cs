@@ -37,7 +37,7 @@ public class GUIHierarchy : MonoBehaviour {
     }
     
     [ContextMenu("Rebuild")]
-    public virtual void Rebuild(){        
+    public virtual void Rebuild(){
         root = GetRoot();
         BuildUI();
     }
@@ -47,6 +47,7 @@ public class GUIHierarchy : MonoBehaviour {
     }
 
     public void BuildUI(){
+
         foreach (var item in activeItems)
         {
             pool.PoolItem(item);

@@ -39,18 +39,18 @@ namespace  NT.Graph
         {
             callbackNodesDict = new Dictionary<string, List<CallbackNode> >();
             foreach(CallbackNode cn in callbackNodes){
-                if(cn != null && !string.IsNullOrEmpty(cn.callbackKey) ){
+                if(cn != null && !string.IsNullOrEmpty(cn.GetCallbackKey()) ){
                     List<CallbackNode> callbacksInKey = new List<CallbackNode>();
 
-                    if(callbackNodesDict.ContainsKey(cn.callbackKey)){
-                        callbacksInKey = callbackNodesDict[cn.callbackKey];
+                    if(callbackNodesDict.ContainsKey(cn.GetCallbackKey())){
+                        callbacksInKey = callbackNodesDict[cn.GetCallbackKey()];
                         callbacksInKey.Add(cn);
-                        callbackNodesDict[cn.callbackKey] = callbacksInKey;
+                        callbackNodesDict[cn.GetCallbackKey()] = callbacksInKey;
                     }
                     else
                     {
                         callbacksInKey.Add(cn);
-                        callbackNodesDict[cn.callbackKey] = callbacksInKey;
+                        callbackNodesDict[cn.GetCallbackKey()] = callbacksInKey;
                     }
                 }
             }

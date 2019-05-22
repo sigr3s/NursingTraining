@@ -122,7 +122,7 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 				continue;
 			}
 			
-			Transform port2 = otherNode.GetPort(other.fieldName).transform;
+			Transform port2 = otherNode.GetPort(other.fieldName, other.node).transform;
 			if (!port2) Debug.LogWarning(other.fieldName + " not found", this);
 			connections[i].SetPosition(transform.position, port2.position);
 		}
@@ -147,7 +147,7 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 				NodePort output = port.Connection;
 				
 				IUGUINode otherNode = graph.GetRuntimeNode(output.node);
-				UGUIPort otherUGUIPort = otherNode.GetPort(output.fieldName);
+				UGUIPort otherUGUIPort = otherNode.GetPort(output.fieldName, output.node);
 				
 				output.Disconnect(port);
 				tempConnection = Instantiate(graph.runtimeConnectionPrefab);

@@ -172,7 +172,6 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
         if(this == null){
-            Debug.Log("Null???");
         }
         
         if(this != null && transform != null){

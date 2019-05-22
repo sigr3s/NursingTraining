@@ -50,10 +50,10 @@ public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandle
     }
 
 
-    public virtual UGUIPort GetPort(string fieldName)
+    public UGUIPort GetPort(string fieldName, Node n)
     {
         for (int i = 0; i < ports.Count; i++) {
-            if (ports[i].name == fieldName) return ports[i];
+            if (ports[i].name == fieldName && ports[i].node == n) return ports[i];
         }
         return null;
     }

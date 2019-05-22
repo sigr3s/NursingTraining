@@ -4,6 +4,7 @@ using System.Linq;
 using NT;
 using NT.SceneObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GUIInspector : MonoBehaviour {
     [Header(" Prefabs ")]
@@ -152,6 +153,8 @@ public class GUIInspector : MonoBehaviour {
                 gp.OnValueChanged.AddListener(OnPropertyChanged);
             }
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate( (RectTransform) content);
     }
 
     private void OnPropertyChanged(object value, string path)

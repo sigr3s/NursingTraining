@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NT;
 using NT.Graph;
 using OdinSerializer;
 using UnityEngine;
@@ -67,6 +68,11 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
     {
         Node node = graph.AddNode(type);
         node.position = position;
+
+        if(node is NTNode){            
+            node.name = ((NTNode) node).GetDisplayName();
+        }
+
         Refresh();
     }
 

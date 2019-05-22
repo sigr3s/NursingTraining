@@ -4,6 +4,8 @@ using UnityEngine;
 using NT.Graph;
 public class GroupedNodesHierarchy : GUIHierarchy
 {
+    public UGUIContextMenu contextMenu;
+
 
     private void Start() {
         Rebuild();
@@ -28,6 +30,11 @@ public class GroupedNodesHierarchy : GUIHierarchy
             
         }
         return root;
+    }
+
+    public void ShowContextMenu(IContextItem sceneHierarcyItem, Vector2 position)
+    {
+        contextMenu.OpenAt(position, sceneHierarcyItem);
     }
 
 }

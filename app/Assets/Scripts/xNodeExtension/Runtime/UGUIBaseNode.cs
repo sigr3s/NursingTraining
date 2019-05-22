@@ -73,6 +73,10 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
                     gp.OnValueChanged.AddListener(PropertyChanged);
                 }
             }
+        
+            if(node is NTNode){
+                ( (RectTransform) transform).sizeDelta = new Vector2( ( (NTNode) node).GetWidth() , ((RectTransform) transform).sizeDelta.y) ;
+            }
         }
         else
         {
@@ -90,7 +94,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
 
     }
 
-    public virtual UGUIPort GetPort(string fieldName)
+    public virtual UGUIPort GetPort(string fieldName, Node n)
     {
         for (int i = 0; i < ports.Count; i++) {
             if (ports[i].name == fieldName) return ports[i];

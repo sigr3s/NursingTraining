@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,17 +15,30 @@ public class UGUINodeContextMenu : UGUIContextMenu {
 	}
 
 	public void RemoveNode() {
-		RuntimeGraph runtimeMathGraph = GetComponentInParent<RuntimeGraph>();
+		RuntimeGraph runtimeGraph = GetComponentInParent<RuntimeGraph>();
 
-		selected.Remove();
-		runtimeMathGraph.Refresh();
+		if(runtimeGraph.selectedNodes.Count > 0){
+
+			for(int i = runtimeGraph.selectedNodes.Count -1 ; i >= 0; i --){
+				IUGUINode n = runtimeGraph.selectedNodes[i];
+				n.RemoveNode();
+			}
+
+			runtimeGraph.selectedNodes = new List<IUGUINode>();
+		}
+		else
+		{
+			selected.Remove();
+		}
+
+		runtimeGraph.Refresh();
 		Close();
 	}
 
 	public void GroupNodes(){
-		RuntimeGraph runtimeMathGraph = GetComponentInParent<RuntimeGraph>();
-		runtimeMathGraph.GroupSelected();
-		runtimeMathGraph.Refresh();
+		RuntimeGraph runtimeGraph = GetComponentInParent<RuntimeGraph>();
+		runtimeGraph.GroupSelected();
+		runtimeGraph.Refresh();
 		Close();
 	}
 }  

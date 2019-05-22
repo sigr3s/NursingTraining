@@ -1,3 +1,4 @@
+using NT;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -107,6 +108,10 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
 
         Node node = rg.graph.AddNode(nhd.nodeType);
         node.position = nodePosition;
+
+        if(node is NTNode){
+            node.name = ((NTNode) node).GetDisplayName();
+        }
 
         if(nhd.onNodeCreated != null){
             nhd.onNodeCreated.Invoke(node);

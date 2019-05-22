@@ -12,7 +12,23 @@ public class NodeDrag : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, 
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-		node.GetGameObject().transform.localPosition = node.GetRuntimeGraph().scrollRect.content.InverseTransformPoint(eventData.position) - offset;
+
+		if(node.GetRuntimeGraph().selectedNodes.Count > 0 && node.GetRuntimeGraph().selectedNodes.Contains(node)){
+			Vector3 oldLocalPos = node.GetGameObject().transform.localPosition;
+			node.GetGameObject().transform.localPosition = node.GetRuntimeGraph().scrollRect.content.InverseTransformPoint(eventData.position) - offset;
+			Vector3 o = oldLocalPos  - node.GetGameObject().transform.localPosition;
+
+			foreach (var item in node.GetRuntimeGraph().selectedNodes)
+			{
+				if(item == node) continue;
+
+				item.GetGameObject().transform.localPosition -= o;
+			}
+		}
+		else
+		{
+			node.GetGameObject().transform.localPosition = node.GetRuntimeGraph().scrollRect.content.InverseTransformPoint(eventData.position) - offset;
+		}
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
@@ -22,10 +38,27 @@ public class NodeDrag : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, 
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
+		Vector3 oldLocalPos = node.GetGameObject().transform.localPosition;
+		
 		node.GetGameObject().transform.localPosition = node.GetRuntimeGraph().scrollRect.content.InverseTransformPoint(eventData.position) - offset;
 		Vector2 pos = node.GetGameObject().transform.localPosition;
 		pos.y = -pos.y;
 		node.SetPosition(pos);
+
+		if(node.GetRuntimeGraph().selectedNodes.Count > 0 && node.GetRuntimeGraph().selectedNodes.Contains(node)){
+			Vector3 o = oldLocalPos  - node.GetGameObject().transform.localPosition;
+			
+			foreach (var item in node.GetRuntimeGraph().selectedNodes)
+			{
+				if(item == node) continue;
+
+				item.GetGameObject().transform.localPosition -= o;
+
+				Vector2 p = item.GetGameObject().transform.localPosition;
+				p.y = -p.y;
+				item.SetPosition(p);
+			}
+		}
 	}
 
 	public void OnPointerClick(PointerEventData eventData) {
