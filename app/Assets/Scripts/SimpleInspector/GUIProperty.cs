@@ -107,9 +107,12 @@ public class GUIProperty : MonoBehaviour {
                     
                     options.Add(new Dropdown.OptionData(enumOption));
                 }
+                
                 enumInput.options = options;
                 enumInput.value = selected;
-                
+
+                enumInput.onValueChanged.RemoveAllListeners();
+                enumInput.onValueChanged.AddListener(ModifyEnum);                 
             break;
             case PropertyType.SceneReference:
                 boolInput.gameObject.SetActive(false);
@@ -123,6 +126,10 @@ public class GUIProperty : MonoBehaviour {
         start = start >= 0 ? start + 1 : 0;
 
         if(fieldName != null) fieldName.text = path.Substring(start, path.Length - start);
+    }
+
+    private void ModifyEnum(int value){
+        OnValueChanged.Invoke(value, path);
     }
 
     private void ModifyPropertyFloat(string stringValue)
