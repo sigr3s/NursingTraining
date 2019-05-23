@@ -24,7 +24,7 @@ namespace NT.Nodes.Messages{
         }
 
         public string GetCallbackKey(){
-            return linkedToSceneObject + key; 
+            return linkedToSceneObject + key;
         }
 
         public override string GetDisplayName(){

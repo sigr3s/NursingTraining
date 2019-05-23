@@ -13,10 +13,8 @@ using XNode;
 namespace  NT.Graph
 {
     public class NTGraph : NodeGraph {
-        [Header("Execution Flow Nodes")]
-        public List<NTNode> executionNodes = new List<NTNode>();
         public List<NodeGroupGraph> packedNodes = new List<NodeGroupGraph>();
-        public IVariableDelegate variableDelegate;
+        [NonSerialized] public IVariableDelegate variableDelegate;
 
         public virtual List<string> GetCallbacks()
         {
@@ -35,9 +33,34 @@ namespace  NT.Graph
             return node;
         }
 
+
+        public void StartExecution(){
+            MessageSystem.onMessageSent -= MessageRecieved;
+            MessageSystem.onMessageSent += MessageRecieved;
+
+            GenerateCallbackDict();
+
+            if(packedNodes != null){
+                foreach(var pack in packedNodes){
+                    pack.StartExecution();
+                }
+            }
+        }
+
         public virtual void GenerateCallbackDict()
         {
             callbackNodesDict = new Dictionary<string, List<CallbackNode> >();
+
+            if(callbackNodes == null){
+                callbackNodes = new List<CallbackNode>();
+
+                foreach(Node n in nodes){
+                    if(n is CallbackNode){
+                        callbackNodes.Add( (CallbackNode) n);
+                    }
+                }
+            }
+
             foreach(CallbackNode cn in callbackNodes){
                 if(cn != null && !string.IsNullOrEmpty(cn.GetCallbackKey()) ){
                     List<CallbackNode> callbacksInKey = new List<CallbackNode>();

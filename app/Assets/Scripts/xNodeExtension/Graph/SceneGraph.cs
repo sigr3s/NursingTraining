@@ -20,22 +20,5 @@ namespace NT.Graph{
             return new List<string>(){"Application Start", "Application End", "Excercise Started", "Exercise End", "Pause", "Resume", "Complete", "Quit" };
         }
 
-        public string message;
-
-        [ContextMenu("Start Execution")]
-        public void StartExecution(){
-            MessageSystem.onMessageSent -= MessageRecieved;
-            MessageSystem.onMessageSent += MessageRecieved;
-
-            GenerateCallbackDict();
-
-            MessageSystem.SendMessage("start");
-        }
-
-         [ContextMenu("Send message")]
-        public void SendMessage(){
-            MessageSystem.SendMessage(message);
-        }
-
     }
 }

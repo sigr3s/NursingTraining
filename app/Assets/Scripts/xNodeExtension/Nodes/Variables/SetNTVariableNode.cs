@@ -20,28 +20,65 @@ namespace NT.Nodes.Variables{
         [SerializeField] private string dataKey;
 
 
+        [SerializeField] private object backingValue;
+
+        public override object GetInstancePortValue(string fieldName){
+            if(HasPort(fieldName)){
+                NodePort port = GetPort(fieldName);
+
+                if(port.IsConnected){
+                    return port.GetInputValue();
+                }
+                else
+                {
+                    return backingValue;
+                }
+            }
+            else
+            {
+                return backingValue;
+            }
+        }
+
+        public override void SetInstancePortValue(string fieldName, object value){
+            backingValue = value;
+        }
+
         public override IEnumerator ExecuteNode(NodeExecutionContext context){
-            
+
             NTGraph g = graph as NTGraph;
-            
-            object portValue = GetPort(variableField).GetInputValue();
+
+            NodePort port = GetPort(variablePath);
+
+            object portValue = port.GetInputValue();
+
+            if(!port.IsConnected){
+                portValue = backingValue;
+            }
+
+
             object value = null;
 
 
             if(portValue != null){
+
                 if(!string.IsNullOrEmpty(variablePath)){
                     value = g.variableDelegate.GetValue(dataKey);
-                    
+
                     if(value == null) yield break;
 
                     ReflectionUtilities.SetValueOf(ref value, portValue, variablePath.Split('/').ToList());
 
-                    object v2 = g.variableDelegate.GetValue(dataKey);
+                    g.variableDelegate.SetValue(dataKey, value);
                 }
                 else
                 {
                     value = portValue;
                 }
+            }
+            else
+            {
+
             }
 
 

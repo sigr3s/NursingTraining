@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using NT;
 using NT.Graph;
 using NT.SceneObjects;
 using NT.Variables;
@@ -31,6 +32,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     [Space(20)]
     [Header("Debug")]
     public Dictionary<string, SceneGameObject> sceneGameObjects;
+    public Dictionary<string, object> userVariables = new Dictionary<string, object>();
     private SceneGameObject _selectedObjectSceneObject;
     public SceneGameObject selectedSceneObject{
 
@@ -44,13 +46,13 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
                 OnCurrentChanged.Invoke();
             }
         }
-    } 
+    }
 
     private NodeGraph _showingGraph;
     public NodeGraph showingGraph{
         get{
             return _showingGraph;
-        }  
+        }
 
         set{
             if(_showingGraph != value){
@@ -85,9 +87,52 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         }
     }
 
+
+    [ContextMenu("Start execution")]
+    public void StartExecution(){
+
+        //Reset all variables to default values!
+        foreach(var so in sceneGameObjects){
+            SceneGameObject scgo = so.Value;
+
+            scgo.data.data.Reset();
+
+            if(scgo.data.graph != null && (scgo.data.graph.nodes.Count > 0 || scgo.data.graph.packedNodes.Count > 0) ){
+                scgo.data.graph.StartExecution();
+            }
+        }
+
+        sceneGraph.StartExecution();
+
+
+        MessageSystem.SendMessage("Application Start");
+    }
+
 #region Export/Import
+
+    [ContextMenu("User variables")]
+    public void UserVariablesTest(){
+        var d = new Dictionary<string, object>();
+
+        d.Add("myString", "hey");
+        d.Add("some", 1);
+        d.Add("test", false);
+
+        byte[] ojson = SerializationUtility.SerializeValue(d, DataFormat.JSON);
+        var d1 = SerializationUtility.DeserializeValue<Dictionary<string, object>>(ojson, DataFormat.JSON);
+
+
+        foreach(var it in d1){
+            Debug.Log(it.Value.GetType().IsString());
+            Debug.Log(it.Value.GetType().IsBool());
+            Debug.Log(it.Value.GetType().IsNumber());
+            Debug.Log(it.Key + " ___ " + it.Value);
+        }
+
+    }
+
     public void SaveScene(string path){
-        
+
         byte[] ojson = SerializationUtility.SerializeValue(sceneGameObjects, DataFormat.JSON);
 
         if(!string.IsNullOrEmpty(path)){
@@ -131,7 +176,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         byte[] ojson = File.ReadAllBytes(path);
 
         var newRoot = SerializationUtility.DeserializeValue<Dictionary<string,SceneGameObject>>(ojson, DataFormat.JSON);
-        
+
         mapLoader.LoadMap(newRoot);
     }
 
@@ -166,7 +211,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 #region Scene GameObjcts
     public void AddSceneGameObject(SceneGameObject so){
         sceneGameObjects.Add(so.data.id, so);
-        
+
         if(so.data.graph != null){
             so.data.graph.variableDelegate = this;
         }
@@ -266,7 +311,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(sceneGameObjects == null) return graphs;
 
         foreach(var sceneGameObject in sceneGameObjects){
-            if( sceneGameObject.Value.data.graph != null && 
+            if( sceneGameObject.Value.data.graph != null &&
                 (sceneGameObject.Value.data.graph.nodes.Count > 0 || sceneGameObject.Value.data.graph == showingGraph)){
                 SceneObjectGraph sog = sceneGameObject.Value.data.graph;
 
@@ -292,8 +337,25 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         return null;
     }
 
-    
-#endregion
+    public void SetValue(string key, object value){
+        SceneGameObject scgo =  GetSceneGameObject(key);
+        if(scgo != null){
+            scgo.data.data.SetValue(value);
+        }
+    }
+
+    public object GetUserVariable(string key)
+    {
+        throw new NotImplementedException();
+    }
+
+    public object SetUserVariable(string key)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    #endregion
 }
 
 [System.Serializable]

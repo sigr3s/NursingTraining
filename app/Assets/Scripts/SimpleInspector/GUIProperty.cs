@@ -20,14 +20,13 @@ public class GUIProperty : MonoBehaviour {
 
     public PropertyChangedEvent OnValueChanged = new PropertyChangedEvent();
 
-    
     [Header("Debug")]
     public string path;
     public object data;
     public PropertyType propertyType;
 
     public enum PropertyType{
-        String, 
+        String,
         Number,
         Boolean,
         Enumeration,
@@ -48,7 +47,7 @@ public class GUIProperty : MonoBehaviour {
                 enumInput.gameObject.SetActive(false);
                 textInput.gameObject.SetActive(true);
 
-                textInput.contentType = InputField.ContentType.Alphanumeric;
+                textInput.contentType = InputField.ContentType.Standard;
                 textInput.text = (string) data;
 
                 textInput.onEndEdit.RemoveAllListeners();
@@ -72,11 +71,10 @@ public class GUIProperty : MonoBehaviour {
                     textInput.onEndEdit.AddListener(ModifyPropertyFloat);
                 }
                 else if(data.GetType() == typeof(double))
-                {   
+                { 
                     textInput.onEndEdit.AddListener(ModifyPropertyDouble);
                 }
 
-               
             break;
             case PropertyType.Boolean:
                 boolInput.gameObject.SetActive(true);

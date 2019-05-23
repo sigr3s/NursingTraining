@@ -27,17 +27,17 @@ public class CallbackHierarchy : GUIHierarchy
             foreach (var callback in callbacks)
             {
                 root.Add(new HierarchyModel(
-                        new NodeHierarchyData{ 
-                            name = callback, 
-                            key = callback, 
+                        new NodeHierarchyData{
+                            name = callback,
+                            key = callback,
                             onNodeCreated = (n) =>{
+                                Debug.Log(callback);
                                 ( (CallbackNode) n).key = callback;
                                 ( (CallbackNode) n).linkedToSceneObject = showing is SceneObjectGraph ? ((SceneObjectGraph) showing).linkedNTVariable : "";
                         },
                         nodeType = typeof(CallbackNode)}
                 ));
-                
-            }   
+            }
         }
         return root;
     }

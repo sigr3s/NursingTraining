@@ -130,6 +130,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
         if(graph is NTGraph){
             NTGraph gnt = (NTGraph) graph;
 
+            if(gnt.packedNodes == null) gnt.packedNodes = new List<NodeGroupGraph>();
+
             foreach(var extra in gnt.packedNodes){
                 UGUIGroupedNode runtimeNode = null;
 

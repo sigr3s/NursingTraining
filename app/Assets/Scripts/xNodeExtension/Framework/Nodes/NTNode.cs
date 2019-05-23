@@ -12,6 +12,15 @@ namespace NT{
         [HideInInspector] public bool hasError = false;
         [HideInInspector] public string error = "";
 
+        public virtual object GetInstancePortValue(string fieldName){
+            return null;
+        }
+
+        public virtual void SetInstancePortValue(string fieldName, object value){
+
+        }
+
+
         public virtual NodeExecutionContext NextNode(NodeExecutionContext context){
             return new NodeExecutionContext{node = null, inputPort = null, outputPort = null};
         }

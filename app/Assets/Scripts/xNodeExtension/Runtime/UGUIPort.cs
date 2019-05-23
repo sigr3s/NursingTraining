@@ -85,8 +85,20 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 			if(!port.IsConnected && !backingValue.gameObject.activeInHierarchy){
 				backingValue.gameObject.SetActive(true);
-				backingValue.SetData(ReflectionUtilities.GetValueOf(new List<string>(){fieldName}, node) , fieldName, propertyType);
-				backingValue.OnValueChanged.AddListener(ValueChanged);
+
+				if(port.IsStatic){
+					backingValue.SetData(ReflectionUtilities.GetValueOf(new List<string>(){fieldName}, node) , fieldName, propertyType);
+					backingValue.OnValueChanged.AddListener(ValueChanged);
+				}
+				else if(node is NTNode)
+				{
+					NTNode n = (NTNode) node;
+					object val = n.GetInstancePortValue(fieldName);
+					val = val != null ? val : Activator.CreateInstance(port.ValueType);
+
+					backingValue.SetData(val , fieldName, propertyType);
+					backingValue.OnValueChanged.AddListener(InstanceValueChanged);
+				}
 			}
 			else if(port.IsConnected && backingValue.gameObject.activeInHierarchy)
 			{
@@ -96,11 +108,16 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		}
 	}
+		private void InstanceValueChanged(object value, string path)
+    {
+			 NTNode n = (NTNode) node;
+			 n.SetInstancePortValue(path, value);
+    }
 
     private void ValueChanged(object value, string path)
     {
-		object n = node;
-		ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
+			object n = node;
+			ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
     }
 
     public void UpdateConnectionTransforms() {

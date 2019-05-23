@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NT.Nodes.Messages;
 using NT.Nodes.Variables;
 using OdinSerializer;
 using UnityEngine;
@@ -21,20 +22,20 @@ namespace  NT.Graph
             return ngc;
         }
     }
-    
-    public class NodeGroupGraph : NodeGraph {
+
+    public class NodeGroupGraph : NTGraph {
         public static string exportPath = Application.dataPath + "/Saves/NodeGroups/";
         public static DataFormat dataFormat = DataFormat.JSON;
 
         public Vector2 position = Vector2.zero;
         public string assetID = "";
         public List<NodePort> ports = new List<NodePort>();
-        public static Dictionary<string, NodeGroupGraph> loadedGraphs = new Dictionary<string, NodeGroupGraph>(); 
+        public static Dictionary<string, NodeGroupGraph> loadedGraphs = new Dictionary<string, NodeGroupGraph>();
 
         public NodeGroupGraph(string id){
             this.assetID = id;
         }
-        
+
         public static List<NodeGroupGraph> GetAll(){
             List<NodeGroupGraph> groupedNodes = new List<NodeGroupGraph>();
             DirectoryInfo customNodesDir = new DirectoryInfo(NodeGroupGraph.exportPath);
@@ -56,7 +57,6 @@ namespace  NT.Graph
                     groupedNodes.Add(po);
                     loadedGraphs.Add(po.assetID, po);
                 }
-               
             }
             return groupedNodes;
         }

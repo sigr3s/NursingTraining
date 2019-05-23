@@ -13,7 +13,7 @@ namespace NT.Graph{
         public override List<string> GetCallbacks(){
 
             assignedSCGO = SessionManager.Instance.GetSceneGameObject(linkedNTVariable);
-            
+
             if(assignedSCGO != null){
                 return assignedSCGO.sceneObject.GetCallbacks();
             }

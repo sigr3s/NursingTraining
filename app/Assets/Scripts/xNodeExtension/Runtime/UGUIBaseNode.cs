@@ -23,7 +23,6 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
 
             foreach (NodePort port in node.Ports)
             {
-                
                 GameObject portGO =  Instantiate(port.direction == NodePort.IO.Input ? graph.inputPort : graph.outputPort, body.transform);
 
                 portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName;
@@ -49,7 +48,6 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
 
                     GUIProperty  gp = variableGo.GetComponent<GUIProperty>();
 
-                    
                     object value = ReflectionUtilities.GetValueOf(variable.Split('/').ToList(), node);
 
                     if(kvp.Key.IsString()){
@@ -58,8 +56,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
                     else if(kvp.Key.IsNumber())
                     {
                         gp.SetData(value, variable, GUIProperty.PropertyType.Number);
-                        
-                    } 
+                    }
                     else if(kvp.Key.IsBool())
                     {
                         gp.SetData(value, variable, GUIProperty.PropertyType.Boolean);
@@ -73,7 +70,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
                     gp.OnValueChanged.AddListener(PropertyChanged);
                 }
             }
-        
+
             if(node is NTNode){
                 ( (RectTransform) transform).sizeDelta = new Vector2( ( (NTNode) node).GetWidth() , ((RectTransform) transform).sizeDelta.y) ;
             }
@@ -82,6 +79,8 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
         {
             gameObject.SetActive(false);
         }
+
+        ntNode = node as NTNode;
     }
 
     private void PropertyChanged(object value, string path)
@@ -112,8 +111,23 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
         //throw new NotImplementedException();
     }
 
+    bool executing = false;
+    NTNode ntNode;
+
     private void LateUpdate() {
         foreach (UGUIPort port in ports) port.UpdateConnectionTransforms();
+
+        if(ntNode != null){
+            if( ntNode.isExecuting && !executing){
+                executing = true;
+                GetComponent<Image>().color = Color.magenta;
+            }
+
+            if(!ntNode.isExecuting && executing){
+                executing = false;
+                SetColor();
+            }
+        }
     }
 
     public bool HasNode(Node node)

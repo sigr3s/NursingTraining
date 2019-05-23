@@ -15,7 +15,7 @@ public struct SceneGameObjectData{
     public string parent;
     public NTVariable data;
     public string sceneObjectGUID;
-    
+
     //Graph
     public string graphJSON;
 
@@ -108,7 +108,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
             }
         }
     }
-    
+
     [NonSerialized] public bool isPlacingMode = false;
     [NonSerialized] public bool deleteMode = false;
 
@@ -119,7 +119,6 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
             if(_parent == null){
                 _parent = transform.parent.GetComponent<SceneGameObject>();
             }
-            
             return _parent;
         }
 
@@ -144,7 +143,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
 
     [NonSerialized] private List<Outline> renderersOutlines;
-    
+
     private void Awake() {
         List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();
@@ -153,7 +152,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
         {
             Outline rendererOutiline =  r.gameObject.AddComponent<Outline>();
             rendererOutiline.enabled = false;
-            renderersOutlines.Add(rendererOutiline);           
+            renderersOutlines.Add(rendererOutiline);
         }
     }
 
@@ -165,7 +164,6 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     private void OnTriggerExit(Collider other) {
         if(!isPlacingMode) return;
-        
         isColliding = false;
     }
 
