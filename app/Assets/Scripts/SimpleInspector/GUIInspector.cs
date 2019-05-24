@@ -92,7 +92,7 @@ public class GUIInspector : MonoBehaviour {
                                 pathParent.transform.SetParent(content);
 
                                 GUIPropertyObject gpo = pathParent.GetComponent<GUIPropertyObject>();
-                                gpo.propertyName.text = path[i];
+                                gpo.propertyName.text = path[i].NicifyString();
                                 pathParent = gpo.children.gameObject;
 
                                 propertiesobjects.Add(gpo);
@@ -109,11 +109,11 @@ public class GUIInspector : MonoBehaviour {
                             else
                             {
                                 pathParent = GameObject.Instantiate(propertyObject.gameObject, pathParent.transform);
-                            
+
                                 GUIPropertyObject gpo = pathParent.GetComponent<GUIPropertyObject>();
-                                gpo.propertyName.text = path[i];
+                                gpo.propertyName.text = path[i].NicifyString();
                                 pathParent = gpo.children.gameObject;
-                                
+
                                 propertiesobjects.Add(gpo);
                                 sublevels.Add(composedPath, pathParent);
                             }
@@ -121,12 +121,12 @@ public class GUIInspector : MonoBehaviour {
                     }
                 }
 
-                
+
                 instancedProperty.transform.SetParent(pathParent.transform);
 
                 properties.Add(gp);
 
-                gp.OnValueChanged.RemoveAllListeners();                
+                gp.OnValueChanged.RemoveAllListeners();
 
                 if(deglossedType.Key.IsString()){
                     gp.SetData( ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.String);
@@ -134,8 +134,7 @@ public class GUIInspector : MonoBehaviour {
                 else if(deglossedType.Key.IsNumber())
                 {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Number);
-                    
-                } 
+                }
                 else if(deglossedType.Key.IsBool())
                 {
                     gp.SetData(ReflectionUtilities.GetValueOf(path.ToList(), inspectObject), propertyPath, GUIProperty.PropertyType.Boolean);

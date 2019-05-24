@@ -13,6 +13,7 @@ namespace NT.SceneObjects
         LayerMask GetLayerMask();
 
         string GetGUID();
+        string GetDisplayName();
         bool CanHoldItem(SceneGameObject obj);
         void HoldItem(SceneGameObject obj, SceneGameObject parent);
 

@@ -14,14 +14,14 @@ GameObject:
   - component: {fileID: 6861129671216133600}
   - component: {fileID: 9144458428389746446}
   - component: {fileID: 6711004449330609484}
-  - component: {fileID: 4894609535268711700}
+  - component: {fileID: 1989112243}
   m_Layer: 5
   m_Name: GraphContextMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8556468912268636727
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 37.085693, y: -253.30002}
-  m_SizeDelta: {x: 200, y: 8}
+  m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1792581594454996868
 CanvasRenderer:
@@ -130,7 +130,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4894609535268711700
+--- !u!114 &1989112243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3445566987207526305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f9d52a25bbedb4e9bf4628efbe4106, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dce784121de6ae419a62f9eb6af1e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 6711004449330609484}
@@ -349,7 +349,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -408,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6012824208241798066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ MonoBehaviour:
   content: {fileID: 6012824208029781530}
   pool: {fileID: 0}
   activeItems: []
-  contextMenu: {fileID: 3445566987207526305}
+  contextMenu: {fileID: 1989112243}
 --- !u!1 &6012824208443160633
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -672,7 +672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6012824208806342102
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ContextMenuHierarchy : UGUIContextMenu {
     public GameObject prefabButton;
@@ -8,14 +9,14 @@ public class ContextMenuHierarchy : UGUIContextMenu {
     public override void Initialize(){
         GameObject createPrefab = Instantiate(prefabButton, this.transform);
         
-        createPrefab.GetComponentInChildren<Text>().text = "Create Prefab";
+        createPrefab.GetComponentInChildren<TextMeshProUGUI>().text = "Create Prefab";
         createPrefab.GetComponentInChildren<Button>().onClick.AddListener( () => {
             PrefabDialog();
         });
 
         GameObject remove = Instantiate(prefabButton, this.transform);
         
-        remove.GetComponentInChildren<Text>().text = "Remove";
+        remove.GetComponentInChildren<TextMeshProUGUI>().text = "Remove";
         remove.GetComponentInChildren<Button>().onClick.AddListener( () => {
             selected.Remove();
         });

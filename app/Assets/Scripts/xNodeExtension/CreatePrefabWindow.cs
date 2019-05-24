@@ -14,6 +14,9 @@ public class CreatePrefabWindow : Singleton<CreatePrefabWindow>
     private void Start() {
         var a = Instance;
         gameObject.SetActive(false);
+
+        iconSelector.ClearOptions();
+        iconSelector.AddOptions(SessionManager.Instance.sceneObjects.prefabSprites);
     }
     public void Open(IContextItem selected)
     {
@@ -26,10 +29,10 @@ public class CreatePrefabWindow : Singleton<CreatePrefabWindow>
     }
 
     public void CreatePrefab(){
-        PrefabObject.CreatePrefab(  Guid.NewGuid().ToString() , 
+        PrefabObject.CreatePrefab(  Guid.NewGuid().ToString() ,
                                     SessionManager.Instance.GetSceneGameObject(selected.GetKey()),
                                     nameInputField.text,
-                                    iconSelector.value );           
+                                    iconSelector.value );
         SessionManager.Instance.sceneObjects.LoadPrefabs();
         SessionManager.Instance.mapLoader.ReloadUI();
 

@@ -38,7 +38,7 @@ public class SceneHierarchy : GUIHierarchy {
             SceneGameObject scgo = sgoKVp.Value;
 
             bool selected = SessionManager.Instance.selectedSceneObject?.data.id == sgoKVp.Key;
-            HierarchyModel model = new HierarchyModel(new HierarchyData{ name = sgoKVp.Value.name, key = sgoKVp.Key, selected = selected});
+            HierarchyModel model = new HierarchyModel(new HierarchyData{ name = scgo.sceneObject.GetDisplayName(), key = sgoKVp.Key, selected = selected});
 
             if(childs.ContainsKey(sgoKVp.Key)){
                 List<HierarchyModel> scgoChilds = childs[sgoKVp.Key];

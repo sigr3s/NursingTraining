@@ -9,7 +9,7 @@ namespace NT.SceneObjects{
 
     [System.Serializable]
     public struct Drawer{
-        public bool canbeOpened;
+        public bool canBeOpened;
         public SceneGameObject slot00;
         public SceneGameObject slot01;
         public SceneGameObject slot02;

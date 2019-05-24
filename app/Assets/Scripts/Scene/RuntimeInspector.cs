@@ -24,11 +24,11 @@ public class RuntimeInspector : GUIInspector {
     private void OnCurrentChanged()
     {
         current = SessionManager.Instance.selectedSceneObject;
-        object value = null; 
+        object value = null;
 
         if(current != null){
             value = current.data.data.GetDefaultValue();
-            SetCurrent(current.name, value);
+            SetCurrent(current.sceneObject.GetDisplayName(), value);
         }
         else
         {
@@ -47,8 +47,7 @@ public class RuntimeInspector : GUIInspector {
         foreach(var draggable in draggables){
             draggable.contextMenu = this.contextMenu;
         }
-        
-        
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
     }
 

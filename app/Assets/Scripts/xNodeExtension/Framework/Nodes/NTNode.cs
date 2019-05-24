@@ -42,12 +42,10 @@ namespace NT{
             NodePort nodePort = GetOutputPort(portName);
 
             if (!nodePort.IsConnected) {
-				Debug.LogWarning("Node isn't connected");
 				return null;
 			}
 
 			NTNode node = nodePort.Connection.node as NTNode;
-            
             return node;
         }
 

@@ -20,5 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53e945e0742a44848a5f13f704d438fd, type: 2}
   - {fileID: 11400000, guid: 51034dae4bd2aaf4eaa0a0d72e595fa3, type: 2}
   - {fileID: 11400000, guid: 5cbe49daadc2b0a4db54a645bbac34c0, type: 2}
-  prefabSet:
-  - {fileID: 0}
+  prefabSet: []
+  prefabSprites:
+  - {fileID: 21300000, guid: 0813d23417e6b974cb20c1ac2fba38e0, type: 3}
+  - {fileID: 21300000, guid: 0dd933cbc9be5ae4c8bca2d35ad0ea53, type: 3}
+  - {fileID: 21300000, guid: 7029861cd3b03e140887d56c9022c007, type: 3}

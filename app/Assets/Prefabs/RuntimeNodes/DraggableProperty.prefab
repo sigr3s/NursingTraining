@@ -93,8 +93,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1024,7 +1024,9 @@ MonoBehaviour:
   boolInput: {fileID: 139293398522476140}
   enumInput: {fileID: 8126267643986976955}
   path: 
+  propertyType: 0
   dragOnSurfaces: 1
+  contextMenu: {fileID: 0}
 --- !u!114 &7327639578430228199
 MonoBehaviour:
   m_ObjectHideFlags: 0

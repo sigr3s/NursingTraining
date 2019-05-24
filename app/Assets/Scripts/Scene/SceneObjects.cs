@@ -9,6 +9,8 @@ public class SceneObjects : ScriptableObject {
     public List<SceneObject> objectSet;
     public List<PrefabObject> prefabSet;
 
+    public List<Sprite> prefabSprites;
+
 
     public void LoadPrefabs() {
 

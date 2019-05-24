@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53089e8a2c3bb94f8d902f7ed68ce10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4510593013126371536, guid: 1f28785a0b12acd46bd98bc0d667e4c5, type: 3}
+  prefab: {fileID: 4510593013126371536, guid: 020f2b0ecca93462cacab714f6ebab91, type: 3}
   content: {fileID: 6012824208029781530}
   pool: {fileID: 0}
   activeItems: []

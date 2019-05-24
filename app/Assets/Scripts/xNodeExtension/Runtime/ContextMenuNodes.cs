@@ -4,6 +4,7 @@ using NT.Nodes.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 using XNode;
+using TMPro;
 
 public class ContextMenuNodes : UGUINodeContextMenu {
     public GameObject prefabButton;
@@ -27,7 +28,7 @@ public class ContextMenuNodes : UGUINodeContextMenu {
             }
 
             GameObject go = Instantiate(prefabButton, this.transform);
-            go.GetComponentInChildren<Text>().text = name;
+            go.GetComponentInChildren<TextMeshProUGUI>().text = name;
             go.GetComponentInChildren<Button>().onClick.AddListener( () => {
                 SpawnNode(t);
             });

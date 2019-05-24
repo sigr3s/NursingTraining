@@ -53,7 +53,9 @@ namespace NT.Nodes.Control
             return "Boolean Operation";
         }
 
-        
+        public override int GetWidth(){
+            return 250;
+        }
         public enum LogicOperation{
             AND,
             OR

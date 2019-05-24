@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
+using TMPro;
 
 public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandler, IUGUINode, IContextItem {
     public NodeGroupGraph group;
@@ -20,7 +21,7 @@ public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandle
             {
                 GameObject portGO =  Instantiate(port.direction == NodePort.IO.Input ? graph.inputPort : graph.outputPort, body.transform);
 
-                portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName;
+                portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName.NicifyString();
                 UGUIPort guiport = portGO.GetComponentInChildren<UGUIPort>();
                 guiport.fieldName = port.fieldName;
                 guiport.node = port.node;
@@ -33,7 +34,7 @@ public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandle
                 }
             }
 
-            transform.Find("Header/Title").GetComponent<Text>().text = group.name;
+            transform.Find("Header/Title").GetComponent<TextMeshProUGUI>().text = group.name;
         }
         else
         {

@@ -81,7 +81,7 @@ namespace  NT.Graph
 
         public virtual void MessageRecieved(string message)
         {
-            Debug.Log("Message recieved!   " + message);
+            Debug.Log("<color=magenta> Message recieved!   " + message + "</color>");
             if(!string.IsNullOrEmpty(message) && callbackNodesDict.ContainsKey(message)){
                 List<CallbackNode> nodesToExecute = callbackNodesDict[message];
                 foreach(CallbackNode cn in nodesToExecute){
@@ -110,16 +110,14 @@ namespace  NT.Graph
 
             while(nodeExecutionContext.node != null){
 
-                Debug.Log("Execute node:  " + nodeExecutionContext.node);
+                Debug.Log("<color=green> Execute node:  " + nodeExecutionContext.node + "</color>");
                 nodeExecutionContext.node.Enter();
 
                 yield return new YieldNode(nodeExecutionContext );
 
-                Debug.Log("Finished node:  " + nodeExecutionContext.node);
+                Debug.Log("<color=red> Finished node:  " + nodeExecutionContext.node + "</color>");
 
-                yield return new WaitForSeconds(1.25f);
-
-                Debug.Log("Finished waiting?:  " + nodeExecutionContext.node);
+                yield return new WaitForSeconds(0.25f);
 
                 nodeExecutionContext.node.Exit();
 

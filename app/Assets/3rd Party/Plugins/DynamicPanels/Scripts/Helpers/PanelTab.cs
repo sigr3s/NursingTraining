@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 namespace DynamicPanels
 {
@@ -45,7 +46,7 @@ namespace DynamicPanels
 		public Image iconHolder;
 
 		[SerializeField]
-		public Text nameHolder;
+		public TextMeshProUGUI nameHolder;
 
 		public InternalSettings Internal { get; private set; }
 

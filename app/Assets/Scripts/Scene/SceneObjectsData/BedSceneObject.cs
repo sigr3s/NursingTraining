@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 namespace NT.SceneObjects{
     public struct BedData{
+
+        [Description("Bed Height")]
         public float bedHeight;
         public float tilt;
         public float temperature;

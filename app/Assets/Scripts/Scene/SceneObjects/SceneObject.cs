@@ -14,6 +14,7 @@ namespace NT.SceneObjects
     }
 
     public class SceneObject : ScriptableObject, ISceneObject{
+        public string displayName;
         public SceneGameObjectInfo sceneGameObject;
         public UISceneObject sceneObjectUI;
         [SerializeField] private string GUID;
@@ -119,8 +120,14 @@ namespace NT.SceneObjects
         public virtual SceneGameObject Instantiate( Transform parent,
             Vector3 localPosition, Quaternion localRotation
         ){
-            string key = name + Guid.NewGuid().ToString();            
+            string key = name + Guid.NewGuid().ToString();
             return Instantiate(key, parent, localPosition, localRotation);
+        }
+
+        public string GetDisplayName()
+        {
+            if(string.IsNullOrEmpty(displayName)) return name;
+            return displayName;
         }
     }
 }

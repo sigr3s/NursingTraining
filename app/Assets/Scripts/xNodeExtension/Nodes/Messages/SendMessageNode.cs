@@ -9,7 +9,7 @@ namespace NT.Nodes.Messages{
     public class SendMessageNode : FlowNode
     {
         [SerializeField] public string message;
-        
+
         public override NodeExecutionContext NextNode(NodeExecutionContext context){
             NTNode node = GetNode(nameof(flowOut));
             NodePort port = GetPort(nameof(flowOut));
@@ -20,7 +20,7 @@ namespace NT.Nodes.Messages{
         public override IEnumerator ExecuteNode(NodeExecutionContext context){
             string message = GetInputValue<string>(nameof(this.message), this.message);
             MessageSystem.SendMessage(message);
-            
+
             yield return null;
         }
 

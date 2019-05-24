@@ -19,6 +19,9 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     [Header("Session Data")]
     public SessionData SessionData;
     public bool loadOnAwake = true;
+    public bool autoSave = true;
+    public float autoSaveInterval = 60f;
+
 
     //public static string exportPath = Application.dataPath + "/Saves/Sessions/";
 
@@ -88,8 +91,26 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
 
+    float timer = 0;
+    private void Update() {
+        if(autoSave ){
+            timer += Time.deltaTime;
+
+            if(timer > autoSaveInterval){
+                Debug.Log("<color=green> AUTOSave </color>");
+                timer = 0;
+                SaveSession();
+            }
+        }
+    }
+
+
     [ContextMenu("Start execution")]
     public void StartExecution(){
+        StartExecutionWithMessage("Application Start");
+    }
+
+    public void StartExecutionWithMessage(string message ){
 
         //Reset all variables to default values!
         foreach(var so in sceneGameObjects){
@@ -105,7 +126,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         sceneGraph.StartExecution();
 
 
-        MessageSystem.SendMessage("Application Start");
+        MessageSystem.SendMessage(message);
+
     }
 
 #region Export/Import
@@ -257,10 +279,6 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         if(!string.IsNullOrEmpty(key) && sceneGameObjects.ContainsKey(key)){
             selectedSceneObject = sceneGameObjects[key];
             selectedSceneObject.isSelected = true;
-
-            if(selectedSceneObject.data.graph != null){
-                showingGraph = selectedSceneObject.data.graph;
-            }
         }
         else
         {
@@ -316,7 +334,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
                 SceneObjectGraph sog = sceneGameObject.Value.data.graph;
 
                 sog.linkedNTVariable = sceneGameObject.Value.data.id;
-                sog.displayName = sceneGameObject.Value.name;
+                sog.displayName = sceneGameObject.Value.sceneObject.GetDisplayName();
 
                 if(sog.variableDelegate == null) sog.variableDelegate = this;
 

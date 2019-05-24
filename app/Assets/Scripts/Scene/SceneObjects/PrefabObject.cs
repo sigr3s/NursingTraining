@@ -169,7 +169,7 @@ namespace NT.SceneObjects
             if(!Directory.Exists(exportPath)){
                 Directory.CreateDirectory(prefabFolder);
             }
-            
+
             SavedPrefab savedPrefab = new SavedPrefab {
                 name = name,
                 sprite = sprite,

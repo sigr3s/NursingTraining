@@ -207,8 +207,7 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		if (obj == null){
 		  obj =	node.GetValue(port);
 		}
-		
-		
+
 		if(obj != null) graph.tooltip.label.text = obj.ToString();
 		else graph.tooltip.label.text = "n/a";
 	}

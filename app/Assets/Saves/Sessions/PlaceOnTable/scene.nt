@@ -35,7 +35,7 @@
                             "$type": "6|NT.SceneObjects.ClosetData, Assembly-CSharp",
                             "mainDrawer": {
                                 "$type": "7|NT.SceneObjects.Drawer, Assembly-CSharp",
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": {
                                     "$id": 5,
                                     "$type": 2,
@@ -57,7 +57,7 @@
                                             "name": null,
                                             "value": {
                                                 "$type": "9|NT.SceneObjects.DefibrilatorData, Assembly-CSharp",
-                                                "hasCharge": false,
+                                                "hasCharge": true,
                                                 "configuredVoltage": 0,
                                                 "isCharging": false
                                             },
@@ -135,7 +135,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": $iref:5,
                                 "slot01": null,
                                 "slot02": null,
@@ -227,7 +227,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": {
                                     "$id": 22,
                                     "$type": 2,
@@ -250,13 +250,13 @@
                                             "value": {
                                                 "$type": 9,
                                                 "hasCharge": false,
-                                                "configuredVoltage": 0,
+                                                "configuredVoltage": 220,
                                                 "isCharging": false
                                             },
                                             "defaultValue": {
                                                 "$type": 9,
                                                 "hasCharge": false,
-                                                "configuredVoltage": 0,
+                                                "configuredVoltage": 220,
                                                 "isCharging": false
                                             }
                                         },
@@ -355,7 +355,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": $iref:22,
                                 "slot01": null,
                                 "slot02": null,
@@ -444,7 +444,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -457,7 +457,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -842,7 +842,7 @@
                         },
                         "linkedNTVariable": "Defibrilator805e5ac0-3061-4b59-8db5-637220934f52",
                         "assignedSCGO": null,
-                        "displayName": "Defibriltor"
+                        "displayName": "Defibrilator"
                     }
                 }
             }
@@ -1148,7 +1148,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1161,7 +1161,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1250,7 +1250,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1263,7 +1263,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1352,7 +1352,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1365,7 +1365,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1454,7 +1454,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": true,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1467,7 +1467,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": true,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1556,7 +1556,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1569,7 +1569,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1658,7 +1658,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1671,7 +1671,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1760,7 +1760,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1773,7 +1773,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1862,7 +1862,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1875,7 +1875,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1964,7 +1964,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -1977,7 +1977,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2066,7 +2066,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2079,7 +2079,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2168,7 +2168,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2181,7 +2181,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2270,7 +2270,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2283,7 +2283,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2372,7 +2372,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2385,7 +2385,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2474,7 +2474,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2487,7 +2487,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2576,7 +2576,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2589,7 +2589,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2678,7 +2678,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2691,7 +2691,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2780,7 +2780,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2793,7 +2793,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2882,7 +2882,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2895,7 +2895,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2984,7 +2984,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -2997,7 +2997,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3086,7 +3086,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3099,7 +3099,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3188,7 +3188,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3201,7 +3201,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3290,7 +3290,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3303,7 +3303,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3392,7 +3392,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,
@@ -3405,7 +3405,7 @@
                             "$type": 6,
                             "mainDrawer": {
                                 "$type": 7,
-                                "canbeOpened": false,
+                                "canBeOpened": false,
                                 "slot00": null,
                                 "slot01": null,
                                 "slot02": null,

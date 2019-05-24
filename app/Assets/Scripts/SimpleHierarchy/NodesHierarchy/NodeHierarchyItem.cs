@@ -102,7 +102,7 @@ public class NodeHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandl
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             (RectTransform) ntScrollRect.content.transform , 
             Input.mousePosition, GetComponentInParent<Canvas>().worldCamera, out nodePosition
-        ); 
+        );
         
         nodePosition = new Vector2( nodePosition.x - 80, -nodePosition.y);
 

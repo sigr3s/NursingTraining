@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XNode;
+using TMPro;
 
 public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextItem {
     public Node node;
@@ -25,7 +26,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
             {
                 GameObject portGO =  Instantiate(port.direction == NodePort.IO.Input ? graph.inputPort : graph.outputPort, body.transform);
 
-                portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName;
+                portGO.transform.Find("Label").GetComponent<Text>().text = port.fieldName.NicifyString();
                 UGUIPort guiport = portGO.GetComponentInChildren<UGUIPort>();
                 guiport.fieldName = port.fieldName;
                 guiport.node = node;
@@ -36,7 +37,7 @@ public class UGUIBaseNode :  MonoBehaviour, IDragHandler, IUGUINode, IContextIte
                 ignored.Add(port.fieldName);
             }
 
-            transform.Find("Header/Title").GetComponent<Text>().text = node.name;
+            transform.Find("Header/Title").GetComponent<TextMeshProUGUI>().text = node.name;
 
 
             var d = ReflectionUtilities.DesgloseInBasicTypes(node.GetType(), ignored);

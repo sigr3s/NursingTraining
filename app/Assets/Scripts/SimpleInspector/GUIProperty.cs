@@ -33,9 +33,6 @@ public class GUIProperty : MonoBehaviour {
         SceneReference
     }
 
-
-
-
     public void SetData(object data, string path, PropertyType propertyType){
         this.data = data;
         this.path = path;
@@ -71,7 +68,7 @@ public class GUIProperty : MonoBehaviour {
                     textInput.onEndEdit.AddListener(ModifyPropertyFloat);
                 }
                 else if(data.GetType() == typeof(double))
-                { 
+                {
                     textInput.onEndEdit.AddListener(ModifyPropertyDouble);
                 }
 
@@ -123,7 +120,10 @@ public class GUIProperty : MonoBehaviour {
 
         start = start >= 0 ? start + 1 : 0;
 
-        if(fieldName != null) fieldName.text = path.Substring(start, path.Length - start);
+        if(fieldName != null){
+            string name = path.Substring(start, path.Length - start);
+            fieldName.text = name.NicifyString();
+        }
     }
 
     private void ModifyEnum(int value){
