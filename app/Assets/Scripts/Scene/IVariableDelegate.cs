@@ -4,5 +4,5 @@ public interface IVariableDelegate
     void SetValue(string key, object value);
 
     object GetUserVariable(string key);
-    object SetUserVariable(string key);
+    void SetUserVariable(string key, object value);
 }

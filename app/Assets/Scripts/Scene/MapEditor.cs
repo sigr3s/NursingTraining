@@ -244,7 +244,7 @@ public class MapEditor : MapLoader {
             SceneGameObject sco = objectHit.GetComponentInParent<SceneGameObject>();
 
             if(sco != null){
-                if(sco.sceneObject.CanHoldItem(previewSceneGameObject)){
+                if(sco.CanHoldItem(previewSceneGameObject)){
                     previewGO.SetActive(false);
                     SessionManager.Instance.SetSelected(sco.data.id);
                 }

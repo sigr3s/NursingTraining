@@ -26,5 +26,13 @@ public class NodeHierarchyItem : DraggableGUIHierarchyItem, IBeginDragHandler, I
         
         rg.Refresh();
     }
+
+    public override bool CanBeDragged(){
+        NodeHierarchyData nhd = (NodeHierarchyData) data;
+
+        if(nhd.nodeType == null) return false;
+
+        return nhd.nodeType != null;
+    }
     
 }

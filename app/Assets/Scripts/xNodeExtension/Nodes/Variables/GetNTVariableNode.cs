@@ -40,7 +40,7 @@ namespace NT.Nodes.Variables
         }
 
 
-         public void SetVariableKey(string dataKey,Type dataType, string variablePath, Type variableType){
+        public void SetVariableKey(string dataKey,Type dataType, string variablePath, Type variableType){
 
             this.dataType = dataType;
             this.dataKey = dataKey;

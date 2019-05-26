@@ -35,7 +35,19 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     [Space(20)]
     [Header("Debug")]
     public Dictionary<string, SceneGameObject> sceneGameObjects;
-    public Dictionary<string, object> userVariables = new Dictionary<string, object>();
+    public Dictionary<string, UserVariable> userVariables = new Dictionary<string, UserVariable>();
+
+    [System.Serializable]
+    public struct UserVariable{
+        public object value;
+        public object defaultValue;
+
+        public void Reset()
+        {
+            value = defaultValue;
+        }
+    }
+
     private SceneGameObject _selectedObjectSceneObject;
     public SceneGameObject selectedSceneObject{
 
@@ -124,6 +136,11 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             }
         }
 
+        foreach(var uv in userVariables){
+            uv.Value.Reset();
+        }
+        
+
         sceneGraph.StartExecution();
 
 
@@ -132,27 +149,6 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
 #region Export/Import
-
-    [ContextMenu("User variables")]
-    public void UserVariablesTest(){
-        var d = new Dictionary<string, object>();
-
-        d.Add("myString", "hey");
-        d.Add("some", 1);
-        d.Add("test", false);
-
-        byte[] ojson = SerializationUtility.SerializeValue(d, DataFormat.JSON);
-        var d1 = SerializationUtility.DeserializeValue<Dictionary<string, object>>(ojson, DataFormat.JSON);
-
-
-        foreach(var it in d1){
-            Debug.Log(it.Value.GetType().IsString());
-            Debug.Log(it.Value.GetType().IsBool());
-            Debug.Log(it.Value.GetType().IsNumber());
-            Debug.Log(it.Key + " ___ " + it.Value);
-        }
-
-    }
 
     public void SaveScene(string path){
 
@@ -182,10 +178,12 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         SessionData.lastModified = DateTime.Now.ToString();
 
         SessionData.sceneGraphFile = "sceneGraph.nt";
-
         byte[] sceneGraphData = SerializationUtility.SerializeValue(sceneGraph, DataFormat.JSON);
-
         File.WriteAllBytes(saveFolder + "/" + SessionData.sceneGraphFile, sceneGraphData);
+
+        SessionData.userVariables = "userVariables.nt";
+        byte[] userVariablesData = SerializationUtility.SerializeValue(userVariables, DataFormat.JSON);
+        File.WriteAllBytes(saveFolder + "/" + SessionData.userVariables, userVariablesData);
 
         SessionData.sceneFile = "scene.nt";
         SaveScene(saveFolder + "/" + SessionData.sceneFile);
@@ -219,9 +217,16 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         string configJSON = File.ReadAllText(saveFolder + "/" + "config.nt");
         SessionData = JsonUtility.FromJson<SessionData>(configJSON);
 
-        byte[] sceneGraphData = File.ReadAllBytes(saveFolder +  "/" + SessionData.sceneGraphFile);
-        sceneGraph = SerializationUtility.DeserializeValue<SceneGraph>(sceneGraphData, DataFormat.JSON);
-        sceneGraph.variableDelegate = this;
+        if(File.Exists(saveFolder +  "/" + SessionData.sceneGraphFile)){
+            byte[] sceneGraphData = File.ReadAllBytes(saveFolder +  "/" + SessionData.sceneGraphFile);
+            sceneGraph = SerializationUtility.DeserializeValue<SceneGraph>(sceneGraphData, DataFormat.JSON);
+            sceneGraph.variableDelegate = this;
+        }
+
+        if(File.Exists(saveFolder +  "/" + SessionData.userVariables)){
+            byte[] userVariablesData = File.ReadAllBytes(saveFolder +  "/" + SessionData.userVariables);
+            userVariables = SerializationUtility.DeserializeValue<Dictionary<string, UserVariable>>(userVariablesData, DataFormat.JSON);
+        }
 
         LoadScene(saveFolder +  "/" + SessionData.sceneFile);
 
@@ -364,17 +369,16 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
 
-    public void SetUserVariable(string key, object value){
+    public void SetDefaultUserVariable(string key, object value){
         if(userVariables.ContainsKey(key)){
-            userVariables[key] = value;
+
+            userVariables[key] = new UserVariable{ value = value, defaultValue = value};
         }
         else
         {
-            userVariables.Add(key, value);
+            userVariables.Add(key, new UserVariable{ value = value, defaultValue = value});
+            OnUserVariablesModified.Invoke();
         }
-        
-
-        OnUserVariablesModified.Invoke();
     }
 
     public void RemoveUserVariable(string key){
@@ -385,14 +389,25 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         OnUserVariablesModified.Invoke();
     }
 
+
+
     public object GetUserVariable(string key)
     {
-        throw new NotImplementedException();
+        if(userVariables.ContainsKey(key)){
+            return userVariables[key].value;
+        }
+
+        return null;
     }
 
-    public object SetUserVariable(string key)
+    public void SetUserVariable(string key, object value)
     {
-        throw new NotImplementedException();
+        if(userVariables.ContainsKey(key)){
+
+            UserVariable uv = userVariables[key];
+            uv.value = value; 
+            userVariables[key] = uv;
+        }
     }
 
 
@@ -407,4 +422,5 @@ public struct SessionData{
     public string lastModified;
     public string sceneGraphFile;
     public string sceneFile;
+    public string userVariables;
 }

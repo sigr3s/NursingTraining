@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DraggableGUIHierarchyItem : GUIHierarchyItem, IBeginDragHandler, IDragHandler, IEndDragHandler {
+
+    [Header("Drag")]
     public bool dragOnSurfaces = true;
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
@@ -13,6 +15,8 @@ public class DraggableGUIHierarchyItem : GUIHierarchyItem, IBeginDragHandler, ID
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if(!CanBeDragged()) return;
+        
         var canvas = gameObject.FindInParents<Canvas>();
         if (canvas == null)
             return;
@@ -69,6 +73,10 @@ public class DraggableGUIHierarchyItem : GUIHierarchyItem, IBeginDragHandler, ID
         OnDragEnd(eventData);
 
         return;
+    }
+
+    public virtual bool CanBeDragged(){
+        return true;
     }
 
     public virtual void OnDragEnd(PointerEventData eventData){

@@ -30,7 +30,7 @@ namespace NT.SceneObjects{
 
         public override void HoldItem(SceneGameObject obj, SceneGameObject parent){
             obj.gameObject.SetActive(false);
-            
+
             ClosetData cd = (ClosetData) parent.data.data.GetDefaultValue();
             cd.mainDrawer.slot00 = obj;
             parent.data.data.SetDefaultValue(cd);

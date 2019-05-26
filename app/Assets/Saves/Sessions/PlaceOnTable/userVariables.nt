@@ -1,0 +1,27 @@
+{
+    "$id": 0,
+    "$type": "0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[SessionManager+UserVariable, Assembly-CSharp]], mscorlib",
+    "comparer": {
+        "$id": 1,
+        "$type": "1|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
+    },
+    "$rlength": 1,
+    "$rcontent": [
+        {
+            "$k": "Grade",
+            "$v": {
+                "$type": "2|SessionManager+UserVariable, Assembly-CSharp",
+                "value": {
+                    "$id": 2,
+                    "$type": "3|System.Single, mscorlib",
+                    7
+                },
+                "defaultValue": {
+                    "$id": 3,
+                    "$type": 3,
+                    5
+                }
+            }
+        }
+    ]
+}

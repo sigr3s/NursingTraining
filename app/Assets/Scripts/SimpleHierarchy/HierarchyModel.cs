@@ -3,7 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HierarchyModel {
-    public HierarchyData data;
+    private HierarchyData _data;
+    public HierarchyData data{
+        get{
+            _data.hasChildren = children.Count > 0;
+            return _data;
+        }
+
+        set{
+            _data = value;
+        }
+    }
     public GameObject uiObject;
     private List<HierarchyModel> children = new List<HierarchyModel>();
 
@@ -29,4 +39,5 @@ public class HierarchyData{
     public string name;
     public bool selected;
     public string key;
+    public bool hasChildren;
 }

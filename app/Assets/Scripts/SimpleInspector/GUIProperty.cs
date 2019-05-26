@@ -80,6 +80,7 @@ public class GUIProperty : MonoBehaviour {
 
                 bool value = (bool) data;
                 boolInput.isOn = value;
+                boolInput.interactable = true;
 
                 boolInput.onValueChanged.RemoveAllListeners();
                 boolInput.onValueChanged.AddListener(ModifyPropertyBool);

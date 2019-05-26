@@ -196,15 +196,8 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
         transform.localScale = Vector3.one;
     }
 
-    public void RebuildParents()
+    public virtual bool CanHoldItem(SceneGameObject previewSceneGameObject)
     {
-        if(transform.parent != null){
-            SceneGameObject parentSCGO = transform.parent.GetComponentInParent<SceneGameObject>();
-
-            if(parentSCGO != null){
-                data.parent = parentSCGO.data.id;
-                parentSCGO.data.childs.Add(data.id);
-            }
-        }
+        return sceneObject.CanHoldItem(previewSceneGameObject);
     }
 }
