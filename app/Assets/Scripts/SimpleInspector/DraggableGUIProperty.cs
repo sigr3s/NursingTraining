@@ -6,31 +6,18 @@ using NT.Nodes.Variables;
 using XNode;
 
 public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler, IEndDragHandler {
+    
+    private RuntimeGraph rg;
+
+    
     public bool dragOnSurfaces = true;
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
     public GetSetContextMenu contextMenu;
 
-    static public T FindInParents<T>(GameObject go) where T : Component
-    {
-        if (go == null) return null;
-        var comp = go.GetComponent<T>();
-
-        if (comp != null)
-            return comp;
-
-        Transform t = go.transform.parent;
-        while (t != null && comp == null)
-        {
-            comp = t.gameObject.GetComponent<T>();
-            t = t.parent;
-        }
-        return comp;
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
-        var canvas = FindInParents<Canvas>(gameObject);
+        var canvas = gameObject.FindInParents<Canvas>();
         if (canvas == null)
             return;
         
@@ -50,31 +37,17 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         else
             m_DraggingPlane = canvas.transform as RectTransform;
 
-        SetDraggedPosition(eventData);
+        m_DraggingIcon.SetDraggedPosition(eventData, m_DraggingPlane, dragOnSurfaces);
     }
 
-    public void OnDrag(PointerEventData data)
+    public void OnDrag(PointerEventData eventData)
     {
         
         if (m_DraggingIcon != null)
-            SetDraggedPosition(data);
+            m_DraggingIcon.SetDraggedPosition(eventData, m_DraggingPlane, dragOnSurfaces);
     }
 
-    private void SetDraggedPosition(PointerEventData data)
-    {
-        if (dragOnSurfaces && data.pointerEnter != null && data.pointerEnter.transform as RectTransform != null)
-            m_DraggingPlane = data.pointerEnter.transform as RectTransform;
 
-        var rt = m_DraggingIcon.GetComponent<RectTransform>();
-        Vector3 globalMousePos;
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(m_DraggingPlane, data.position, data.pressEventCamera, out globalMousePos))
-        {
-            rt.position = globalMousePos;
-            rt.rotation = m_DraggingPlane.rotation;
-        }
-    }
-
-    private RuntimeGraph rg;
     public void OnEndDrag(PointerEventData eventData)
     {
         if (m_DraggingIcon != null)

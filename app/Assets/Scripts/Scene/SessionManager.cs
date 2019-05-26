@@ -66,6 +66,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
 
+    [HideInInspector] public UnityEvent OnUserVariablesModified = new UnityEvent();
     [HideInInspector] public UnityEvent OnCurrentChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnShowingGraphChanged = new UnityEvent();
     [HideInInspector] public UnityEvent OnGraphListChanged = new UnityEvent();
@@ -362,6 +363,28 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         }
     }
 
+
+    public void SetUserVariable(string key, object value){
+        if(userVariables.ContainsKey(key)){
+            userVariables[key] = value;
+        }
+        else
+        {
+            userVariables.Add(key, value);
+        }
+        
+
+        OnUserVariablesModified.Invoke();
+    }
+
+    public void RemoveUserVariable(string key){
+        if(userVariables.ContainsKey(key)){
+            userVariables.Remove(key);
+        }
+
+        OnUserVariablesModified.Invoke();
+    }
+
     public object GetUserVariable(string key)
     {
         throw new NotImplementedException();
@@ -374,6 +397,8 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
 
     #endregion
+
+
 }
 
 [System.Serializable]

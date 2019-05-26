@@ -25,8 +25,8 @@ public class GroupedNodesHierarchy : GUIHierarchy
         foreach (var groupedNodes in userGroups)
         {
             root.Add(new HierarchyModel(
-                    new GroupedNodeHierarchyData{ name = groupedNodes.name, key = groupedNodes.name, nodeGroup = groupedNodes}
-                ));
+                new GroupedNodeHierarchyData{ name = groupedNodes.name, key = groupedNodes.name, nodeGroup = groupedNodes}
+            ));
             
         }
         return root;
