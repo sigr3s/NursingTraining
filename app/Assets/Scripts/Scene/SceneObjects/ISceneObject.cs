@@ -15,7 +15,7 @@ namespace NT.SceneObjects
         string GetGUID();
         string GetDisplayName();
         bool CanHoldItem(SceneGameObject obj);
-        void HoldItem(SceneGameObject obj, SceneGameObject parent);
+        void HoldItem(SceneGameObject obj);
 
         SceneGameObject Instantiate(Transform parent,
             Vector3 localPosition, Quaternion localRotation

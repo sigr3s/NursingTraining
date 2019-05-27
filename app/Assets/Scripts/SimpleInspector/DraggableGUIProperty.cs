@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using NT.Nodes.Variables;
 using XNode;
+using NT.SceneObjects;
 
 public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler, IEndDragHandler {
     
@@ -57,9 +58,15 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         
         rg = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<RuntimeGraph>();
 
-        contextMenu.OpenAt(eventData.position, null);
-        contextMenu.SetAction = CreateSetNode;
-        contextMenu.GetAction = CreateGetNode;
+        if(propertyType != PropertyType.SceneReference){
+            contextMenu.OpenAt(eventData.position, null);
+            contextMenu.SetAction = CreateSetNode;
+            contextMenu.GetAction = CreateGetNode;
+        }
+        else
+        {
+            CreateGetNode();
+        }
 
         return;
     }
@@ -84,7 +91,7 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         Node node = rg.graph.AddNode(typeof(GetNTVariableNode));
         node.position = nodePosition;
         node.name = "GET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
-
+        
         if(propertyType == PropertyType.SceneReference){
             ((GetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, typeof(SceneGameObject) );
         }
@@ -120,7 +127,10 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
         node.name = "SET - (" + SessionManager.Instance.selectedSceneObject.name + ")";
 
         if(propertyType == PropertyType.SceneReference){
-            ((SetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, typeof(SceneGameObject) );
+            Debug.LogWarning("Not valid option");
+            
+            //FIXME: Avoid setting scene references as user can mess up things..
+            //((SetNTVariableNode) node).SetVariableKey(SessionManager.Instance.selectedSceneObject.data.id, typeof(string), path, typeof(SceneGameObject) );
         }
         else
         {

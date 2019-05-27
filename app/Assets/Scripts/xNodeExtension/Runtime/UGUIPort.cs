@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NT;
+using NT.SceneObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -56,7 +57,8 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		{
 			transform.parent.GetComponent<Image>().color = Color.white;
 		}
-		else if(port.ValueType == typeof(SceneGameObject))
+		else if(port.ValueType == typeof(SceneGameObjectReference) ||
+				port.ValueType == typeof(SceneGameObject) )
 		{
 			transform.parent.GetComponent<Image>().color = Color.red;
 		}

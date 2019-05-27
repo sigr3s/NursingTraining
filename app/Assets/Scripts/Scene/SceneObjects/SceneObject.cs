@@ -74,7 +74,7 @@ namespace NT.SceneObjects
         }
 
 
-        public virtual void HoldItem(SceneGameObject obj, SceneGameObject parent){
+        public virtual void HoldItem(SceneGameObject obj){
             
         }
 

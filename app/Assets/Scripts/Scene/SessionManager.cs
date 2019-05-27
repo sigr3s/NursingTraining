@@ -88,6 +88,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     private void Awake() {
         if(sceneGraph == null){
             sceneGraph = new SceneGraph();
+            sceneGraph.variableDelegate = this;
         }
 
         sceneGameObjects = new Dictionary<string, SceneGameObject>();

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using NT.SceneObjects;
 using NT.Variables;
 using UnityEngine;
 
@@ -153,7 +154,7 @@ namespace NT
                             t == typeof(double) ||
                             t == typeof(bool)   ||
                             t.IsEnum            ||
-                            t == typeof(SceneGameObject));
+                            t == typeof(SceneGameObjectReference));
 
             return isBasic;
         }

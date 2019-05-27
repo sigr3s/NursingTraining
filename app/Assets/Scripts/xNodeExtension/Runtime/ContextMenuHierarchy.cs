@@ -12,6 +12,7 @@ public class ContextMenuHierarchy : UGUIContextMenu {
         createPrefab.GetComponentInChildren<TextMeshProUGUI>().text = "Create Prefab";
         createPrefab.GetComponentInChildren<Button>().onClick.AddListener( () => {
             PrefabDialog();
+            Close();
         });
 
         GameObject remove = Instantiate(prefabButton, this.transform);
@@ -19,6 +20,7 @@ public class ContextMenuHierarchy : UGUIContextMenu {
         remove.GetComponentInChildren<TextMeshProUGUI>().text = "Remove";
         remove.GetComponentInChildren<Button>().onClick.AddListener( () => {
             selected.Remove();
+            Close();
         });
     }
 

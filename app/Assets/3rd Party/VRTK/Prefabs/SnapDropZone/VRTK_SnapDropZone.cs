@@ -1146,7 +1146,7 @@ namespace VRTK
             {
                 if (deleteObject != null)
                 {
-                    DestroyImmediate(deleteObject);
+                    //DestroyImmediate(deleteObject);
                 }
             }
             else

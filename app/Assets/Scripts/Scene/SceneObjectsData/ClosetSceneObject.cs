@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NT.SceneObjects{
+namespace NT.SceneObjects
+{
     public struct ClosetData{
         public Drawer mainDrawer;
     }
@@ -10,12 +11,12 @@ namespace NT.SceneObjects{
     [System.Serializable]
     public struct Drawer{
         public bool canBeOpened;
-        public SceneGameObject slot00;
-        public SceneGameObject slot01;
-        public SceneGameObject slot02;
-        public SceneGameObject slot03;
-        public SceneGameObject slot04;
-        public SceneGameObject slot05;
+        public SceneGameObjectReference slot00;
+        public SceneGameObjectReference slot01;
+        public SceneGameObjectReference slot02;
+        public SceneGameObjectReference slot03;
+        public SceneGameObjectReference slot04;
+        public SceneGameObjectReference slot05;
     }
 
     [CreateAssetMenu(fileName = "BedSceneObject", menuName = "NT/Scene/Closet")]
@@ -28,12 +29,8 @@ namespace NT.SceneObjects{
             return true;
         }
 
-        public override void HoldItem(SceneGameObject obj, SceneGameObject parent){
+        public override void HoldItem(SceneGameObject obj){
             obj.gameObject.SetActive(false);
-
-            ClosetData cd = (ClosetData) parent.data.data.GetDefaultValue();
-            cd.mainDrawer.slot00 = obj;
-            parent.data.data.SetDefaultValue(cd);
         }
     }
 }

@@ -28,7 +28,7 @@ public class MapLoader : MonoBehaviour, IMapLoader {
         CreateRoot();
 
         Dictionary<string, SceneGameObject> parentsGO = new Dictionary<string, SceneGameObject>();
-            Dictionary<string, List<SceneGameObject>> childsGO = new Dictionary<string, List<SceneGameObject>>();
+        Dictionary<string, List<SceneGameObject>> childsGO = new Dictionary<string, List<SceneGameObject>>();
 
         foreach (var item in loadedData)
         {
@@ -67,7 +67,7 @@ public class MapLoader : MonoBehaviour, IMapLoader {
 
                     childOfElement.RestoreTransform();
 
-                    prefabElementSCGO.sceneObject.HoldItem(childOfElement, prefabElementSCGO);
+                    prefabElementSCGO.HoldItem(childOfElement, false);
 
                     childOfElement.data.parent = prefabElementSCGO.data.id;
                     prefabElementSCGO.data.childs.Add(childOfElement.data.id);
@@ -89,7 +89,7 @@ public class MapLoader : MonoBehaviour, IMapLoader {
                 prefabElementSCGO.transform.SetParent(parent.transform);
                 prefabElementSCGO.RestoreTransform();
 
-                parent.sceneObject.HoldItem(prefabElementSCGO, parent);
+                parent.HoldItem(prefabElementSCGO, false);
 
             }   
             else

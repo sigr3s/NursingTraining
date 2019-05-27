@@ -7,6 +7,7 @@ using System;
 using System.Reflection;
 using System.Linq;
 using System.Collections.Generic;
+using NT.SceneObjects;
 
 namespace NT.Nodes.Variables
 {
@@ -24,8 +25,19 @@ namespace NT.Nodes.Variables
                 object variableValue = g.variableDelegate.GetValue(dataKey);
 
                 if(variableValue != null){
-                    object value = ReflectionUtilities.GetValueOf(new List<string>(variablePath.Split('/')), variableValue);
-                    return value;
+                    if(!string.IsNullOrEmpty(variablePath)){
+                        object value = ReflectionUtilities.GetValueOf(new List<string>(variablePath.Split('/')), variableValue);
+                        
+                        if(value != null && value is  SceneGameObjectReference){
+                            value = ( (SceneGameObjectReference) value).reference;                            
+                        }
+                        
+                        return value;
+                    }
+                    else
+                    {
+                        return g.variableDelegate.GetSceneGameObject(dataKey);
+                    }
                 }
                 else
                 {

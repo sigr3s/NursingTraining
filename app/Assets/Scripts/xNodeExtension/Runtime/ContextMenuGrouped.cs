@@ -12,6 +12,7 @@ public class ContextMenuGrouped : UGUIContextMenu {
         remove.GetComponentInChildren<TextMeshProUGUI>().text = "Remove";
         remove.GetComponentInChildren<Button>().onClick.AddListener( () => {
             selected.Remove();
+            Close();
         });
     }
 

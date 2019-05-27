@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using NT.Atributes;
 using NT.Graph;
+using NT.SceneObjects;
 using NT.Variables;
 using UnityEngine;
 using XNode;
@@ -53,7 +54,6 @@ namespace NT.Nodes.Variables{
             if(!port.IsConnected){
                 portValue = backingValue;
             }
-
 
             object value = null;
 

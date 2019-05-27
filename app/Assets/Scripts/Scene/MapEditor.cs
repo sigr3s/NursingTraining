@@ -269,7 +269,7 @@ public class MapEditor : MapLoader {
                 SessionManager.Instance.AddSceneGameObject(instanced);
 
                 if(sco != null){
-                    sco.sceneObject.HoldItem( instanced , sco);
+                    sco.HoldItem( instanced );
                 }
 
                 Destroy(previewGO);

@@ -144,7 +144,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 
     [NonSerialized] private List<Outline> renderersOutlines;
 
-    private void Awake() {
+    protected void Awake() {
         List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();
 
@@ -185,19 +185,26 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
         }
     }
 
-    public void LoadFromData(SceneGameObjectData data){
+    public virtual void LoadFromData(SceneGameObjectData data){
         this.data = data;
         RestoreTransform();
     }
 
-    public void RestoreTransform(){
+    public virtual void RestoreTransform(){
         transform.localPosition = data.position;
         transform.localRotation = Quaternion.Euler(data.rotation);
         transform.localScale = Vector3.one;
+
+
     }
 
     public virtual bool CanHoldItem(SceneGameObject previewSceneGameObject)
     {
         return sceneObject.CanHoldItem(previewSceneGameObject);
+    }
+
+    public virtual void HoldItem(SceneGameObject childOfElement, bool instancing = true)
+    {
+        sceneObject.HoldItem(childOfElement);
     }
 }

@@ -1,0 +1,336 @@
+{
+    "$id": 0,
+    "$type": "0|NT.Graph.SceneGraph, Assembly-CSharp",
+    "_name": "",
+    "nodes": {
+        "$id": 1,
+        "$type": "1|System.Collections.Generic.List`1[[XNode.Node, Assembly-CSharp]], mscorlib",
+        "$rlength": 5,
+        "$rcontent": [
+            {
+                "$id": 2,
+                "$type": "2|NT.Nodes.Variables.GetNTVariableNode, Assembly-CSharp",
+                "_name": "GET - (Closet_27)",
+                "graph": $iref:0,
+                "position": {
+                    "$type": "3|UnityEngine.Vector2, UnityEngine.CoreModule",
+                    -348.499878,
+                    -200
+                },
+                "ports": {
+                    "$id": 3,
+                    "$type": "4|XNode.Node+NodePortDictionary, Assembly-CSharp",
+                    "comparer": {
+                        "$id": 4,
+                        "$type": "5|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
+                    },
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$k": "mainDrawer/slot01",
+                            "$v": {
+                                "$id": 5,
+                                "$type": "6|XNode.NodePort, Assembly-CSharp",
+                                "_fieldName": "mainDrawer/slot01",
+                                "_node": $iref:2,
+                                "_typeQualifiedName": "SceneGameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 6,
+                                    "$type": "7|System.Collections.Generic.List`1[[XNode.NodePort+PortConnection, Assembly-CSharp]], mscorlib",
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 1,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": true
+                            }
+                        }
+                    ]
+                },
+                "hasError": false,
+                "error": "",
+                "isExecuting": false,
+                "variableType": {
+                    "$id": 7,
+                    "$type": "8|System.RuntimeType, mscorlib",
+                    "SceneGameObject, Assembly-CSharp"
+                },
+                "variablePath": "mainDrawer/slot01",
+                "dataType": {
+                    "$id": 8,
+                    "$type": 8,
+                    "System.String, mscorlib"
+                },
+                "dataKey": "Closet5cd8e5bf-880e-4172-b808-9872847d584e"
+            },
+            {
+                "$id": 9,
+                "$type": 2,
+                "_name": "GET - (Closet_27)",
+                "graph": $iref:0,
+                "position": {
+                    "$type": 3,
+                    -347.499878,
+                    -97
+                },
+                "ports": {
+                    "$id": 10,
+                    "$type": 4,
+                    "comparer": $iref:4,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$k": "mainDrawer/slot02",
+                            "$v": {
+                                "$id": 11,
+                                "$type": 6,
+                                "_fieldName": "mainDrawer/slot02",
+                                "_node": $iref:9,
+                                "_typeQualifiedName": "SceneGameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 12,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 1,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": true
+                            }
+                        }
+                    ]
+                },
+                "hasError": false,
+                "error": "",
+                "isExecuting": false,
+                "variableType": $iref:7,
+                "variablePath": "mainDrawer/slot02",
+                "dataType": $iref:8,
+                "dataKey": "Closet5cd8e5bf-880e-4172-b808-9872847d584e"
+            },
+            {
+                "$id": 13,
+                "$type": 2,
+                "_name": "GET - (Defibrilator)",
+                "graph": $iref:0,
+                "position": {
+                    "$type": 3,
+                    -350,
+                    -306.25
+                },
+                "ports": {
+                    "$id": 14,
+                    "$type": 4,
+                    "comparer": $iref:4,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$k": "",
+                            "$v": {
+                                "$id": 15,
+                                "$type": 6,
+                                "_fieldName": "",
+                                "_node": $iref:13,
+                                "_typeQualifiedName": "SceneGameObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 16,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 1,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": true
+                            }
+                        }
+                    ]
+                },
+                "hasError": false,
+                "error": "",
+                "isExecuting": false,
+                "variableType": $iref:7,
+                "variablePath": "",
+                "dataType": $iref:8,
+                "dataKey": "Defibrilatord23ea0aa-90fb-4726-a32d-ee4b5c0c4daa"
+            },
+            {
+                "$id": 17,
+                "$type": 2,
+                "_name": "GET - (Defibriltor)",
+                "graph": $iref:0,
+                "position": {
+                    "$type": 3,
+                    -349,
+                    17.75
+                },
+                "ports": {
+                    "$id": 18,
+                    "$type": 4,
+                    "comparer": $iref:4,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$k": "hasCharge",
+                            "$v": {
+                                "$id": 19,
+                                "$type": 6,
+                                "_fieldName": "hasCharge",
+                                "_node": $iref:17,
+                                "_typeQualifiedName": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                                "connections": {
+                                    "$id": 20,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 1,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": true
+                            }
+                        }
+                    ]
+                },
+                "hasError": false,
+                "error": "",
+                "isExecuting": false,
+                "variableType": {
+                    "$id": 21,
+                    "$type": 8,
+                    "System.Boolean, mscorlib"
+                },
+                "variablePath": "hasCharge",
+                "dataType": $iref:8,
+                "dataKey": "Defibrilatord23ea0aa-90fb-4726-a32d-ee4b5c0c4daa"
+            },
+            {
+                "$id": 22,
+                "$type": "9|NT.Nodes.Variables.SetNTVariableNode, Assembly-CSharp",
+                "_name": "SET - (Closet_27)",
+                "graph": $iref:0,
+                "position": {
+                    "$type": 3,
+                    -20,
+                    -235.25
+                },
+                "ports": {
+                    "$id": 23,
+                    "$type": 4,
+                    "comparer": $iref:4,
+                    "$rlength": 3,
+                    "$rcontent": [
+                        {
+                            "$k": "flowIn",
+                            "$v": {
+                                "$id": 24,
+                                "$type": 6,
+                                "_fieldName": "flowIn",
+                                "_node": $iref:22,
+                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 25,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 0,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": false
+                            }
+                        },
+                        {
+                            "$k": "flowOut",
+                            "$v": {
+                                "$id": 26,
+                                "$type": 6,
+                                "_fieldName": "flowOut",
+                                "_node": $iref:22,
+                                "_typeQualifiedName": "NT.DummyConnection, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 27,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 1,
+                                "_connectionType": 0,
+                                "_typeConstraint": 0,
+                                "_dynamic": false
+                            }
+                        },
+                        {
+                            "$k": "mainDrawer/slot01",
+                            "$v": {
+                                "$id": 28,
+                                "$type": 6,
+                                "_fieldName": "mainDrawer/slot01",
+                                "_node": $iref:22,
+                                "_typeQualifiedName": "NT.SceneObjects.SceneGameObjectReference, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                                "connections": {
+                                    "$id": 29,
+                                    "$type": 7,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "_direction": 0,
+                                "_connectionType": 1,
+                                "_typeConstraint": 2,
+                                "_dynamic": true
+                            }
+                        }
+                    ]
+                },
+                "hasError": false,
+                "error": "",
+                "isExecuting": false,
+                "flowIn": null,
+                "flowOut": null,
+                "variableType": {
+                    "$id": 30,
+                    "$type": 8,
+                    "NT.SceneObjects.SceneGameObjectReference, Assembly-CSharp"
+                },
+                "variablePath": "mainDrawer/slot01",
+                "dataType": $iref:8,
+                "dataKey": "Closet5cd8e5bf-880e-4172-b808-9872847d584e",
+                "backingValue": null
+            }
+        ]
+    },
+    "packedNodes": {
+        "$id": 31,
+        "$type": "10|System.Collections.Generic.List`1[[NT.Graph.NodeGroupGraph, Assembly-CSharp]], mscorlib",
+        "$rlength": 0,
+        "$rcontent": [
+        ]
+    },
+    "callbackNodes": {
+        "$id": 32,
+        "$type": "11|System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib",
+        "$rlength": 0,
+        "$rcontent": [
+        ]
+    },
+    "callbackNodesDict": {
+        "$id": 33,
+        "$type": "12|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[NT.Nodes.Messages.CallbackNode, Assembly-CSharp]], mscorlib]], mscorlib",
+        "comparer": {
+            "$id": 34,
+            "$type": 5
+        },
+        "$rlength": 0,
+        "$rcontent": [
+        ]
+    }
+}
