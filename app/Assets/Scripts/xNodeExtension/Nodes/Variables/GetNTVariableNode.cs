@@ -39,6 +39,10 @@ namespace NT.Nodes.Variables
                         return g.variableDelegate.GetSceneGameObject(dataKey);
                     }
                 }
+                else if(string.IsNullOrEmpty(variablePath))
+                {
+                    return g.variableDelegate.GetSceneGameObject(dataKey);;
+                }
                 else
                 {
                     return null;
@@ -65,8 +69,16 @@ namespace NT.Nodes.Variables
 
 
         private void InitializeNodeTypes(){
-            if(!HasPort(variablePath)){
-                AddInstanceOutput(variableType, ConnectionType.Override, TypeConstraint.Strict, variablePath);
+            if(!string.IsNullOrEmpty(variablePath)){
+                if(!HasPort(variablePath)){
+                    AddInstanceOutput(variableType, ConnectionType.Override, TypeConstraint.Strict, variablePath);
+                }
+            }
+            else
+            {
+                if(!HasPort(variablePath)){
+                    AddInstanceOutput(variableType, ConnectionType.Override, TypeConstraint.Strict, variablePath);
+                }
             }
         }
 

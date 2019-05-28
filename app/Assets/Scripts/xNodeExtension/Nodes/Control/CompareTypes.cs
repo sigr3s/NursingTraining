@@ -1,25 +1,39 @@
 using NT.Atributes;
+using UnityEngine;
+using XNode;
 
 namespace NT.Nodes.Other {
 
     public class CompareTypes : NTNode {
 
-        [Input(ShowBackingValue.Never, ConnectionType.Override)] public DummyConnection type01;
-        public Tools tool;
-        public enum Tools
-        {
-            Scissors01,
-            Scissors02,
-            Forceps01,
-            Forceps02,
-            Clamp01,
-            Clamp02,
-        }
-
+        [Input(ShowBackingValue.Never, ConnectionType.Override)] public SceneGameObject scneObject;
+        
         [NTOutput] public bool result;
 
-        public object GetValue() {
-            return GetInputValue<object>("result");
+        [NTInput] public Tools tool;
+
+
+
+        public override object GetValue(NodePort port) {
+            if(port.fieldName == nameof(result) ){
+                SceneGameObject scgo = GetInputValue<SceneGameObject>(nameof(scneObject), null);
+
+                if(scgo != null && scgo is ITool){
+                    ITool t = (ITool) scgo;
+
+                    Debug.Log( t + " __ " + tool);
+
+                    return t?.GetToolType() == tool;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override string GetDisplayName(){

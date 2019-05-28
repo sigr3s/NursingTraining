@@ -86,7 +86,7 @@ namespace  NT.Graph
                     return null;
                 }
 
-                if((node is GetNTVariableNode) || (node is SetNTVariableNode) ){
+                if((node is IVariableNode) ){
                     nodesToGroup.Remove(node);
                     Debug.LogWarning("Removed GET/SET");
                 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f475e278828a1eb45b64ecf2f3b8f0f4, type: 3}
+  m_Name: Forceps01
+  m_EditorClassIdentifier: 
+  displayName: Forceps Small
+  sceneGameObject:
+    canBePlacedOver:
+      serializedVersion: 2
+      m_Bits: 1024
+    model: {fileID: 3764564900579765852, guid: 3036d9d3e56c86d43a4788ab71624090, type: 3}
+  sceneObjectUI:
+    color: {r: 0.8679245, g: 0.50201875, b: 0.28248486, a: 0.60784316}
+    icon: {fileID: 21300000, guid: 13ad2ad7c4126c64b9713ab9ce478f82, type: 3}
+    category: 3
+  GUID: 66dee1ac-7439-4069-a9e8-4c7e5c0f0951

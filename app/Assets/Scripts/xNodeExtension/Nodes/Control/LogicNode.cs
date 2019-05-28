@@ -10,11 +10,11 @@ namespace NT.Nodes.Control
     [System.Serializable]
     public class LogicNode : NTNode{
 
-        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input0;
+        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input0 = new ValueConnection();
 
-        public Operator op;
+        public Operator operation;
 
-        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input1;
+        [NTInput(typeConstraint = TypeConstraint.None)] public ValueConnection input1 = new ValueConnection();
 
 
 
@@ -45,7 +45,7 @@ namespace NT.Nodes.Control
 
                 if(val0Type.IsNumber()){
                     if(val1Type.IsNumber()){
-                        return CompareNumbers(val0, val1, op);
+                        return CompareNumbers(val0, val1, operation);
                     }
                     else
                     {
@@ -57,7 +57,7 @@ namespace NT.Nodes.Control
                 else if(val0Type.IsString())
                 {
                     if(val1Type.IsString()){
-                        return CompareString(val0, val1, op);
+                        return CompareString(val0, val1, operation);
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace NT.Nodes.Control
                 }
                 else if(val0Type.IsBool()){
                     if(val1Type.IsBool()){
-                        return CompareBools(val0, val1, op);
+                        return CompareBools(val0, val1, operation);
                     }
                     else
                     {
@@ -104,11 +104,11 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareNumbers(val0, v1f, op);
+                    return CompareNumbers(val0, v1f, operation);
                 }
                 else if(val0Type.IsString())
                 {
-                    return CompareString(val0, input1.value, op);
+                    return CompareString(val0, input1.value, operation);
                 }
                 else if(val0Type.IsBool())
                 {
@@ -119,7 +119,7 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareBools(val0, v1b, op);                    
+                    return CompareBools(val0, v1b, operation);                    
                 }
                 else
                 {
@@ -147,11 +147,11 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareNumbers(v0f, val1, op);
+                    return CompareNumbers(v0f, val1, operation);
                 }
                 else if(val1Type.IsString())
                 {
-                    return CompareString(input0.value, val1, op);
+                    return CompareString(input0.value, val1, operation);
                 }
                 else if(val1Type.IsBool())
                 {
@@ -162,7 +162,7 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareBools(v0b, val1, op);                    
+                    return CompareBools(v0b, val1, operation);                    
                 }
                 else
                 {
@@ -186,7 +186,7 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareNumbers(f0, f1, op);                    
+                    return CompareNumbers(f0, f1, operation);                    
                 }
                 else if(bool.TryParse(input0.value, out b0)){
                     if(!bool.TryParse(input1.value, out b1)){
@@ -195,7 +195,7 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareBools(b0, b1, op);
+                    return CompareBools(b0, b1, operation);
                 }
                 else{
                     if(bool.TryParse(input1.value, out b1) || float.TryParse(input1.value, out f1)){
@@ -204,7 +204,7 @@ namespace NT.Nodes.Control
                         return false;
                     }
 
-                    return CompareString(input0.value, input1.value, op);
+                    return CompareString(input0.value, input1.value, operation);
                 }
             }
         }
@@ -256,6 +256,10 @@ namespace NT.Nodes.Control
     
         public override string GetDisplayName(){
             return "Compare";
+        }
+
+        public override int GetWidth(){
+            return 300;
         }
     }
 

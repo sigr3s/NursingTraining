@@ -11,6 +11,8 @@ using XNode;
 public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler {
 
 	public string fieldName;
+
+	private string backingValuePath;
 	public GUIProperty backingValue;
 	[HideInInspector] public XNode.Node node;
 
@@ -29,6 +31,8 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 			Destroy(this);
 			return;
 		}
+
+		backingValuePath = fieldName;
 
 		port = node.GetPort(fieldName);
 		graph = GetComponentInParent<RuntimeGraph>();
@@ -57,10 +61,22 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		{
 			transform.parent.GetComponent<Image>().color = Color.white;
 		}
+		else if(port.ValueType.IsEnum)
+		{
+			isBasicTypePort = true;
+			transform.parent.GetComponent<Image>().color = Color.blue;
+			propertyType = GUIProperty.PropertyType.Enumeration;
+		}
 		else if(port.ValueType == typeof(SceneGameObjectReference) ||
 				port.ValueType == typeof(SceneGameObject) )
 		{
 			transform.parent.GetComponent<Image>().color = Color.red;
+		}
+		else if(port.ValueType == typeof(ValueConnection)){
+			isBasicTypePort = true;
+			transform.parent.GetComponent<Image>().color = Color.blue;
+			propertyType = GUIProperty.PropertyType.String;
+			backingValuePath = backingValuePath + "/value";
 		}
 		else
 		{
@@ -89,7 +105,7 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 				backingValue.gameObject.SetActive(true);
 
 				if(port.IsStatic){
-					backingValue.SetData(ReflectionUtilities.GetValueOf(new List<string>(){fieldName}, node) , fieldName, propertyType);
+					backingValue.SetData(ReflectionUtilities.GetValueOf(new List<string>(backingValuePath.Split('/')), node) , backingValuePath, propertyType);
 					backingValue.OnValueChanged.AddListener(ValueChanged);
 				}
 				else if(node is NTNode)
@@ -98,7 +114,7 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 					object val = n.GetInstancePortValue(fieldName);
 					val = val != null ? val : Activator.CreateInstance(port.ValueType);
 
-					backingValue.SetData(val , fieldName, propertyType);
+					backingValue.SetData(val , backingValuePath, propertyType);
 					backingValue.OnValueChanged.AddListener(InstanceValueChanged);
 				}
 			}
@@ -110,16 +126,16 @@ public class UGUIPort : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		}
 	}
-		private void InstanceValueChanged(object value, string path)
-    {
-			 NTNode n = (NTNode) node;
-			 n.SetInstancePortValue(path, value);
-    }
+	private void InstanceValueChanged(object value, string path)
+	{
+			NTNode n = (NTNode) node;
+			n.SetInstancePortValue(path, value);
+	}
 
     private void ValueChanged(object value, string path)
     {
-			object n = node;
-			ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
+		object n = node;
+		ReflectionUtilities.SetValueOf(ref n, value, new List<string>(path.Split('/')) );
     }
 
     public void UpdateConnectionTransforms() {

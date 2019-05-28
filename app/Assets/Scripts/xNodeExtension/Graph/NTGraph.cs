@@ -50,14 +50,12 @@ namespace  NT.Graph
         public virtual void GenerateCallbackDict()
         {
             callbackNodesDict = new Dictionary<string, List<CallbackNode> >();
+            
+            callbackNodes = new List<CallbackNode>();
 
-            if(callbackNodes == null){
-                callbackNodes = new List<CallbackNode>();
-
-                foreach(Node n in nodes){
-                    if(n is CallbackNode){
-                        callbackNodes.Add( (CallbackNode) n);
-                    }
+            foreach(Node n in nodes){
+                if(n is CallbackNode){
+                    callbackNodes.Add( (CallbackNode) n);
                 }
             }
 
@@ -69,11 +67,14 @@ namespace  NT.Graph
                         callbacksInKey = callbackNodesDict[cn.GetCallbackKey()];
                         callbacksInKey.Add(cn);
                         callbackNodesDict[cn.GetCallbackKey()] = callbacksInKey;
+
+                        Debug.Log("Add callback " + cn.GetCallbackKey() + " __ " + name);
                     }
                     else
                     {
                         callbacksInKey.Add(cn);
                         callbackNodesDict[cn.GetCallbackKey()] = callbacksInKey;
+                        Debug.Log("Add callback " + cn.GetCallbackKey() + " __ " + name);
                     }
                 }
             }
@@ -81,7 +82,7 @@ namespace  NT.Graph
 
         public virtual void MessageRecieved(string message)
         {
-            Debug.Log("<color=magenta> Message recieved!   " + message + "</color>");
+            Debug.Log("<color=magenta> Message recieved!   " + message + " on graph" + name + "</color>");
             if(!string.IsNullOrEmpty(message) && callbackNodesDict.ContainsKey(message)){
                 List<CallbackNode> nodesToExecute = callbackNodesDict[message];
                 foreach(CallbackNode cn in nodesToExecute){
@@ -110,7 +111,7 @@ namespace  NT.Graph
 
             while(nodeExecutionContext.node != null){
 
-                Debug.Log("<color=green> Execute node:  " + nodeExecutionContext.node + "</color>");
+                Debug.Log("<color=green> Execute node:  " + nodeExecutionContext.node + " ... GRAPH: " + name +"</color>");
                 nodeExecutionContext.node.Enter();
 
                 yield return new YieldNode(nodeExecutionContext );

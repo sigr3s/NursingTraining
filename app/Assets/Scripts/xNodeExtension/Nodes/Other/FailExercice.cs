@@ -1,9 +1,11 @@
 
+using NT.Atributes;
+
 namespace NT.Nodes.Other {
     
     public class FailExercice : FlowNode {
 
-        public int grade;
+        [NTInput] public int grade;
 
         public object GetValue() {
             return GetInputValue<object>("input");

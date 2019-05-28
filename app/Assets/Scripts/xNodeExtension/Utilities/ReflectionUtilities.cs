@@ -164,6 +164,11 @@ namespace NT
             if(path.Count > 0){
                 string current = path[0];
 
+                if(o == null){
+                    Debug.Log("wtf???");
+                    return null;
+                }
+
                 Type t = o.GetType();
 
                 FieldInfo fi = t.GetField(current);

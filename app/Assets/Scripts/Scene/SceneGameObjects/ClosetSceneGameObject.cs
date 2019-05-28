@@ -20,13 +20,14 @@ public class ClosetSceneGameObject : SceneGameObject {
             freeSpace = freeSpace || s == null;
         }
 
-        return freeSpace;
+        return freeSpace && previewSceneGameObject is ITool;
     }
 
     public override void HoldItem(SceneGameObject childOfElement, bool instancing = true){
         ClosetData closetData = (ClosetData) data.data.GetDefaultValue();
         List<SceneGameObjectReference> slots = SlotsList(closetData);
-
+    
+        childOfElement.gameObject.SetActive(false);
 
         if(instancing){
             
@@ -54,6 +55,7 @@ public class ClosetSceneGameObject : SceneGameObject {
                     childOfElement.transform.localPosition = Vector3.zero;
                     childOfElement.transform.localRotation = Quaternion.identity;
 
+                    slotPivot[i].gameObject.SetActive(true);
                     
                     return;
                 }

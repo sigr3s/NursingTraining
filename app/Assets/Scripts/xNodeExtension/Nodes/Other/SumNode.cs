@@ -5,17 +5,17 @@ using XNode;
 namespace NT.Nodes.Other{
 
     [System.Serializable]
-    public class SumNode : FlowNode
+    public class SumNode : NTNode
     {
-        [NTInput] public float val1;
-        [NTInput] public float val2;
+        [NTInput] public float valueA;
+        [NTInput] public float valueB;
 
         [NTOutput] public float result;
 
 
         public override object GetValue(NodePort port) {
-            float val1 = GetInputValue<float>(nameof(val1), this.val1);
-            float val2 = GetInputValue<float>(nameof(val2), this.val2);
+            float val1 = GetInputValue<float>(nameof(valueA), this.valueA);
+            float val2 = GetInputValue<float>(nameof(valueB), this.valueB);
 
             result = val1 + val2;
 

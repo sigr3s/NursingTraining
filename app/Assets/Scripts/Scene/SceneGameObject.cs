@@ -31,7 +31,8 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
 #region  Serialized
     [SerializeField] public SceneGameObjectData data;
 #endregion
-
+    
+    public GameObject outlineRoot;
 
 
     [NonSerialized] private bool _isColliding = false;
@@ -45,6 +46,8 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
             if(_isColliding){
                 foreach (var rendererOutline in renderersOutlines)
                 {
+                    if(rendererOutline == null) continue;
+
                     rendererOutline.enabled = true;
                     rendererOutline.color = 2;
                 }
@@ -53,6 +56,8 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
             {
                 foreach (var rendererOutline in renderersOutlines)
                 {
+                    if(rendererOutline == null) continue;
+                    
                     rendererOutline.enabled = false;
                 }
             }
@@ -117,7 +122,7 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
     public SceneGameObject parent{
         get{
             if(_parent == null){
-                _parent = transform.parent.GetComponent<SceneGameObject>();
+                _parent = transform.parent.GetComponentInParent<SceneGameObject>();
             }
             return _parent;
         }
@@ -145,7 +150,11 @@ public class SceneGameObject : MonoBehaviour, ISerializationCallbackReceiver
     [NonSerialized] private List<Outline> renderersOutlines;
 
     protected void Awake() {
-        List<Renderer> renderers = new List<Renderer>( GetComponentsInChildren<Renderer>() );
+        if(outlineRoot == null){
+            outlineRoot = gameObject;
+        }
+        
+        List<Renderer> renderers = new List<Renderer>( outlineRoot.GetComponentsInChildren<Renderer>() );
         renderersOutlines = new List<Outline>();
 
         foreach (var r in renderers)

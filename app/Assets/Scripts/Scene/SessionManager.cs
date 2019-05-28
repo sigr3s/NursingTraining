@@ -137,8 +137,13 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             }
         }
 
-        foreach(var uv in userVariables){
-            uv.Value.Reset();
+
+        var userVars = userVariables.Keys.ToArray();
+    
+        foreach(var uv in userVars){
+            var v = userVariables[uv];
+            v.Reset();
+            userVariables[uv] = v;
         }
         
 
