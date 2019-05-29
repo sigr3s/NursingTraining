@@ -111,12 +111,16 @@ namespace NT.SceneObjects
             return CraftPrefab(null);
         }
 
-        public static PrefabObject LoadPrefab(string prefabFile){
+        public static PrefabObject LoadPrefab(string prefabFile, List<Sprite> icons){
             PrefabObject loadedPrefab = ScriptableObject.CreateInstance<PrefabObject>();
 
             if(File.Exists(prefabFile)){
                 byte[] loadedPrefabData = File.ReadAllBytes(prefabFile);
                 loadedPrefab.prefab = SerializationUtility.DeserializeValue<SavedPrefab>(loadedPrefabData, dataFormat);
+
+                loadedPrefab.sceneObjectUI.category = loadedPrefab.prefab.category;
+                loadedPrefab.sceneObjectUI.icon = icons[loadedPrefab.prefab.sprite];
+                loadedPrefab.displayName = loadedPrefab.prefab.name;
             }
             else
             {
@@ -159,7 +163,7 @@ namespace NT.SceneObjects
         }
 
 
-        public static bool CreatePrefab(string prefabID, SceneGameObject root, string name = "", int sprite = 0){
+        public static bool CreatePrefab(string prefabID, SceneGameObject root, string name = "", int sprite = 0, ObjectCategory category = ObjectCategory.UserPrefabs){
             if(string.IsNullOrEmpty(prefabID)){
                 return false;
             }
@@ -172,6 +176,7 @@ namespace NT.SceneObjects
 
             SavedPrefab savedPrefab = new SavedPrefab {
                 name = name,
+                category = category,
                 sprite = sprite,
                 root = root.data.id,
                 prefabObjects = new List<SceneGameObject>(root.GetComponentsInChildren<SceneGameObject>(true))
@@ -187,6 +192,7 @@ namespace NT.SceneObjects
         [System.Serializable]
         public struct SavedPrefab{
             public int sprite;
+            public ObjectCategory category;
             public string name;
             public string root;
             public List<SceneGameObject> prefabObjects;

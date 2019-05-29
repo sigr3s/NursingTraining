@@ -22,7 +22,7 @@ public class SceneObjects : ScriptableObject {
         FileInfo[] files = prefabsDir.GetFiles("*.nt");
 
         foreach(var file in files){
-            PrefabObject po = PrefabObject.LoadPrefab(file.FullName);
+            PrefabObject po = PrefabObject.LoadPrefab(file.FullName, prefabSprites);
 
             if(po == null){
                 Debug.LogWarning("Cannot load???");

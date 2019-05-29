@@ -12,9 +12,38 @@ using SimpleJSON;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using XNode;
 
 public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
+
+    public static SessionData sessionToLoad;
+
+    public static string GetSavePath(){
+        if(!Directory.Exists(Application.dataPath  + "/Saves")){
+            Directory.CreateDirectory(Application.dataPath  + "/Saves");
+        }
+
+        if(!Directory.Exists(Application.dataPath  + "/Saves/Sessions/")){
+            Directory.CreateDirectory(Application.dataPath  + "/Saves/Sessions/");
+        }
+        return Application.dataPath  + "/Saves/Sessions/";
+    }
+
+    public static SessionData GetSession(string sessionID){
+
+        string configJSON = File.ReadAllText(GetSavePath() + sessionID + "/" + "config.nt");
+        return JsonUtility.FromJson<SessionData>(configJSON);
+    
+    }
+
+    public static void DeleteSession(string sessionID)
+    {
+        string sessionPath = GetSavePath() + sessionID;
+        if(Directory.Exists(sessionPath)){
+            Directory.Delete(sessionPath, true);            
+        }
+    }
 
     [Header("Session Data")]
     public SessionData SessionData;
@@ -49,6 +78,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
     private SceneGameObject _selectedObjectSceneObject;
+
     public SceneGameObject selectedSceneObject{
 
         get{
@@ -99,8 +129,12 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
     }
 
     private void Start() {
+        if(!string.IsNullOrEmpty(sessionToLoad.sessionID)){
+            SessionData = sessionToLoad;
+        }
+
         if(loadOnAwake){
-           LoadSession(SessionData.sessionID);
+           LoadSession( SessionData.sessionID);
         }
     }
 
@@ -171,9 +205,9 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
             SessionData.sessionID = DateTime.Now.ToString();
         }
 
-        Debug.Log( $" Saving session to: {Application.persistentDataPath} ");
+        Debug.Log( $" Saving session to: {GetSavePath()} ");
 
-        string saveFolder = Application.dataPath + "/Saves/Sessions/" + SessionData.sessionID;
+        string saveFolder = GetSavePath() + SessionData.sessionID;
         if(Directory.Exists(saveFolder) ){
             Directory.Delete(saveFolder, true);
         }
@@ -209,7 +243,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
     public void LoadSession(string sessionID){
 
-        string saveFolder = Application.dataPath + "/Saves/Sessions/" + sessionID;
+        string saveFolder = GetSavePath() + sessionID;
 
         if(string.IsNullOrEmpty(sessionID)) return;
 
@@ -416,6 +450,16 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
         }
     }
 
+    public void Quit(){
+        SaveSession();
+        Application.Quit();
+    }
+
+    public void Back(){
+        SaveSession();
+        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+    }
+
 
     #endregion
 
@@ -424,6 +468,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
 [System.Serializable]
 public struct SessionData{
+    public string displayName;
     public string sessionID;
     public string lastModified;
     public string sceneGraphFile;

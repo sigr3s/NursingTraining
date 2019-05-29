@@ -503,6 +503,7 @@ MonoBehaviour:
   title: {fileID: 5175874244109709905}
   childTransfrom: {fileID: 683986893637173107}
   dragOnSurfaces: 1
+  draggingSprite: {fileID: 21300000, guid: 105d5a0e2ead77c428847ed8572bb93b, type: 3}
 --- !u!1 &6164663213472945794
 GameObject:
   m_ObjectHideFlags: 0

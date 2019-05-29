@@ -7,9 +7,11 @@ public class DraggableGUIHierarchyItem : GUIHierarchyItem, IBeginDragHandler, ID
 
     [Header("Drag")]
     public bool dragOnSurfaces = true;
+    public Sprite draggingSprite;
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
 
+    
     protected RuntimeGraph rg;
     protected Vector2 nodePosition;
 
@@ -28,9 +30,10 @@ public class DraggableGUIHierarchyItem : GUIHierarchyItem, IBeginDragHandler, ID
 
         var image = m_DraggingIcon.AddComponent<Image>();
 
-        image.sprite = GetComponentInChildren<Image>().sprite;
+        image.sprite = draggingSprite;
         image.SetNativeSize();
         image.raycastTarget = false;
+        image.preserveAspect = true;
 
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;

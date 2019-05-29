@@ -61,7 +61,7 @@ public class ClosetSceneGameObject : SceneGameObject {
                 }
             }
 
-            Debug.Log("WTF¿");
+            Debug.Log("There is no slot fot ?¿" + childOfElement.data.id);
             childOfElement.gameObject.SetActive(false);            
         }
     }

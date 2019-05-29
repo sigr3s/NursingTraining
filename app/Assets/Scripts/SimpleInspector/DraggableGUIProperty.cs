@@ -12,6 +12,8 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
 
     
     public bool dragOnSurfaces = true;
+    public Sprite draggingSprite;
+
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
     public GetSetContextMenu contextMenu;
@@ -29,9 +31,10 @@ public class DraggableGUIProperty : GUIProperty, IBeginDragHandler, IDragHandler
 
         var image = m_DraggingIcon.AddComponent<Image>();
 
-        image.sprite = GetComponentInChildren<Image>(true).sprite;
+        image.sprite = draggingSprite;
         image.SetNativeSize();
         image.raycastTarget = false;
+        image.preserveAspect = true;
 
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;

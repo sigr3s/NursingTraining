@@ -8,6 +8,7 @@ using NT.Variables;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class MapEditor : MapLoader {   
     public enum MapMode{         
@@ -76,15 +77,12 @@ public class MapEditor : MapLoader {
         LoadObjectsButtons();
     }
 
-    public void LoadObjectsButtons(int filter = 0) {
+    public void LoadObjectsButtons(ObjectCategory filter = 0) {
 
 
         foreach (Transform child in objectList.transform) {
             GameObject.Destroy(child.gameObject);
         }
-
-        ObjectCategory ocFilter = (ObjectCategory) filter;
-
 
 
         foreach (var so in SessionManager.Instance.sceneObjects.objectSet)
@@ -95,11 +93,12 @@ public class MapEditor : MapLoader {
 
             UISceneObject uisc = isc.GetUISceneObject();
 
-            if(ocFilter != ObjectCategory.All && ocFilter != uisc.category ) continue;
+            if(filter != ObjectCategory.All && filter != uisc.category ) continue;
 
 
             GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
             Button button =  soButton.GetComponent<Button>();
+            soButton.GetComponentInChildren<TextMeshProUGUI>()?.SetText( so.GetDisplayName() );
 
             button.onClick.AddListener(() =>{ SetPlacementObject(isc); });
 
@@ -117,16 +116,18 @@ public class MapEditor : MapLoader {
 
             UISceneObject uisc = isc.GetUISceneObject();
 
-            if(ocFilter != ObjectCategory.All && ocFilter != ObjectCategory.UserPrefabs ) continue;
+            if(filter != ObjectCategory.All && filter != ObjectCategory.UserPrefabs && filter != uisc.category) continue;
 
             GameObject soButton = Instantiate(sceneObjectUiPrefab, objectList);
 
             Button button =  soButton.GetComponent<Button>();
+            soButton.GetComponentInChildren<TextMeshProUGUI>()?.SetText( so.GetDisplayName() );
+
 
             button.onClick.AddListener(() =>{ SetPlacementObject(isc); });
 
             button.targetGraphic.color = Color.yellow;
-            soButton.transform.Find("Icon").GetComponent<Image>().sprite = prefabSprite;
+            soButton.transform.Find("Icon").GetComponent<Image>().sprite = uisc.icon;
 
         }
     }

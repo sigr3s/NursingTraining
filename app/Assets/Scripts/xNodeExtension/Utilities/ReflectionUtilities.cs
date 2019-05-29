@@ -165,7 +165,6 @@ namespace NT
                 string current = path[0];
 
                 if(o == null){
-                    Debug.Log("wtf???");
                     return null;
                 }
 

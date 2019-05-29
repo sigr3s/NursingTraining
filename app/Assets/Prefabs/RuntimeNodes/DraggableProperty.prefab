@@ -1026,6 +1026,7 @@ MonoBehaviour:
   path: 
   propertyType: 0
   dragOnSurfaces: 1
+  draggingSprite: {fileID: 21300000, guid: 105d5a0e2ead77c428847ed8572bb93b, type: 3}
   contextMenu: {fileID: 0}
 --- !u!114 &7327639578430228199
 MonoBehaviour:
