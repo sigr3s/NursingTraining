@@ -45,6 +45,7 @@ namespace NT.Nodes.Control
 
                 if(val0Type.IsNumber()){
                     if(val1Type.IsNumber()){
+                        Debug.Log("Compare numbers!");  
                         return CompareNumbers(val0, val1, operation);
                     }
                     else
@@ -218,6 +219,14 @@ namespace NT.Nodes.Control
                     return v0 == v1;
                 case Operator.NotEquals:
                     return v0 != v1;
+                case Operator.GreaterOrEqualThan:
+                    return v0 >= v1;
+                case Operator.LessOrEqualThan:
+                    return v0 <= v1;
+                case Operator.LessThan:
+                    return v0 < v1;
+                case Operator.GreaterThan:
+                    return v0 > v1;
                 default:
                     hasError = true;
                     return false;

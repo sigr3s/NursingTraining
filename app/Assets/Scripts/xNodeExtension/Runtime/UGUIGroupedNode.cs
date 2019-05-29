@@ -27,6 +27,10 @@ public class UGUIGroupedNode :  MonoBehaviour, IPointerClickHandler, IDragHandle
                 guiport.node = port.node;
                 guiport.name = port.fieldName;
 
+                if(port.IsConnected && port.Connection == null){
+                    Debug.Log("Lost some connection" + " ___ " + port.fieldName);
+                }
+
                 ports.Add(guiport);
 
                 if(port.IsDynamic){

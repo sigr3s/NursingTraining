@@ -76,8 +76,8 @@ namespace NT.Nodes.Variables
             }
             else
             {
-                if(!HasPort(variablePath)){
-                    AddInstanceOutput(variableType, ConnectionType.Override, TypeConstraint.Strict, variablePath);
+                if(!HasPort("value")){
+                    AddInstanceOutput(variableType, ConnectionType.Override, TypeConstraint.Strict, "value");
                 }
             }
         }
