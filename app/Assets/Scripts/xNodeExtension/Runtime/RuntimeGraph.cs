@@ -176,6 +176,8 @@ public class RuntimeGraph : MonoBehaviour, IPointerClickHandler {
                 return nodes[i];
             } else { }
         }
+
+        Debug.Log("No one contains node " + node.name);
     
         return null;
     }

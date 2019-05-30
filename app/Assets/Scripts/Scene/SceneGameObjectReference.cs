@@ -1,7 +1,8 @@
 using UnityEngine;
 
 namespace NT.SceneObjects
-{
+{   
+    [System.Serializable]
     public class SceneGameObjectReference{
         private SceneGameObject _reference;
 

@@ -1,4 +1,5 @@
 using NT.Atributes;
+using NT.SceneObjects;
 using UnityEngine;
 using XNode;
 
@@ -6,7 +7,7 @@ namespace NT.Nodes.Other {
 
     public class CompareTypes : NTNode {
 
-        [Input(ShowBackingValue.Never, ConnectionType.Override)] public SceneGameObject scneObject;
+        [Input(ShowBackingValue.Never, ConnectionType.Override)] public SceneGameObjectReference scneObject;
         
         [NTOutput] public bool result;
 
@@ -27,6 +28,8 @@ namespace NT.Nodes.Other {
                 }
                 else
                 {
+                    Debug.Log( "WOWW¿¿   ___ " + scgo);
+
                     return false;
                 }
             }
