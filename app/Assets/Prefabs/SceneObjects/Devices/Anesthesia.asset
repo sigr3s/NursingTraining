@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91614df45926bd247a5b2781bc28be26, type: 3}
-  m_Name: Closet
+  m_Script: {fileID: 11500000, guid: 83220f23ec5e36a4db82e3d16d5b7a9b, type: 3}
+  m_Name: Anesthesia
   m_EditorClassIdentifier: 
   displayName: 
   sceneGameObject:
     canBePlacedOver:
       serializedVersion: 2
       m_Bits: 512
-    model: {fileID: 3764564900579765852, guid: 672c7cd7f7d34ef4b917e6f57865df3e, type: 3}
+    model: {fileID: 8105793770081520070, guid: 4e9d88b7ae597ec4d8188bdc825c6a2b, type: 3}
   sceneObjectUI:
-    color: {r: 0.5176471, g: 0.427451, b: 0.30980393, a: 0.49019608}
-    icon: {fileID: 21300000, guid: 7029861cd3b03e140887d56c9022c007, type: 3}
-    category: 1
-  GUID: 3a4e8434-b4fe-4101-ad63-cb5f5051df50
+    color: {r: 0.8071988, g: 0.08018869, b: 1, a: 0.50980395}
+    icon: {fileID: 21300000, guid: 22aa22e2a78c67541adedf2369b88d68, type: 3}
+    category: 2
+  GUID: a7961692-f3c5-47a9-9fd0-fdffb760b5cf

@@ -28,7 +28,7 @@ namespace NT.Nodes.Messages{
         }
 
         public override string GetDisplayName(){
-            return "Message Recieved";
+            return "Message Received";
         }
 
         public override int GetWidth(){
