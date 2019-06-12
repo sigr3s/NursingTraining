@@ -14,7 +14,7 @@ namespace NT.SceneObjects
     {
         All = 0,
         Furniture = 1,
-        Props = 2,
+        Devices = 2,
         Tools = 3,
         Decoration = 4,
         UserPrefabs = 5
