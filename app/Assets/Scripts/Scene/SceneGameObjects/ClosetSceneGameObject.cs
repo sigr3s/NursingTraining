@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NT;
 using NT.SceneObjects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -89,5 +90,13 @@ public class ClosetSceneGameObject : SceneGameObject {
         //drawer.SetActive(false);
 
         //drawer.SetActive(true);
+    }
+
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Tool"){
+            HoldItem(other.GetComponent<SceneGameObject>());
+            MessageSystem.SendMessage("Item Added " + data.id);
+        }
     }
 }
