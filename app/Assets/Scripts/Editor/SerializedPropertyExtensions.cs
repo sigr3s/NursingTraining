@@ -162,7 +162,7 @@
                          Enumerable
                          .Repeat(type.BaseType, 1)
                          .Concat(type.GetInterfaces())
-                         .Concat(type.BaseType.GetBaseClassesAndInterfaces())
+                         //.Concat(type.BaseType.GetBaseClassesAndInterfaces(), true)
                          .Distinct());
              }
  
