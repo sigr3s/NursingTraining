@@ -8,6 +8,6 @@ namespace NT
 
         public static void SendMessage(string message){
             onMessageSent?.Invoke(message);
-        }    
+        }
     }
 }

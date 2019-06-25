@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace NT.SceneObjects{
+
+    [System.Serializable]
     public struct TebleData{
         public SceneGameObjectReference slot00;
         public SceneGameObjectReference slot01;
@@ -15,7 +17,5 @@ namespace NT.SceneObjects{
     [CreateAssetMenu(fileName = "TableObject", menuName = "NT/Scene/Table")]
     public class TableObject : SceneObject<TebleData> {
 
-        
-        
     }
 }

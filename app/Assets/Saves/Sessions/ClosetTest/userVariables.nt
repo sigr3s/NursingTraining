@@ -5,66 +5,54 @@
         "$id": 1,
         "$type": "1|System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]], mscorlib"
     },
-    "$rlength": 5,
+    "$rlength": 4,
     "$rcontent": [
         {
-            "$k": "Grade",
+            "$k": "Clean hands",
             "$v": {
                 "$type": "2|SessionManager+UserVariable, Assembly-CSharp",
                 "value": {
                     "$id": 2,
-                    "$type": "3|System.String, mscorlib",
-                    "100"
+                    "$type": "3|System.Boolean, mscorlib",
+                    false
                 },
                 "defaultValue": $iref:2
             }
         },
         {
-            "$k": "TFM",
+            "$k": "Grade",
             "$v": {
                 "$type": 2,
                 "value": {
                     "$id": 3,
-                    "$type": "4|System.Boolean, mscorlib",
-                    true
+                    "$type": "4|System.Single, mscorlib",
+                    0
                 },
                 "defaultValue": $iref:3
             }
         },
         {
-            "$k": "Report",
+            "$k": "Gloves on",
             "$v": {
                 "$type": 2,
                 "value": {
                     "$id": 4,
-                    "$type": 4,
-                    true
+                    "$type": 3,
+                    false
                 },
                 "defaultValue": $iref:4
             }
         },
         {
-            "$k": "R1",
+            "$k": "Cover table on",
             "$v": {
                 "$type": 2,
                 "value": {
                     "$id": 5,
-                    "$type": 4,
-                    true
+                    "$type": 3,
+                    false
                 },
                 "defaultValue": $iref:5
-            }
-        },
-        {
-            "$k": "R2",
-            "$v": {
-                "$type": 2,
-                "value": {
-                    "$id": 6,
-                    "$type": 4,
-                    true
-                },
-                "defaultValue": $iref:6
             }
         }
     ]
