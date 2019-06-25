@@ -26,25 +26,17 @@
                 "value": {
                     "$id": 3,
                     "$type": "4|System.Single, mscorlib",
-                    0
+                    -2
                 },
-                "defaultValue": $iref:3
+                "defaultValue": {
+                    "$id": 4,
+                    "$type": 4,
+                    0
+                }
             }
         },
         {
             "$k": "Gloves on",
-            "$v": {
-                "$type": 2,
-                "value": {
-                    "$id": 4,
-                    "$type": 3,
-                    false
-                },
-                "defaultValue": $iref:4
-            }
-        },
-        {
-            "$k": "Cover table on",
             "$v": {
                 "$type": 2,
                 "value": {
@@ -53,6 +45,18 @@
                     false
                 },
                 "defaultValue": $iref:5
+            }
+        },
+        {
+            "$k": "Cover table on",
+            "$v": {
+                "$type": 2,
+                "value": {
+                    "$id": 6,
+                    "$type": 3,
+                    false
+                },
+                "defaultValue": $iref:6
             }
         }
     ]

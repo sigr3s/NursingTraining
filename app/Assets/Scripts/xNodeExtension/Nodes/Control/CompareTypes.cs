@@ -28,8 +28,6 @@ namespace NT.Nodes.Other {
                 }
                 else
                 {
-                    Debug.Log( "WOWW¿¿   ___ " + scgo);
-
                     return false;
                 }
             }

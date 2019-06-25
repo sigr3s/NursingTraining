@@ -73,7 +73,7 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
         public void Reset()
         {
-            value = defaultValue;
+            this.value = defaultValue;
         }
     }
 
@@ -155,35 +155,51 @@ public class SessionManager : Singleton<SessionManager>, IVariableDelegate {
 
     [ContextMenu("Start execution")]
     public void StartExecution(){
-        StartExecutionWithMessage("Application Start");
+        MessageSystem.onMessageSent = null;
+
+        SetUpForExecution();
+
+        MessageSystem.SendMessage("Application Start");
+        MessageSystem.SendMessage("Excercise Started");
     }
 
-    public void StartExecutionWithMessage(string message ){
+    public void EndExercise()
+    {
+        MessageSystem.SendMessage("Application End");
+        MessageSystem.SendMessage("Exercise End");
+    }
 
+    public void SetUpForExecution()
+    {
         //Reset all variables to default values!
-        foreach(var so in sceneGameObjects){
+        foreach (var so in sceneGameObjects)
+        {
             SceneGameObject scgo = so.Value;
 
             scgo.data.data.Reset();
 
-            if(scgo.data.graph != null && (scgo.data.graph.nodes.Count > 0 || scgo.data.graph.packedNodes.Count > 0) ){
+            if (scgo.data.graph != null && (scgo.data.graph.nodes.Count > 0 || scgo.data.graph.packedNodes.Count > 0))
+            {
                 scgo.data.graph.StartExecution();
             }
         }
 
 
         var userVars = userVariables.Keys.ToArray();
-    
-        foreach(var uv in userVars){
+
+        foreach (var uv in userVars)
+        {
             var v = userVariables[uv];
             v.Reset();
             userVariables[uv] = v;
         }
-        
+
 
         sceneGraph.StartExecution();
+    }
 
-
+    public void StartExecutionWithMessage(string message ){
+        SetUpForExecution();
         MessageSystem.SendMessage(message);
 
     }

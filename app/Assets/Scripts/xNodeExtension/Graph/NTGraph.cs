@@ -74,7 +74,7 @@ namespace  NT.Graph
                     {
                         callbacksInKey.Add(cn);
                         callbackNodesDict[cn.GetCallbackKey()] = callbacksInKey;
-                        Debug.Log("Add callback " + cn.GetCallbackKey() + " __ " + name);
+                        Debug.Log("<color=green> Add callback " + cn.GetCallbackKey() + " __ " + name + "</color>");
                     }
                 }
             }
@@ -83,6 +83,7 @@ namespace  NT.Graph
         public virtual void MessageRecieved(string message)
         {
             Debug.Log("<color=magenta> Message recieved!   " + message + " on graph" + name + "</color>");
+
             if(!string.IsNullOrEmpty(message) && callbackNodesDict.ContainsKey(message)){
                 List<CallbackNode> nodesToExecute = callbackNodesDict[message];
                 foreach(CallbackNode cn in nodesToExecute){

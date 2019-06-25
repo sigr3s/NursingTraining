@@ -1,5 +1,7 @@
 
 using NT.Atributes;
+using System.Collections;
+using UnityEngine;
 
 namespace NT.Nodes.Other {
     
@@ -8,11 +10,17 @@ namespace NT.Nodes.Other {
         [NTInput] public int grade;
 
         public object GetValue() {
-            return GetInputValue<object>("input");
+            return GetInputValue<object>("grade");
         }
 
         public override string GetDisplayName(){
             return "Fail Exercice";
+        }
+
+        public override IEnumerator ExecuteNode(NodeExecutionContext context)
+        {
+            MessageSystem.SendMessage("Fail Session /" + GetValue());
+            yield return null;
         }
     }
 }

@@ -2664,7 +2664,7 @@
         "$id": 280,
         "$type": 24,
         "comparer": $iref:4,
-        "$rlength": 1,
+        "$rlength": 2,
         "$rcontent": [
             {
                 "$k": "Exercise End",
@@ -2674,6 +2674,17 @@
                     "$rlength": 1,
                     "$rcontent": [
                         $iref:2
+                    ]
+                }
+            },
+            {
+                "$k": "Check",
+                "$v": {
+                    "$id": 282,
+                    "$type": 23,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        $iref:214
                     ]
                 }
             }

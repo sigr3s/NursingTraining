@@ -1,5 +1,6 @@
 
 using NT.Atributes;
+using System.Collections;
 
 namespace NT.Nodes.Other {
     
@@ -8,11 +9,19 @@ namespace NT.Nodes.Other {
         [NTInput] public int grade; 
         
         public object GetValue() {
-            return GetInputValue<object>("input");
+            return GetInputValue<object>("grade");
         }
 
         public override string GetDisplayName(){
             return "Pass Exercice";
         }
+
+
+        public override IEnumerator ExecuteNode(NodeExecutionContext context)
+        {
+            MessageSystem.SendMessage("Pass Session /" +  (int) GetValue() );
+            yield return null;
+        }
+
     }
 }

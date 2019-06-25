@@ -2145,45 +2145,115 @@
                             ]
                         },
                         "linkedNTVariable": "Closet1b1eaef9-0fd2-4d24-836a-252c4d33e5cc",
-                        "assignedSCGO": $iref:86,
+                        "assignedSCGO": {
+                            "$id": 223,
+                            "$type": 18,
+                            "data": {
+                                "$type": 3,
+                                "id": "Closet1b1eaef9-0fd2-4d24-836a-252c4d33e5cc",
+                                "childs": {
+                                    "$id": 224,
+                                    "$type": 4,
+                                    "$rlength": 0,
+                                    "$rcontent": [
+                                    ]
+                                },
+                                "parent": "",
+                                "data": $iref:88,
+                                "sceneObjectGUID": "3a4e8434-b4fe-4101-ad63-cb5f5051df50",
+                                "graphJSON": "",
+                                "position": {
+                                    "$type": 7,
+                                    4.417572,
+                                    0,
+                                    2.89322948
+                                },
+                                "rotation": {
+                                    "$type": 7,
+                                    0,
+                                    270,
+                                    0
+                                },
+                                "graph": $iref:89
+                            },
+                            "outlineRoot": {
+                                "$id": 225,
+                                "$type": 13
+                            },
+                            "drawer": {
+                                "$id": 226,
+                                "$type": 13
+                            },
+                            "slotPivot": {
+                                "$id": 227,
+                                "$type": "35|System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule]], mscorlib",
+                                "$rlength": 6,
+                                "$rcontent": [
+                                    {
+                                        "$id": 228,
+                                        "$type": "36|UnityEngine.Transform, UnityEngine.CoreModule"
+                                    },
+                                    {
+                                        "$id": 229,
+                                        "$type": 36
+                                    },
+                                    {
+                                        "$id": 230,
+                                        "$type": 36
+                                    },
+                                    {
+                                        "$id": 231,
+                                        "$type": 36
+                                    },
+                                    {
+                                        "$id": 232,
+                                        "$type": 36
+                                    },
+                                    {
+                                        "$id": 233,
+                                        "$type": 36
+                                    }
+                                ]
+                            }
+                        },
                         "displayName": "Closet"
                     }
                 },
                 "outlineRoot": {
-                    "$id": 223,
+                    "$id": 234,
                     "$type": 13
                 },
                 "drawer": {
-                    "$id": 224,
+                    "$id": 235,
                     "$type": 13
                 },
                 "slotPivot": {
-                    "$id": 225,
-                    "$type": "35|System.Collections.Generic.List`1[[UnityEngine.Transform, UnityEngine.CoreModule]], mscorlib",
+                    "$id": 236,
+                    "$type": 35,
                     "$rlength": 6,
                     "$rcontent": [
                         {
-                            "$id": 226,
-                            "$type": "36|UnityEngine.Transform, UnityEngine.CoreModule"
-                        },
-                        {
-                            "$id": 227,
+                            "$id": 237,
                             "$type": 36
                         },
                         {
-                            "$id": 228,
+                            "$id": 238,
                             "$type": 36
                         },
                         {
-                            "$id": 229,
+                            "$id": 239,
                             "$type": 36
                         },
                         {
-                            "$id": 230,
+                            "$id": 240,
                             "$type": 36
                         },
                         {
-                            "$id": 231,
+                            "$id": 241,
+                            "$type": 36
+                        },
+                        {
+                            "$id": 242,
                             "$type": 36
                         }
                     ]
@@ -2193,13 +2263,13 @@
         {
             "$k": "Scissors4f248db5-c360-418f-8e5f-0954e13b60c0",
             "$v": {
-                "$id": 232,
+                "$id": 243,
                 "$type": "37|ToolSceneGameObject, Assembly-CSharp",
                 "data": {
                     "$type": 3,
                     "id": "Scissors4f248db5-c360-418f-8e5f-0954e13b60c0",
                     "childs": {
-                        "$id": 233,
+                        "$id": 244,
                         "$type": 4,
                         "$rlength": 0,
                         "$rcontent": [
@@ -2207,7 +2277,7 @@
                     },
                     "parent": "SteelTable1459c8d8-8f9b-4c9d-b304-76a65393beb2",
                     "data": {
-                        "$id": 234,
+                        "$id": 245,
                         "$type": "38|NT.Variables.NTVariable`1[[NT.SceneObjects.SurgicalInstrumentData, Assembly-CSharp]], Assembly-CSharp",
                         "collapsed": true,
                         "name": null,
@@ -2233,35 +2303,35 @@
                         0
                     },
                     "graph": {
-                        "$id": 235,
+                        "$id": 246,
                         "$type": 8,
                         "_name": "",
                         "nodes": {
-                            "$id": 236,
+                            "$id": 247,
                             "$type": 9,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
                         "packedNodes": {
-                            "$id": 237,
+                            "$id": 248,
                             "$type": 10,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
                         "callbackNodes": {
-                            "$id": 238,
+                            "$id": 249,
                             "$type": 11,
                             "$rlength": 0,
                             "$rcontent": [
                             ]
                         },
                         "callbackNodesDict": {
-                            "$id": 239,
+                            "$id": 250,
                             "$type": 12,
                             "comparer": {
-                                "$id": 240,
+                                "$id": 251,
                                 "$type": 1
                             },
                             "$rlength": 0,
@@ -2274,7 +2344,7 @@
                     }
                 },
                 "outlineRoot": {
-                    "$id": 241,
+                    "$id": 252,
                     "$type": 13
                 },
                 "toolType": 0
