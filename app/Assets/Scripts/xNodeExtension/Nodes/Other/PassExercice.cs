@@ -13,13 +13,13 @@ namespace NT.Nodes.Other {
         }
 
         public override string GetDisplayName(){
-            return "Pass Exercice";
+            return "Pass Exercise";
         }
 
 
         public override IEnumerator ExecuteNode(NodeExecutionContext context)
         {
-            MessageSystem.SendMessage("Pass Session /" +  (int) GetValue() );
+            MessageSystem.SendMessage("Pass Session /" + (GetValue() != null ? GetValue() : grade));
             yield return null;
         }
 

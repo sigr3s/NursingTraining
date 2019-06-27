@@ -28,9 +28,10 @@ public class ClosetSceneGameObject : SceneGameObject {
         ClosetData closetData = (ClosetData) data.data.GetDefaultValue();
         List<SceneGameObjectReference> slots = SlotsList(closetData);
     
-        childOfElement.gameObject.SetActive(false);
+        Destroy(childOfElement.GetComponent<Rigidbody>());
+        childOfElement.gameObject.SetActive(true);
 
-        if(instancing){
+        if (instancing){
             
             bool stored = false;
 

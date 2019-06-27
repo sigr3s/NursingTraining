@@ -10,5 +10,9 @@ namespace NT.SceneObjects{
     [CreateAssetMenu(fileName = "ToolObject", menuName = "NT/Scene/Tool")]
     public class ToolObject : SceneObject<ToolObject> {
         
+        public override List<string> GetCallbacks()
+        {
+            return new List<string>() { "Grabbed" };
+        }
     }
 }

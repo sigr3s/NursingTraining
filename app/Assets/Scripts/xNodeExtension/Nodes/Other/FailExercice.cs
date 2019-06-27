@@ -14,12 +14,12 @@ namespace NT.Nodes.Other {
         }
 
         public override string GetDisplayName(){
-            return "Fail Exercice";
+            return "Fail Exercise";
         }
 
         public override IEnumerator ExecuteNode(NodeExecutionContext context)
         {
-            MessageSystem.SendMessage("Fail Session /" + GetValue());
+            MessageSystem.SendMessage("Fail Session /" + (GetValue() != null ? GetValue() : grade) );
             yield return null;
         }
     }

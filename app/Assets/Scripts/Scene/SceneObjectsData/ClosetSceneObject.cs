@@ -30,7 +30,7 @@ namespace NT.SceneObjects
         }
 
         public override void HoldItem(SceneGameObject obj){
-            obj.gameObject.SetActive(false);
+            obj.gameObject.SetActive(true);
         }
     }
 }

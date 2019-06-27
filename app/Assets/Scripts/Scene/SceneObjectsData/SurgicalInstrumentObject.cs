@@ -8,6 +8,9 @@ namespace NT.SceneObjects{
 
     [CreateAssetMenu(fileName = "SurgicalInstrument", menuName = "NT/Scene/SurgicalInstrument")]
     public class SurgicalInstrument : SceneObject<SurgicalInstrumentData> {
-       
+        public override List<string> GetCallbacks()
+        {
+            return new List<string>() { "Grabbed" };
+        }
     }
 }

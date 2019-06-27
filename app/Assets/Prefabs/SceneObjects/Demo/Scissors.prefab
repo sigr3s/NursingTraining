@@ -93,6 +93,7 @@ MonoBehaviour:
       displayName: 
   outlineRoot: {fileID: 0}
   toolType: 0
+  grabObject: {fileID: 0}
 --- !u!1001 &4199984119279732266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,6 +152,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 5e05a2f7edd24684fab4369766159b94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e05a2f7edd24684fab4369766159b94, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e05a2f7edd24684fab4369766159b94, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e05a2f7edd24684fab4369766159b94, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11100000, guid: 5e05a2f7edd24684fab4369766159b94, type: 3}

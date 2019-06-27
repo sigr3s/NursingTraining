@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f475e278828a1eb45b64ecf2f3b8f0f4, type: 3}
   m_Name: Scissors
-  m_EditorClassIdentifier: Assembly-CSharp:NT.SceneObjects:SurgicalInstrument
-  displayName: Scissors
+  m_EditorClassIdentifier: 
+  displayName: 
   sceneGameObject:
     canBePlacedOver:
       serializedVersion: 2
       m_Bits: 1024
     model: {fileID: 8105793770081520070, guid: ec9aa629a66bb45ef84ab83de7dbcf24, type: 3}
   sceneObjectUI:
-    color: {r: 0.2988608, g: 0.7004124, b: 0.8679245, a: 0.8235294}
+    color: {r: 0, g: 0.68458986, b: 1, a: 0.5882353}
     icon: {fileID: 21300000, guid: 9281abada1fd93948a7382fa957728b1, type: 3}
     category: 3
-  GUID: 06760193-464a-4a05-9c27-5b838edcb4db
+  GUID: 7ee3bff5-d777-41ff-ba1b-8ee1d83dd392

@@ -26,7 +26,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a011b23e5329d74db090ccc1b060926, type: 2}
   - {fileID: 11400000, guid: 5d452e656110d4943a515c2d7ea1a695, type: 2}
   - {fileID: 11400000, guid: 74693eb33425b9c499603b15f4e8c4ca, type: 2}
-  - {fileID: 11400000, guid: cad56196af8eb43eca7b5d81c0e88611, type: 2}
+  - {fileID: 11400000, guid: edbcd7e160814ce458114b9045053452, type: 2}
+  - {fileID: 11400000, guid: be923fce2f48381419a2ec48ac8c49a6, type: 2}
+  - {fileID: 11400000, guid: 7991454308b6f914e94782c6514bfeae, type: 2}
+  - {fileID: 11400000, guid: 381a1b43154ff8f4887a340c80099071, type: 2}
+  - {fileID: 11400000, guid: e5e0da85c6234be4bb826ab034dc2be4, type: 2}
+  - {fileID: 11400000, guid: 3f2936f5c568592498314abd1bf4e7f5, type: 2}
+  - {fileID: 11400000, guid: 330e50d1555c3cd49b53e1ed73f496e9, type: 2}
   prefabSet: []
   prefabSprites:
   - {fileID: 21300000, guid: 0813d23417e6b974cb20c1ac2fba38e0, type: 3}
