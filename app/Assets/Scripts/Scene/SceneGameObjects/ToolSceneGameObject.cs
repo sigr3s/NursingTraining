@@ -6,20 +6,22 @@ using System;
 public class ToolSceneGameObject : SceneGameObject, ITool
 {
     public Tools toolType;
-    public VRTK_InteractGrab grabObject;
+    public VRTK_InteractableObject grabObject;
 
     private void Start()
     {
+        grabObject = GetComponentInChildren<VRTK_InteractableObject>();
         if (grabObject != null)
         {
-            grabObject.ControllerGrabInteractableObject += ObjectGrab;
+            grabObject.InteractableObjectGrabbed += ObjectGrabbed;
         }
     }
 
-    private void ObjectGrab(object sender, ObjectInteractEventArgs e)
+    private void ObjectGrabbed(object sender, InteractableObjectEventArgs e)
     {
-        Debug.Log("Object Grab");
+        MessageSystem.SendMessage(data.id + "Grabbed");
     }
+
 
     public Tools GetToolType()
     {

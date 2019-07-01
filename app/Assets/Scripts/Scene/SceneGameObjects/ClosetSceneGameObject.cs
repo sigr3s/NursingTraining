@@ -28,7 +28,7 @@ public class ClosetSceneGameObject : SceneGameObject {
         ClosetData closetData = (ClosetData) data.data.GetDefaultValue();
         List<SceneGameObjectReference> slots = SlotsList(closetData);
     
-        Destroy(childOfElement.GetComponent<Rigidbody>());
+        //Destroy(childOfElement.GetComponent<Rigidbody>());
         childOfElement.gameObject.SetActive(true);
 
         if (instancing){

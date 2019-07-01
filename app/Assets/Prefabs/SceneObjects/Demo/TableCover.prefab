@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105793770081520066}
   - component: {fileID: 1640251128722731059}
-  - component: {fileID: 2915453210360360964}
+  - component: {fileID: -5731998332265023124}
   m_Layer: 11
   m_Name: TableCover
   m_TagString: Cover
@@ -222,7 +222,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2915453210360360964
+--- !u!114 &-5731998332265023124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8105793770081520070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b2bad417903194da00465ea2145558, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b0424d978d0e9a4caae82db438d50b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
@@ -252,3 +252,5 @@ MonoBehaviour:
       assignedSCGO: {fileID: 0}
       displayName: 
   outlineRoot: {fileID: 0}
+  toolType: 0
+  grabObject: {fileID: 932142468588261289}
